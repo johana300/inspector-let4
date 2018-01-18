@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    tools:context="com.letchile.let.VehLiviano.InsPendientesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeM"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:id="@+id/tableM"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="21sp"
+                    android:gravity="fill_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@android:color/holo_orange_dark"
+                        android:padding="3dp"
+                        android:text="N° OI"
+                        android:textColor="#F7F7F7" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@android:color/holo_orange_dark"
+                        android:padding="3dp"
+                        android:text="PATENTE"
+                        android:textColor="#F7F7F7" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@android:color/holo_orange_dark"
+                        android:paddingBottom="3dp"
+                        android:paddingRight="15dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="3dp"
+                        android:text="F. CITA"
+                        android:textColor="#F7F7F7" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@android:color/holo_orange_dark"
+                        android:padding="3dp"
+                        android:text="H. CITA"
+                        android:textColor="#F7F7F7" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@android:color/holo_orange_dark"
+                        android:padding="3dp"
+                        android:text="DETALLE"
+                        android:textColor="#F7F7F7" />
+
+                </TableRow>
+            </TableLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

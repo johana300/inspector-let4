@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.letchile.let.VehLiviano.SeccionActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textSec"
+            android:layout_width="500dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Secciones de la inspección" />
+
+        <TextView
+            android:id="@+id/textSec1"
+            android:layout_width="500dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:text=""
+            android:background="@android:color/holo_orange_dark"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnVolverSecJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="110dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/textSec1"
+            android:layout_marginStart="1dp"
+            android:drawableLeft="@android:drawable/ic_menu_revert"
+            android:text="Secciones" />
+
+        <Button
+            android:id="@+id/btnPenJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="130dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/textSec1"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:visibility="invisible"
+             />
+
+        <Button
+            android:id="@+id/btnTranJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="1200dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/textSec1"
+            android:layout_marginStart="1dp"
+            android:layout_toEndOf="@+id/btnPenJg"
+            android:drawableRight="@android:drawable/ic_media_play"
+            android:text="Transmitir OI "
+            android:textSize="12dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/textSec1"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textSec">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="36dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnFotoJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="50pt"
+                        android:layout_marginTop="5dp"
+                        android:text="Toma Foto" />
+
+                    <Button
+                        android:id="@+id/btnAsegJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-97dp"
+                        android:text="Datos Asegurado" />
+
+                    <Button
+                        android:id="@+id/btnVehJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Datos Vehículo" />
+
+                    <Button
+                        android:id="@+id/btnAcc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="accesorios"
+                        android:text="Accesorio" />
+
+                    <Button
+                        android:id="@+id/btnAudioJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Audio" />
+
+                    <Button
+                        android:id="@+id/btnNeumJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Neumáticos" />
+
+                    <Button
+                        android:id="@+id/btnTechoJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Techo" />
+
+                    <Button
+                        android:id="@+id/btnInspJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Datos de Inspección" />
+
+                    <Button
+                        android:id="@+id/btnObsJg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Observaciones"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

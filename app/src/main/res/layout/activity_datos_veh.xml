@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.letchile.let.VehLiviano.DatosVehActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textV"
+            android:layout_width="500dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Datos de Vehículo" />
+
+        <TextView
+            android:id="@+id/textV1"
+            android:layout_width="500dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:text=""
+            android:background="@android:color/holo_orange_dark"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnVolverVehJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="110dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/textV1"
+            android:layout_marginStart="1dp"
+            android:drawableLeft="@android:drawable/ic_menu_revert"
+            android:text="Secciones"  />
+
+        <Button
+            android:id="@+id/btnPenVehJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="130dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/textV1"
+            android:layout_centerHorizontal="true"
+            android:text="Pendientes"
+            android:textSize="12sp"
+            />
+
+        <Button
+            android:id="@+id/btnSigVehJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="1200dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/textV1"
+            android:layout_marginStart="1dp"
+            android:layout_toEndOf="@+id/btnPenVehJg"
+            android:drawableRight="@android:drawable/ic_media_play"
+            android:text="Guardar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/textV1"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textV">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="36dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo Vehículo" />
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Uso Vehículo" />
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Combustión:" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bencina" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Diesel" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gas Licuado" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Eléctrico" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Transmisión" />
+
+                    <Spinner
+                        android:id="@+id/spinner3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patente" />
+
+                    <EditText
+                        android:id="@+id/editText4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Marca" />
+
+                    <EditText
+                        android:id="@+id/editText5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Modelo" />
+
+                    <EditText
+                        android:id="@+id/editText6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Submodelo" />
+
+                    <EditText
+                        android:id="@+id/editText7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Color" />
+
+                    <EditText
+                        android:id="@+id/editText8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Año" />
+
+                    <EditText
+                        android:id="@+id/editText9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="N° Puertas"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="N° Motor" />
+
+                    <EditText
+                        android:id="@+id/editText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="N° Chasis" />
+
+                    <EditText
+                        android:id="@+id/editText3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Placa adulterada" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4X4" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Importación Directa" />
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
