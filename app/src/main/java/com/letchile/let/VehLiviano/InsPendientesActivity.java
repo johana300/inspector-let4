@@ -497,6 +497,8 @@ public class InsPendientesActivity extends AppCompatActivity{
                             Intent i = new Intent(InsPendientesActivity.this,detalleActivity.class);
                             i.putExtra("id_inspeccion",id_inspeccion.getText().toString());
                             startActivity(i);
+                            /*Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                            startActivityForResult(intent, 1);*/
                         }
                     });
 

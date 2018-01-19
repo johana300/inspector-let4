@@ -23,6 +23,20 @@ public class DatosVehActivity extends AppCompatActivity {
         final String id_inspeccion=bundle.getString("id_inspeccion");
 
         tipo_veh = (Spinner)findViewById(R.id.spinner_tipo_veh);
+        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.tipo_veh , android.R.layout.simple_spinner_item);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipo_veh.setAdapter(spinner_adapter);
+
+        uso_veh = (Spinner)findViewById(R.id.spinner_uso_veh);
+        spinner_adapter = ArrayAdapter.createFromResource( this, R.array.uso_veh , android.R.layout.simple_spinner_item);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        uso_veh.setAdapter(spinner_adapter);
+
+        transmision = (Spinner)findViewById(R.id.spinner_trans);
+        spinner_adapter = ArrayAdapter.createFromResource( this, R.array.trans , android.R.layout.simple_spinner_item);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        transmision.setAdapter(spinner_adapter);
+
 
 
         //botón guardar y siguiente de datos de vehículos

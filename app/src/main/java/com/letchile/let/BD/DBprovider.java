@@ -28,10 +28,10 @@ public class DBprovider extends SQLiteOpenHelper{
             "direccion_cita TEXT, enviado INTEGER, pac TEXT, estado INTEGER, email TEXT)";
 
     private static final String TABLA_FOTO="CREATE TABLE FOTO(id_inspeccion INTEGER,id_foto INTEGER, foto TEXT, comentario TEXT,enviado INTEGER)";
-    private static final String TABLA_VALOR="CREATE TABLE VALOR(id_inspeccion INTEGER, id_campo INTEGER,valor TEXT, enviado INTEGER)";
     private static final String TABLA_HITO="CREATE TABLE HITO(id_hito INTEGER, glosa TEXT, orden INTEGER)";
     private static final String TABLA_BITACORA="CREATE TABLE BITACORA(id_inspeccion INTEGER, id_hito INTEGER, glosa TEXT, fecha TEXT, enviado INTEGER)";
     private static final String TABLA_COMUNA = "CREATE TABLE COMUNA(id_region INTEGER, region TEXT, comuna TEXT)";
+    private static final String TABLA_VALOR = "CREATE TABLE VALOR (idInspeccion INTEGER, idCampo INTEGER, valor TEXT, estado INTEGER)";
 
 
     public DBprovider(Context context){
@@ -409,6 +409,23 @@ public class DBprovider extends SQLiteOpenHelper{
         }
         db.close();
     }
+
+    //idInspeccion INTEGER, idCampo INTEGER, valor TEXT, estado INTEGER
+    public String insertarValor(Integer id_inspeccion, Integer id_campo, String valor ){
+        String respuesta="";
+        SQLiteDatabase db = getWritableDatabase();
+
+        if(db != null)
+        {
+            db.rawQuery("INSERT INTO VALOR (id_inspeccion,idCampo,valor,estado)" +
+                    "VALUES ("+id_inspeccion+","+id_campo+",'"+valor+"',"+0+")",null);
+            respuesta = "Ok";
+        }else{
+            respuesta = "";
+        }
+        return respuesta;
+    }
+
 
 
 

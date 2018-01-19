@@ -87,6 +87,19 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patente" />
+
+                    <EditText
+                        android:id="@+id/patenteM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
                         android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -115,25 +128,25 @@
                         android:text="Combustión:" />
 
                     <CheckBox
-                        android:id="@+id/checkBox2"
+                        android:id="@+id/checkBencina"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bencina" />
 
                     <CheckBox
-                        android:id="@+id/checkBox3"
+                        android:id="@+id/checkDiesel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Diesel" />
 
                     <CheckBox
-                        android:id="@+id/checkBox4"
+                        android:id="@+id/checkGasL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Gas Licuado" />
 
                     <CheckBox
-                        android:id="@+id/checkBox5"
+                        android:id="@+id/checkEl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Eléctrico" />
@@ -150,26 +163,13 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/textView17"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Patente" />
-
-                    <EditText
-                        android:id="@+id/editText4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textMultiLine" />
-
-                    <TextView
                         android:id="@+id/textView19"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Marca" />
 
                     <EditText
-                        android:id="@+id/editText5"
+                        android:id="@+id/marcaM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -182,7 +182,7 @@
                         android:text="Modelo" />
 
                     <EditText
-                        android:id="@+id/editText6"
+                        android:id="@+id/modeloM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -195,7 +195,7 @@
                         android:text="Submodelo" />
 
                     <EditText
-                        android:id="@+id/editText7"
+                        android:id="@+id/subModelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -208,7 +208,7 @@
                         android:text="Color" />
 
                     <EditText
-                        android:id="@+id/editText8"
+                        android:id="@+id/colorM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -221,7 +221,7 @@
                         android:text="Año" />
 
                     <EditText
-                        android:id="@+id/editText9"
+                        android:id="@+id/AnioM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -235,7 +235,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/nPuertasM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -248,7 +248,7 @@
                         android:text="N° Motor" />
 
                     <EditText
-                        android:id="@+id/editText2"
+                        android:id="@+id/nMotorM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -261,26 +261,26 @@
                         android:text="N° Chasis" />
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/nChasisM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textMultiLine" />
 
                     <CheckBox
-                        android:id="@+id/checkBox"
+                        android:id="@+id/checkPlaca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Placa adulterada" />
 
                     <CheckBox
-                        android:id="@+id/checkBox6"
+                        android:id="@+id/check4x4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="4X4" />
 
                     <CheckBox
-                        android:id="@+id/checkBox7"
+                        android:id="@+id/checkImpDir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Importación Directa" />
