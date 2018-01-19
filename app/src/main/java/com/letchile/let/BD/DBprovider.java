@@ -261,6 +261,8 @@ public class DBprovider extends SQLiteOpenHelper{
         db.close();
         return count;
     }
+
+
     public static int safeLongToInt(long l) {
         if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {
             throw new IllegalArgumentException
@@ -315,6 +317,29 @@ public class DBprovider extends SQLiteOpenHelper{
         db.close();
         return (aData);
     }
+
+    public String[][] obtenerRegion(String comuna){
+        int count = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        String[][] aData = null;
+        Cursor aRS = db.rawQuery("SELECT DISTINCT region FROM COMUNA WHERE comuna = '"+comuna+"'", null);
+
+        if(aRS.getCount()>0){
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()){
+                aData[count] = new String[3];
+                aData[count][0] = aRS.getString(aRS.getColumnIndex("region"));
+                count++;
+            }
+        }else{
+            aData = new String[0][];
+        }
+        aRS.close();
+        db.close();
+        return (aData);
+    }
+
+
 
     public String[][] listaFotos(String id_inspeccion) {
         int count = 0;
@@ -373,6 +398,19 @@ public class DBprovider extends SQLiteOpenHelper{
         return respuesta;
     }
 
+    public void actualizarAsegInspeccion(Integer id_inspeccion, String asegurado,String apellidoP, String apellidoM, String rut,String direccion,
+                                         Integer fono, String email, String comuna){
+        SQLiteDatabase db = getWritableDatabase();
+
+        if(db != null)
+        {
+            db.execSQL("UPDATE INSPECCION SET asegurado = '"+asegurado+"', apellidoPaterno = '"+apellidoP+"', apellidoMaterno ='"+apellidoM+"'," +
+                    "rut = '"+rut+"', direccion='"+direccion+"', fono="+fono+", email='"+email+"', comuna='"+comuna+"' WHERE id_inspeccion="+id_inspeccion);
+        }
+        db.close();
+    }
+
+
 
 
 
@@ -388,6 +426,7 @@ public class DBprovider extends SQLiteOpenHelper{
         db.insert(TABLE_IMAGE, null, values);
         db.close(); // Closing database connection
     }
+
 
 
     // Getting single image

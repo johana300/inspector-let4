@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ public class DatosAsegActivity extends AppCompatActivity {
     ProgressDialog pDialog;
     EditText asegurado, paternoAsegurado, maternoAsegurado,rut,direccion,fono,email;
     String [][] datosInspeccion;
+    //Spinner comboComuna;
 
     public DatosAsegActivity() {
         db = new DBprovider(this);
@@ -65,25 +67,12 @@ public class DatosAsegActivity extends AppCompatActivity {
         email.setText(datosInspeccion[0][11]);
 
 
-
-        //llenar spinner
-
-        String primeraComuna = datosInspeccion[0][5];
-        Spinner comboComuna = (Spinner)findViewById(R.id.comboComJr);
-        ArrayAdapter<String> adapterComuna = new ArrayAdapter<String>(DatosAsegActivity.this,android.R.layout.simple_spinner_item);
-        adapterComuna.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        comboComuna.setAdapter(adapterComuna);
-        if(primeraComuna!=null)
-        {
-            int posicion = adapterComuna.getPosition(primeraComuna);
-            comboComuna.setSelection(posicion);
-        }
-
         //llenar regiones
-        /*String listaRegiones[][]=db.listaRegiones();
+        String regionInicial[][]=db.obtenerRegion(datosInspeccion[0][5]);
+        String listaRegiones[][]=db.listaRegiones();
         final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegJg);
         String[] arraySpinner = new String[listaRegiones.length];
-        arraySpinner[0]="Seleccione...";
+        arraySpinner[0]=regionInicial[0][0];
         for(int i=1;i<listaRegiones.length;i++)        {
             arraySpinner[i]=listaRegiones[i][0];
         }
@@ -92,6 +81,7 @@ public class DatosAsegActivity extends AppCompatActivity {
         comboRegion.setAdapter(adapterRegion);
 
 
+        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComJr);
         comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -100,10 +90,11 @@ public class DatosAsegActivity extends AppCompatActivity {
                 //Rescata la lista según el item elegido
                 String listaComunas[][] = db.listaComunas(regionSelected);
                 //Inicia el nuevo combo a llenar
-                Spinner comboComuna = (Spinner)findViewById(R.id.comboComJr);
+
                 //Se crea una variable array para ser llenado
                 String[] spinnerComuna = new String[listaComunas.length];
-                for(int i=0;i<listaComunas.length;i++){
+                spinnerComuna[0] = datosInspeccion[0][5];
+                for(int i=1;i<listaComunas.length;i++){
                     spinnerComuna[i] = listaComunas[i][0];
                 }
                 ArrayAdapter<String> adapterComuna = new ArrayAdapter<String>(DatosAsegActivity.this,android.R.layout.simple_spinner_item,spinnerComuna);
@@ -113,13 +104,8 @@ public class DatosAsegActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
-        });*/
-
-
-
-
+        });
 
 
         final Button btnSigAsegJG = (Button) findViewById(R.id.btnSigAsegJg);
@@ -127,7 +113,11 @@ public class DatosAsegActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),asegurado.getText().toString(),paternoAsegurado.getText().toString(),
+                        maternoAsegurado.getText().toString(),rut.getText().toString(),direccion.getText().toString(),Integer.parseInt(fono.getText().toString()),
+                        email.getText().toString(),comboComuna.getSelectedItem().toString());
                 Intent intent = new Intent(DatosAsegActivity.this, DatosVehActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
@@ -138,16 +128,18 @@ public class DatosAsegActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(DatosAsegActivity.this, SeccionActivity.class);//cambiar por volver a fotos
+                intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
 
-        final Button btnPenAsegJg = (Button) findViewById(R.id.btnPenAsegJg);
+        Button btnPenAsegJg = (Button) findViewById(R.id.btnPenAsegJg);
         btnPenAsegJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(DatosAsegActivity.this, SeccionActivity.class);
+                Intent intent = new Intent(DatosAsegActivity.this, InsPendientesActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });

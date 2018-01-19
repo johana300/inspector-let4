@@ -50,8 +50,8 @@
             android:layout_height="45dp"
             android:layout_alignTop="@+id/textD2"
             android:layout_centerHorizontal="true"
-            android:textSize="12sp"
-            android:text="Pendientes" />
+            android:text="Pendientes"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btnSigAsegJg"
@@ -95,7 +95,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textMultiLine" />
+                        android:singleLine="true"
+                        android:nextFocusDown="@+id/apellidoPaternoM"/>
 
                     <TextView
                         android:id="@+id/aPaterJg"
@@ -108,7 +109,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textMultiLine" />
+                        android:singleLine="true"
+                        android:nextFocusDown="@+id/maternoAseguradoM"/>
 
                     <TextView
                         android:id="@+id/textView4"
@@ -121,7 +123,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textMultiLine" />
+                        android:singleLine="true"
+                        android:nextFocusDown="@+id/rutJg"/>
 
                     <TextView
                         android:id="@+id/textView5"
@@ -134,7 +137,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textMultiLine" />
+                        android:singleLine="true"
+                        android:nextFocusDown="@+id/comboRegJg"/>
 
                     <TextView
                         android:id="@+id/textView6"
@@ -169,7 +173,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textMultiLine" />
+                        android:singleLine="true"
+                        android:nextFocusDown="@+id/fonoJg"/>
 
                     <TextView
                         android:id="@+id/textView9"
@@ -182,7 +187,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="phone" />
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:nextFocusDown="@+id/mailJg"/>
 
                     <TextView
                         android:id="@+id/textView10"

@@ -42,81 +42,10 @@ public class SeccionActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SeccionActivity.this, DatosVehActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
-
-        //Botón Sección Accesorios
-        /*Button btnAccJG = (Button)findViewById(R.id.btnAcc);
-        btnAccJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SeccionActivity.this, AccActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección Audio
-        Button btnAudioJG = (Button)findViewById(R.id.btnAudioJg);
-        btnAudioJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SeccionActivity.this, AudioActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección neumático
-        Button btnNeumJG = (Button)findViewById(R.id.btnNeumJg);
-        btnNeumJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SeccionActivity.this, NeuActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección Techo
-        Button btnTechoJG = (Button)findViewById(R.id.btnTechoJg);
-        btnTechoJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SeccionActivity.this, TechoActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección datos inspección
-        Button btnInspJG = (Button)findViewById(R.id.btnInspJg);
-        btnInspJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SeccionActivity.this, DatosInspActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Observaciones
-        Button btnObsJG = (Button)findViewById(R.id.btnObsJg);
-        btnObsJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SeccionActivity.this, ObsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Botón volver a pendientes OI
-        Button btnTranJg = (Button)findViewById(R.id.btnTranJg);
-        btnTranJg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SeccionActivity.this, ObsActivity.class); //ir a pagina despues de transmitir
-                startActivity(intent);
-            }
-        });*/
-
-        //Botón transmitir
 
     }
 

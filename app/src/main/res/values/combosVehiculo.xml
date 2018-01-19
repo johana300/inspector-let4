@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipo_veh">
+    <item>Seleccione...</item>
+    <item>Moto</item>
+    <item>Sedán</item>
+    <item>Hatchback</item>
+    <item>Coupé</item>
+    <item>Station Wagon</item>
+    <item>Camioneta</item>
+    <item>Jeep</item>
+    <item>Van/Furgón</item>
+    <item>Convertible</item>
+    <item>Discapacitado</item>
+    <item>Convertible</item>
+    <item>Discapacitado</item>
+    <item>Ambulancia</item>
+    <item>Minibus</item>
+</string-array>
+
+    <string-array name="uso_veh">
+        <item>Seleccione...</item>
+        <item>Particular</item>
+        <item>Comercial</item>
+        <item>Deportivo</item>
+    </string-array>
+
+    <string-array name="trans">
+    <item>Seleccione...</item>
+    <item>Manual</item>
+    <item>Automático</item>
+</string-array>
+</resources>
