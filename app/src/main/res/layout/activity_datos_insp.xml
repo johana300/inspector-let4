@@ -54,7 +54,8 @@
             android:textColor="@android:color/background_light"
             android:layout_toEndOf="@+id/btnVolverInspJg"
             android:text="Pendientes"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="invisible" />/>
 
         <Button
             android:id="@+id/btnSigInspJg"
@@ -66,7 +67,7 @@
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Guardar"/>
+            android:text="Siguiente"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

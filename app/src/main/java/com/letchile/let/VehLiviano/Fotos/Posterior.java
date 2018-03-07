@@ -83,6 +83,7 @@ public class Posterior extends AppCompatActivity {
     PropiedadesFoto foto;
     String nombreimagen = "";
     Validaciones validaciones;
+    int correlativo = 0;
 
     public Posterior(){db = new DBprovider(this);foto=new PropiedadesFoto(this);validaciones = new Validaciones(this);
     }
@@ -367,8 +368,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Dano_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Foto_Dano_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -399,8 +400,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Foto_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -429,8 +430,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Logo_Luneta_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Logo_Luneta_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -460,8 +461,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha+ "_Foto_Adicional_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo)+ "_Foto_Adicional_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -491,8 +492,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Sensores_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Foto_Sensores_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -523,8 +524,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Camara_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Foto_Camara_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -554,8 +555,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Coco_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Foto_Coco_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -586,8 +587,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_muela.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Foto_muela.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 
@@ -617,8 +618,8 @@ public class Posterior extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Enchufe_Remolque_Posterior.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            String imageName = String.valueOf(correlativo) + "_Foto_Enchufe_Remolque_Posterior.jpg";
             ruta = file.toString() +"/" +imageName;
             mPath =  ruta ;
 

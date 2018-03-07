@@ -195,16 +195,7 @@ public class DatosAsegActivity extends AppCompatActivity {
             }
         });
 
-        Button btnPenAsegJg = (Button) findViewById(R.id.btnPenAsegJg);
-        btnPenAsegJg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent(DatosAsegActivity.this, InsPendientesActivity.class);
-                intent.putExtra("id_inspeccion",id_inspeccion);
-                startActivity(intent);
-            }
-        });
     }
 }
 

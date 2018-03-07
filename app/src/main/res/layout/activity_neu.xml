@@ -53,7 +53,8 @@
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:layout_toEndOf="@+id/btnVolverNeuJg"
-            android:text="Pendientes" />
+            android:text="Pendientes"
+            android:visibility="invisible" />/>
 
         <Button
             android:id="@+id/btnSigNeuJg"
@@ -65,7 +66,7 @@
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Guardar"
+            android:text="Siguiente"
             />
 
         <RelativeLayout

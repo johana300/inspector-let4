@@ -1017,4 +1017,18 @@ public class DBprovider extends SQLiteOpenHelper {
         db.close();
     }
 
+
+
+    //Valida fotos obligatorias para transmitir
+    public int correlativoFotos(int id_inspeccion){
+        int rsp = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"", null);
+
+        if (ars.moveToFirst()) {
+            rsp = ars.getInt(ars.getColumnIndex("cantidad"));
+        }
+        return rsp;
+    }
+
 }

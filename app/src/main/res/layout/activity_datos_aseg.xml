@@ -57,7 +57,8 @@
             android:textColor="@android:color/background_light"
             android:layout_toEndOf="@+id/btnVolverAsegJg"
             android:text="Pendientes"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnSigAsegJg"
