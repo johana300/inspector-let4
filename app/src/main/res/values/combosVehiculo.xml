@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string-array name="insp">
+        <item>Seleccione...</item>
+        <item>Nueva</item>
+        <item>Reinspección</item>
+        <item>Accesorios</item>
+    </string-array>
+
+
     <string-array name="tipo_veh">
     <item>Seleccione...</item>
     <item>Moto</item>
@@ -29,5 +38,112 @@
     <item>Seleccione...</item>
     <item>Manual</item>
     <item>Automático</item>
-</string-array>
+    </string-array>
+
+
+    <string-array name="panel_radio">
+        <item>Seleccione...</item>
+        <item>Desmontable</item>
+        <item>Fijo</item>
+    </string-array>
+
+    <string-array name="tipo_radio">
+        <item>Seleccione...</item>
+        <item>CD</item>
+        <item>Casette</item>
+        <item>Standar</item>
+    </string-array>
+
+    <string-array name="tweeter">
+        <item>Seleccione...</item>
+        <item>Panel</item>
+        <item>Puerta</item>
+        <item>Pilares</item>
+    </string-array>
+
+    <string-array name="woofer">
+        <item>Seleccione...</item>
+        <item>Maleta</item>
+    </string-array>
+
+    <string-array name="amplif1">
+        <item>Seleccione...</item>
+        <item>Maleta</item>
+        <item>Asiento</item>
+        <item>Panel</item>
+        <item>Techo</item>
+    </string-array>
+
+    <string-array name="amplif2">
+        <item>Seleccione...</item>
+        <item>Maleta</item>
+        <item>Asiento</item>
+        <item>Panel</item>
+        <item>Techo</item>
+    </string-array>
+
+    <string-array name="lector">
+        <item>Seleccione...</item>
+        <item>Maleta</item>
+        <item>Asiento</item>
+        <item>Panel</item>
+        <item>Techo</item>
+    </string-array>
+
+    <string-array name="pantalla">
+        <item>Seleccione...</item>
+        <item>Asiento</item>
+        <item>Panel</item>
+        <item>Techo</item>
+    </string-array>
+
+    <string-array name="dvd">
+        <item>Seleccione...</item>
+        <item>Asiento</item>
+        <item>Panel</item>
+        <item>Techo</item>
+    </string-array>
+
+    <string-array name="tipo_rueda">
+        <item>Seleccione...</item>
+        <item>Normal</item>
+        <item>Emergencia</item>
+        <item>Temporary</item>
+    </string-array>
+
+    <string-array name="ubicacion_rueda">
+        <item>Seleccione...</item>
+        <item>Interna</item>
+        <item>Externa</item>
+        <item>Int/Ext</item>
+    </string-array>
+
+    <string-array name="ubic_anti">
+        <item>Seleccione...</item>
+        <item>Interna</item>
+        <item>Externa</item>
+        <item>Int/Ext</item>
+    </string-array>
+
+    <string-array name="estado_llanta">
+        <item>Seleccione...</item>
+        <item>Bueno</item>
+        <item>Regular</item>
+        <item>Malo</item>
+    </string-array>
+
+    <string-array name="estado_neumatico">
+        <item>Seleccione...</item>
+        <item>Bueno</item>
+        <item>Regular</item>
+        <item>Malo</item>
+    </string-array>
+
+
+    <string-array name="tipo_ramo">
+        <item>Seleccione Ramo...</item>
+        <item>Vehículo liviano</item>
+        <item>Vehículo pesado</item>
+    </string-array>
+
 </resources>

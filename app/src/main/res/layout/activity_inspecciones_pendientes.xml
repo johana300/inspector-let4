@@ -3,9 +3,70 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    tools:context="com.letchile.let.VehLiviano.InsPendientesActivity">
+    tools:context="com.letchile.let.InsPendientesActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="500dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/holo_orange_dark"
+            android:gravity="center"
+            android:text="Inspecciones Pendientes"
+            android:textColor="@android:color/background_dark"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="500dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/holo_orange_dark"
+            android:gravity="center"
+            android:text=""
+            android:textSize="24sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/textView2"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView">
+
+
+                <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/swipeM"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <de.codecrafters.tableview.TableView
+                        xmlns:table="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/tableView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        table:tableView_columnCount="5"
+                        />
+
+
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+    <!--LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -13,10 +74,7 @@
 
 
 
-        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/swipeM"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -25,71 +83,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="36dp">
 
-            <TableLayout
-                android:id="@+id/tableM"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="21sp"
-                    android:gravity="fill_horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:background="@android:color/holo_orange_dark"
-                        android:padding="3dp"
-                        android:text="N° OI"
-                        android:textColor="#F7F7F7" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:background="@android:color/holo_orange_dark"
-                        android:padding="3dp"
-                        android:text="PATENTE"
-                        android:textColor="#F7F7F7" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:background="@android:color/holo_orange_dark"
-                        android:paddingBottom="3dp"
-                        android:paddingRight="15dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="3dp"
-                        android:text="F. CITA"
-                        android:textColor="#F7F7F7" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:background="@android:color/holo_orange_dark"
-                        android:padding="3dp"
-                        android:text="H. CITA"
-                        android:textColor="#F7F7F7" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:background="@android:color/holo_orange_dark"
-                        android:padding="3dp"
-                        android:text="DETALLE"
-                        android:textColor="#F7F7F7" />
-
-                </TableRow>
-            </TableLayout>
         </ScrollView>
         </android.support.v4.widget.SwipeRefreshLayout>
-    </LinearLayout>
+    </LinearLayout-->
 
 </android.support.constraint.ConstraintLayout>

@@ -11,73 +11,75 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textSec"
+            android:id="@+id/textView"
             android:layout_width="500dp"
             android:layout_height="35dp"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:background="@android:color/holo_orange_dark"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Secciones de la inspección" />
+            android:background="@android:color/holo_orange_dark"
+            android:gravity="center"
+            android:text="Secciones de la inspección"
+            android:textColor="@android:color/background_dark"
+            android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textSec1"
+            android:id="@+id/textView2"
             android:layout_width="500dp"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:background="@android:color/holo_orange_dark"
             android:gravity="center"
             android:text=""
-            android:background="@android:color/holo_orange_dark"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnVolverSecJg"
             style="@android:style/Widget.Button"
-            android:layout_width="110dp"
+            android:layout_width="115dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/textSec1"
-            android:layout_marginStart="1dp"
+            android:background="@drawable/boton_redondo"
+            android:textColor="@android:color/background_light"
+            android:layout_alignTop="@+id/btnPenJg"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Secciones" />
+            android:text="Volver" />
 
         <Button
             android:id="@+id/btnPenJg"
             style="@android:style/Widget.Button"
-            android:layout_width="130dp"
+            android:layout_width="100dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/textSec1"
-            android:layout_centerHorizontal="true"
-            android:text=""
-            android:visibility="invisible"
-             />
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnVolverSecJg"
+            android:text="Volver a Secciones"
+            android:textSize="12sp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnTranJg"
             style="@android:style/Widget.Button"
-            android:layout_width="1200dp"
+            android:layout_width="1100dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/textSec1"
-            android:layout_marginStart="1dp"
+            android:layout_alignTop="@+id/btnPenJg"
             android:layout_toEndOf="@+id/btnPenJg"
+            android:background="@drawable/boton_redondo"
+            android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Transmitir OI "
-            android:textSize="12dp" />
+            android:text="Transmitir OI " />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/textSec1"
+            android:layout_above="@+id/textView2"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textSec">
+            android:layout_below="@+id/textView">
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="36dp">
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,64 +88,82 @@
 
                     <Button
                         android:id="@+id/btnFotoJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="50pt"
-                        android:layout_marginTop="5dp"
-                        android:text="Toma Foto" />
+                        android:layoutDirection="locale"
+                        android:text="Toma Foto"
+                        android:textSize="18sp" />
+
 
                     <Button
                         android:id="@+id/btnAsegJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-97dp"
-                        android:text="Datos Asegurado" />
+                        android:text="Datos Asegurado"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/btnVehJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Datos Vehículo" />
+                        android:text="Datos Vehículo"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/btnAcc"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="accesorios"
-                        android:text="Accesorio" />
+                        android:text="Accesorio"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/btnAudioJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Audio" />
+                        android:text="Audio"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/btnNeumJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Neumáticos" />
+                        android:text="Neumáticos"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/btnTechoJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Techo" />
+                        android:text="Techo"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/btnInspJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Datos de Inspección" />
+                        android:text="Datos de Inspección"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/btnObsJg"
+                        style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Observaciones"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
+
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>
+
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

@@ -4,35 +4,95 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <protected-broadcast android:name="android.intent.action.MEDIA_MOUNTED" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VehLiviano.InsPendientesActivity"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".InsPendientesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".detalleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.SeccionActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".VehLiviano.DatosAsegActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.DatosVehActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.AudioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.AccActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.NeuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.ObsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.TechoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VehLiviano.DatosInspActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".VehPesado.SeccionVpActivity"
+            android:screenOrientation="portrait" />
+
+        <service android:name=".Servicios.TransferirFoto" />
+        <service android:name=".Servicios.TransferirInspeccion" />
+
+        <activity android:name=".VehLiviano.Fotos.Posterior"
+            android:screenOrientation="portrait" />
+        <activity android:name=".VehLiviano.Fotos.frontal" />
+        <activity android:name=".VehLiviano.Fotos.lateralizquierdo" />
+        <activity android:name=".VehLiviano.Fotos.lateralderecho" />
+        <activity android:name=".VehLiviano.Fotos.llantasneumaticos" />
+        <activity android:name=".VehLiviano.Fotos.vl_techo" />
+        <activity android:name=".VehLiviano.Fotos.interior" />
+        <activity android:name=".VehLiviano.Fotos.motor" />
+        <activity android:name=".VehLiviano.Fotos.documento" />
+
+        <activity android:name=".Fallida.Fallida">
         </activity>
-        <activity android:name=".VehLiviano.detalleActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".VehLiviano.SeccionActivity">
-        </activity>
-        <activity android:name=".VehLiviano.DatosAsegActivity">
-        </activity>
-        <activity android:name=".VehLiviano.DatosVehActivity">
-        </activity>
+
     </application>
 
 </manifest>

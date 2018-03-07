@@ -1,8 +1,16 @@
 package com.letchile.let;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +21,6 @@ import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.Servicios.ConexionInternet;
-import com.letchile.let.VehLiviano.InsPendientesActivity;
 
 import org.json.JSONObject;
 
@@ -29,12 +36,17 @@ import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     ProgressDialog pDialog;
     DBprovider db;
     Boolean conexion = false;
+    Button btnLogin;
+    private final int MY_PERMISSIONS = 100;
 
     public LoginActivity(){
         db = new DBprovider(this);
@@ -46,15 +58,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         conexion = new ConexionInternet(this).isConnectingToInternet();
+
+        btnLogin = (Button) findViewById(R.id.btnlogin);
+
+        if(mayRequestStoragePermission())
+            btnLogin.setEnabled(true);
+        else
+            btnLogin.setEnabled(false);
 
 
         //llamar al usuario insertado de la base de datos para omitir el login
         String usuario = db.obtenerUsuario();
         if(usuario.equals("")) {
-
-            Button btnLogin = (Button) findViewById(R.id.btnlogin);
             btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -71,6 +87,60 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private boolean mayRequestStoragePermission() {
+
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            return true;
+
+        if((checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
+                (checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED))
+            return true;
+
+        requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE, CAMERA}, MY_PERMISSIONS);
+        // }
+
+        return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == MY_PERMISSIONS){
+            if(grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(LoginActivity.this, "Permisos aceptados", Toast.LENGTH_SHORT).show();
+                btnLogin.setEnabled(true);
+            }
+        }else{
+            showExplanation();
+        }
+    }
+
+    private void showExplanation() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("Permisos denegados");
+        builder.setMessage("Para usar las funciones de la app necesitas aceptar los permisos");
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+
+        builder.show();
+    }
+
 
     public class SendPostRequest extends AsyncTask<String, Void, String> {
 
@@ -85,74 +155,71 @@ public class LoginActivity extends AppCompatActivity {
 
         protected String doInBackground(String... parametros) {
 
-
-
             //*********************************************LOGIN*****************************************//
-
             try {
                 if(conexion){
-                URL url = new URL("https://www.autoagenda.cl/movil/login/verificaLogeo"); // here is your URL path
+                    URL url = new URL("https://www.autoagenda.cl/movil/login/verificaLogeo"); // here is your URL path
 
-                JSONObject postDataParams = new JSONObject();
-                postDataParams.put("usr", parametros[0]);
-                postDataParams.put("pwd", parametros[1]);
-                Log.e("params", postDataParams.toString());
+                    JSONObject postDataParams = new JSONObject();
+                    postDataParams.put("usr", parametros[0]);
+                    postDataParams.put("pwd", parametros[1]);
+                    Log.e("params", postDataParams.toString());
 
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(15000 /* milliseconds */);
-                conn.setConnectTimeout(15000 /* milliseconds */);
-                conn.setRequestMethod("POST");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(15000 /* milliseconds */);
+                    conn.setConnectTimeout(15000 /* milliseconds */);
+                    conn.setRequestMethod("POST");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
 
-                OutputStream os = conn.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getPostDataString(postDataParams));
+                    OutputStream os = conn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getPostDataString(postDataParams));
 
-                writer.flush();
-                writer.close();
-                os.close();
+                    writer.flush();
+                    writer.close();
+                    os.close();
 
-                int responseCode = conn.getResponseCode();
+                    int responseCode = conn.getResponseCode();
 
-                if (responseCode == HttpsURLConnection.HTTP_OK) {
+                    if (responseCode == HttpsURLConnection.HTTP_OK) {
 
-                    BufferedReader in = new BufferedReader(new
-                            InputStreamReader(
-                            conn.getInputStream()));
+                        BufferedReader in = new BufferedReader(new
+                                InputStreamReader(
+                                conn.getInputStream()));
 
-                    StringBuffer sb = new StringBuffer("");
-                    String line = "";
+                        StringBuffer sb = new StringBuffer("");
+                        String line = "";
 
-                    while ((line = in.readLine()) != null) {
+                        while ((line = in.readLine()) != null) {
 
-                        sb.append(line);
-                        break;
-                    }
-
-                    in.close();
-
-                    //agregar el usuario del telefono
-                    String json = sb.toString();
-                    try {
-                        JSONObject obj = new JSONObject(json);
-                        if (obj.getString("MSJ").equals("3") || obj.getString("MSJ").equals("6")) {
-                            db.inserUsuario(parametros[0], parametros[1]);
+                            sb.append(line);
+                            break;
                         }
-                    } catch (Throwable t) {
-                        Log.e("LET", "Could not parse malformed JSON: \"" + json + "\"");
+
+                        in.close();
+
+                        //agregar el usuario del telefono
+                        String json = sb.toString();
+                        try {
+                            JSONObject obj = new JSONObject(json);
+                            if (obj.getString("MSJ").equals("3") || obj.getString("MSJ").equals("6")) {
+                                db.inserUsuario(parametros[0], parametros[1],Integer.parseInt(obj.getString("MSJ")));
+                            }
+                        } catch (Throwable t) {
+                            Log.e("LET", "Could not parse malformed JSON: \"" + json + "\"");
+                        }
+
+                        //String con el json de respuesta
+                        return sb.toString();
+
+                    } else {
+                        return new String("false : " + responseCode);
                     }
 
-                    //String con el json de respuesta
-                    return sb.toString();
 
-                } else {
-                    return new String("false : " + responseCode);
-                }
-
-
-            }else{
-                return "No hay conexión";
+                }else{
+                    return "No hay conexión";
                 }
 
 

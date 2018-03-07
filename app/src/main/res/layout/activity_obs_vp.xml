@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.letchile.let.VehPesado.ObsVpActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textOb2"
+            android:layout_width="500dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Observaciones" />
+
+        <TextView
+            android:id="@+id/textObs3"
+            android:layout_width="500dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:text=""
+            android:background="@android:color/holo_orange_dark"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnVolverObsVpJgJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="130dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/textObs3"
+            android:layout_marginStart="1dp"
+            android:drawableLeft="@android:drawable/ic_menu_revert"
+            android:textSize="12sp"
+            android:text="Secciones" />
+
+        <Button
+            android:id="@+id/btnPenObsVpJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/textObs3"
+            android:layout_centerHorizontal="true"
+            android:text="Pendientes"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnSigObsVpJg"
+            style="@android:style/Widget.Button"
+            android:layout_width="1200dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/textObs3"
+            android:layout_marginStart="1dp"
+            android:layout_toEndOf="@+id/btnPenObsVpJg"
+            android:drawableRight="@android:drawable/ic_media_play"
+            android:text="Guardar "
+            android:textSize="12sp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/textObs3"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textOb2">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="36dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView115"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Observación 1 " />
+
+                    <TextView
+                        android:id="@+id/textt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Observación 2" />
+
+                    <EditText
+                        android:id="@+id/obs2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView116"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Observación 3" />
+
+                    <EditText
+                        android:id="@+id/obs3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView118"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Observación 4" />
+
+                    <EditText
+                        android:id="@+id/obs4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/obs1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/btnVolverObsVpJgJg"
+            android:layout_below="@+id/textOb2"
+            android:layout_marginTop="54dp"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

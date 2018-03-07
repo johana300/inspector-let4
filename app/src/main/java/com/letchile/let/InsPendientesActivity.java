@@ -1,26 +1,22 @@
-package com.letchile.let.VehLiviano;
+package com.letchile.let;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
-import com.letchile.let.LoginActivity;
-import com.letchile.let.R;
+import com.letchile.let.Clases.Inspeccion;
+import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.Servicios.ConexionInternet;
 
 import org.json.JSONArray;
@@ -34,9 +30,16 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import de.codecrafters.tableview.TableView;
+import de.codecrafters.tableview.listeners.TableDataClickListener;
+import de.codecrafters.tableview.model.TableColumnWeightModel;
+import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
+import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
 /**
  * Created by Mauro on 08/01/2018.
@@ -50,24 +53,17 @@ public class InsPendientesActivity extends AppCompatActivity{
     ProgressDialog pDialog = null;
     Boolean connec = false;
     JSONArray jsonar;
-    JSONObject jsonbb, jsonEstado;
+    JSONObject jsonbb, jsonEstado,llenado;
     TableLayout tl;
     TableRow tr;
+    Validaciones validaciones;
+
 
 
     public InsPendientesActivity(){
 
         db=new DBprovider(this);
-    }
-
-    private int obtenerAnchoPixelesTexto(String texto)
-    {
-        Paint p = new Paint();
-        Rect bounds = new Rect();
-        p.setTextSize(50);
-
-        p.getTextBounds(texto, 0, texto.length(), bounds);
-        return bounds.width();
+        validaciones = new Validaciones(this);
     }
 
 
@@ -94,7 +90,6 @@ public class InsPendientesActivity extends AppCompatActivity{
                 refres.setRefreshing(false);
             }
         });
-
     }
 
     @Override
@@ -356,9 +351,143 @@ public class InsPendientesActivity extends AppCompatActivity{
                                             jsonbb.getString("hora_cita"),jsonbb.getString("comuna_cita"),jsonbb.getString("comentario_cita"),jsonbb.getString("id_ramo"),
                                             jsonbb.getString("patente"),jsonbb.getString("cia"),jsonbb.getString("corredor"),jsonbb.getString("pac"));
 
+                                    //[{,","","",","","pac":null,"motor":"","chasis":"","anio":"0"}
+                                    //hacer jsons
+                                    JSONObject valor1 = new JSONObject();
+                                    valor1.put("valor_id",2);
+                                    valor1.put("texto",jsonbb.getString("asegurado"));
+
+                                    JSONObject valor2 = new JSONObject();
+                                    valor2.put("valor_id",3);
+                                    valor2.put("texto",jsonbb.getString("paterno_asegurado"));
+
+                                    JSONObject valor3 = new JSONObject();
+                                    valor3.put("valor_id",4);
+                                    valor3.put("texto",jsonbb.getString("materno_asegurado"));
+
+                                    JSONObject valor4 = new JSONObject();
+                                    valor4.put("valor_id",5);
+                                    valor4.put("texto",jsonbb.getString("rut"));
+
+                                    JSONObject valor5 = new JSONObject();
+                                    valor5.put("valor_id",7);
+                                    valor5.put("texto",jsonbb.getString("comuna_asegurado"));
+
+                                    JSONObject valor6 = new JSONObject();
+                                    valor6.put("valor_id",6);
+                                    valor6.put("texto",jsonbb.getInt("fono"));
+
+                                    JSONObject valor9 = new JSONObject();
+                                    valor9.put("valor_id",8);
+                                    valor9.put("texto",jsonbb.getString("direccion_asegurado"));
+
+                                    JSONObject valor10 = new JSONObject();
+                                    valor10.put("valor_id",10);
+                                    valor10.put("texto",jsonbb.getString("marca"));
+
+                                    JSONObject valor11 = new JSONObject();
+                                    valor11.put("valor_id",11);
+                                    valor11.put("texto",jsonbb.getString("modelo"));
+
+                                    //direccion_cita
+                                    JSONObject valor12 = new JSONObject();
+                                    valor12.put("valor_id",358);
+                                    valor12.put("texto",jsonbb.getString("direccion_cita"));
+
+                                    //FECHA CITA
+                                    JSONObject valor13 = new JSONObject();
+                                    valor13.put("valor_id",360);
+                                    valor13.put("texto",jsonbb.getString("fecha_cita"));
+
+                                    //HORA CITA
+                                    JSONObject valor14 = new JSONObject();
+                                    valor14.put("valor_id",361);
+                                    valor14.put("texto",jsonbb.getString("hora_cita"));
+
+                                    //comuna_cita
+                                    JSONObject valor15 = new JSONObject();
+                                    valor15.put("valor_id",359);
+                                    valor15.put("texto",jsonbb.getString("comuna_cita"));
+
+                                    JSONObject valor16 = new JSONObject();
+                                    valor16.put("valor_id",301);
+                                    valor16.put("texto",jsonbb.getString("comentario_cita"));
+
+                                    /*JSONObject valor8 = new JSONObject();
+                                    valor7.put("valor_id",);
+                                    valor7.put("texto",jsonbb.getString("id_ramo"));*/
+
+                                    JSONObject valor17 = new JSONObject();
+                                    valor17.put("valor_id",363);
+                                    valor17.put("texto",jsonbb.getString("patente"));
+
+                                    //cia
+                                    /*JSONObject valor18 = new JSONObject();
+                                    valor18.put("valor_id",)*/
+
+                                    JSONObject valor19 = new JSONObject();
+                                    valor19.put("valor_id",9);
+                                    valor19.put("texto",jsonbb.getString("corredor"));
+                                    //pac
+                                    /*JSONObject valor20 = new JSONObject();
+                                    valor20.put()*/
+
+                                    JSONObject valor21 = new JSONObject();
+                                    valor21.put("valor_id",16);
+                                    valor21.put("texto",jsonbb.getString("motor"));
+
+                                    JSONObject valor22 = new JSONObject();
+                                    valor22.put("valor_id",17);
+                                    valor22.put("texto",jsonbb.getString("chasis"));
+
+                                    JSONObject valor23 = new JSONObject();
+                                    valor23.put("valor_id",13);
+                                    valor23.put("texto",jsonbb.getString("anio"));
+
+
+
+
+
+                                    JSONArray datosvalores = new JSONArray();
+                                    datosvalores.put(valor1);
+                                    datosvalores.put(valor2);
+                                    datosvalores.put(valor3);
+                                    datosvalores.put(valor4);
+                                    datosvalores.put(valor5);
+                                    datosvalores.put(valor6);
+                                    //datosvalores.put(valor7);
+                                    //datosvalores.put(valor8);
+                                    datosvalores.put(valor9);
+                                    datosvalores.put(valor10);
+                                    datosvalores.put(valor11);
+                                    datosvalores.put(valor12);
+                                    datosvalores.put(valor13);
+                                    datosvalores.put(valor14);
+                                    datosvalores.put(valor15);
+                                    datosvalores.put(valor16);
+                                    datosvalores.put(valor17);
+                                    //datosvalores.put(valor18);
+                                    datosvalores.put(valor19);
+                                    //datosvalores.put(valor20);
+                                    datosvalores.put(valor21);
+                                    datosvalores.put(valor22);
+                                    datosvalores.put(valor23);
+                                    //datosvalores.put(valor24);
+
+                                    //SE ACTUALIZAN LOS DATOS DE LAS INSPECCIONES
+
+                                    if(!datosvalores.isNull(0)){
+                                        for(int ii=0;ii<datosvalores.length();ii++){
+                                            llenado = new JSONObject(datosvalores.getString(ii));
+                                            db.insertarValor(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
+                                            //validaciones.insertarDatos(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
+                                        }
+                                    }
+
                                     //falta hacer filtro para descargar inspeccion = poner estado
                                     if(result.equals("Ok"))
                                     {
+
 
                                         URL url2 = new URL("https://www.autoagenda.cl/movil/cargamovil/descargaInspeccionMovil");
 
@@ -442,74 +571,89 @@ public class InsPendientesActivity extends AppCompatActivity{
         }
 
 
+
+        private void llenarTabla(){
+            Inspeccion ins;
+            ArrayList<Inspeccion> lista = new ArrayList<>();
+
+            String valores[][] = db.listaInspecciones();
+
+            for(int i=0;i<valores.length;i++){
+                ins = new Inspeccion();
+                ins.setId_inspeccion(Integer.parseInt(valores[i][0]));
+                ins.setPatente(db.accesorio(Integer.parseInt(valores[i][0]),363).toString());
+                ins.setFecha(valores[i][1]);
+                ins.setHora(valores[i][2]);
+                lista.add(ins);
+            }
+
+            insp = new String[lista.size()][4];
+
+            for(int i = 0;i<lista.size();i++){
+                Inspeccion in = lista.get(i);
+
+                insp[i][0]=String.valueOf(in.getId_inspeccion());
+                insp[i][1]=in.getPatente();
+                insp[i][2]=in.getFecha();
+                insp[i][3]=in.getHora();
+            }
+        }
+
+
+        String[] head = {"OI","PATENTE","FECHA","CITA"};
+        String[][] insp;
         @Override
         protected void onPostExecute(String result) {
 
+
+
             pDialog.dismiss();
 
-            tl=(TableLayout)InsPendientesActivity.this.findViewById(R.id.tableM);
+            TableColumnWeightModel columnModel = new TableColumnWeightModel(4);
+            columnModel.setColumnWeight(1,2);
+            columnModel.setColumnWeight(2,3);
+            columnModel.setColumnWeight(3,2);
+            columnModel.setColumnWeight(4,1);
 
-            String inspecciones[][]=db.listaInspecciones();
+            final TableView<String[]> tb = (TableView<String[]>)findViewById(R.id.tableView);
+            tb.setColumnModel(columnModel);
+            tb.setHeaderBackgroundColor(Color.parseColor("WHITE"));
+            tb.setHeaderElevation(10);
+            llenarTabla();
 
-            if(inspecciones.length<1)
-            {
-                Toast.makeText(InsPendientesActivity.this, "No tiene Inspecciones pendientes", Toast.LENGTH_LONG).show();
-            }
-            else{
-                for(int i=0;i<inspecciones.length;i++)
-                {
-                    tr = new TableRow(InsPendientesActivity.this);
+            tb.setHeaderAdapter(new SimpleTableHeaderAdapter(InsPendientesActivity.this,head));
 
-
-                    TableLayout.LayoutParams parametros =  new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
-                    parametros.setMargins(60,21,21,21);
-                    tr.setLayoutParams(parametros);
-
-                    final TextView id_inspeccion = new TextView(InsPendientesActivity.this);
-                    id_inspeccion.setText(inspecciones[i][0]);
-                    id_inspeccion.setTextSize(15);
-                    id_inspeccion.setHeight(100);
-
-                    TextView fecha_cita = new TextView(InsPendientesActivity.this);
-                    fecha_cita.setText(inspecciones[i][1]);
-                    fecha_cita.setTextSize(12);
+            tb.setDataAdapter(new SimpleTableDataAdapter(InsPendientesActivity.this,insp));
 
 
-                    TextView hora = new TextView(InsPendientesActivity.this);
-                    hora.setText(inspecciones[i][2]);
-                    hora.setTextSize(12);
 
+            tb.addDataClickListener(new TableDataClickListener<String[]>() {
+                @Override
+                public void onDataClicked(int rowIndex, String[] clickedData) {
+                    //Toast.makeText(InsPendientesActivity.this,((String[])clickedData)[0],Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(InsPendientesActivity.this,detalleActivity.class);
+                    i.putExtra("id_inspeccion",((String[])clickedData)[0]);
+                    i.putExtra("fecha_cita",((String[])clickedData)[2]);
+                    i.putExtra("hora_cita",((String[])clickedData)[3]);
 
-                    TextView patente = new TextView(InsPendientesActivity.this);
-                    patente.setText(inspecciones[i][4]);
-                    patente.setTextSize(13);
+                    int inspeccionElegida = Integer.parseInt(((String[])clickedData)[0]);
 
-                    /*TextView Detalle = new TextView(InsPendientesActivity.this);
-                    Detalle.setText("detalle");
-                    Detalle.setTextSize(10);*/
-
-                    Button Det = new Button(InsPendientesActivity.this);
-                    Det.setText("Detalle");
-                    Det.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //Toast.makeText(InsPendientesActivity.this,id_inspeccion.getText().toString(), Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(InsPendientesActivity.this,detalleActivity.class);
-                            i.putExtra("id_inspeccion",id_inspeccion.getText().toString());
-                            startActivity(i);
-                            /*Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                            startActivityForResult(intent, 1);*/
+                    try {
+                        //VALIDAR QUE LA INSPECCION SELECCIONADA NO SE ESTÉ TRANSMITIENDO
+                        if (db.estadoInspeccion(inspeccionElegida) != 2 && db.estadoInspeccion(inspeccionElegida) != 3) {
+                            //VALIDAR QUE NO HAYA QUEDADO UNA INSPECCIÓN SIN TRANSMITIR
+                            int inspeccionPendiente = db.estadoInspecciones(1);
+                            if (inspeccionPendiente > 0 && inspeccionPendiente != inspeccionElegida) {
+                                Toast.makeText(InsPendientesActivity.this, "Debe transmitir la Inspección n°" + String.valueOf(inspeccionPendiente), Toast.LENGTH_SHORT).show();
+                            } else {
+                                startActivity(i);
+                            }
                         }
-                    });
-
-                    tr.addView(id_inspeccion);
-                    tr.addView(patente);
-                    tr.addView(fecha_cita);
-                    tr.addView(hora);
-                    tr.addView(Det);
-                    tl.addView(tr);
+                    }catch (Exception e){
+                        Toast.makeText(InsPendientesActivity.this,"Inspección eliminada por termino de su transmisión",Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
+            });
         }
     }
 
@@ -537,4 +681,5 @@ public class InsPendientesActivity extends AppCompatActivity{
         }
         return result.toString();
     }
+
 }

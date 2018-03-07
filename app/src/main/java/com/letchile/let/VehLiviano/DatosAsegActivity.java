@@ -2,7 +2,6 @@ package com.letchile.let.VehLiviano;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,14 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.Validaciones;
+import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.net.URLEncoder;
-import java.util.Iterator;
 
 public class DatosAsegActivity extends AppCompatActivity {
 
@@ -26,55 +26,54 @@ public class DatosAsegActivity extends AppCompatActivity {
     ProgressDialog pDialog;
     EditText asegurado, paternoAsegurado, maternoAsegurado,rut,direccion,fono,email;
     String [][] datosInspeccion;
-    //Spinner comboComuna;
+    JSONObject llenado;
+    JSONArray arrayValor;
+    Validaciones validaciones;
 
     public DatosAsegActivity() {
-        db = new DBprovider(this);
-    }
+        db = new DBprovider(this);validaciones=new Validaciones(this);    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_aseg);
 
-        new SendPostRequest().execute();
-
         Bundle bundle = getIntent().getExtras();
         final String id_inspeccion=bundle.getString("id_inspeccion");
 
-        datosInspeccion = db.BuscaDatosInspeccion(id_inspeccion);
 
         //Setear datos
         asegurado = (EditText)findViewById(R.id.nomJg);
-        asegurado.setText(datosInspeccion[0][1]);
+        asegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),2).toString());
 
         paternoAsegurado = (EditText)findViewById(R.id.apellidoPaternoM);
-        paternoAsegurado.setText(datosInspeccion[0][8]);
+        paternoAsegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),3).toString());
 
         maternoAsegurado = (EditText)findViewById(R.id.maternoAseguradoM);
-        maternoAsegurado.setText(datosInspeccion[0][9]);
+        maternoAsegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),4).toString());
 
         rut = (EditText)findViewById(R.id.rutJg);
-        rut.setText(datosInspeccion[0][10]);
+        rut.setText(db.accesorio(Integer.parseInt(id_inspeccion),5).toString());
 
         fono = (EditText)findViewById(R.id.fonoJg);
-        fono.setText(datosInspeccion[0][2]);
+        fono.setText(db.accesorio(Integer.parseInt(id_inspeccion),6).toString());
 
         direccion = (EditText)findViewById(R.id.direccionM);
-        direccion.setText(datosInspeccion[0][4]);
+        direccion.setText(db.accesorio(Integer.parseInt(id_inspeccion),8).toString());
 
         email = (EditText)findViewById(R.id.mailJg);
-        email.setText(datosInspeccion[0][11]);
+        email.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
 
 
+        //db.accesorio(Integer.parseInt(id_inspeccion),7);
         //llenar regiones
-        String regionInicial[][]=db.obtenerRegion(datosInspeccion[0][5]);
+        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
         String listaRegiones[][]=db.listaRegiones();
         final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegJg);
-        String[] arraySpinner = new String[listaRegiones.length];
+        String[] arraySpinner = new String[listaRegiones.length+1];
         arraySpinner[0]=regionInicial[0][0];
-        for(int i=1;i<listaRegiones.length;i++)        {
-            arraySpinner[i]=listaRegiones[i][0];
+        for(int i=0;i<listaRegiones.length;i++)        {
+            arraySpinner[i+1]=listaRegiones[i][0];
         }
         ArrayAdapter<String> adapterRegion = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arraySpinner);
         adapterRegion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -92,10 +91,10 @@ public class DatosAsegActivity extends AppCompatActivity {
                 //Inicia el nuevo combo a llenar
 
                 //Se crea una variable array para ser llenado
-                String[] spinnerComuna = new String[listaComunas.length];
-                spinnerComuna[0] = datosInspeccion[0][5];
-                for(int i=1;i<listaComunas.length;i++){
-                    spinnerComuna[i] = listaComunas[i][0];
+                String[] spinnerComuna = new String[listaComunas.length+1];
+                spinnerComuna[0] = db.accesorio(Integer.parseInt(id_inspeccion),7).toString();
+                for(int i=0;i<listaComunas.length;i++){
+                    spinnerComuna[i+1] = listaComunas[i][0];
                 }
                 ArrayAdapter<String> adapterComuna = new ArrayAdapter<String>(DatosAsegActivity.this,android.R.layout.simple_spinner_item,spinnerComuna);
                 adapterComuna.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -108,10 +107,73 @@ public class DatosAsegActivity extends AppCompatActivity {
         });
 
 
-        final Button btnSigAsegJG = (Button) findViewById(R.id.btnSigAsegJg);
+        Button btnSigAsegJG = (Button) findViewById(R.id.btnSigAsegJg);
         btnSigAsegJG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                try {
+                    //LLENO EL JSON
+                    JSONObject datosValor1 = new JSONObject();
+                    datosValor1.put("valor_id",2);
+                    datosValor1.put("texto",asegurado.getText().toString());
+
+                    JSONObject datosValor2 = new JSONObject();
+                    datosValor2.put("valor_id",3);
+                    datosValor2.put("texto",paternoAsegurado.getText().toString());
+
+                    JSONObject datosValor3 = new JSONObject();
+                    datosValor3.put("valor_id",4);
+                    datosValor3.put("texto",maternoAsegurado.getText().toString());
+
+
+                    JSONObject datosValor4 = new JSONObject();
+                    datosValor4.put("valor_id",5);
+                    datosValor4.put("texto",rut.getText().toString());
+
+                    JSONObject datosValor5 = new JSONObject();
+                    datosValor5.put("valor_id",8);
+                    datosValor5.put("texto",direccion.getText().toString());
+
+                    JSONObject datosValor6 = new JSONObject();
+                    datosValor6.put("valor_id",6);
+                    datosValor6.put("texto",fono.getText().toString());
+
+                    JSONObject datosValor7 = new JSONObject();
+                    datosValor7.put("valor_id",532);
+                    datosValor7.put("texto",email.getText().toString());
+
+                    JSONObject datosValor8 = new JSONObject();
+                    datosValor8.put("valor_id",7);
+                    datosValor8.put("texto",comboComuna.getSelectedItem().toString());
+
+                    JSONArray jsonArray = new JSONArray();
+
+                    jsonArray.put(datosValor1);
+                    jsonArray.put(datosValor2);
+                    jsonArray.put(datosValor3);
+                    jsonArray.put(datosValor4);
+                    jsonArray.put(datosValor5);
+                    jsonArray.put(datosValor6);
+                    jsonArray.put(datosValor7);
+                    jsonArray.put(datosValor8);
+
+
+                    //PREGUNTO SI ES NULO PARA INSERTAR LOS DATOS
+                    if (!jsonArray.isNull(0)) {
+                        for(int i=0;i<jsonArray.length();i++){
+                            llenado = new JSONObject(jsonArray.getString(i));
+                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                            //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                        }
+                    }
+
+
+                }catch (Exception e)
+                {
+                    Toast.makeText(DatosAsegActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
+                }
+
 
                 db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),asegurado.getText().toString(),paternoAsegurado.getText().toString(),
                         maternoAsegurado.getText().toString(),rut.getText().toString(),direccion.getText().toString(),Integer.parseInt(fono.getText().toString()),
@@ -143,56 +205,6 @@ public class DatosAsegActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-
-    public class SendPostRequest extends AsyncTask<String, Void, String> {
-
-        protected void onPreExecute() {
-            /*pDialog = new ProgressDialog(DatosAsegActivity.this);
-            pDialog.setMessage("Autenticando...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();*/
-
-        }
-
-        protected String doInBackground(String... parametros) {
-
-           return "nada";
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-
-        }
-
-        public String getPostDataString(JSONObject params) throws Exception {
-
-            StringBuilder result = new StringBuilder();
-            boolean first = true;
-
-            Iterator<String> itr = params.keys();
-
-            while (itr.hasNext()) {
-
-                String key = itr.next();
-                Object value = params.get(key);
-
-                if (first)
-                    first = false;
-                else
-                    result.append("&");
-
-                result.append(URLEncoder.encode(key, "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode(value.toString(), "UTF-8"));
-
-            }
-            return result.toString();
-        }
     }
 }
 

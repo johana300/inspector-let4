@@ -14,56 +14,63 @@
             android:id="@+id/textView3"
             android:layout_width="500dp"
             android:layout_height="35dp"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:background="@android:color/holo_orange_dark"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Datos del Asegurado" />
+            android:background="@android:color/holo_orange_dark"
+            android:gravity="center"
+            android:text="Datos del Asegurado"
+            android:textColor="@android:color/background_dark"
+            android:textSize="24sp"/>
+
 
         <TextView
             android:id="@+id/textD2"
             android:layout_width="500dp"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:background="@android:color/holo_orange_dark"
             android:gravity="center"
             android:text=""
-            android:background="@android:color/holo_orange_dark"
-            android:textSize="24sp" />
+            android:textSize="24sp"/>
+
 
         <Button
             android:id="@+id/btnVolverAsegJg"
             style="@android:style/Widget.Button"
-            android:layout_width="110dp"
+            android:layout_width="115dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/textD2"
-            android:layout_marginStart="1dp"
+            android:background="@drawable/boton_redondo"
+            android:textColor="@android:color/background_light"
+            android:layout_alignTop="@+id/btnPenAsegJg"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Secciones" />
+            android:text="Volver" />
 
         <Button
             android:id="@+id/btnPenAsegJg"
             style="@android:style/Widget.Button"
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/textD2"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/boton_redondo"
+            android:textColor="@android:color/background_light"
+            android:layout_toEndOf="@+id/btnVolverAsegJg"
             android:text="Pendientes"
             android:textSize="12sp" />
 
         <Button
             android:id="@+id/btnSigAsegJg"
             style="@android:style/Widget.Button"
-            android:layout_width="1200dp"
+            android:layout_width="1100dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/textD2"
-            android:layout_marginStart="1dp"
-            android:drawableRight="@android:drawable/ic_media_play"
+            android:layout_alignTop="@+id/btnPenAsegJg"
             android:layout_toEndOf="@+id/btnPenAsegJg"
-            android:text="Guardar y Siguiente"
-            />
+            android:background="@drawable/boton_redondo"
+            android:textColor="@android:color/background_light"
+            android:drawableRight="@android:drawable/ic_media_play"
+            android:text="Guardar" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -180,7 +187,7 @@
                         android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Teléfono Fijo" />
+                        android:text="Celular" />
 
                     <EditText
                         android:id="@+id/fonoJg"
