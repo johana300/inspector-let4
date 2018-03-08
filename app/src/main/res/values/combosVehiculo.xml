@@ -145,4 +145,11 @@
         <item>Vehículo pesado</item>
     </string-array>
 
+    <string-array name="veh_pesado">
+        <item>Seleccione tipo de Vehículo...</item>
+        <item>Camiones</item>
+        <item>Tracto Camiones</item>
+        <item>Buses</item>
+        <item>Semiremolque</item>
+    </string-array>
 </resources>

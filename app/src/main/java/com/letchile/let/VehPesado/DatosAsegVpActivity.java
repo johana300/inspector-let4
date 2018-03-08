@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.R;
 
 import org.json.JSONArray;
@@ -34,11 +35,13 @@ public class DatosAsegVpActivity extends AppCompatActivity {
     /*FALTA CARGAR LOS COMBO DE REGION Y COMUNA*/
     Spinner comboRegVpJg;
     Spinner comboComVpJg;
+    Validaciones validaciones;
 
 
 
 
-    public DatosAsegVpActivity() {db = new DBprovider(this);}
+    public DatosAsegVpActivity() {
+        db = new DBprovider(this);validaciones=new Validaciones(this);    }
 
     JSONObject obj = new JSONObject();
 
@@ -46,6 +49,9 @@ public class DatosAsegVpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_aseg_vp);
+
+        Bundle bundle = getIntent().getExtras();
+        final String id_inspeccion=bundle.getString("id_inspeccion");
 
         //nombre
         nomVpJg = (EditText)findViewById(R.id.nomVpJg);

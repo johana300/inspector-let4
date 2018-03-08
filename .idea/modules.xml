@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Johana Godoy\Downloads\inspector-let\app\app.iml" filepath="C:\Users\Johana Godoy\Downloads\inspector-let\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/inspector-let.iml" filepath="$PROJECT_DIR$/inspector-let.iml" />
-      <module fileurl="file://C:\Users\Johana Godoy\Downloads\inspector-let\inspector-let.iml" filepath="C:\Users\Johana Godoy\Downloads\inspector-let\inspector-let.iml" />
     </modules>
   </component>
 </project>
