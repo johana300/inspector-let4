@@ -58,6 +58,7 @@ public class vl_techo extends AppCompatActivity {
     PropiedadesFoto foto;
     String nombreimagen = "";
     Validaciones validaciones;
+    int correlativo=0;
 
     public vl_techo(){db = new DBprovider(this);foto=new PropiedadesFoto(this); validaciones = new Validaciones(this);
     }
@@ -232,8 +233,8 @@ public class vl_techo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Techo_Dano.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Dano.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -265,8 +266,8 @@ public class vl_techo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Techo_Barra_Equipaje.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Barra_Equipaje.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -298,8 +299,8 @@ public class vl_techo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Techo_Parrilla.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Parrilla.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -331,8 +332,8 @@ public class vl_techo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Techo_Porta_Equipaje.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Porta_Equipaje.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -364,8 +365,8 @@ public class vl_techo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Techo_Porta_Sky.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Porta_Sky.jpg";
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
@@ -396,8 +397,8 @@ public class vl_techo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Techo_Sunroof.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Sunroof.jpg";
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
@@ -432,7 +433,7 @@ public class vl_techo extends AppCompatActivity {
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Daño Techo", 0, imagenTechoDano);
 
                         Intent servis = new Intent(vl_techo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","comentario");
+                    servis.putExtra("comentario","Foto Daño Techo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -456,7 +457,7 @@ public class vl_techo extends AppCompatActivity {
                     db.insertarValor(Integer.parseInt(id_inspeccion),325,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","comentario");
+                    servis.putExtra("comentario","Foto Barra Equipaje Techo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -480,7 +481,7 @@ public class vl_techo extends AppCompatActivity {
                     db.insertarValor(Integer.parseInt(id_inspeccion),293,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","comentario");
+                    servis.putExtra("comentario","Foto Parrilla Techo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -504,7 +505,7 @@ public class vl_techo extends AppCompatActivity {
                     db.insertarValor(Integer.parseInt(id_inspeccion),355,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","comentario");
+                    servis.putExtra("comentario","Foto Porta Equipaje Techo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -528,7 +529,7 @@ public class vl_techo extends AppCompatActivity {
                     db.insertarValor(Integer.parseInt(id_inspeccion),327,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","comentario");
+                    servis.putExtra("comentario","Foto Porta Sky Techo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -553,7 +554,7 @@ public class vl_techo extends AppCompatActivity {
                     db.insertarValor(Integer.parseInt(id_inspeccion),262,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","comentario");
+                    servis.putExtra("comentario","Foto Sunroof Techo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
