@@ -306,11 +306,9 @@ public class DatosInspActivity extends AppCompatActivity {
                     db.insertaFoto(Integer.parseInt(id_inspeccion), 72, nombreimagen, "Foto Comprobante", 0, imagen);
                     break;
             }
-
             //TRANSFERIR FOTO
-
                 Intent servis = new Intent(contexto, TransferirFoto.class);
-                servis.putExtra("id_foto","72");
+                servis.putExtra("comentario","Foto Comprobante");
                 servis.putExtra("id_inspeccion",id_inspeccion);
                 startService(servis);
 

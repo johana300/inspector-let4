@@ -104,16 +104,7 @@ public class ObsActivity extends AppCompatActivity {
             }
         });
 
-        //Botón volver pendiente
-        final Button btnPenObsJg = (Button)findViewById(R.id.btnPenObsJg);
-        btnPenObsJg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent( ObsActivity.this, InsPendientesActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         //Botón volver a secciones
@@ -123,6 +114,7 @@ public class ObsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent( ObsActivity.this, SeccionActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
