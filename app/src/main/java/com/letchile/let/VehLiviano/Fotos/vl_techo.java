@@ -564,6 +564,7 @@ public class vl_techo extends AppCompatActivity {
 
                     //prueba
 
+
                     break;
             }
         }
