@@ -560,6 +560,8 @@ public class vl_techo extends AppCompatActivity {
 
                         //PROBANDING
 
+                    //probando denuevo
+
                     break;
             }
         }
