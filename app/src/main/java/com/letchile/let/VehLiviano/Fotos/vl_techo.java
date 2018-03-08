@@ -558,6 +558,8 @@ public class vl_techo extends AppCompatActivity {
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
+                        //PROBANDING
+
                     break;
             }
         }
