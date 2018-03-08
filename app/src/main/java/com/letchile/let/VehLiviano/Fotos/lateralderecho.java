@@ -54,6 +54,8 @@ public class lateralderecho extends AppCompatActivity {
     private String ruta = "";
     String nombreimagen = "";
     PropiedadesFoto foto;
+    int correlativo = 0;
+
 
     public lateralderecho(){db = new DBprovider(this);foto=new PropiedadesFoto(this);
     }
@@ -186,8 +188,8 @@ public class lateralderecho extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Lateral_Derecho.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lateral_Derecho.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -219,8 +221,8 @@ public class lateralderecho extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Lateral_Derecho_Adicional.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lateral_Derecho_Adicional.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -252,8 +254,8 @@ public class lateralderecho extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Lateral_Derecho_Adicional_Dos.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lateral_Derecho_Adicional_Dos.jpg";
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralderecho.this,
@@ -284,8 +286,8 @@ public class lateralderecho extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Lateral_Derecho_Dano.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lateral_Derecho_Dano.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

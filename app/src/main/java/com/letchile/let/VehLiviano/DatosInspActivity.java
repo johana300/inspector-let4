@@ -70,6 +70,7 @@ public class DatosInspActivity extends AppCompatActivity {
     Context contexto = this;
     String nombreimagen = "";
     JSONObject llenado;
+    int correlativo = 0;
 
 
     public DatosInspActivity(){db = new DBprovider(this);foto = new PropiedadesFoto(this);};
@@ -263,8 +264,8 @@ public class DatosInspActivity extends AppCompatActivity {
             ruta = file.toString() + "/" + imageName;
             mPath = ruta;
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Comprobante.jpg";
+            correlativo = db.correlativoFotos(id_inspeccion);
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Comprobante.jpg";
 
             File newFile = new File(mPath);
 
