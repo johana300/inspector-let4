@@ -452,10 +452,10 @@ public class interior extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String imagePanelFueraInte = db.foto(Integer.parseInt(id_inspeccion), 39);
-                String imagePanelDentroInte = db.foto(Integer.parseInt(id_inspeccion), 40);
-                String imageRadioInterior = db.foto(Integer.parseInt(id_inspeccion), 41);
-                String imageKilometraje = db.foto(Integer.parseInt(id_inspeccion), 42);
+                String imagePanelFueraInte = db.foto(Integer.parseInt(id_inspeccion), "Foto Panel desde Afuera Interior");
+                String imagePanelDentroInte = db.foto(Integer.parseInt(id_inspeccion), "Foto Panel desde Dentro Interior");
+                String imageRadioInterior = db.foto(Integer.parseInt(id_inspeccion), "Foto Radio Interior");
+                String imageKilometraje = db.foto(Integer.parseInt(id_inspeccion), "Foto Kilometraje Interior");
 
                 if (imagePanelFueraInte.length()<=3 || imagePanelDentroInte.length()<=3 || imageRadioInterior.length()<=3 || imageKilometraje.length()<=3  ) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(interior.this);
@@ -1234,10 +1234,10 @@ public class interior extends AppCompatActivity {
                     bitmapPanel = foto.redimensiomarImagen(bitmapPanel);
                     imagePanelFueraInteE.setImageBitmap(bitmapPanel);
                     String imagenPanel= foto.convertirImagenDano(bitmapPanel);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 39, nombreimagen, "Foto Panel desde Afuera Interior", 0, imagenPanel);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Panel desde Afuera Interior", 0, imagenPanel);
 
                         Intent servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","39");
+                    servis.putExtra("comentario","Foto Panel desde Afuera Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1257,10 +1257,10 @@ public class interior extends AppCompatActivity {
                     bitmapPanelDentro = foto.redimensiomarImagen(bitmapPanelDentro);
                     imagePanelDentroInteE.setImageBitmap(bitmapPanelDentro);
                     String imagenPanelDentro = foto.convertirImagenDano(bitmapPanelDentro);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 40, nombreimagen, "Foto Panel desde Dentro Interior", 0, imagenPanelDentro);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Panel desde Dentro Interior", 0, imagenPanelDentro);
 
                         servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","40");
+                    servis.putExtra("comentario","Foto Panel desde Dentro Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1280,10 +1280,10 @@ public class interior extends AppCompatActivity {
                     bitmapRadio = foto.redimensiomarImagen(bitmapRadio);
                     imageRadioInteriorE.setImageBitmap(bitmapRadio);
                     String imagenRadio = foto.convertirImagenDano(bitmapRadio);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 41, nombreimagen, "Foto Radio Interior", 0, imagenRadio);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Radio Interior", 0, imagenRadio);
 
                         servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","41");
+                    servis.putExtra("comentario","Foto Radio Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1303,10 +1303,10 @@ public class interior extends AppCompatActivity {
                     bitmapKilometraje = foto.redimensiomarImagen(bitmapKilometraje);
                     imageKilometrajeE.setImageBitmap(bitmapKilometraje);
                     String imagenKilometraje = foto.convertirImagenDano(bitmapKilometraje);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 42, nombreimagen, "Foto Kilometraje Interior", 0, imagenKilometraje);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Kilometraje Interior", 0, imagenKilometraje);
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","42");
+                    servis.putExtra("comentario","Foto Kilometraje Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1326,10 +1326,10 @@ public class interior extends AppCompatActivity {
                     bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
                     imageAdicionalInteriorE.setImageBitmap(bitmapAdicional);
                     String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 43, nombreimagen, "Foto Adicional Interior", 0, imagenAdicional);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Interior", 0, imagenAdicional);
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","43");
+                    servis.putExtra("comentario","Foto Adicional Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1349,11 +1349,11 @@ public class interior extends AppCompatActivity {
                     bitmapCheck = foto.redimensiomarImagen(bitmapCheck);
                     imageLuzCheckEngineE.setImageBitmap(bitmapCheck);
                     String imagenCheck = foto.convertirImagenDano(bitmapCheck);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 44, nombreimagen, "Foto Check Engine Interior", 0, imagenCheck);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Check Engine Interior", 0, imagenCheck);
                     db.insertarValor(Integer.parseInt(id_inspeccion),791,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","44");
+                    servis.putExtra("comentario","Foto Check Engine Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1373,11 +1373,11 @@ public class interior extends AppCompatActivity {
                     bitmapLuzTestigo = foto.redimensiomarImagen(bitmapLuzTestigo);
                     imageluzTestigoAirE.setImageBitmap(bitmapLuzTestigo);
                     String imagenLuzTestigo = foto.convertirImagenDano(bitmapLuzTestigo);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 45, nombreimagen, "Foto Luz Testigo  Airbags Interior", 0, imagenLuzTestigo);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Luz Testigo  Airbags Interior", 0, imagenLuzTestigo);
                     db.insertarValor(Integer.parseInt(id_inspeccion),792,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","45");
+                    servis.putExtra("comentario","Foto Luz Testigo  Airbags Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1397,11 +1397,11 @@ public class interior extends AppCompatActivity {
                     bitmapControl = foto.redimensiomarImagen(bitmapControl);
                     imageControlCruceE.setImageBitmap(bitmapControl);
                     String imagenControl = foto.convertirImagenDano(bitmapControl);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 46, nombreimagen, "Foto Control Crucero Interior", 0, imagenControl);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Control Crucero Interior", 0, imagenControl);
                     db.insertarValor(Integer.parseInt(id_inspeccion),291,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","46");
+                    servis.putExtra("comentario","Foto Control Crucero Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1421,11 +1421,11 @@ public class interior extends AppCompatActivity {
                     bitmapBluetooh = foto.redimensiomarImagen(bitmapBluetooh);
                     imageBluetoothE.setImageBitmap(bitmapBluetooh);
                     String imagenBluetooh = foto.convertirImagenDano(bitmapBluetooh);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 47, nombreimagen, "Foto Bluetooh Interior", 0, imagenBluetooh);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Bluetooh Interior", 0, imagenBluetooh);
                     db.insertarValor(Integer.parseInt(id_inspeccion),339,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","47");
+                    servis.putExtra("comentario","Foto Bluetooh Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1445,11 +1445,11 @@ public class interior extends AppCompatActivity {
                     bitmapTapiz = foto.redimensiomarImagen(bitmapTapiz);
                     imageTapizCueroE.setImageBitmap(bitmapTapiz);
                     String imagenTapiz = foto.convertirImagenDano(bitmapTapiz);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 48, nombreimagen, "Foto Tapiz de Cuero Interior", 0, imagenTapiz);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Tapiz de Cuero Interior", 0, imagenTapiz);
                     db.insertarValor(Integer.parseInt(id_inspeccion),333,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","48");
+                    servis.putExtra("comentario","Foto Tapiz de Cuero Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1469,11 +1469,11 @@ public class interior extends AppCompatActivity {
                     bitmapButaca = foto.redimensiomarImagen(bitmapButaca);
                     imageButacaElectE.setImageBitmap(bitmapButaca);
                     String imagenButaca = foto.convertirImagenDano(bitmapButaca);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 49, nombreimagen, "Foto Butaca Eléctrica Interior", 0, imagenButaca);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Butaca Eléctrica Interior", 0, imagenButaca);
                     db.insertarValor(Integer.parseInt(id_inspeccion),336,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","49");
+                    servis.putExtra("comentario","Foto Butaca Eléctrica Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1493,11 +1493,11 @@ public class interior extends AppCompatActivity {
                     bitmapCorta = foto.redimensiomarImagen(bitmapCorta);
                     imageCortaCorriE.setImageBitmap(bitmapCorta);
                     String imagenCorta = foto.convertirImagenDano(bitmapCorta);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 50, nombreimagen, "Foto Corta Corriente Interior", 0, imagenCorta);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Corta Corriente Interior", 0, imagenCorta);
                     db.insertarValor(Integer.parseInt(id_inspeccion),344,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","50");
+                    servis.putExtra("comentario","Foto Corta Corriente Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1517,11 +1517,11 @@ public class interior extends AppCompatActivity {
                     bitmapAlzaVidrioDe = foto.redimensiomarImagen(bitmapAlzaVidrioDe);
                     imageAlzavidrioDeE.setImageBitmap(bitmapAlzaVidrioDe);
                     String imagenAlzaVidrioDe  = foto.convertirImagenDano(bitmapAlzaVidrioDe);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 51, nombreimagen, "Foto Alza Vidrio Delantero Interior", 0, imagenAlzaVidrioDe);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Alza Vidrio Delantero Interior", 0, imagenAlzaVidrioDe);
                     db.insertarValor(Integer.parseInt(id_inspeccion),266,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","51");
+                    servis.putExtra("comentario","Foto Alza Vidrio Delantero Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1541,11 +1541,11 @@ public class interior extends AppCompatActivity {
                     bitmapAlzaVidrioTr = foto.redimensiomarImagen(bitmapAlzaVidrioTr);
                     imageAlzavidrioTrE.setImageBitmap(bitmapAlzaVidrioTr);
                     String imagenAlzaVidrioTr  = foto.convertirImagenDano(bitmapAlzaVidrioTr);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 52, nombreimagen, "Foto Alza Vidrio Trasero Interior", 0, imagenAlzaVidrioTr);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Alza Vidrio Trasero Interior", 0, imagenAlzaVidrioTr);
                     db.insertarValor(Integer.parseInt(id_inspeccion),267,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","52");
+                    servis.putExtra("comentario","Foto Alza Vidrio Trasero Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1565,11 +1565,11 @@ public class interior extends AppCompatActivity {
                     bitmapRetrovisor = foto.redimensiomarImagen(bitmapRetrovisor);
                     imageRetroElectE.setImageBitmap(bitmapRetrovisor);
                     String imagenRetrovisor  = foto.convertirImagenDano(bitmapRetrovisor);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 53, nombreimagen, "Foto Retrovisor Eléctrico Interior", 0, imagenRetrovisor);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Retrovisor Eléctrico Interior", 0, imagenRetrovisor);
                     db.insertarValor(Integer.parseInt(id_inspeccion),256,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","53");
+                    servis.putExtra("comentario","Foto Retrovisor Eléctrico Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1589,11 +1589,11 @@ public class interior extends AppCompatActivity {
                     bitmapParlantes = foto.redimensiomarImagen(bitmapParlantes);
                     imageParlantesE.setImageBitmap(bitmapParlantes);
                     String imagenParlantes  = foto.convertirImagenDano(bitmapParlantes);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 54, nombreimagen, "Foto Parlantes Interior", 0, imagenParlantes);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Parlantes Interior", 0, imagenParlantes);
                     db.insertarValor(Integer.parseInt(id_inspeccion),271,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","54");
+                    servis.putExtra("comentario","Foto Parlantes Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1613,11 +1613,11 @@ public class interior extends AppCompatActivity {
                     bitmapTweeter = foto.redimensiomarImagen(bitmapTweeter);
                     imageTweeterE.setImageBitmap(bitmapTweeter);
                     String ImagenTweeter  = foto.convertirImagenDano(bitmapTweeter);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 55, nombreimagen, "Foto Tweeter Interior", 0, ImagenTweeter);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Tweeter Interior", 0, ImagenTweeter);
                     db.insertarValor(Integer.parseInt(id_inspeccion),239,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","55");
+                    servis.putExtra("comentario","Foto Tweeter Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1637,11 +1637,11 @@ public class interior extends AppCompatActivity {
                     bitmapAmp1 = foto.redimensiomarImagen(bitmapAmp1);
                     imageAmplifiUnoE.setImageBitmap(bitmapAmp1);
                     String ImagenAmp1  = foto.convertirImagenDano(bitmapAmp1);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 56, nombreimagen, "Foto Amplificador Uno Interior", 0, ImagenAmp1);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Amplificador Uno Interior", 0, ImagenAmp1);
                     db.insertarValor(Integer.parseInt(id_inspeccion),221,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","56");
+                    servis.putExtra("comentario","Foto Amplificador Uno Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1661,11 +1661,11 @@ public class interior extends AppCompatActivity {
                     bitmapAmp2 = foto.redimensiomarImagen(bitmapAmp2);
                     imageAmplifiDosE.setImageBitmap(bitmapAmp2);
                     String ImagenAmp2  = foto.convertirImagenDano(bitmapAmp2);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 57, nombreimagen, "Foto Amplificador Dos Interior", 0, ImagenAmp2);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Amplificador Dos Interior", 0, ImagenAmp2);
                     db.insertarValor(Integer.parseInt(id_inspeccion),227,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","57");
+                    servis.putExtra("comentario","Foto Amplificador Dos Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1685,11 +1685,11 @@ public class interior extends AppCompatActivity {
                     bitmapWoofer = foto.redimensiomarImagen(bitmapWoofer);
                     imageWooferE.setImageBitmap(bitmapWoofer);
                     String ImagenWoofer  = foto.convertirImagenDano(bitmapWoofer);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 58, nombreimagen, "Foto Woofer Interior", 0, ImagenWoofer);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Woofer Interior", 0, ImagenWoofer);
                     db.insertarValor(Integer.parseInt(id_inspeccion),245,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","58");
+                    servis.putExtra("comentario","Foto Woofer Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1709,11 +1709,11 @@ public class interior extends AppCompatActivity {
                     bitmapPantalla = foto.redimensiomarImagen(bitmapPantalla);
                     imagePantallaDvdE.setImageBitmap(bitmapPantalla);
                     String ImagenPantalla  = foto.convertirImagenDano(bitmapPantalla);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 59, nombreimagen, "Foto Pantalla DVD Interior", 0, ImagenPantalla);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Pantalla DVD Interior", 0, ImagenPantalla);
                     db.insertarValor(Integer.parseInt(id_inspeccion),251,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","59");
+                    servis.putExtra("comentario","Foto Pantalla DVD Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1733,11 +1733,11 @@ public class interior extends AppCompatActivity {
                     bitmapGps = foto.redimensiomarImagen(bitmapGps);
                     imageGpsE.setImageBitmap(bitmapGps);
                     String ImagenGps  = foto.convertirImagenDano(bitmapGps);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 60, nombreimagen, "Foto GPS Interior", 0, ImagenGps);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto GPS Interior", 0, ImagenGps);
                     db.insertarValor(Integer.parseInt(id_inspeccion),299,"Ok");
 
                          servis = new Intent(interior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","60");
+                    servis.putExtra("comentario","Foto GPS Interior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1828,11 +1828,11 @@ public class interior extends AppCompatActivity {
 
 
 
-            String imagePanelFueraInte = db.foto(Integer.parseInt(id),39);
-            String imagePanelDentroInte = db.foto(Integer.parseInt(id),40);
-            String imageRadioInterior = db.foto(Integer.parseInt(id),41);
-            String imageKilometraje = db.foto(Integer.parseInt(id),42);
-            String imageAdicionalInterior = db.foto(Integer.parseInt(id),43);
+            String imagePanelFueraInte = db.foto(Integer.parseInt(id),"Foto Panel desde Afuera Interior");
+            String imagePanelDentroInte = db.foto(Integer.parseInt(id),"Foto Panel desde Dentro Interior");
+            String imageRadioInterior = db.foto(Integer.parseInt(id),"Foto Radio Interior");
+            String imageKilometraje = db.foto(Integer.parseInt(id),"Foto Kilometraje Interior");
+            String imageAdicionalInterior = db.foto(Integer.parseInt(id),"Foto Adicional Interior");
 
             if(imagePanelFueraInte.length()>3)
             {
@@ -1955,23 +1955,23 @@ public class interior extends AppCompatActivity {
             imageAdicionalInteriorE.setImageBitmap(null);
 
 
-            String imageLuzCheckEngine = db.foto(Integer.parseInt(id),44);
-            String imageluzTestigoAir = db.foto(Integer.parseInt(id),45);
-            String imageControlCruce = db.foto(Integer.parseInt(id),46);
-            String imageBluetooth = db.foto(Integer.parseInt(id),47);
-            String imageTapizCuero = db.foto(Integer.parseInt(id),48);
-            String imageButacaElect = db.foto(Integer.parseInt(id),49);
-            String imageCortaCorri = db.foto(Integer.parseInt(id),50);
-            String imageAlzavidrioDe = db.foto(Integer.parseInt(id),51);
-            String imageAlzavidrioTr = db.foto(Integer.parseInt(id),52);
-            String imageRetroElect = db.foto(Integer.parseInt(id),53);
-            String imageParlantes = db.foto(Integer.parseInt(id),54);
-            String imageTweeter = db.foto(Integer.parseInt(id),55);
-            String imageAmplifiUno = db.foto(Integer.parseInt(id),56);
-            String imageAmplifiDos = db.foto(Integer.parseInt(id),57);
-            String imageWoofer = db.foto(Integer.parseInt(id),58);
-            String imagePantallaDvd = db.foto(Integer.parseInt(id),59);
-            String imageGps = db.foto(Integer.parseInt(id),60);
+            String imageLuzCheckEngine = db.foto(Integer.parseInt(id),"Foto Check Engine Interior");
+            String imageluzTestigoAir = db.foto(Integer.parseInt(id),"Foto Luz Testigo  Airbags Interior");
+            String imageControlCruce = db.foto(Integer.parseInt(id),"Foto Control Crucero Interior");
+            String imageBluetooth = db.foto(Integer.parseInt(id),"Foto Bluetooh Interior");
+            String imageTapizCuero = db.foto(Integer.parseInt(id),"Foto Tapiz de Cuero Interior");
+            String imageButacaElect = db.foto(Integer.parseInt(id),"Foto Butaca Eléctrica Interior");
+            String imageCortaCorri = db.foto(Integer.parseInt(id),"Foto Corta Corriente Interior");
+            String imageAlzavidrioDe = db.foto(Integer.parseInt(id),"Foto Alza Vidrio Delantero Interior");
+            String imageAlzavidrioTr = db.foto(Integer.parseInt(id),"Foto Alza Vidrio Trasero Interior");
+            String imageRetroElect = db.foto(Integer.parseInt(id),"Foto Retrovisor Eléctrico Interior");
+            String imageParlantes = db.foto(Integer.parseInt(id),"Foto Parlantes Interior");
+            String imageTweeter = db.foto(Integer.parseInt(id),"Foto Tweeter Interior");
+            String imageAmplifiUno = db.foto(Integer.parseInt(id),"Foto Amplificador Uno Interior");
+            String imageAmplifiDos = db.foto(Integer.parseInt(id),"Foto Amplificador Dos Interior");
+            String imageWoofer = db.foto(Integer.parseInt(id),"Foto Woofer Interior");
+            String imagePantallaDvd = db.foto(Integer.parseInt(id),"Foto Pantalla DVD Interior");
+            String imageGps = db.foto(Integer.parseInt(id),"Foto GPS Interior");
 
 
             if(imageLuzCheckEngine.length()>3)

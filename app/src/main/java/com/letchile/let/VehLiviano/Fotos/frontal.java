@@ -235,8 +235,8 @@ public class frontal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String imageFrontal = db.foto(Integer.parseInt(id_inspeccion),13);
-                String imageLogoPara = db.foto(Integer.parseInt(id_inspeccion),14);
+                String imageFrontal = db.foto(Integer.parseInt(id_inspeccion),"Foto Frontal");
+                String imageLogoPara = db.foto(Integer.parseInt(id_inspeccion),"Logo Parabrisas Frontal");
 
                 if(imageFrontal.length()<4 ||imageLogoPara.length()<4 )
                 {
@@ -583,10 +583,10 @@ public class frontal extends AppCompatActivity {
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imageFrontalE.setImageBitmap(bitmap);
                     String imagen = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 13, nombreimagen, "Foto Frontal", 0, imagen);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Frontal", 0, imagen);
 
                         Intent servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","13");
+                    servis.putExtra("comentario","Foto Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -607,10 +607,10 @@ public class frontal extends AppCompatActivity {
                     bitmapParabrisas = foto.redimensiomarImagen(bitmapParabrisas);
                     imageLogoParaE.setImageBitmap(bitmapParabrisas);
                     String imagenParabrisas = foto.convertirImagenDano(bitmapParabrisas);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),14,nombreimagen, "Logo Parabrisas Frontal",0,imagenParabrisas);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Logo Parabrisas Frontal",0,imagenParabrisas);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","14");
+                    servis.putExtra("comentario","Logo Parabrisas Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -631,10 +631,10 @@ public class frontal extends AppCompatActivity {
                     bitmapAdcional = foto.redimensiomarImagen(bitmapAdcional);
                     imageAdicionalFrontalE.setImageBitmap(bitmapAdcional);
                     String imagenAdicional = foto.convertirImagenDano(bitmapAdcional);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),15,nombreimagen, "Adicional Frontal",0,imagenAdicional);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Adicional Frontal",0,imagenAdicional);
 
                          servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","15");
+                    servis.putExtra("comentario","Adicional Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -654,10 +654,10 @@ public class frontal extends AppCompatActivity {
                     bitmapDano = foto.redimensiomarImagen(bitmapDano);
                     imagenFrontalDanoE.setImageBitmap(bitmapDano);
                     String imagendano = foto.convertirImagenDano(bitmapDano);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),16,nombreimagen, "Daño Frontal",0,imagendano);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Daño Frontal",0,imagendano);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","16");
+                    servis.putExtra("comentario","Daño Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -677,11 +677,11 @@ public class frontal extends AppCompatActivity {
                     bitmaoTurbo = foto.redimensiomarImagen(bitmaoTurbo);
                     imageTurboFrontalE.setImageBitmap(bitmaoTurbo);
                     String imagenTurbo = foto.convertirImagenDano(bitmaoTurbo);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),17,nombreimagen, "Turbo Frontal",0,imagenTurbo);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Turbo Frontal",0,imagenTurbo);
                     db.insertarValor(Integer.parseInt(id_inspeccion),354,"Ok");
 
                          servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","17");
+                    servis.putExtra("comentario","Turbo Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -701,11 +701,11 @@ public class frontal extends AppCompatActivity {
                     bitmapHuenche = foto.redimensiomarImagen(bitmapHuenche);
                     imageHuencheFrontalE.setImageBitmap(bitmapHuenche);
                     String imagenHuenche = foto.convertirImagenDano(bitmapHuenche);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),18,nombreimagen, "Huenche Frontal",0,imagenHuenche);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Huenche Frontal",0,imagenHuenche);
                     db.insertarValor(Integer.parseInt(id_inspeccion),288,"Ok");
 
                          servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","18");
+                    servis.putExtra("comentario","Huenche Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -725,11 +725,11 @@ public class frontal extends AppCompatActivity {
                     bitmapCoco = foto.redimensiomarImagen(bitmapCoco);
                     imageCocoFrE.setImageBitmap(bitmapCoco);
                     String imagenCoco = foto.convertirImagenDano(bitmapCoco);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),19,nombreimagen, "Coco Frontal",0,imagenCoco);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Coco Frontal",0,imagenCoco);
                     db.insertarValor(Integer.parseInt(id_inspeccion),316,"Ok");
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","19");
+                    servis.putExtra("comentario","Coco Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -750,11 +750,11 @@ public class frontal extends AppCompatActivity {
                     bitmapNeblinero = foto.redimensiomarImagen(bitmapNeblinero);
                     imageNeblineroE.setImageBitmap(bitmapNeblinero);
                     String imagenNeblinero = foto.convertirImagenDano(bitmapNeblinero);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),20,nombreimagen, "Neblinero Frontal",0,imagenNeblinero);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Neblinero Frontal",0,imagenNeblinero);
                     db.insertarValor(Integer.parseInt(id_inspeccion),286,"Ok");
 
                          servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","20");
+                    servis.putExtra("comentario","Neblinero Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -774,11 +774,11 @@ public class frontal extends AppCompatActivity {
                     bitmapLogo = foto.redimensiomarImagen(bitmapLogo);
                     imageLogoE.setImageBitmap(bitmapLogo);
                     String imagenLogo = foto.convertirImagenDano(bitmapLogo);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),21,nombreimagen, "Logo Frontal",0,imagenLogo);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Logo Frontal",0,imagenLogo);
                     db.insertarValor(Integer.parseInt(id_inspeccion),260,"Ok");
 
                          servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","21");
+                    servis.putExtra("comentario","Logo Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -837,9 +837,9 @@ public class frontal extends AppCompatActivity {
             imageLogoE.setImageBitmap(null);
 
 
-            String imageFrontal = db.foto(Integer.parseInt(id),13);
-            String imageLogoPara = db.foto(Integer.parseInt(id),14);
-            String imageAdicionalFrontal = db.foto(Integer.parseInt(id),15);
+            String imageFrontal = db.foto(Integer.parseInt(id),"Foto Frontal");
+            String imageLogoPara = db.foto(Integer.parseInt(id),"Logo Parabrisas Frontal");
+            String imageAdicionalFrontal = db.foto(Integer.parseInt(id),"Adicional Frontal");
 
             if(imageFrontal.length()>=3 )
             {
@@ -915,7 +915,7 @@ public class frontal extends AppCompatActivity {
             imageLogoE.setVisibility(View.GONE);
             imageLogoE.setImageBitmap(null);
 
-            String imagenFrontalDano = db.foto(Integer.parseInt(id),16);
+            String imagenFrontalDano = db.foto(Integer.parseInt(id),"Daño Frontal");
 
             if(imagenFrontalDano.length()>=3 )
             {
@@ -1055,11 +1055,11 @@ public class frontal extends AppCompatActivity {
             imagenFrontalDanoE.setImageBitmap(null);
 
 
-            String imageTurboFrontal = db.foto(Integer.parseInt(id),17);
-            String imageHuencheFrontal = db.foto(Integer.parseInt(id),18);
-            String imageCocoFr = db.foto(Integer.parseInt(id),19);
-            String imageNeblinero = db.foto(Integer.parseInt(id),20);
-            String imageLogo = db.foto(Integer.parseInt(id),21);
+            String imageTurboFrontal = db.foto(Integer.parseInt(id),"Turbo Frontal");
+            String imageHuencheFrontal = db.foto(Integer.parseInt(id),"Huenche Frontal");
+            String imageCocoFr = db.foto(Integer.parseInt(id),"Coco Frontal");
+            String imageNeblinero = db.foto(Integer.parseInt(id),"Neblinero Frontal");
+            String imageLogo = db.foto(Integer.parseInt(id),"Logo Frontal");
 
 
             if(imageTurboFrontal.length()>=3 )

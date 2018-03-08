@@ -207,7 +207,7 @@ public class lateralizquierdo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String imageLateIz = db.foto(Integer.parseInt(id_inspeccion),22);
+                String imageLateIz = db.foto(Integer.parseInt(id_inspeccion),"Foto Lateral Izquierdo");
 
                 if(imageLateIz.length()<=3)
                 {
@@ -520,10 +520,10 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imageLateIzE.setImageBitmap(bitmap);
                     String imagen = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 22, nombreimagen, "Foto Lateral Izquierdo", 0, imagen);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lateral Izquierdo", 0, imagen);
 
                         Intent servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","22");
+                    servis.putExtra("comentario","Foto Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -543,10 +543,10 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapAdicional1 = foto.redimensiomarImagen(bitmapAdicional1);
                     imageAdicionalIzE.setImageBitmap(bitmapAdicional1);
                     String imagenAdicional1 = foto.convertirImagenDano(bitmapAdicional1);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 23, nombreimagen, "Foto Adicional 1 Lateral Izquierdo", 0, imagenAdicional1);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 1 Lateral Izquierdo", 0, imagenAdicional1);
 
                          servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","23");
+                    servis.putExtra("comentario","Foto Adicional 1 Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -566,10 +566,10 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapAdicional2 = foto.redimensiomarImagen(bitmapAdicional2);
                     imageAdicionalIz2E.setImageBitmap(bitmapAdicional2);
                     String imagenAdicional2 = foto.convertirImagenDano(bitmapAdicional2);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 24, nombreimagen, "Foto Adicional 2 Lateral Izquierdo", 0, imagenAdicional2);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 2 Lateral Izquierdo", 0, imagenAdicional2);
 
                          servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","24");
+                    servis.putExtra("comentario","Foto Adicional 2 Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -589,11 +589,11 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapDano = foto.redimensiomarImagen(bitmapDano);
                     imagenIzDanoE.setImageBitmap(bitmapDano);
                     String imagenDano = foto.convertirImagenDano(bitmapDano);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 25, nombreimagen, "Foto  Daño Lateral Izquierdo", 0, imagenDano);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto  Daño Lateral Izquierdo", 0, imagenDano);
 
 
                          servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","25");
+                    servis.putExtra("comentario","Foto  Daño Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -613,11 +613,11 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapGraba = foto.redimensiomarImagen(bitmapGraba);
                     imageGabradoPatenteE.setImageBitmap(bitmapGraba);
                     String imagenGraba = foto.convertirImagenDano(bitmapGraba);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 26, nombreimagen, "Foto Grabado Patente Lateral Izquierdo", 0, imagenGraba);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Grabado Patente Lateral Izquierdo", 0, imagenGraba);
                     db.insertarValor(Integer.parseInt(id_inspeccion),298,"Ok");
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","26");
+                    servis.putExtra("comentario","Foto Grabado Patente Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -637,11 +637,11 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapLamina = foto.redimensiomarImagen(bitmapLamina);
                     imagelaminasSeguridadLaIzE.setImageBitmap(bitmapLamina);
                     String imagenLamina = foto.convertirImagenDano(bitmapLamina);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 27, nombreimagen, "Foto Lamina de Seguridad Lateral Izquierdo", 0, imagenLamina);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lamina de Seguridad Lateral Izquierdo", 0, imagenLamina);
                     db.insertarValor(Integer.parseInt(id_inspeccion),342,"Ok");
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","27");
+                    servis.putExtra("comentario","Foto Lamina de Seguridad Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -661,11 +661,11 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapPisadera = foto.redimensiomarImagen(bitmapPisadera);
                     imagePisaderasLaIzE.setImageBitmap(bitmapPisadera);
                     String imagenPisadera = foto.convertirImagenDano(bitmapPisadera);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 28, nombreimagen, "Foto Pisadera Lateral Izquierdo", 0, imagenPisadera);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Pisadera Lateral Izquierdo", 0, imagenPisadera);
                     db.insertarValor(Integer.parseInt(id_inspeccion),276,"Ok");
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","28");
+                    servis.putExtra("comentario","Foto Pisadera Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -685,11 +685,11 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapPolarizado = foto.redimensiomarImagen(bitmapPolarizado);
                     imagePolarizadoLaIzE.setImageBitmap(bitmapPolarizado);
                     String imagenPolarizado = foto.convertirImagenDano(bitmapPolarizado);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 29, nombreimagen, "Foto Polarizado Lateral Izquierdo", 0, imagenPolarizado);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Polarizado Lateral Izquierdo", 0, imagenPolarizado);
                     db.insertarValor(Integer.parseInt(id_inspeccion),341,"Ok");
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","29");
+                        servis.putExtra("comentario","Foto Polarizado Lateral Izquierdo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
                     break;
@@ -742,9 +742,9 @@ public class lateralizquierdo extends AppCompatActivity {
             imagePolarizadoLaIzE.setImageBitmap(null);
 
 
-            String imageLateIz = db.foto(Integer.parseInt(id),22);
-            String imageAdicionalIz = db.foto(Integer.parseInt(id),23);
-            String imageAdicionalIz2 = db.foto(Integer.parseInt(id),24);
+            String imageLateIz = db.foto(Integer.parseInt(id),"Foto Lateral Izquierdo");
+            String imageAdicionalIz = db.foto(Integer.parseInt(id),"Foto Adicional 1 Lateral Izquierdo");
+            String imageAdicionalIz2 = db.foto(Integer.parseInt(id),"Foto Adicional 2 Lateral Izquierdo");
 
             if(imageLateIz.length()>3)
             {
@@ -818,7 +818,7 @@ public class lateralizquierdo extends AppCompatActivity {
             imagePolarizadoLaIzE.setVisibility(View.GONE);
             imagePolarizadoLaIzE.setImageBitmap(null);
 
-            String imagenIzDano = db.foto(Integer.parseInt(id),25);
+            String imagenIzDano = db.foto(Integer.parseInt(id),"Foto  Daño Lateral Izquierdo");
 
             if(imagenIzDano.length()>3)
             {
@@ -952,10 +952,10 @@ public class lateralizquierdo extends AppCompatActivity {
             imagenIzDanoE.setImageBitmap(null);
 
 
-            String imageGabradoPatente = db.foto(Integer.parseInt(id),26);
-            String imagelaminasSeguridadLaIz = db.foto(Integer.parseInt(id),27);
-            String imagePisaderasLaIz = db.foto(Integer.parseInt(id),28);
-            String imagePolarizadoLaIz = db.foto(Integer.parseInt(id),29);
+            String imageGabradoPatente = db.foto(Integer.parseInt(id),"Foto Grabado Patente Lateral Izquierdo");
+            String imagelaminasSeguridadLaIz = db.foto(Integer.parseInt(id),"Foto Lamina de Seguridad Lateral Izquierdo");
+            String imagePisaderasLaIz = db.foto(Integer.parseInt(id),"Foto Pisadera Lateral Izquierdo");
+            String imagePolarizadoLaIz = db.foto(Integer.parseInt(id),"Foto Polarizado Lateral Izquierdo");
 
             if(imageGabradoPatente.length()>3)
             {

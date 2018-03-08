@@ -593,7 +593,18 @@ public class DBprovider extends SQLiteOpenHelper {
 
 
     //FOTOS
-    public String foto(int id_inspeccion, int id_foto) {
+    public String foto(int id_inspeccion, String comentario) {
+
+        String rsp = "";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT url FROM FOTO where id_inspeccion=" + id_inspeccion + " and comentario ='" + comentario +"' ORDER BY id_foto desc LIMIT 1", null);
+        if (ars.moveToFirst()) {
+            rsp = ars.getString(ars.getColumnIndex("url"));
+        }
+        return rsp;
+    }
+
+    /*public String foto(int id_inspeccion, int id_foto) {
 
         String rsp = "";
         SQLiteDatabase db = getReadableDatabase();
@@ -602,8 +613,7 @@ public class DBprovider extends SQLiteOpenHelper {
             rsp = ars.getString(ars.getColumnIndex("url"));
         }
         return rsp;
-
-    }
+    }*/
 
 
     public String insertaFoto(int id_inspeccion, int id_foto, String imageName, String comentario, int estado, String url) {
@@ -637,11 +647,11 @@ public class DBprovider extends SQLiteOpenHelper {
 
 
     //OBTENER DATOS DE LA FOTO
-    public String[][] DatosFotos(int id_inspeccion, int id_foto) {
+    public String[][] DatosFotos(int id_inspeccion, String comentario) {
         int count = 0;
         SQLiteDatabase db = getReadableDatabase();
         String[][] aData = null;
-        Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and id_foto=" + id_foto + "", null);
+        Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and comentario='" + comentario + "' order by id_foto desc LIMIT 1", null);
 
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];

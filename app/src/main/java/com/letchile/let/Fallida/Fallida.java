@@ -113,7 +113,7 @@ public class Fallida extends AppCompatActivity{
         });
 
         //image view
-        String imagenFa = db.foto(Integer.parseInt(id_inspeccion),70);
+        String imagenFa = db.foto(Integer.parseInt(id_inspeccion),"Foto Fallida");
 
         if(imagenFa.length()>=3 )
         {

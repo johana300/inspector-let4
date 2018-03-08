@@ -108,8 +108,8 @@ public class llantasneumaticos extends AppCompatActivity {
         btnSiguienteLlantaE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String imageLlantasN = db.foto(Integer.parseInt(id_inspeccion),30);
-                String imageRuedaRespuestoLlantas = db.foto(Integer.parseInt(id_inspeccion),31);
+                String imageLlantasN = db.foto(Integer.parseInt(id_inspeccion),"Foto Llantas y Neumaticos");
+                String imageRuedaRespuestoLlantas = db.foto(Integer.parseInt(id_inspeccion),"Foto Rueda de Respuesto Llantas y Neumaticos");
                 if(imageLlantasN.length()<=3 || imageRuedaRespuestoLlantas.length()<=3)
                 {
                     AlertDialog.Builder builder = new AlertDialog.Builder(llantasneumaticos.this);
@@ -256,10 +256,10 @@ public class llantasneumaticos extends AppCompatActivity {
                     bitmapLlanatas = foto.redimensiomarImagen(bitmapLlanatas);
                     imageLlantasNE.setImageBitmap(bitmapLlanatas);
                     String imagenLlantas = foto.convertirImagenDano(bitmapLlanatas);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 30, nombreimagen, "Foto Llantas y Neumaticos", 0, imagenLlantas);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Llantas y Neumaticos", 0, imagenLlantas);
 
                         Intent servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","30");
+                    servis.putExtra("comentario","Foto Llantas y Neumaticos");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -279,10 +279,10 @@ public class llantasneumaticos extends AppCompatActivity {
                     bitmapRueda = foto.redimensiomarImagen(bitmapRueda);
                     imageRuedaRespuestoLlantasE.setImageBitmap(bitmapRueda);
                     String imagenRueda = foto.convertirImagenDano(bitmapRueda);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 31, nombreimagen, "Foto Rueda de Respuesto Llantas y Neumaticos", 0, imagenRueda);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Rueda de Respuesto Llantas y Neumaticos", 0, imagenRueda);
 
                         servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","31");
+                    servis.putExtra("comentario","Foto Rueda de Respuesto Llantas y Neumaticos");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -302,10 +302,10 @@ public class llantasneumaticos extends AppCompatActivity {
                     bitmapAdicionalLlantas = foto.redimensiomarImagen(bitmapAdicionalLlantas);
                     imageAdicionalLlantasE.setImageBitmap(bitmapAdicionalLlantas);
                     String imagenAdicionalLlantas = foto.convertirImagenDano(bitmapAdicionalLlantas);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 32, nombreimagen, "Foto Adicional Llantas y Neumaticos", 0, imagenAdicionalLlantas);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Llantas y Neumaticos", 0, imagenAdicionalLlantas);
 
                         servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","32");
+                    servis.putExtra("comentario","Foto Adicional Llantas y Neumaticos");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -331,9 +331,9 @@ public class llantasneumaticos extends AppCompatActivity {
         }
         else
         {
-            String imageLlantasN = db.foto(Integer.parseInt(id),30);
-            String imageRuedaRespuestoLlantas = db.foto(Integer.parseInt(id),31);
-            String imageAdicionalLlantas = db.foto(Integer.parseInt(id),32);
+            String imageLlantasN = db.foto(Integer.parseInt(id),"Foto Llantas y Neumaticos");
+            String imageRuedaRespuestoLlantas = db.foto(Integer.parseInt(id),"Foto Rueda de Respuesto Llantas y Neumaticos");
+            String imageAdicionalLlantas = db.foto(Integer.parseInt(id),"Foto Adicional Llantas y Neumaticos");
 
             if(imageLlantasN.length()>3)
             {

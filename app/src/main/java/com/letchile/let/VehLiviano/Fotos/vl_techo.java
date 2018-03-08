@@ -429,10 +429,10 @@ public class vl_techo extends AppCompatActivity {
                     bitmapTecho = foto.redimensiomarImagen(bitmapTecho);
                     imagenTechoDanoE.setImageBitmap(bitmapTecho);
                     String imagenTechoDano = foto.convertirImagenDano(bitmapTecho);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 33, nombreimagen, "Foto Daño Techo", 0, imagenTechoDano);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Daño Techo", 0, imagenTechoDano);
 
                         Intent servis = new Intent(vl_techo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","33");
+                    servis.putExtra("comentario","comentario");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -452,11 +452,11 @@ public class vl_techo extends AppCompatActivity {
                     bitmapBarra = foto.redimensiomarImagen(bitmapBarra);
                     imageBarraPortaEquipajeE.setImageBitmap(bitmapBarra);
                     String imagenBarra = foto.convertirImagenDano(bitmapBarra);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 34, nombreimagen, "Foto Barra Equipaje Techo", 0, imagenBarra);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Barra Equipaje Techo", 0, imagenBarra);
                     db.insertarValor(Integer.parseInt(id_inspeccion),325,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","34");
+                    servis.putExtra("comentario","comentario");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -476,11 +476,11 @@ public class vl_techo extends AppCompatActivity {
                     bitmapParrilla = foto.redimensiomarImagen(bitmapParrilla);
                     imageParrillaTechoE.setImageBitmap(bitmapParrilla);
                     String imagenParrilla = foto.convertirImagenDano(bitmapParrilla);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 35, nombreimagen, "Foto Parrilla Techo", 0, imagenParrilla);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Parrilla Techo", 0, imagenParrilla);
                     db.insertarValor(Integer.parseInt(id_inspeccion),293,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","35");
+                    servis.putExtra("comentario","comentario");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -500,11 +500,11 @@ public class vl_techo extends AppCompatActivity {
                     bitmapPorta = foto.redimensiomarImagen(bitmapPorta);
                     imagePortaEquipajeE.setImageBitmap(bitmapPorta);
                     String imagenPorta = foto.convertirImagenDano(bitmapPorta);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 36, nombreimagen, "Foto Porta Equipaje Techo", 0, imagenPorta);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Porta Equipaje Techo", 0, imagenPorta);
                     db.insertarValor(Integer.parseInt(id_inspeccion),355,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","36");
+                    servis.putExtra("comentario","comentario");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -524,11 +524,11 @@ public class vl_techo extends AppCompatActivity {
                     bitmapPortaSky = foto.redimensiomarImagen(bitmapPortaSky);
                     imagePortaSkyE.setImageBitmap(bitmapPortaSky);
                     String imagenPortaSky = foto.convertirImagenDano(bitmapPortaSky);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 37, nombreimagen, "Foto Porta Sky Techo", 0, imagenPortaSky);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Porta Sky Techo", 0, imagenPortaSky);
                     db.insertarValor(Integer.parseInt(id_inspeccion),327,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","37");
+                    servis.putExtra("comentario","comentario");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -549,11 +549,11 @@ public class vl_techo extends AppCompatActivity {
                     bitmapSunroof = foto.redimensiomarImagen(bitmapSunroof);
                     imageSunroofE.setImageBitmap(bitmapSunroof);
                     String imagenSunroof = foto.convertirImagenDano(bitmapSunroof);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 38, nombreimagen, "Foto Sunroof Techo", 0, imagenSunroof);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Sunroof Techo", 0, imagenSunroof);
                     db.insertarValor(Integer.parseInt(id_inspeccion),262,"Ok");
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","38");
+                    servis.putExtra("comentario","comentario");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -595,7 +595,7 @@ public class vl_techo extends AppCompatActivity {
             imageSunroofE.setVisibility(View.GONE);
             imageSunroofE.setImageBitmap(null);
 
-            String imagenTechoDano = db.foto(Integer.parseInt(id),33);
+            String imagenTechoDano = db.foto(Integer.parseInt(id),"Foto Daño Techo");
 
             if(imagenTechoDano.length()>3)
             {
@@ -715,11 +715,11 @@ public class vl_techo extends AppCompatActivity {
             imagenTechoDanoE.setImageBitmap(null);
 
 
-            String imageBarraPortaEquipaje = db.foto(Integer.parseInt(id),34);
-            String imageParrillaTecho = db.foto(Integer.parseInt(id),35);
-            String imagePortaEquipaje = db.foto(Integer.parseInt(id),36);
-            String imagePortaSky = db.foto(Integer.parseInt(id),37);
-            String imageSunroof = db.foto(Integer.parseInt(id),38);
+            String imageBarraPortaEquipaje = db.foto(Integer.parseInt(id),"Foto Barra Equipaje Techo");
+            String imageParrillaTecho = db.foto(Integer.parseInt(id),"Foto Parrilla Techo");
+            String imagePortaEquipaje = db.foto(Integer.parseInt(id),"Foto Porta Equipaje Techo");
+            String imagePortaSky = db.foto(Integer.parseInt(id),"Foto Porta Sky Techo");
+            String imageSunroof = db.foto(Integer.parseInt(id),"Foto Sunroof Techo");
 
 
             if(imageBarraPortaEquipaje.length()>3)

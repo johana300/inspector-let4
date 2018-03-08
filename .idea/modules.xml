@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LET_INSPECTOR.iml" filepath="$PROJECT_DIR$/LET_INSPECTOR.iml" />
+      <module fileurl="file://C:\Users\LET-CHILE\StudioProjects\inspector-let\LET_INSPECTOR.iml" filepath="C:\Users\LET-CHILE\StudioProjects\inspector-let\LET_INSPECTOR.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\LET-CHILE\StudioProjects\inspector-let\app\app.iml" filepath="C:\Users\LET-CHILE\StudioProjects\inspector-let\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inspector-let.iml" filepath="$PROJECT_DIR$/inspector-let.iml" />
     </modules>
   </component>
 </project>

@@ -255,8 +255,8 @@ public class Posterior extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),2);
-                String imagenLogoLuneta = db.foto(Integer.parseInt(id_inspeccion),3);
+                String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"Posterior");
+                String imagenLogoLuneta = db.foto(Integer.parseInt(id_inspeccion),"Logo Luneta Posterior");
                 if(imagenLogoLuneta.length()>4 || imagenPosterior.length()>4){
 
                     //Toast toast =  Toast.makeText(prueba.this, "Debe continuar realizando la inspección", Toast.LENGTH_SHORT);
@@ -294,8 +294,8 @@ public class Posterior extends AppCompatActivity {
         btnSiguientePoE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),2);
-                String imagenLogoLuneta = db.foto(Integer.parseInt(id_inspeccion),3);
+                String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"Posterior");
+                String imagenLogoLuneta = db.foto(Integer.parseInt(id_inspeccion),"Logo Luneta Posterior");
 
 
                 if(imagenLogoLuneta.length()<=3){
@@ -663,10 +663,10 @@ public class Posterior extends AppCompatActivity {
                     bitmap = foto.redimensiomarImagen(bitmap);
                     mSetImage.setImageBitmap(bitmap);
                     String imagenDano = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),1,nombreimagen, "Daño Posterior",0,imagenDano);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Daño Posterior",0,imagenDano);
 
                         Intent servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","1");
+                    servis.putExtra("comentario","Daño Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -687,10 +687,10 @@ public class Posterior extends AppCompatActivity {
                     bitmapPosterio = foto.redimensiomarImagen(bitmapPosterio);
                     imageViewFotoPoE.setImageBitmap(bitmapPosterio);
                     String imagenPosterio = foto.convertirImagenDano(bitmapPosterio);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),2,nombreimagen, "Posterior",0,imagenPosterio);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Posterior",0,imagenPosterio);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","2");
+                        servis.putExtra("comentario","Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -711,10 +711,10 @@ public class Posterior extends AppCompatActivity {
                     bitmapLuneta = foto.redimensiomarImagen(bitmapLuneta);
                     imageLogoLunetaE.setImageBitmap(bitmapLuneta);
                     String imagenLuneta = foto.convertirImagenDano(bitmapLuneta);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),3,nombreimagen, "Logo Luneta Posterior",0,imagenLuneta);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Logo Luneta Posterior",0,imagenLuneta);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","3");
+                    servis.putExtra("comentario","Logo Luneta Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -734,10 +734,10 @@ public class Posterior extends AppCompatActivity {
                     bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
                     imageFotoAdicionalE.setImageBitmap(bitmapAdicional);
                     String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),4,nombreimagen, "Adicional Posterior",0,imagenAdicional);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Adicional Posterior",0,imagenAdicional);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","4");
+                    servis.putExtra("comentario","Adicional Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -757,11 +757,11 @@ public class Posterior extends AppCompatActivity {
                     bitmapSensores = foto.redimensiomarImagen(bitmapSensores);
                     imageSensores.setImageBitmap(bitmapSensores);
                     String imagenSensores = foto.convertirImagenDano(bitmapSensores);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),5,nombreimagen, "Sensores Posteriores",0,imagenSensores);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Sensores Posteriores",0,imagenSensores);
                     db.insertarValor(Integer.parseInt(id_inspeccion),317,"Ok");
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","5");
+                    servis.putExtra("comentario","Sensores Posteriores");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -782,11 +782,11 @@ public class Posterior extends AppCompatActivity {
                     bitmapCamara = foto.redimensiomarImagen(bitmapCamara);
                     imageCameraPoE.setImageBitmap(bitmapCamara);
                     String imagenCamara = foto.convertirImagenDano(bitmapCamara);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),6,nombreimagen, "Camara Posterior",0,imagenCamara);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Camara Posterior",0,imagenCamara);
                     db.insertarValor(Integer.parseInt(id_inspeccion),314,"Ok");
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","6");
+                    servis.putExtra("comentario","Camara Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -807,11 +807,11 @@ public class Posterior extends AppCompatActivity {
                     bitmapCoco = foto.redimensiomarImagen(bitmapCoco);
                     imageCocoPoE.setImageBitmap(bitmapCoco);
                     String imagenCoco = foto.convertirImagenDano(bitmapCoco);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),7,nombreimagen, "Coco Posterior",0,imagenCoco);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Coco Posterior",0,imagenCoco);
                     db.insertarValor(Integer.parseInt(id_inspeccion),273,"Ok");
 
                        servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","7");
+                    servis.putExtra("comentario","Coco Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -832,11 +832,11 @@ public class Posterior extends AppCompatActivity {
                     bitmapMuela = foto.redimensiomarImagen(bitmapMuela);
                     imageMuelaE.setImageBitmap(bitmapMuela);
                     String imagenMuela = foto.convertirImagenDano(bitmapMuela);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),8,nombreimagen, "Muela Posterior",0,imagenMuela);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Muela Posterior",0,imagenMuela);
                     db.insertarValor(Integer.parseInt(id_inspeccion),275,"Ok");
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","8");
+                    servis.putExtra("comentario","Muela Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -856,11 +856,11 @@ public class Posterior extends AppCompatActivity {
                     bitmapRemolque = foto.redimensiomarImagen(bitmapRemolque);
                     imageenChufeRemolque.setImageBitmap(bitmapRemolque);
                     String imagenRemolque = foto.convertirImagenDano(bitmapRemolque);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),71,nombreimagen, "Enchufe Remolque Posterior",0,imagenRemolque);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Enchufe Remolque Posterior",0,imagenRemolque);
                     db.insertarValor(Integer.parseInt(id_inspeccion),274,"Ok");
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","71");
+                    servis.putExtra("comentario","Enchufe Remolque Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -920,9 +920,9 @@ public class Posterior extends AppCompatActivity {
             imageenChufeRemolque.setVisibility(View.GONE);
             imageenChufeRemolque.setImageBitmap(null);
 
-            String imagenPosterior = db.foto(Integer.parseInt(id),2);
-            String imagenLogoLuneta = db.foto(Integer.parseInt(id),3);
-            String imagenAdicional = db.foto(Integer.parseInt(id),4);
+            String imagenPosterior = db.foto(Integer.parseInt(id),"Posterior");
+            String imagenLogoLuneta = db.foto(Integer.parseInt(id),"Logo Luneta Posterior");
+            String imagenAdicional = db.foto(Integer.parseInt(id),"Adicional Posterior");
 
             if(imagenPosterior.length()>=3 )
             {
@@ -1000,7 +1000,7 @@ public class Posterior extends AppCompatActivity {
             imageenChufeRemolque.setVisibility(View.GONE);
             imageenChufeRemolque.setImageBitmap(null);
 
-            String imagenDanoPosterior = db.foto(Integer.parseInt(id),1);
+            String imagenDanoPosterior = db.foto(Integer.parseInt(id),"Daño Posterior");
 
             if(imagenDanoPosterior.length()>=3 )
             {
@@ -1134,11 +1134,11 @@ public class Posterior extends AppCompatActivity {
             mSetImage.setImageBitmap(null);
 
 
-            String imagenSensores = db.foto(Integer.parseInt(id),5);
-            String imagenCamara = db.foto(Integer.parseInt(id),6);
-            String imagenCoco = db.foto(Integer.parseInt(id),7);
-            String imagenMuela = db.foto(Integer.parseInt(id),8);
-            String imagenenChufeRemolqu = db.foto(Integer.parseInt(id),71);
+            String imagenSensores = db.foto(Integer.parseInt(id),"Sensores Posteriores");
+            String imagenCamara = db.foto(Integer.parseInt(id),"Camara Posterior");
+            String imagenCoco = db.foto(Integer.parseInt(id),"Coco Posterior");
+            String imagenMuela = db.foto(Integer.parseInt(id),"Muela Posterior");
+            String imagenenChufeRemolqu = db.foto(Integer.parseInt(id),"Enchufe Remolque Posterior");
 
             if(imagenSensores.length()>=3 )
             {

@@ -152,7 +152,7 @@ public class DatosInspActivity extends AppCompatActivity {
         });
 
         //image view
-        String imagenComprobante = db.foto(Integer.parseInt(id_inspeccion),72);
+        String imagenComprobante = db.foto(Integer.parseInt(id_inspeccion),"Foto Comprobante");
 
         if(imagenComprobante.length()>=3 )
         {

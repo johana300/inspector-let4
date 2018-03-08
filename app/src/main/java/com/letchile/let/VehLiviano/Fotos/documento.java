@@ -134,11 +134,11 @@ public class documento extends AppCompatActivity {
         btnVolverSecDocuE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String imageDocumento = db.foto(Integer.parseInt(id_inspeccion),65);
-                String imagePAC = db.foto(Integer.parseInt(id_inspeccion),66);
-                String imageCarnetAnverso = db.foto(Integer.parseInt(id_inspeccion),67);
-                String imageCarnetReverso = db.foto(Integer.parseInt(id_inspeccion),68);
-                String imageConvertible = db.foto(Integer.parseInt(id_inspeccion),69);
+                String imageDocumento = db.foto(Integer.parseInt(id_inspeccion),"Foto Documento");
+                String imagePAC = db.foto(Integer.parseInt(id_inspeccion),"Foto PAC");
+                String imageCarnetAnverso = db.foto(Integer.parseInt(id_inspeccion),"Foto Carnet Anverso");
+                String imageCarnetReverso = db.foto(Integer.parseInt(id_inspeccion),"Foto Carnet Reversa");
+                String imageConvertible = db.foto(Integer.parseInt(id_inspeccion),"Foto Convertible");
 
                 try {
                     if (db.consultaPAC(Integer.parseInt(id_inspeccion)).toString().equals("S")) {
@@ -422,10 +422,10 @@ public class documento extends AppCompatActivity {
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imageDocumentoE.setImageBitmap(bitmap);
                     String imagen = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 65, nombreimagen, "Foto Documento", 0, imagen);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Documento", 0, imagen);
 
                         Intent servis1 = new Intent(documento.this, TransferirFoto.class);
-                    servis1.putExtra("id_foto","65");
+                    servis1.putExtra("comentario","Foto Documento");
                     servis1.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis1);
 
@@ -445,10 +445,10 @@ public class documento extends AppCompatActivity {
                     bitmapPAC = foto.redimensiomarImagen(bitmapPAC);
                     imagePACE.setImageBitmap(bitmapPAC);
                     String imagenPAC = foto.convertirImagenDano(bitmapPAC);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 66, nombreimagen, "Foto PAC", 0, imagenPAC);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto PAC", 0, imagenPAC);
 
                         Intent servis2 = new Intent(documento.this, TransferirFoto.class);
-                        servis2.putExtra("id_foto","66");
+                        servis2.putExtra("comentario","Foto PAC");
                         servis2.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis2);
 
@@ -468,10 +468,10 @@ public class documento extends AppCompatActivity {
                     bitmapCarnetAn = foto.redimensiomarImagen(bitmapCarnetAn);
                     imageCarnetAnversoE.setImageBitmap(bitmapCarnetAn);
                     String imagenCarnetAn = foto.convertirImagenDano(bitmapCarnetAn);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 67, nombreimagen, "Foto Carnet Anverso", 0, imagenCarnetAn);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Carnet Anverso", 0, imagenCarnetAn);
 
                         Intent servis3 = new Intent(documento.this, TransferirFoto.class);
-                        servis3.putExtra("id_foto","67");
+                        servis3.putExtra("comentario","Foto Carnet Anverso");
                         servis3.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis3);
 
@@ -491,10 +491,10 @@ public class documento extends AppCompatActivity {
                     bitmapCarnetRe = foto.redimensiomarImagen(bitmapCarnetRe);
                     imageCarnetReversoE.setImageBitmap(bitmapCarnetRe);
                     String imagenCarnetRe = foto.convertirImagenDano(bitmapCarnetRe);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 68, nombreimagen, "Foto Carnet Reversa ", 0, imagenCarnetRe);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Carnet Reversa", 0, imagenCarnetRe);
 
                         Intent servis4 = new Intent(documento.this, TransferirFoto.class);
-                        servis4.putExtra("id_foto","68");
+                        servis4.putExtra("comentario","Foto Carnet Reversa");
                         servis4.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis4);
 
@@ -514,10 +514,10 @@ public class documento extends AppCompatActivity {
                     bitmapConvertible = foto.redimensiomarImagen(bitmapConvertible);
                     imageConvertibleE.setImageBitmap(bitmapConvertible);
                     String imagenConvetible = foto.convertirImagenDano(bitmapConvertible);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 69, nombreimagen, "Foto Convertible ", 0, imagenConvetible);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Convertible", 0, imagenConvetible);
 
                         Intent servis5 = new Intent(documento.this, TransferirFoto.class);
-                        servis5.putExtra("id_foto","69");
+                        servis5.putExtra("comentario","Foto Convertible");
                         servis5.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis5);
 
@@ -537,10 +537,10 @@ public class documento extends AppCompatActivity {
                     bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
                     imageAdicionalDocumentoE.setImageBitmap(bitmapAdicional);
                     String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 70, nombreimagen, "Foto Adicional Documento ", 0, imagenAdicional);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Documento", 0, imagenAdicional);
 
                         Intent servis6 = new Intent(documento.this, TransferirFoto.class);
-                        servis6.putExtra("id_foto","70");
+                        servis6.putExtra("comentario","Foto Adicional Documento");
                         servis6.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis6);
 
@@ -577,12 +577,12 @@ public class documento extends AppCompatActivity {
         else
         {
 
-            String imageDocumento = db.foto(Integer.parseInt(id),65);
-            String imagePAC = db.foto(Integer.parseInt(id),66);
-            String imageCarnetAnverso = db.foto(Integer.parseInt(id),67);
-            String imageCarnetReverso = db.foto(Integer.parseInt(id),68);
-            String imageConvertible = db.foto(Integer.parseInt(id),69);
-            String imageAdicionalDocumento = db.foto(Integer.parseInt(id),70);
+            String imageDocumento = db.foto(Integer.parseInt(id),"Foto Documento");
+            String imagePAC = db.foto(Integer.parseInt(id),"Foto PAC");
+            String imageCarnetAnverso = db.foto(Integer.parseInt(id),"Foto Carnet Anverso");
+            String imageCarnetReverso = db.foto(Integer.parseInt(id),"Foto Carnet Reversa");
+            String imageConvertible = db.foto(Integer.parseInt(id),"Foto Convertible");
+            String imageAdicionalDocumento = db.foto(Integer.parseInt(id),"Foto Adicional Documento");
 
             if(imageDocumento.length()>3)
             {

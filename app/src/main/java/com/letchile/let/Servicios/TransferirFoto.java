@@ -46,9 +46,9 @@ public class TransferirFoto extends Service {
         super.onStartCommand(intent,flags,startId);
 
         String id_inspeccion = (String) intent.getExtras().get("id_inspeccion");
-        String id_foto = (String) intent.getExtras().get("id_foto");
+        String comentario = (String) intent.getExtras().get("comentario");
         //Trae datos de la foto
-        String datosFotos[][] = db.DatosFotos(Integer.parseInt(id_inspeccion), Integer.parseInt(id_foto));
+        String datosFotos[][] = db.DatosFotos(Integer.parseInt(id_inspeccion), comentario);
         para1 = datosFotos[0][0].toString();
         para2 = datosFotos[0][1].toString();
         para3 = datosFotos[0][2].toString();

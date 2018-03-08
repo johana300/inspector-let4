@@ -114,9 +114,9 @@ public class motor extends AppCompatActivity {
         btnSiguienteMotorE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String imageMotor = db.foto(Integer.parseInt(id_inspeccion),62);
-                String imageChasisVin = db.foto(Integer.parseInt(id_inspeccion),63);
-                String imageCunaMotor = db.foto(Integer.parseInt(id_inspeccion),61);
+                String imageMotor = db.foto(Integer.parseInt(id_inspeccion),"Foto Motor");
+                String imageChasisVin = db.foto(Integer.parseInt(id_inspeccion),"Foto Chasis(VIN)");
+                String imageCunaMotor = db.foto(Integer.parseInt(id_inspeccion),"Foto Cuna Motor");
 
                 if(imageCunaMotor.length()<=3 || imageChasisVin.length()<=3 || imageMotor.length()<=3 )  {
                     AlertDialog.Builder builder = new AlertDialog.Builder(motor.this);
@@ -300,10 +300,10 @@ public class motor extends AppCompatActivity {
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imageCunaMotorE.setImageBitmap(bitmap);
                     String imagen = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 61, nombreimagen, "Foto Cuna Motor", 0, imagen);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Cuna Motor", 0, imagen);
 
                         Intent servis = new Intent(motor.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","61");
+                    servis.putExtra("comentario","Foto Cuna Motor");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -323,10 +323,10 @@ public class motor extends AppCompatActivity {
                     bitmapMotor = foto.redimensiomarImagen(bitmapMotor);
                     imageMotorE.setImageBitmap(bitmapMotor);
                     String imagenMotor = foto.convertirImagenDano(bitmapMotor);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 62, nombreimagen, "Foto Motor", 0, imagenMotor);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Motor", 0, imagenMotor);
 
                      servis = new Intent(motor.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","62");
+                    servis.putExtra("comentario","Foto Motor");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -346,10 +346,10 @@ public class motor extends AppCompatActivity {
                     bitmapChasis = foto.redimensiomarImagen(bitmapChasis);
                     imageChasisVinE.setImageBitmap(bitmapChasis);
                     String imagenChasis = foto.convertirImagenDano(bitmapChasis);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 63, nombreimagen, "Foto Chasis(VIN)", 0, imagenChasis);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Chasis(VIN)", 0, imagenChasis);
 
                         servis = new Intent(motor.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","63");
+                    servis.putExtra("comentario","Foto Chasis(VIN)");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -369,10 +369,10 @@ public class motor extends AppCompatActivity {
                     bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
                     imageAdicionalE.setImageBitmap(bitmapAdicional);
                     String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 64, nombreimagen, "Foto Adicional Motor", 0, imagenAdicional);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Motor", 0, imagenAdicional);
 
                         servis = new Intent(motor.this, TransferirFoto.class);
-                        servis.putExtra("id_foto","64");
+                    servis.putExtra("comentario","Foto Adicional Motor");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -402,10 +402,10 @@ public class motor extends AppCompatActivity {
         else
         {
 
-            String imageCunaMotor = db.foto(Integer.parseInt(id),61);
-            String imageMotor = db.foto(Integer.parseInt(id),62);
-            String imageChasisVin = db.foto(Integer.parseInt(id),63);
-            String imageAdicional = db.foto(Integer.parseInt(id),64);
+            String imageCunaMotor = db.foto(Integer.parseInt(id),"Foto Cuna Motor");
+            String imageMotor = db.foto(Integer.parseInt(id),"Foto Motor");
+            String imageChasisVin = db.foto(Integer.parseInt(id),"Foto Chasis(VIN)");
+            String imageAdicional = db.foto(Integer.parseInt(id),"Foto Adicional Motor");
 
             if(imageCunaMotor.length()>3)
             {
