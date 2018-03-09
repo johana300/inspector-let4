@@ -24,13 +24,5 @@
         <item name="android:background">@drawable/ic_launcher_background</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppThemee" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
-
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splashscreen</item>
-    </style>
 
 </resources>
