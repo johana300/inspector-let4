@@ -1061,6 +1061,17 @@ public class DBprovider extends SQLiteOpenHelper {
         db.close();
     }
 
+    //borrar de la base de datos todos los registros de esta
+    public  void deleteInspeccionFallida(int id_inspeccion){
+        SQLiteDatabase db = getWritableDatabase();
+
+        if (db != null) {
+            db.execSQL("DELETE FROM INSPECCION_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
+            db.execSQL("DELETE FROM FOTO_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
+        }
+        db.close();
+    }
+
 
     //INSERTA INSPECCIONES RESCATADAS DEL SERVIDOR
     //INSPECCION_FALLIDA " +

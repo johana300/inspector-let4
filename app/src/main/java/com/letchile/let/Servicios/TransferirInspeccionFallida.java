@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -64,9 +65,18 @@ public class TransferirInspeccionFallida extends Service {
                 .setContentText("Servicio de transferencia fallida iniciada")
                 .setWhen(System.currentTimeMillis());
 
+        String id_inspeccion = (String) intent.getExtras().get("id_inspeccion");
+
         notificationManager.notify(ID_NOTIFICACION,builder.build());
 
         if(conn){
+
+            transferirInsFallida transfer = new transferirInsFallida();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                transfer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,id_inspeccion);
+            else
+                transfer.execute(id_inspeccion);
 
         }else{
             Toast.makeText(this,"No cuenta con internet para transmitir",Toast.LENGTH_SHORT).show();
@@ -163,11 +173,17 @@ public class TransferirInspeccionFallida extends Service {
                     Log.e("Error",e.getMessage());
                 }
             }
-            return null;
+            return strings[0];
         }
 
         @Override
         protected void onPostExecute(String result) {
+
+            int id_inspeccion = Integer.parseInt(result);
+
+            db.deleteInspeccionFallida(id_inspeccion);
+
+            onDestroy();
 
         }
     }
