@@ -178,10 +178,16 @@
                         android:inputType="textMultiLine" />
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/fotoComprobanteV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Foto Comprobante" />
+
+                    <ImageView
+                        android:id="@+id/imagenComproV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/border" />
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>
