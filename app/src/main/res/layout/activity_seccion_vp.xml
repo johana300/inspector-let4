@@ -114,15 +114,6 @@
                         android:textSize="18sp" />
 
                     <Button
-                        android:id="@+id/btnVehVpJg"
-                        style="@android:style/Widget.Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layoutDirection="locale"
-                        android:text="Datos vehículo"
-                        android:textSize="18sp" />
-
-                    <Button
                         android:id="@+id/btnInspVpJg"
                         style="@android:style/Widget.Button"
                         android:layout_width="match_parent"

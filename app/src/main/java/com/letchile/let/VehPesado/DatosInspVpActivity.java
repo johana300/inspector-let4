@@ -57,8 +57,8 @@ public class DatosInspVpActivity extends AppCompatActivity {
     PropiedadesFoto fotoV;
     Boolean connec = false;
     ImageView imagenComproV;
-    Button btnFotocomprobanteV,btbVolver,BtnPendientes,BtnGuardar,mOptionButton;
-    EditText usrInspector,direccionIns,fechaIns,horaIns,entrevistado;
+    Button btnFotocomprobanteV;
+    EditText entrevistado;
     private String mPathV;
     String nombreimagenV = "";
     private final int PHOTO_COMPROBANTEV = 250;
@@ -154,11 +154,11 @@ public class DatosInspVpActivity extends AppCompatActivity {
         });
 
         //image view
-        String imagenComprobante = db.foto(Integer.parseInt(id_inspeccion),"Foto Comprobante");
+        String imagenComprobanteV = db.foto(Integer.parseInt(id_inspeccion),"Foto Comprobante");
 
-        if(imagenComprobante.length()>=3 )
+        if(imagenComprobanteV.length()>=3 )
         {
-            byte[] decodedString = Base64.decode(imagenComprobante, Base64.DEFAULT);
+            byte[] decodedString = Base64.decode(imagenComprobanteV, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             imagenComproV.setImageBitmap(decodedByte);
             imagenComproV.setVisibility(View.VISIBLE);
