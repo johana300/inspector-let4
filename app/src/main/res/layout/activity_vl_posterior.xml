@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -322,6 +324,78 @@
                         android:layout_height="130dp"
                         android:layout_gravity="center"
                         android:visibility="gone" />
+
+                    <CheckBox
+                        android:id="@+id/equipoPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Equipo de frío" />
+
+                    <ImageView
+                        android:id="@+id/imageEquipoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/border" />
+
+                    <CheckBox
+                        android:id="@+id/camaraRefriPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cámara Refrigerada" />
+
+                    <ImageView
+                        android:id="@+id/imageCamRePoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/border" />
+
+                    <CheckBox
+                        android:id="@+id/cubrePickPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cubre pick up" />
+
+                    <ImageView
+                        android:id="@+id/imageCubrePickPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/border" />
+
+                    <CheckBox
+                        android:id="@+id/tapaRiPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tapa rígida pick up" />
+
+                    <ImageView
+                        android:id="@+id/imageTapaRPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/border" />
+
+                    <CheckBox
+                        android:id="@+id/LonaCubrePoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lona cubre pick up" />
+
+                    <ImageView
+                        android:id="@+id/imageLonaCPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/border" />
+
+                    <CheckBox
+                        android:id="@+id/cajaHerrPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Caja herramientas apernada" />
+
+                    <ImageView
+                        android:id="@+id/imageCajaHerrPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/border" />
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>

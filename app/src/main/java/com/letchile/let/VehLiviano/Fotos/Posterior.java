@@ -69,7 +69,7 @@ public class Posterior extends AppCompatActivity {
     private final int TAKE_COCO = 800;
     private final int TAKE_MUELA = 900;
     private final int TAKE_REMOLQUE = 1000;
-    private ImageView mSetImage,imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque;
+    private ImageView mSetImage,imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
     private RelativeLayout mRlView;
     private String mPath;
     private Button btnVolverPoE,btnVolerSecPoE,btnSiguientePoE,btnPosteriorE,btnLogoLunetaE,btnFotoAdiocionalE,btnFotoDanoE,btnSeccionPos1E,seccionPos2E,seccionPos3E;
@@ -79,7 +79,7 @@ public class Posterior extends AppCompatActivity {
     private File ruta_sd;
     private String nombre_foto = "";
     private String ruta = "";
-    private CheckBox sensoresPoE,camaraPoE,cocoPoE,muelaPoE,enchufeRemolque;
+    private CheckBox sensoresPoE,camaraPoE,cocoPoE,muelaPoE,enchufeRemolque,camaraRefriPoE,cubrePickPoE,equipoPoE,tapaRiPoE,LonaCubrePoE,cajaHerrPoE ;
     PropiedadesFoto foto;
     String nombreimagen = "";
     Validaciones validaciones;
@@ -126,6 +126,19 @@ public class Posterior extends AppCompatActivity {
         seccionPos3E = findViewById(R.id.seccionPos3E);
         enchufeRemolque = findViewById(R.id.enchufeRemolque);
         imageenChufeRemolque = findViewById(R.id.imageenChufeRemolque);
+        camaraRefriPoE = findViewById(R.id.camaraRefriPoE);
+        imageCamRePoE = findViewById(R.id.imageCamRePoE);
+        cubrePickPoE = findViewById(R.id.cubrePickPoE);
+        imageCubrePickPoE = findViewById(R.id.imageCubrePickPoE);
+        equipoPoE = findViewById(R.id.equipoPoE);
+        imageEquipoE = findViewById(R.id.imageEquipoE);
+        tapaRiPoE = findViewById(R.id.tapaRiPoE);
+        imageTapaRPoE = findViewById(R.id.imageTapaRPoE);
+        LonaCubrePoE = findViewById(R.id.LonaCubrePoE);
+        imageLonaCPoE = findViewById(R.id.imageLonaCPoE);
+        cajaHerrPoE = findViewById(R.id.cajaHerrPoE);
+        imageCajaHerrPoE = findViewById(R.id.imageCajaHerrPoE);
+
 
 
 
@@ -242,6 +255,103 @@ public class Posterior extends AppCompatActivity {
                 }
             }
         });
+
+
+        camaraRefriPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),331));
+        camaraRefriPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 331).toString().equals("Ok")) {
+                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                    }
+                }else{
+                    db.insertarValor(Integer.parseInt(id_inspeccion),331,"");
+                    imageCamRePoE.setImageBitmap(null);
+                }
+            }
+        });
+
+
+        cubrePickPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),305));
+        cubrePickPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 305).toString().equals("Ok")) {
+                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                    }
+                }else{
+                    db.insertarValor(Integer.parseInt(id_inspeccion),305,"");
+                    imageCubrePickPoE.setImageBitmap(null);
+                }
+            }
+        });
+
+        equipoPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),346));
+        equipoPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 346).toString().equals("Ok")) {
+                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                    }
+                }else{
+                    db.insertarValor(Integer.parseInt(id_inspeccion),346,"");
+                    imageEquipoE.setImageBitmap(null);
+                }
+            }
+        });
+
+        tapaRiPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),307));
+        tapaRiPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 307).toString().equals("Ok")) {
+                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                    }
+                }else{
+                    db.insertarValor(Integer.parseInt(id_inspeccion),307,"");
+                    imageTapaRPoE.setImageBitmap(null);
+                }
+            }
+        });
+
+        LonaCubrePoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),306));
+        LonaCubrePoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 306).toString().equals("Ok")) {
+                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                    }
+                }else{
+                    db.insertarValor(Integer.parseInt(id_inspeccion),306,"");
+                    imageLonaCPoE.setImageBitmap(null);
+                }
+            }
+        });
+
+        cajaHerrPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),310));
+        cajaHerrPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 310).toString().equals("Ok")) {
+                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                    }
+                }else{
+                    db.insertarValor(Integer.parseInt(id_inspeccion),310,"");
+                    imageCajaHerrPoE.setImageBitmap(null);
+                }
+            }
+        });
+
+
+
+
+
         btnFotoAdiocionalE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
