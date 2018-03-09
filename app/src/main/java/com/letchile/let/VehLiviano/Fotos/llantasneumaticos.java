@@ -47,6 +47,7 @@ public class llantasneumaticos extends AppCompatActivity {
     private String ruta = "";
     PropiedadesFoto foto;
     String nombreimagen = "";
+    int correlativo = 0;
 
     public llantasneumaticos(){db = new DBprovider(this);foto=new PropiedadesFoto(this);
     }
@@ -157,8 +158,8 @@ public class llantasneumaticos extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_LLANTAS.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_LLANTAS.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -190,8 +191,8 @@ public class llantasneumaticos extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Rueda_Respuesto.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Rueda_Respuesto.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -223,8 +224,8 @@ public class llantasneumaticos extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Adicional_Llantas.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Llantas.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

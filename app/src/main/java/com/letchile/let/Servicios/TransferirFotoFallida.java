@@ -23,7 +23,10 @@ public class TransferirFotoFallida extends Service{
     public int onStartCommand(Intent intent,int flags,int startId){
 
         String id_inspeccion = (String) intent.getExtras().get("id_inspeccion");
-        String id_foto = (String) intent.getExtras().get("id_foto");
+        String nombreFoto = (String) intent.getExtras().get("nombreFoto");
+
+
+
 
 
         return START_STICKY;

@@ -62,6 +62,7 @@ public class lateralizquierdo extends AppCompatActivity {
     String nombreimagen = "";
     PropiedadesFoto foto;
     Validaciones validaciones;
+    int correlativo = 0;
 
     public lateralizquierdo(){db = new DBprovider(this);foto=new PropiedadesFoto(this);validaciones = new Validaciones(this);
     }
@@ -256,8 +257,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Lateral_Izquierdo.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lateral_Izquierdo.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -289,8 +290,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Adicional1_Lateral_Izquierdo.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional1_Lateral_Izquierdo.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -322,8 +323,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Adicional2_LateraL_Izquierdo.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional2_LateraL_Izquierdo.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -355,8 +356,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Dano_LateraL_Izquierdo.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Dano_LateraL_Izquierdo.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -388,8 +389,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Graba_Patente.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Graba_Patente.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -421,8 +422,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Lamina_Seguridad.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lamina_Seguridad.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -454,8 +455,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Pisadera_Lateral_Izquierdo.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Pisadera_Lateral_Izquierdo.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -487,8 +488,8 @@ public class lateralizquierdo extends AppCompatActivity {
 
             File newFile = new File(mPath);
 
-            Calendar c = Calendar.getInstance();
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Foto_Polarizado_Lateral_Izquierdo.jpg";
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Polarizado_Lateral_Izquierdo.jpg";
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,

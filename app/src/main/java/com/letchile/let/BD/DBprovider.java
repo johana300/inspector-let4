@@ -646,12 +646,67 @@ public class DBprovider extends SQLiteOpenHelper {
     }
 
 
+    //"(id_inspeccion INTEGER, foto TEXT, fecha DATE, id_fallida  INTEGER, fechaHoraFallida DATETIME, enviado INTEGER, url BLOB, comentario TEXT)";
+    public String insertartFotoFallida(int id_inspeccion, String foto,String fecha,int id_fallida,String fechaHoraFallida,int enviado, String url, String comentario){
+        String resp = "";
+        ContentValues valores = new ContentValues();
+        valores.put("id_inspeccion",id_inspeccion);
+        valores.put("foto",foto);
+        valores.put("fecha",fecha);
+        valores.put("id_fallida",id_fallida);
+        valores.put("fechaHoraFallida",fechaHoraFallida);
+        valores.put("enviado",enviado);
+        valores.put("url",url);
+        valores.put("comentario",comentario);
+
+        SQLiteDatabase dbl = getReadableDatabase();
+        Cursor ars = dbl.rawQuery("SELECT * FROM FOTO_FALLIDA WHERE id_inspeccion =" + id_inspeccion + " and foto='" + foto+ "'", null);
+        Integer numero = ars.getCount();
+
+        SQLiteDatabase db = getWritableDatabase();
+        if (ars.getCount() > 0) {
+            db.update("FOTO_FALLIDA", valores, "id_inspeccion=" + id_inspeccion + " and foto='" + foto +"'", null);
+            resp = "Actualizado";
+        } else {
+            if (db != null) {
+                db.insert("FOTO_FALLIDA", null, valores);
+                resp = "Insertado";
+            }
+        }
+        return resp;
+    }
+
+
     //OBTENER DATOS DE LA FOTO
     public String[][] DatosFotos(int id_inspeccion, String comentario) {
         int count = 0;
         SQLiteDatabase db = getReadableDatabase();
         String[][] aData = null;
         Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and comentario='" + comentario + "' order by id_foto desc LIMIT 1", null);
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[count] = new String[4];
+                aData[count][0] = Integer.toString(aRS.getInt(aRS.getColumnIndex("id_inspeccion")));
+                aData[count][1] = aRS.getString(aRS.getColumnIndex("foto"));
+                aData[count][2] = aRS.getString(aRS.getColumnIndex("comentario"));
+                aData[count][3] = aRS.getString(aRS.getColumnIndex("url"));
+                count++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+        aRS.close();
+        db.close();
+        return (aData);
+    }
+
+    public String[][] DatosFotosFallida(int id_inspeccion, String foto) {
+        int count = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        String[][] aData = null;
+        Cursor aRS = db.rawQuery("SELECT * FROM FOTO_FALLIDA WHERE id_inspeccion=" + id_inspeccion + " and foto='" + foto + "'", null);
 
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
