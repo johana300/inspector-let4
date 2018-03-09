@@ -57,7 +57,7 @@ public class detalleActivity extends AppCompatActivity {
     ProgressDialog pDialog;
     long minutosDiferencia;
     JSONObject jsonInspe;
-
+    String fecha_cita,hora_cita;
     Spinner comboRamo;
 
     public detalleActivity(){
@@ -78,8 +78,8 @@ public class detalleActivity extends AppCompatActivity {
         //variable id_inspeccion
         Bundle bundle = getIntent().getExtras();
         final String id_inspeccion=bundle.getString("id_inspeccion");
-        final String fecha_cita=bundle.getString("fecha_cita");
-        final String hora_cita=bundle.getString("hora_cita");
+        fecha_cita=bundle.getString("fecha_cita");
+        hora_cita=bundle.getString("hora_cita");
         final String fecha_total = fecha_cita+'T'+hora_cita;
 
         final Calendar c= Calendar.getInstance();
@@ -434,8 +434,12 @@ public class detalleActivity extends AppCompatActivity {
                                     jsonInspe = new JSONObject(jsonar.getString(i));
                                     //borrar inspeccion anterior
                                     db.borrarInspeccionFallida(Integer.parseInt(param[0]));
-                                    result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fecha"),jsonInspe.getString("comentario"),
-                                            jsonInspe.getInt("id_fallida"),jsonInspe.getString("fecha_cita"),jsonInspe.getString("hora_cita"),jsonInspe.getInt("activo"));
+                                    /*result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fecha"),jsonInspe.getString("comentario"),
+                                            jsonInspe.getInt("idFallida"),jsonInspe.getString("fecha_cita"),jsonInspe.getString("hora_cita"),jsonInspe.getInt("activo"));*/
+
+                                    db.borrarInspeccionFallida(Integer.parseInt(param[0]));
+                                    result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fechaFallida"),jsonInspe.getString("comentarioFallida"),
+                                            jsonInspe.getInt("idFallida"),jsonInspe.getString("fechaCita"),jsonInspe.getString("horaCita"),jsonInspe.getInt("activo"));
                                 }
                             }
                         }catch (Exception e){
@@ -459,6 +463,13 @@ public class detalleActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             pDialog.dismiss();
+
+            Intent in = new Intent(detalleActivity.this,Fallida.class);
+            in.putExtra("id_inspeccion",n_oi.getText().toString());
+            in.putExtra("fecha_cita",fecha_cita);
+            in.putExtra("hora_cita",fecha_cita);
+
+            startActivity(in);
         }
     }
 
