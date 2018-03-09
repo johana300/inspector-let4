@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
+import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
@@ -193,6 +194,7 @@ public class Fallida extends AppCompatActivity{
                     imagenFallida.setImageBitmap(bitmap);
                     imagenFallida.setVisibility(View.VISIBLE);
                     String imagen = foto.convertirImagenDano(bitmap);
+                    //el id se trae de la base de datos
                     db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, 1, fechaHoraFallida, 0, imagen,"Foto Fallida");
                     break;
             }
@@ -202,6 +204,10 @@ public class Fallida extends AppCompatActivity{
                 servis.putExtra("nombreFoto",nombreimagen);
                 servis.putExtra("id_inspeccion",id_inspeccion);
                 startService(servis);
+
+                //volver a pendientes
+                Intent pendientes = new Intent(contexto, InsPendientesActivity.class);
+                startActivity(pendientes);
 
         }
     }
