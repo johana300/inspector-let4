@@ -4,10 +4,13 @@
 
 package com.letchile.let.VehPesado;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -17,6 +20,7 @@ import com.letchile.let.BD.DBprovider;
 import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.R;
 
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,26 +28,18 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
     DBprovider db;
 
-    EditText nomVpJg;
-    EditText patVpJg;
-    EditText matVpJg;
-    EditText rutVpJg;
-    EditText dirJg;
-    EditText fonoJg;
-    EditText celular;
-    EditText mailVpJg;
-    /*FALTA CARGAR LOS COMBO DE REGION Y COMUNA*/
-    Spinner comboRegVpJg;
-    Spinner comboComVpJg;
+    EditText nomVpJg,patVpJg,matVpJg,rutVpJg,dirJg,mailVpJg,fonoJg,celular;
+    ProgressDialog pDialog;
+    String [][] datosInspeccion;
+    JSONObject llenadoV;
+    JSONArray arrayValor;
     Validaciones validaciones;
-
-
 
 
     public DatosAsegVpActivity() {
         db = new DBprovider(this);validaciones=new Validaciones(this);    }
 
-    JSONObject obj = new JSONObject();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,36 +51,75 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
         //nombre
         nomVpJg = (EditText)findViewById(R.id.nomVpJg);
-        nomVpJg.getText().toString();
+        nomVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),365).toString());
 
         //Apellido paterno
         patVpJg = (EditText)findViewById(R.id.patVpJg);
-        patVpJg.getText().toString();
+        patVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),366).toString());
 
         //Apellido materno
         matVpJg = (EditText)findViewById(R.id.matVpJg);
-        matVpJg.getText().toString();
+        matVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),367).toString());
 
         //rut
         rutVpJg = (EditText)findViewById(R.id.rutVpJg);
-        rutVpJg.getText().toString();
+        rutVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),368).toString());
 
         //direccion
         dirJg = (EditText)findViewById(R.id.dirJg);
-        dirJg.getText().toString();
+        dirJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),371).toString());
 
         //fono
         fonoJg = (EditText)findViewById(R.id.fonoJg);
-        fonoJg.getText().toString();
+        fonoJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),369).toString());
 
         //celular
         celular = (EditText)findViewById(R.id.celular);
-        celular.getText().toString();
+        celular.setText(db.accesorio(Integer.parseInt(id_inspeccion),533).toString());
 
         //mail
         mailVpJg = (EditText)findViewById(R.id.mailVpJg);
-        mailVpJg.getText().toString();
+        mailVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
 
+
+        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
+        String listaRegiones[][]=db.listaRegiones();
+        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegJg);
+        String[] arraySpinner = new String[listaRegiones.length+1];
+        arraySpinner[0]=regionInicial[0][0];
+        for(int i=0;i<listaRegiones.length;i++)        {
+            arraySpinner[i+1]=listaRegiones[i][0];
+        }
+        ArrayAdapter<String> adapterRegion = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arraySpinner);
+        adapterRegion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        comboRegion.setAdapter(adapterRegion);
+
+
+        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComJr);
+        comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Rescata el nombre del item elegido
+                String regionSelected = comboRegion.getSelectedItem().toString();
+                //Rescata la lista según el item elegido
+                String listaComunas[][] = db.listaComunas(regionSelected);
+                //Inicia el nuevo combo a llenar
+
+                //Se crea una variable array para ser llenado
+                String[] spinnerComuna = new String[listaComunas.length+1];
+                spinnerComuna[0] = db.accesorio(Integer.parseInt(id_inspeccion),370).toString();
+                for(int i=0;i<listaComunas.length;i++){
+                    spinnerComuna[i+1] = listaComunas[i][0];
+                }
+                ArrayAdapter<String> adapterComuna = new ArrayAdapter<String>(DatosAsegVpActivity.this,android.R.layout.simple_spinner_item,spinnerComuna);
+                adapterComuna.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                comboComuna.setAdapter(adapterComuna);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         //boton siguiente
         final Button btnSigAsegVpJg = (Button)findViewById(R.id.btnSigAsegVpJg);
@@ -145,11 +180,11 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
 
 
-                    JSONObject llenado;
+                    JSONObject llenadoV;
                     if (!jsonArray.isNull(0)) {
                         for(int i=0;i<jsonArray.length();i++){
-                            llenado = new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(92,llenado.getInt("valor_id"),llenado.getString("texto"));
+                            llenadoV = new JSONObject(jsonArray.getString(i));
+                            db.insertarValor(Integer.parseInt(id_inspeccion),llenadoV.getInt("valor_id"),llenadoV.getString("texto"));
 
 
                         }
@@ -161,7 +196,13 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                     Toast.makeText(DatosAsegVpActivity.this, "", Toast.LENGTH_SHORT).show();
                 }
 
+
+                db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),nomVpJg.getText().toString(),patVpJg.getText().toString(),
+                        matVpJg.getText().toString(),rutVpJg.getText().toString(),dirJg.getText().toString(),Integer.parseInt(fonoJg.getText().toString()),
+                        mailVpJg.getText().toString(),comboComuna.getSelectedItem().toString());
+
                 Intent intent = new Intent( DatosAsegVpActivity.this, DatosInspVpActivity.class);
+                startActivity(intent);
                 startActivity(intent);
             }
         });

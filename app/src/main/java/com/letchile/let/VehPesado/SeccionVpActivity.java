@@ -67,8 +67,8 @@ public class SeccionVpActivity extends AppCompatActivity {
 
 
         //Botón Datos inspección
-        Button btnVehVpJg =(Button) findViewById(R.id.btnVehVpJg);
-        btnVehVpJg.setOnClickListener(new View.OnClickListener() {
+        Button btnInspVpJg =(Button) findViewById(R.id.btnInspVpJg);
+        btnInspVpJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SeccionVpActivity.this, DatosInspVpActivity.class);
