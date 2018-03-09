@@ -103,8 +103,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:singleLine="true"
-                        android:nextFocusDown="@+id/apellidoPaternoM"/>
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/apellidoPaternoM"
+                        android:singleLine="true" />
 
                     <TextView
                         android:id="@+id/aPaterJg"
@@ -117,8 +118,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:singleLine="true"
-                        android:nextFocusDown="@+id/maternoAseguradoM"/>
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/maternoAseguradoM"
+                        android:singleLine="true" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -131,8 +133,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:singleLine="true"
-                        android:nextFocusDown="@+id/rutJg"/>
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/rutJg"
+                        android:singleLine="true" />
 
                     <TextView
                         android:id="@+id/textView5"
@@ -145,8 +148,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:singleLine="true"
-                        android:nextFocusDown="@+id/comboRegJg"/>
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/comboRegJg"
+                        android:singleLine="true" />
 
                     <TextView
                         android:id="@+id/textView6"
