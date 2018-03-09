@@ -711,11 +711,12 @@ public class DBprovider extends SQLiteOpenHelper {
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
             while (aRS.moveToNext()) {
-                aData[count] = new String[4];
+                aData[count] = new String[5];
                 aData[count][0] = Integer.toString(aRS.getInt(aRS.getColumnIndex("id_inspeccion")));
                 aData[count][1] = aRS.getString(aRS.getColumnIndex("foto"));
                 aData[count][2] = aRS.getString(aRS.getColumnIndex("comentario"));
                 aData[count][3] = aRS.getString(aRS.getColumnIndex("url"));
+                aData[count][4] = aRS.getString(aRS.getColumnIndex("fechaHoraFallida"));
                 count++;
             }
         } else {
@@ -899,6 +900,25 @@ public class DBprovider extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         if (ars.getCount() > 0) {
             db.update("FOTO", valores, "id_inspeccion=" + id_inspeccion + " and foto='"+nombrefoto+"' and comentario ='"+comentario+"'" , null);
+            respuesta = "Actualizado";
+        }
+        return respuesta;
+    }
+
+    public String cambiarEstadoFotoFallida(int id_inspeccion,String nombrefoto, int enviado){
+        String respuesta = "";
+        ContentValues valores = new ContentValues();
+        valores.put("enviado", enviado);
+
+        //PARA LEER Y SACAR EL NÚMERO DE COLUMNAS
+        SQLiteDatabase dbl = getReadableDatabase();
+        Cursor ars = dbl.rawQuery("SELECT * FROM FOTO_FALLIDA WHERE id_inspeccion=" + id_inspeccion + " and foto='"+nombrefoto+"'" , null);
+        Integer numero = ars.getCount();
+
+        //ACTUALIZAR
+        SQLiteDatabase db = getWritableDatabase();
+        if (ars.getCount() > 0) {
+            db.update("FOTO_FALLIDA", valores, "id_inspeccion=" + id_inspeccion + " and foto='"+nombrefoto+"'" , null);
             respuesta = "Actualizado";
         }
         return respuesta;
