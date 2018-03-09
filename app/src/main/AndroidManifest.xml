@@ -78,6 +78,7 @@
 
         <service android:name=".Servicios.TransferirFoto" />
         <service android:name=".Servicios.TransferirInspeccion" />
+        <service android:name=".Servicios.TransferirFotoFallida"/>
 
         <activity android:name=".VehLiviano.Fotos.Posterior"
             android:screenOrientation="portrait" />

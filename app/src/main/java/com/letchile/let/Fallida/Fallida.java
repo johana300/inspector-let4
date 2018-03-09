@@ -125,7 +125,7 @@ public class Fallida extends AppCompatActivity{
         });
 
         //image view
-        String imagenFa = db.foto(Integer.parseInt(id_inspeccion),"Foto Fallida");
+        String imagenFa = db.fotoFallida(Integer.parseInt(id_inspeccion));
 
         if(imagenFa.length()>=3 )
         {
@@ -160,7 +160,7 @@ public class Fallida extends AppCompatActivity{
 
             File newFile = new File(mPath);
 
-            correlativo = db.correlativoFotos(id_inspeccion);
+            correlativo = db.correlativoFotosFallida(id_inspeccion);
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Fallida.jpg";
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
