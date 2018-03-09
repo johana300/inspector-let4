@@ -207,6 +207,7 @@ public class Fallida extends AppCompatActivity{
 
                 //PRUEBA
 
+
                 //volver a pendientes
                 Intent pendientes = new Intent(contexto, InsPendientesActivity.class);
                 startActivity(pendientes);
