@@ -78,17 +78,27 @@
 
         <service android:name=".Servicios.TransferirFoto" />
         <service android:name=".Servicios.TransferirInspeccion" />
+        <service android:name=".Servicios.TransferirFotoFallida"/>
+        <service android:name=".Servicios.TransferirInspeccionFallida"/>
 
         <activity android:name=".VehLiviano.Fotos.Posterior"
             android:screenOrientation="portrait" />
-        <activity android:name=".VehLiviano.Fotos.frontal" />
-        <activity android:name=".VehLiviano.Fotos.lateralizquierdo" />
-        <activity android:name=".VehLiviano.Fotos.lateralderecho" />
-        <activity android:name=".VehLiviano.Fotos.llantasneumaticos" />
-        <activity android:name=".VehLiviano.Fotos.vl_techo" />
-        <activity android:name=".VehLiviano.Fotos.interior" />
-        <activity android:name=".VehLiviano.Fotos.motor" />
-        <activity android:name=".VehLiviano.Fotos.documento" />
+        <activity android:name=".VehLiviano.Fotos.frontal"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.lateralizquierdo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.lateralderecho"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.llantasneumaticos"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.vl_techo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.interior"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.motor"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.documento"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".VehPesado.DatosAsegVpActivity"/>
         <activity android:name=".VehPesado.DatosInspVpActivity"/>

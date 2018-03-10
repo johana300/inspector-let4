@@ -32,6 +32,7 @@ import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
 import com.letchile.let.Servicios.TransferirFotoFallida;
+import com.letchile.let.Servicios.TransferirInspeccionFallida;
 import com.letchile.let.detalleActivity;
 
 import java.io.File;
@@ -61,7 +62,7 @@ public class Fallida extends AppCompatActivity{
     PropiedadesFoto foto;
     ImageView imagenFallida;
     Boolean connec = false;
-    Button btnFotoFallida;
+    Button btnFotoFallida,btnEnviarFallida;
     Context contexto = this;
     int correlativo = 0;
     String nombreimagen = "",fecha_cita,hora_cita,fechaHoraFallida;
@@ -88,10 +89,6 @@ public class Fallida extends AppCompatActivity{
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm");
             fechaHoraFallida = sdf.format(new Date());
-
-            //Toast.makeText(this,"Fecha: "+currentDateandTime,Toast.LENGTH_SHORT).show();
-
-            //Toast.makeText(this,"diferencia: "+minutosDiferencia,Toast.LENGTH_SHORT).show();
 
         } catch (Exception exception) {
             Log.e("DIDN'T WORK", "exception " + exception);
@@ -124,8 +121,23 @@ public class Fallida extends AppCompatActivity{
             public void onClick(View v) {openCamaraFallida(Integer.parseInt(id_inspeccion));}
         });
 
+
+        btnEnviarFallida = (Button)findViewById(R.id.btnSigObsJg);
+        btnEnviarFallida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ine = new Intent(Fallida.this, TransferirInspeccionFallida.class);
+                ine.putExtra("id_inspeccion",id_inspeccion);
+                startService(ine);
+
+                Intent in = new Intent(Fallida.this,InsPendientesActivity.class);
+                startActivity(in);
+            }
+        });
+
+
         //image view
-        String imagenFa = db.foto(Integer.parseInt(id_inspeccion),"Foto Fallida");
+        String imagenFa = db.fotoFallida(Integer.parseInt(id_inspeccion));
 
         if(imagenFa.length()>=3 )
         {
@@ -134,6 +146,7 @@ public class Fallida extends AppCompatActivity{
             imagenFallida.setImageBitmap(decodedByte);
             imagenFallida.setVisibility(View.VISIBLE);
         }
+
 
     }
 
@@ -160,7 +173,7 @@ public class Fallida extends AppCompatActivity{
 
             File newFile = new File(mPath);
 
-            correlativo = db.correlativoFotos(id_inspeccion);
+            correlativo = db.correlativoFotosFallida(id_inspeccion);
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Fallida.jpg";
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -189,13 +202,19 @@ public class Fallida extends AppCompatActivity{
                                 }
                             });
 
+
+
+                    //DATIS DE LA INSPECCION FALLIDA
+
+
+
                     Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imagenFallida.setImageBitmap(bitmap);
                     imagenFallida.setVisibility(View.VISIBLE);
                     String imagen = foto.convertirImagenDano(bitmap);
                     //el id se trae de la base de datos
-                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, 1, fechaHoraFallida, 0, imagen,"Foto Fallida");
+                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
                     break;
             }
 
@@ -205,7 +224,7 @@ public class Fallida extends AppCompatActivity{
                 servis.putExtra("id_inspeccion",id_inspeccion);
                 startService(servis);
 
-                //PRUEBA
+
 
 
                 //volver a pendientes
