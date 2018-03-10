@@ -126,12 +126,18 @@ public class Fallida extends AppCompatActivity{
         btnEnviarFallida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ine = new Intent(Fallida.this, TransferirInspeccionFallida.class);
-                ine.putExtra("id_inspeccion",id_inspeccion);
-                startService(ine);
 
-                Intent in = new Intent(Fallida.this,InsPendientesActivity.class);
-                startActivity(in);
+                if(connec) {
+                    Intent ine = new Intent(Fallida.this, TransferirInspeccionFallida.class);
+                    ine.putExtra("id_inspeccion", id_inspeccion);
+                    startService(ine);
+
+                    Intent in = new Intent(Fallida.this,InsPendientesActivity.class);
+                    startActivity(in);
+                }else{
+                    Intent in = new Intent(Fallida.this,InsPendientesActivity.class);
+                    startActivity(in);
+                }
             }
         });
 
@@ -225,11 +231,6 @@ public class Fallida extends AppCompatActivity{
                 startService(servis);
 
 
-
-
-                //volver a pendientes
-                Intent pendientes = new Intent(contexto, InsPendientesActivity.class);
-                startActivity(pendientes);
 
         }
     }
