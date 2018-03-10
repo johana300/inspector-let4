@@ -281,7 +281,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 331).toString().equals("Ok")) {
-                        showOptionsEquipoFrio(id_inspeccion);
+                        showOptionRefrigerado(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),331,"");
@@ -297,7 +297,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 346).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                        showOptionsEquipoFrio(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),346,"");
@@ -312,7 +312,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 305).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                        showOptionCubrePickup(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),305,"");
@@ -327,7 +327,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 307).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                        showOptionTapaRigida(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),307,"");
@@ -342,7 +342,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 306).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                        showOptionLonaCubrePickup(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),306,"");
@@ -357,7 +357,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 310).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                        showOptionCajaHerramientas(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),310,"");
@@ -911,14 +911,14 @@ public class Posterior extends AppCompatActivity {
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Cubre_pickup.jpg";
+            String imageName = fecha + "_Foto_Lona_cubre.jpg";
             ruta = file.toString() + "/" + imageName;
             mPath = ruta;
 
             File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Cubre_pickup.jpg";
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Lona_cubre.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -1214,7 +1214,7 @@ public class Posterior extends AppCompatActivity {
                     db.insertarValor(Integer.parseInt(id_inspeccion),331,"Ok");
 
                     servis = new Intent(Posterior.this, TransferirFoto.class);
-                    servis.putExtra("comentario","refrigerada");
+                    servis.putExtra("comentario","Camara refrigerada");
                     servis.putExtra("id_inspeccion",id_inspeccion);
                     startService(servis);
 
@@ -1298,8 +1298,57 @@ public class Posterior extends AppCompatActivity {
 
                     break;
 
+                case TAKE_LONACUBRE:
 
+                    MediaScannerConnection.scanFile(this,
+                            new String[]{mPath}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> Uri = " + uri);
+                                }
+                            });
 
+                    Bitmap bitmapLonacubre = BitmapFactory.decodeFile(mPath);
+                    bitmapLonacubre = foto.redimensiomarImagen(bitmapLonacubre);
+                    imageLonaCPoE.setImageBitmap(bitmapLonacubre);
+                    String imagenLonacubre = foto.convertirImagenDano(bitmapLonacubre);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Lona cubre",0,imagenLonacubre);
+                    db.insertarValor(Integer.parseInt(id_inspeccion),306,"Ok");
+
+                    servis = new Intent(Posterior.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Lona cubre");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
+                    break;
+
+                case TAKE_HERRAMIENTA:
+
+                    MediaScannerConnection.scanFile(this,
+                            new String[]{mPath}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> Uri = " + uri);
+                                }
+                            });
+
+                    Bitmap bitmapHarramienta = BitmapFactory.decodeFile(mPath);
+                    bitmapHarramienta = foto.redimensiomarImagen(bitmapHarramienta);
+                    imageCajaHerrPoE.setImageBitmap(bitmapHarramienta);
+                    String imagenHerramienta = foto.convertirImagenDano(bitmapHarramienta);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "caja herramienta",0,imagenHerramienta);
+                    db.insertarValor(Integer.parseInt(id_inspeccion),310,"Ok");
+
+                    servis = new Intent(Posterior.this, TransferirFoto.class);
+                    servis.putExtra("comentario","caja herramienta");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
+                        break;
             }
         }
     }
@@ -1351,6 +1400,20 @@ public class Posterior extends AppCompatActivity {
             enchufeRemolque.setVisibility(View.GONE);
             imageenChufeRemolque.setVisibility(View.GONE);
             imageenChufeRemolque.setImageBitmap(null);
+
+            //Seccion tres mq
+            equipoPoE.setVisibility(View.GONE);
+            imageEquipoE.setImageBitmap(null);
+            camaraRefriPoE.setVisibility(View.GONE);
+            imageCamRePoE.setImageBitmap(null);
+            cubrePickPoE.setVisibility(View.GONE);
+            imageCubrePickPoE.setImageBitmap(null);
+            tapaRiPoE.setVisibility(View.GONE);
+            imageTapaRPoE.setImageBitmap(null);
+            LonaCubrePoE.setVisibility(View.GONE);
+            imageLonaCPoE.setImageBitmap(null);
+            cajaHerrPoE.setVisibility(View.GONE);
+            imageCajaHerrPoE.setImageBitmap(null);
 
             String imagenPosterior = db.foto(Integer.parseInt(id),"Posterior");
             String imagenLogoLuneta = db.foto(Integer.parseInt(id),"Logo Luneta Posterior");
@@ -1431,6 +1494,20 @@ public class Posterior extends AppCompatActivity {
             enchufeRemolque.setVisibility(View.GONE);
             imageenChufeRemolque.setVisibility(View.GONE);
             imageenChufeRemolque.setImageBitmap(null);
+
+            //Seccion tres mq
+            equipoPoE.setVisibility(View.GONE);
+            imageEquipoE.setImageBitmap(null);
+            camaraRefriPoE.setVisibility(View.GONE);
+            imageCamRePoE.setImageBitmap(null);
+            cubrePickPoE.setVisibility(View.GONE);
+            imageCubrePickPoE.setImageBitmap(null);
+            tapaRiPoE.setVisibility(View.GONE);
+            imageTapaRPoE.setImageBitmap(null);
+            LonaCubrePoE.setVisibility(View.GONE);
+            imageLonaCPoE.setImageBitmap(null);
+            cajaHerrPoE.setVisibility(View.GONE);
+            imageCajaHerrPoE.setImageBitmap(null);
 
             String imagenDanoPosterior = db.foto(Integer.parseInt(id),"Daño Posterior");
 
@@ -1565,6 +1642,20 @@ public class Posterior extends AppCompatActivity {
             mSetImage.setVisibility(View.GONE);
             mSetImage.setImageBitmap(null);
 
+            //Seccion tres mq
+            equipoPoE.setVisibility(View.GONE);
+            imageEquipoE.setImageBitmap(null);
+            camaraRefriPoE.setVisibility(View.GONE);
+            imageCamRePoE.setImageBitmap(null);
+            cubrePickPoE.setVisibility(View.GONE);
+            imageCubrePickPoE.setImageBitmap(null);
+            tapaRiPoE.setVisibility(View.GONE);
+            imageTapaRPoE.setImageBitmap(null);
+            LonaCubrePoE.setVisibility(View.GONE);
+            imageLonaCPoE.setImageBitmap(null);
+            cajaHerrPoE.setVisibility(View.GONE);
+            imageCajaHerrPoE.setImageBitmap(null);
+
 
             String imagenSensores = db.foto(Integer.parseInt(id),"Sensores Posteriores");
             String imagenCamara = db.foto(Integer.parseInt(id),"Camara Posterior");
@@ -1645,6 +1736,59 @@ public class Posterior extends AppCompatActivity {
 
         }else {
 
+
+            String imagenEquipoFrio = db.foto(Integer.parseInt(id),"Equipo frio");
+            String imagenCamaraRefrigerada = db.foto(Integer.parseInt(id),"Camara refrigerada");
+            String imagenCubrepickup = db.foto(Integer.parseInt(id),"Cubre pick up");
+            String imagenTapaRigida = db.foto(Integer.parseInt(id),"Tapa rigida");
+            String imagenLonaCubre = db.foto(Integer.parseInt(id),"Lona cubre");
+            String imagenCajaHerramientas = db.foto(Integer.parseInt(id),"caja herramienta");
+
+
+            if(imagenCajaHerramientas.length()>=3)
+            {
+                byte[] decodedString = Base64.decode(imagenCajaHerramientas, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageCajaHerrPoE.setImageBitmap(decodedByte);
+                cajaHerrPoE.setChecked(true);
+            }
+            if(imagenLonaCubre.length()>=3)
+            {
+                byte[] decodedString = Base64.decode(imagenLonaCubre, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageLonaCPoE.setImageBitmap(decodedByte);
+                LonaCubrePoE.setChecked(true);
+            }
+            if(imagenTapaRigida.length()>=3)
+            {
+                byte[] decodedString = Base64.decode(imagenTapaRigida, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageTapaRPoE.setImageBitmap(decodedByte);
+                tapaRiPoE.setChecked(true);
+            }
+            if(imagenCubrepickup.length()>=3)
+            {
+                byte[] decodedString = Base64.decode(imagenCubrepickup, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageCubrePickPoE.setImageBitmap(decodedByte);
+                cubrePickPoE.setChecked(true);
+            }
+            if(imagenCamaraRefrigerada.length()>=3)
+            {
+                byte[] decodedString = Base64.decode(imagenCamaraRefrigerada, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageCamRePoE.setImageBitmap(decodedByte);
+                camaraRefriPoE.setChecked(true);
+            }
+            if(imagenEquipoFrio.length()>=3)
+            {
+                byte[] decodedString = Base64.decode(imagenEquipoFrio, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageEquipoE.setImageBitmap(decodedByte);
+                equipoPoE.setChecked(true);
+            }
+
+
             equipoPoE.setVisibility(View.VISIBLE);
             imageEquipoE.setVisibility(View.VISIBLE);
             camaraRefriPoE.setVisibility(View.VISIBLE);
@@ -1657,7 +1801,6 @@ public class Posterior extends AppCompatActivity {
             imageLonaCPoE.setVisibility(View.VISIBLE);
             cajaHerrPoE.setVisibility(View.VISIBLE);
             imageCajaHerrPoE.setVisibility(View.VISIBLE);
-
 
 
             //seccion uno
