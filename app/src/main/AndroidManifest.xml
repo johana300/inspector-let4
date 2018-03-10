@@ -106,8 +106,9 @@
 
 
 
-        <activity android:name=".Fallida.Fallida">
-        </activity>
+        <activity android:name=".Fallida.Fallida"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 

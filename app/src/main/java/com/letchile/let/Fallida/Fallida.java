@@ -127,6 +127,7 @@ public class Fallida extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
+                connec = new ConexionInternet(Fallida.this).isConnectingToInternet();
                 if(connec) {
                     Intent ine = new Intent(Fallida.this, TransferirInspeccionFallida.class);
                     ine.putExtra("id_inspeccion", id_inspeccion);
@@ -220,7 +221,8 @@ public class Fallida extends AppCompatActivity{
                     imagenFallida.setVisibility(View.VISIBLE);
                     String imagen = foto.convertirImagenDano(bitmap);
                     //el id se trae de la base de datos
-                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
+                    //db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
+                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, 1, fechaHoraFallida, 0, imagen,"Foto Fallida");
                     break;
             }
 
