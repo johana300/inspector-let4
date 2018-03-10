@@ -181,6 +181,7 @@ public class TransferirInspeccionFallida extends Service {
 
             int id_inspeccion = Integer.parseInt(result);
 
+            //preguntar estado foto e inspeccion
             db.deleteInspeccionFallida(id_inspeccion);
 
             onDestroy();
