@@ -1102,6 +1102,7 @@ public class DBprovider extends SQLiteOpenHelper {
 
         if (db != null) {
             db.execSQL("DELETE FROM INSPECCION_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
+            db.execSQL("DELETE FROM FOTO_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
         }
         db.close();
     }

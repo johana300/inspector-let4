@@ -434,11 +434,11 @@ public class detalleActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonar.length(); i++) {
                                     jsonInspe = new JSONObject(jsonar.getString(i));
                                     //borrar inspeccion anterior
-                                    db.borrarInspeccionFallida(Integer.parseInt(param[0]));
+                                    //db.borrarInspeccionFallida(Integer.parseInt(param[0]));
                                     /*result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fecha"),jsonInspe.getString("comentario"),
                                             jsonInspe.getInt("idFallida"),jsonInspe.getString("fecha_cita"),jsonInspe.getString("hora_cita"),jsonInspe.getInt("activo"));*/
 
-                                    db.borrarInspeccionFallida(Integer.parseInt(param[0]));
+                                    db.borrarInspeccionFallida(jsonInspe.getInt("id_inspeccion"));
                                     result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fechaFallida"),jsonInspe.getString("comentarioFallida"),
                                             jsonInspe.getInt("idFallida"),jsonInspe.getString("fechaCita"),jsonInspe.getString("horaCita"),jsonInspe.getInt("activo"));
                                 }

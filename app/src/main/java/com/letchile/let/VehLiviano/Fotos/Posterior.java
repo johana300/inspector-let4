@@ -127,6 +127,8 @@ public class Posterior extends AppCompatActivity {
         enchufeRemolque = findViewById(R.id.enchufeRemolque);
         imageenChufeRemolque = findViewById(R.id.imageenChufeRemolque);
         camaraRefriPoE = findViewById(R.id.camaraRefriPoE);
+
+        //accesorios faltantes
         imageCamRePoE = findViewById(R.id.imageCamRePoE);
         cubrePickPoE = findViewById(R.id.cubrePickPoE);
         imageCubrePickPoE = findViewById(R.id.imageCubrePickPoE);
@@ -257,6 +259,8 @@ public class Posterior extends AppCompatActivity {
         });
 
 
+        //accesorios faltantes
+
         camaraRefriPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),331));
         camaraRefriPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -347,6 +351,7 @@ public class Posterior extends AppCompatActivity {
                 }
             }
         });
+
 
 
 
@@ -1288,20 +1293,12 @@ public class Posterior extends AppCompatActivity {
                 enchufeRemolque.setChecked(true);
             }
 
-            sensoresPoE.setVisibility(View.VISIBLE);
-            imageSensores.setVisibility(View.VISIBLE);
-            camaraPoE.setVisibility(View.VISIBLE);
-            imageCameraPoE.setVisibility(View.VISIBLE);
-            cocoPoE.setVisibility(View.VISIBLE);
-            imageCocoPoE.setVisibility(View.VISIBLE);
-            muelaPoE.setVisibility(View.VISIBLE);
-            imageMuelaE.setVisibility(View.VISIBLE);
-            enchufeRemolque.setVisibility(View.VISIBLE);
-            imageenChufeRemolque.setVisibility(View.VISIBLE);
+
 
         }
 
     }
+
 
 
 
