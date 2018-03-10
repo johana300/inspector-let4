@@ -223,6 +223,13 @@ public class Fallida extends AppCompatActivity{
                 servis.putExtra("nombreFoto",nombreimagen);
                 servis.putExtra("id_inspeccion",id_inspeccion);
                 startService(servis);
+
+
+
+                //volver a pendientes
+                Intent pendientes = new Intent(contexto, InsPendientesActivity.class);
+                startActivity(pendientes);
+
         }
     }
 
