@@ -70,6 +70,11 @@ public class Posterior extends AppCompatActivity {
     private final int TAKE_REMOLQUE = 1000;
 
     private final int TAKE_EQFRIO = 1100;
+    private final int TAKE_CREFRI = 1200;
+    private final int TAKE_CUBREPICK = 1300;
+    private final int TAKE_TAPARIGIDA = 1400;
+    private final int TAKE_LONACUBRE = 1500;
+    private final int TAKE_HERRAMIENTA = 1600;
 
     private ImageView mSetImage,imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
     private RelativeLayout mRlView;
@@ -286,21 +291,6 @@ public class Posterior extends AppCompatActivity {
         });
 
 
-        cubrePickPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),305));
-        cubrePickPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 305).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
-                    }
-                }else{
-                    db.insertarValor(Integer.parseInt(id_inspeccion),305,"");
-                    imageCubrePickPoE.setImageBitmap(null);
-                }
-            }
-        });
-
         equipoPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),346));
         equipoPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -312,6 +302,21 @@ public class Posterior extends AppCompatActivity {
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),346,"");
                     imageEquipoE.setImageBitmap(null);
+                }
+            }
+        });
+
+        cubrePickPoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),305));
+        cubrePickPoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!db.accesorio(Integer.parseInt(id_inspeccion), 305).toString().equals("Ok")) {
+                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                    }
+                }else{
+                    db.insertarValor(Integer.parseInt(id_inspeccion),305,"");
+                    imageCubrePickPoE.setImageBitmap(null);
                 }
             }
         });
@@ -501,7 +506,7 @@ public class Posterior extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_EQFRIO);
+            startActivityForResult(intent, PHOTO_CODE);
         }
     }
     private void openCamerabtnPosteriorE(String id) {
@@ -786,16 +791,175 @@ public class Posterior extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, PHOTO_CODE);
+            startActivityForResult(intent, TAKE_EQFRIO);
+        }
+    }
+
+    private void showOptionRefrigerado(String id_inspeccion){openCameraRefrigerada(id_inspeccion);}
+    private void openCameraRefrigerada(String id){
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if(!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if(isDirectoryCreated) {
+            //Long timestamp = System.currentTimeMillis() / 1000;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date date = new Date();
+
+            String fecha = dateFormat.format(date);
+            String imageName = fecha + "_Foto_Refrigerada.jpg";
+            ruta = file.toString() + "/" + imageName;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Refrigerada.jpg";
+
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, TAKE_CREFRI);
         }
     }
 
 
-    private void openCameraRefrigerada(String id){}
-    private void openCameraCubrePickup(String id){}
-    private void openCameraTapaRigida(String id){}
-    private void openCameraLonaCubrepickup(String id){}
-    private void openCameraCajaHerramientas(String id){}
+    private void showOptionCubrePickup(String id_inspeccion){openCameraCubrePickup(id_inspeccion);}
+    private void openCameraCubrePickup(String id){
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if(!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if(isDirectoryCreated) {
+            //Long timestamp = System.currentTimeMillis() / 1000;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date date = new Date();
+
+            String fecha = dateFormat.format(date);
+            String imageName = fecha + "_Foto_Cubre_Pick_up.jpg";
+            ruta = file.toString() + "/" + imageName;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Cubre_Pick_up.jpg";
+
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, TAKE_CUBREPICK);
+        }
+    }
+
+    private void showOptionTapaRigida(String id_inspeccion){openCameraTapaRigida(id_inspeccion);}
+    private void openCameraTapaRigida(String id){
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if(!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if(isDirectoryCreated) {
+            //Long timestamp = System.currentTimeMillis() / 1000;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date date = new Date();
+
+            String fecha = dateFormat.format(date);
+            String imageName = fecha + "_Foto_Tapa_Rigida.jpg";
+            ruta = file.toString() + "/" + imageName;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Tapa_Rigida.jpg";
+
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, TAKE_TAPARIGIDA);
+        }
+    }
+
+    private void showOptionLonaCubrePickup(String id_inspeccion){openCameraLonaCubrepickup(id_inspeccion);}
+    private void openCameraLonaCubrepickup(String id){
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if(!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if(isDirectoryCreated) {
+            //Long timestamp = System.currentTimeMillis() / 1000;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date date = new Date();
+
+            String fecha = dateFormat.format(date);
+            String imageName = fecha + "_Foto_Cubre_pickup.jpg";
+            ruta = file.toString() + "/" + imageName;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Cubre_pickup.jpg";
+
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, TAKE_LONACUBRE);
+        }
+    }
+
+    private void showOptionCajaHerramientas(String id_inspeccion){openCameraCajaHerramientas(id_inspeccion);}
+    private void openCameraCajaHerramientas(String id){
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if(!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if(isDirectoryCreated) {
+            //Long timestamp = System.currentTimeMillis() / 1000;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date date = new Date();
+
+            String fecha = dateFormat.format(date);
+            String imageName = fecha + "_Foto_caja_herramientas.jpg";
+            ruta = file.toString() + "/" + imageName;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_caja_herramientas.jpg";
+
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, TAKE_HERRAMIENTA);
+        }
+    }
 
 
     @Override
@@ -809,6 +973,8 @@ public class Posterior extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             switch (requestCode){
+
+
                 case PHOTO_CODE:
                     MediaScannerConnection.scanFile(this,
                             new String[]{mPath}, null,
@@ -1027,11 +1193,116 @@ public class Posterior extends AppCompatActivity {
 
                     break;
 
+                    //accesorios faltantes
+
+                case TAKE_CREFRI:
+                    MediaScannerConnection.scanFile(this,
+                            new String[]{mPath}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> Uri = " + uri);
+                                }
+                            });
+
+                    Bitmap bitmapCrefrigerada = BitmapFactory.decodeFile(mPath);
+                    bitmapCrefrigerada = foto.redimensiomarImagen(bitmapCrefrigerada);
+                    imageCamRePoE.setImageBitmap(bitmapCrefrigerada);
+                    String imagenCrefrigerada = foto.convertirImagenDano(bitmapCrefrigerada);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Camara refrigerada",0,imagenCrefrigerada);
+                    db.insertarValor(Integer.parseInt(id_inspeccion),331,"Ok");
+
+                    servis = new Intent(Posterior.this, TransferirFoto.class);
+                    servis.putExtra("comentario","refrigerada");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
+                    break;
+
+                case TAKE_EQFRIO:
+                    MediaScannerConnection.scanFile(this,
+                            new String[]{mPath}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> Uri = " + uri);
+                                }
+                            });
+
+                    Bitmap bitmapEquipoFrio = BitmapFactory.decodeFile(mPath);
+                    bitmapEquipoFrio = foto.redimensiomarImagen(bitmapEquipoFrio);
+                    imageEquipoE.setImageBitmap(bitmapEquipoFrio);
+                    String imagenEQuipoFrio = foto.convertirImagenDano(bitmapEquipoFrio);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Equipo frio",0,imagenEQuipoFrio);
+                    db.insertarValor(Integer.parseInt(id_inspeccion),346,"Ok");
+
+                    servis = new Intent(Posterior.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Equipo frio");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
+                    break;
+
+
+                case TAKE_CUBREPICK:
+                    MediaScannerConnection.scanFile(this,
+                            new String[]{mPath}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> Uri = " + uri);
+                                }
+                            });
+
+                    Bitmap bitmapCubrePick = BitmapFactory.decodeFile(mPath);
+                    bitmapCubrePick = foto.redimensiomarImagen(bitmapCubrePick);
+                    imageCubrePickPoE.setImageBitmap(bitmapCubrePick);
+                    String imagenCubrepic = foto.convertirImagenDano(bitmapCubrePick);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Cubre pick up",0,imagenCubrepic);
+                    db.insertarValor(Integer.parseInt(id_inspeccion),305,"Ok");
+
+                    servis = new Intent(Posterior.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Cubre pick up");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
+                    break;
+
+
+                case TAKE_TAPARIGIDA:
+
+                    MediaScannerConnection.scanFile(this,
+                            new String[]{mPath}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> Uri = " + uri);
+                                }
+                            });
+
+                    Bitmap bitmapTaparig = BitmapFactory.decodeFile(mPath);
+                    bitmapTaparig = foto.redimensiomarImagen(bitmapTaparig);
+                    imageTapaRPoE.setImageBitmap(bitmapTaparig);
+                    String imagenTaparig = foto.convertirImagenDano(bitmapTaparig);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Tapa rigida",0,imagenTaparig);
+                    db.insertarValor(Integer.parseInt(id_inspeccion),307,"Ok");
+
+                    servis = new Intent(Posterior.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Tapa rigida");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
+                    break;
+
+
+
             }
         }
     }
-
-
 
 
     private  void DesplegarCamposSeccionUno(String id)    {
