@@ -59,7 +59,6 @@ public class Posterior extends AppCompatActivity {
 
     private static String APP_DIRECTORY = "";
     private static String MEDIA_DIRECTORY = APP_DIRECTORY ;
-    private final int MY_PERMISSIONS = 100;
     private final int PHOTO_CODE = 200;
     private final int TAKE_POSTERIOR = 300;
     private final int TAKE_LUNETA = 400;
@@ -69,10 +68,13 @@ public class Posterior extends AppCompatActivity {
     private final int TAKE_COCO = 800;
     private final int TAKE_MUELA = 900;
     private final int TAKE_REMOLQUE = 1000;
+
+    private final int TAKE_EQFRIO = 1100;
+
     private ImageView mSetImage,imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
     private RelativeLayout mRlView;
     private String mPath;
-    private Button btnVolverPoE,btnVolerSecPoE,btnSiguientePoE,btnPosteriorE,btnLogoLunetaE,btnFotoAdiocionalE,btnFotoDanoE,btnSeccionPos1E,seccionPos2E,seccionPos3E;
+    private Button btnVolverPoE,btnVolerSecPoE,btnSiguientePoE,btnPosteriorE,btnLogoLunetaE,btnFotoAdiocionalE,btnFotoDanoE,btnSeccionPos1E,seccionPos2E,seccionPos3E,seccionPos3EMQ;
     private TextView txtPieza,txtTipoDanoE,txtDeducibleE;
     private Spinner spinnerPiezaPoE,spinnerDanoPoE,spinnerDeduciblePoE;
     private String sd;
@@ -124,6 +126,7 @@ public class Posterior extends AppCompatActivity {
         txtDeducibleE = findViewById(R.id.txtDeducibleE);
         seccionPos2E = findViewById(R.id.seccionPos2E);
         seccionPos3E = findViewById(R.id.seccionPos3E);
+        seccionPos3EMQ = findViewById(R.id.seccionPos3MQ);
         enchufeRemolque = findViewById(R.id.enchufeRemolque);
         imageenChufeRemolque = findViewById(R.id.imageenChufeRemolque);
         camaraRefriPoE = findViewById(R.id.camaraRefriPoE);
@@ -162,6 +165,12 @@ public class Posterior extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 desplegarCamposSeccionTres(id_inspeccion);
+            }
+        });
+        seccionPos3EMQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                desplegarCamposSeccionTresMQ(id_inspeccion);
             }
         });
 
@@ -267,7 +276,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 331).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                        showOptionsEquipoFrio(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),331,"");
@@ -353,16 +362,14 @@ public class Posterior extends AppCompatActivity {
         });
 
 
-
-
-
-
         btnFotoAdiocionalE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showOptionsBtnAdicional(id_inspeccion);
             }
         });
+
+
 
 
         btnVolverPoE = (Button)findViewById(R.id.btnVolverPoE);
@@ -374,9 +381,6 @@ public class Posterior extends AppCompatActivity {
                 String imagenLogoLuneta = db.foto(Integer.parseInt(id_inspeccion),"Logo Luneta Posterior");
                 if(imagenLogoLuneta.length()>4 || imagenPosterior.length()>4){
 
-                    //Toast toast =  Toast.makeText(prueba.this, "Debe continuar realizando la inspección", Toast.LENGTH_SHORT);
-                    //toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                    //toast.show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
@@ -497,7 +501,7 @@ public class Posterior extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, PHOTO_CODE);
+            startActivityForResult(intent, TAKE_EQFRIO);
         }
     }
     private void openCamerabtnPosteriorE(String id) {
@@ -750,6 +754,48 @@ public class Posterior extends AppCompatActivity {
             startActivityForResult(intent, TAKE_REMOLQUE);
         }
     }
+
+
+    //accesorios faltantes
+    private void showOptionsEquipoFrio(String id_inspeccion){openCameraEquipoFrio(id_inspeccion);}
+    private void openCameraEquipoFrio(String id){
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if(!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if(isDirectoryCreated) {
+            //Long timestamp = System.currentTimeMillis() / 1000;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date date = new Date();
+
+            String fecha = dateFormat.format(date);
+            String imageName = fecha + "_Foto_Equipo_Frio.jpg";
+            ruta = file.toString() +"/" +imageName;
+            mPath =  ruta ;
+
+            File newFile = new File(mPath);
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Equipo_Frio.jpg";
+
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, PHOTO_CODE);
+        }
+    }
+
+
+    private void openCameraRefrigerada(String id){}
+    private void openCameraCubrePickup(String id){}
+    private void openCameraTapaRigida(String id){}
+    private void openCameraLonaCubrepickup(String id){}
+    private void openCameraCajaHerramientas(String id){}
 
 
     @Override
@@ -1293,10 +1339,96 @@ public class Posterior extends AppCompatActivity {
                 enchufeRemolque.setChecked(true);
             }
 
-
+            sensoresPoE.setVisibility(View.VISIBLE);
+            imageSensores.setVisibility(View.VISIBLE);
+            camaraPoE.setVisibility(View.VISIBLE);
+            imageCameraPoE.setVisibility(View.VISIBLE);
+            cocoPoE.setVisibility(View.VISIBLE);
+            imageCocoPoE.setVisibility(View.VISIBLE);
+            muelaPoE.setVisibility(View.VISIBLE);
+            imageMuelaE.setVisibility(View.VISIBLE);
+            enchufeRemolque.setVisibility(View.VISIBLE);
+            imageenChufeRemolque.setVisibility(View.VISIBLE);
 
         }
 
+    }
+
+    private void desplegarCamposSeccionTresMQ(String id){
+
+
+        if (equipoPoE.getVisibility()==View.VISIBLE){
+
+            equipoPoE.setVisibility(View.GONE);
+            imageEquipoE.setImageBitmap(null);
+            camaraRefriPoE.setVisibility(View.GONE);
+            imageCamRePoE.setImageBitmap(null);
+            cubrePickPoE.setVisibility(View.GONE);
+            imageCubrePickPoE.setImageBitmap(null);
+            tapaRiPoE.setVisibility(View.GONE);
+            imageTapaRPoE.setImageBitmap(null);
+            LonaCubrePoE.setVisibility(View.GONE);
+            imageLonaCPoE.setImageBitmap(null);
+            cajaHerrPoE.setVisibility(View.GONE);
+            imageCajaHerrPoE.setImageBitmap(null);
+
+        }else {
+
+            equipoPoE.setVisibility(View.VISIBLE);
+            imageEquipoE.setVisibility(View.VISIBLE);
+            camaraRefriPoE.setVisibility(View.VISIBLE);
+            imageCamRePoE.setVisibility(View.VISIBLE);
+            cubrePickPoE.setVisibility(View.VISIBLE);
+            imageCubrePickPoE.setVisibility(View.VISIBLE);
+            tapaRiPoE.setVisibility(View.VISIBLE);
+            imageTapaRPoE.setVisibility(View.VISIBLE);
+            LonaCubrePoE.setVisibility(View.VISIBLE);
+            imageLonaCPoE.setVisibility(View.VISIBLE);
+            cajaHerrPoE.setVisibility(View.VISIBLE);
+            imageCajaHerrPoE.setVisibility(View.VISIBLE);
+
+
+
+            //seccion uno
+            btnPosteriorE.setVisibility(View.GONE);
+            imageViewFotoPoE.setVisibility(View.GONE);
+            imageViewFotoPoE.setImageBitmap(null);
+            btnLogoLunetaE.setVisibility(View.GONE);
+            imageLogoLunetaE.setVisibility(View.GONE);
+            imageLogoLunetaE.setImageBitmap(null);
+            btnFotoAdiocionalE.setVisibility(View.GONE);
+            imageFotoAdicionalE.setVisibility(View.GONE);
+            imageFotoAdicionalE.setImageBitmap(null);
+
+            //seccion dos
+
+            txtPieza.setVisibility(View.GONE);
+            txtTipoDanoE.setVisibility(View.GONE);
+            txtDeducibleE.setVisibility(View.GONE);
+            spinnerPiezaPoE.setVisibility(View.GONE);
+            spinnerDanoPoE.setVisibility(View.GONE);
+            spinnerDeduciblePoE.setVisibility(View.GONE);
+            btnFotoDanoE.setVisibility(View.GONE);
+            mSetImage.setVisibility(View.GONE);
+            mSetImage.setImageBitmap(null);
+
+            //seccion tres
+            sensoresPoE.setVisibility(View.GONE);
+            imageSensores.setVisibility(View.GONE);
+            imageSensores.setImageBitmap(null);
+            camaraPoE.setVisibility(View.GONE);
+            imageCameraPoE.setVisibility(View.GONE);
+            imageCameraPoE.setImageBitmap(null);
+            cocoPoE.setVisibility(View.GONE);
+            imageCocoPoE.setVisibility(View.GONE);
+            imageCocoPoE.setImageBitmap(null);
+            muelaPoE.setVisibility(View.GONE);
+            imageMuelaE.setVisibility(View.GONE);
+            imageMuelaE.setImageBitmap(null);
+            enchufeRemolque.setVisibility(View.GONE);
+            imageenChufeRemolque.setVisibility(View.GONE);
+            imageenChufeRemolque.setImageBitmap(null);
+        }
     }
 
 

@@ -100,9 +100,12 @@
         <activity android:name=".VehLiviano.Fotos.documento"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".VehPesado.DatosAsegVpActivity"/>
-        <activity android:name=".VehPesado.DatosInspVpActivity"/>
-        <activity android:name=".VehPesado.ObsVpActivity"/>
+        <activity android:name=".VehPesado.DatosAsegVpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehPesado.DatosInspVpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehPesado.ObsVpActivity"
+            android:screenOrientation="portrait"/>
 
 
 
