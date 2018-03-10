@@ -1122,6 +1122,18 @@ public class DBprovider extends SQLiteOpenHelper {
     }
 
 
+    public int idFotoFallida(int id_inspeccion){
+        int rsp = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT id_fallida FROM INSPECCION_FALLIDA WHERE id_inspeccion="+id_inspeccion+"", null);
+
+        if (ars.moveToFirst()) {
+            rsp = ars.getInt(ars.getColumnIndex("id_fallida"));
+        }
+        return rsp;
+    }
+
+
 
     public int correlativoFotosFallida(int id_inspeccion){
         int rsp = 0;
