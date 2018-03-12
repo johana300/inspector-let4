@@ -58,62 +58,65 @@ public class TransferirInspeccion extends Service {
     @Override
     public int onStartCommand(Intent intent,int flags,int startId) {
         super.onStartCommand(intent, flags, startId);
+try {
+    conn = new ConexionInternet(this).isConnectingToInternet();
 
-        conn = new ConexionInternet(this).isConnectingToInternet();
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(
+            getBaseContext())
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle("LET CHILE SPA")
+            .setContentText("Servicio de transferencia iniciada")
+            .setWhen(System.currentTimeMillis());
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                getBaseContext())
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("LET CHILE SPA")
-                .setContentText("Servicio de transferencia iniciada")
-                .setWhen(System.currentTimeMillis());
+    //lanzar notificacion de servicio activo
+    notificationManager.notify(ID_NOTIFICACION, builder.build());
+    if (conn) {
 
-        //lanzar notificacion de servicio activo
-        notificationManager.notify(ID_NOTIFICACION,builder.build());
-        if(conn) {
+        transferirInspeccionCompleta tranf = new transferirInspeccionCompleta();
 
-            transferirInspeccionCompleta tranf = new transferirInspeccionCompleta();
+        //Consultar las inspecciones en estado dos y tres
+        int insp_e2 = db.estadoInspecciones(2);
+        int insp_e3 = db.estadoInspecciones(3);
 
-            //Consultar las inspecciones en estado dos y tres
-            int insp_e2 = db.estadoInspecciones(2);
-            int insp_e3 = db.estadoInspecciones(3);
+        //preguntar por la primera inspeccion en estado 2 (por transmitir)
+        if (insp_e2 > 0 && insp_e3 == 0) {
 
-            //preguntar por la primera inspeccion en estado 2 (por transmitir)
-            if (insp_e2 > 0 && insp_e3 == 0) {
+            //cambiar a estado para transmitir
+            db.cambiarEstadoInspeccion(insp_e2, 3);
 
-                //cambiar a estado para transmitir
-                db.cambiarEstadoInspeccion(insp_e2, 3);
-
-                JSONArray jsonArray = new JSONArray();
-                String accesorios[][] = db.listaAccesoriosParaEnviar(insp_e2);
-                for (int i = 0; i < accesorios.length; i++) {
-                    try {
-                        JSONObject valores = new JSONObject();
-                        valores.put("idcampo", accesorios[i][0]);
-                        valores.put("valor", accesorios[i][1]);
-                        jsonArray.put(valores);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+            JSONArray jsonArray = new JSONArray();
+            String accesorios[][] = db.listaAccesoriosParaEnviar(insp_e2);
+            for (int i = 0; i < accesorios.length; i++) {
+                try {
+                    JSONObject valores = new JSONObject();
+                    valores.put("idcampo", accesorios[i][0]);
+                    valores.put("valor", accesorios[i][1]);
+                    jsonArray.put(valores);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-                //paso los datos a variables
-                String variable1 = String.valueOf(insp_e2);
-                String variable2 = jsonArray.toString();
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                    tranf.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, variable1, variable2);
-                else
-                    tranf.execute(variable1, variable2);
-
-            } else if (insp_e2 == 0 && insp_e3 == 0) {
-                //si no hay transmisión faltante o en desarrollo cerrar servicio
-                onDestroy();
             }
-        }else{
-            Toast.makeText(this,"No cuenta con internet para transmitir",Toast.LENGTH_SHORT).show();
+
+            //paso los datos a variables
+            String variable1 = String.valueOf(insp_e2);
+            String variable2 = jsonArray.toString();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                tranf.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, variable1, variable2);
+            else
+                tranf.execute(variable1, variable2);
+
+        } else if (insp_e2 == 0 && insp_e3 == 0) {
+            //si no hay transmisión faltante o en desarrollo cerrar servicio
             onDestroy();
         }
+    } else {
+        Toast.makeText(this, "No cuenta con internet para transmitir", Toast.LENGTH_SHORT).show();
+        onDestroy();
+    }
+}catch (Exception e){
+    Log.e("Error",e.getMessage());
+}
         return START_STICKY;
     }
 

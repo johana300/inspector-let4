@@ -411,5 +411,16 @@ public class DatosVehActivity extends AppCompatActivity {
             }
         });
 
+
+        final Button btnVolverSecc = (Button)findViewById(R.id.btnVolverVehJg);
+        btnVolverSecc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( DatosVehActivity.this, SeccionActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -25,6 +25,7 @@ import com.letchile.let.Clases.PropiedadesFoto;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
+import com.letchile.let.VehLiviano.DatosAsegActivity;
 import com.letchile.let.VehLiviano.SeccionActivity;
 
 import java.io.File;
@@ -139,18 +140,18 @@ public class documento extends AppCompatActivity {
                 String imagePAC = db.foto(Integer.parseInt(id_inspeccion),"Foto PAC");
                 String imageCarnetAnverso = db.foto(Integer.parseInt(id_inspeccion),"Foto Carnet Anverso");
                 String imageCarnetReverso = db.foto(Integer.parseInt(id_inspeccion),"Foto Carnet Reversa");
-                String imageConvertible = db.foto(Integer.parseInt(id_inspeccion),"Foto Convertible");
+                //String imageConvertible = db.foto(Integer.parseInt(id_inspeccion),"Foto Convertible");
 
                 try {
                     if (db.consultaPAC(Integer.parseInt(id_inspeccion)).toString().equals("S")) {
 
-                        if(imageDocumento.length()<=3 || imagePAC.length()<=3 || imageCarnetAnverso.length()<=3 || imageCarnetReverso.length()<=3 || imageConvertible.length()<=3)
+                        if(imageDocumento.length()<=3 || imagePAC.length()<=3 || imageCarnetAnverso.length()<=3 || imageCarnetReverso.length()<=3 )
                         {
                             AlertDialog.Builder builder = new AlertDialog.Builder(documento.this);
                             builder.setCancelable(false);
                             builder.setTitle("LET Chile");
                             builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Documento</li><p><li>- Foto PAC</li></p><p><li>- Foto Carnet Anverso</li></p>" +
-                                    "<p><li>- Foto Reverso</li></p><p><li>- Foto Convertible</li></p></ul></p>"));
+                                    "<p><li>- Foto Reverso</li></p></ul></p>"));
                             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -169,12 +170,12 @@ public class documento extends AppCompatActivity {
                     }
                     else
                     {
-                        if(imageDocumento.length()<=3 || imageConvertible.length()<=3)
+                        if(imageDocumento.length()<=3 )
                         {
                             AlertDialog.Builder builder = new AlertDialog.Builder(documento.this);
                             builder.setCancelable(false);
                             builder.setTitle("LET Chile");
-                            builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Documento</li><p><li>- Foto Convertible</li></p></ul></p>"));
+                            builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Documento</li></ul></p>"));
                             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -186,7 +187,7 @@ public class documento extends AppCompatActivity {
                         }
                         else{
 
-                            Intent intent = new Intent(documento.this,SeccionActivity.class);
+                            Intent intent = new Intent(documento.this,DatosAsegActivity.class);
                             intent.putExtra("id_inspeccion",id_inspeccion);
                             startActivity(intent);
                         }

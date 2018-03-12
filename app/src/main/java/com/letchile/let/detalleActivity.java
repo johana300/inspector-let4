@@ -1,9 +1,13 @@
 package com.letchile.let;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,7 +55,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class detalleActivity extends AppCompatActivity {
 
     DBprovider db;
-    TextView n_oi,pantete,asegurado,direccion,comentario,fono,ramo,pac;
+    TextView n_oi,pantete,asegurado,direccion,comentario,fono,ramo,pac,marca,modelo;
     Button btnInspeccion, btnAddhito, btnVolver,btnFallida;
     Boolean conexion1 = false;
     ProgressDialog pDialog;
@@ -133,6 +137,28 @@ public class detalleActivity extends AppCompatActivity {
         fono = (TextView)findViewById(R.id.telefonoM);
         fono.setText(datosInspeccion[0][2]);
 
+        Button btnLlamar = (Button)findViewById(R.id.llamarContacto);
+        btnLlamar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:"+fono.getText().toString()));
+
+                if (ActivityCompat.checkSelfPermission(detalleActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        });
+
+
+        marca = (TextView)findViewById(R.id.MarcaMQ);
+        marca.setText(datosInspeccion[0][13]);
+
+        modelo = (TextView)findViewById(R.id.modeloMQ);
+        modelo.setText(datosInspeccion[0][14]);
+
         ramo = (TextView)findViewById(R.id.tipoVehiculoM);
         if(datosInspeccion[0][7].toString().equals("vl1")) {
             ramo.setText("Vehículo liviano");
@@ -208,23 +234,25 @@ public class detalleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 //pregunto perfil, si es 3 validar horario de fallida, 6 sin validaciones
-                if(perfil.equals("6"))
+                if(perfil.equals("3"))
                 {
                     if(minutosDiferencia<=30 && minutosDiferencia>=-30){
-                        Intent intent = new Intent(detalleActivity.this,Fallida.class);
+                        /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
                         intent.putExtra("id_inspeccion",n_oi.getText().toString());
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
                     }else{
                         Toast.makeText(detalleActivity.this, "Fuera de rango de horario" , Toast.LENGTH_LONG).show();
                     }
                 }
                 else
                 {
-                    Intent intent = new Intent(detalleActivity.this,Fallida.class);
-                    intent.putExtra("id_inspeccion",n_oi.getText().toString());
-
                     new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
+                    /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
+                    intent.putExtra("id_inspeccion",n_oi.getText().toString());
+                    new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());*/
 
                     //startActivity(intent);
                 }
@@ -434,11 +462,11 @@ public class detalleActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonar.length(); i++) {
                                     jsonInspe = new JSONObject(jsonar.getString(i));
                                     //borrar inspeccion anterior
-                                    db.borrarInspeccionFallida(Integer.parseInt(param[0]));
+                                    //db.borrarInspeccionFallida(Integer.parseInt(param[0]));
                                     /*result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fecha"),jsonInspe.getString("comentario"),
                                             jsonInspe.getInt("idFallida"),jsonInspe.getString("fecha_cita"),jsonInspe.getString("hora_cita"),jsonInspe.getInt("activo"));*/
 
-                                    db.borrarInspeccionFallida(Integer.parseInt(param[0]));
+                                    db.borrarInspeccionFallida(jsonInspe.getInt("id_inspeccion"));
                                     result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fechaFallida"),jsonInspe.getString("comentarioFallida"),
                                             jsonInspe.getInt("idFallida"),jsonInspe.getString("fechaCita"),jsonInspe.getString("horaCita"),jsonInspe.getInt("activo"));
                                 }

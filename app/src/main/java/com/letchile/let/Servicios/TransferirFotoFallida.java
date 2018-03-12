@@ -3,6 +3,7 @@ package com.letchile.let.Servicios;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -55,8 +56,12 @@ public class TransferirFotoFallida extends Service{
         if(connect){
             Toast.makeText(this,"Transferencia iniciada",Toast.LENGTH_SHORT).show();
 
+            transferirBackgroundFallida transfer = new transferirBackgroundFallida();
 
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                transfer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, para1.toString(), para2.toString(), para3.toString(), para4.toString(),para5.toString());
+            else
+                transfer.execute(para1.toString(), para2.toString(), para3.toString(), para4.toString(),para5.toString());
 
         }else{
             db.cambiarEstadoFotoFallida(Integer.parseInt(id_inspeccion),para2.toString(),1);
@@ -87,7 +92,7 @@ public class TransferirFotoFallida extends Service{
     }
 
 
-    public class transferirbackground extends AsyncTask<String, Void, String> {
+    public class transferirBackgroundFallida extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -104,9 +109,10 @@ public class TransferirFotoFallida extends Service{
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("id_inspeccion", strings[0]);
                 postDataParams.put("nombre_foto", strings[1]);
-                postDataParams.put("archivo", strings[3]);
-                postDataParams.put("comentario", strings[2]);
+                postDataParams.put("comentFallida", strings[2]);
                 postDataParams.put("fechaHoraFallida", strings[4]);
+                postDataParams.put("usr", db.obtenerUsuario());
+                postDataParams.put("archivo", strings[3]);
                 Log.e("Parametos a pasar", postDataParams.toString());
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
@@ -146,7 +152,7 @@ public class TransferirFotoFallida extends Service{
                     //CAMBIAR A ESTADO TRANSMITIDA
                     try {
                         if (sb.toString().equals("Ok")){
-                            db.cambiarEstadoFoto(Integer.parseInt(strings[0]),strings[1],strings[2],2);
+                            db.cambiarEstadoFotoFallida(Integer.parseInt(strings[0]),strings[1],2);
                         }
                     }catch (Exception e){
                         Log.e("Error cambio de estado",e.getMessage());

@@ -305,7 +305,7 @@ public class DBprovider extends SQLiteOpenHelper {
         if (aRs.getCount() > 0) {
             aData = new String[aRs.getCount()][];
             while (aRs.moveToNext()) {
-                aData[count] = new String[13];
+                aData[count] = new String[15];
                 aData[count][0] = Integer.toString(aRs.getInt(aRs.getColumnIndex("id_inspeccion")));
                 aData[count][1] = aRs.getString(aRs.getColumnIndex("asegurado"));
                 aData[count][2] = Integer.toString(aRs.getInt(aRs.getColumnIndex("fono")));
@@ -319,6 +319,8 @@ public class DBprovider extends SQLiteOpenHelper {
                 aData[count][10] = aRs.getString(aRs.getColumnIndex("rut"));
                 aData[count][11] = aRs.getString(aRs.getColumnIndex("email"));
                 aData[count][12] = aRs.getString(aRs.getColumnIndex("pac"));
+                aData[count][13] = aRs.getString(aRs.getColumnIndex("marca"));
+                aData[count][14] = aRs.getString(aRs.getColumnIndex("modelo"));
                 count++;
             }
         } else {
@@ -458,44 +460,6 @@ public class DBprovider extends SQLiteOpenHelper {
     }
 
 
-    public String[][] listaFotos(String id_inspeccion) {
-        int count = 0;
-        String[][] aData = null;
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion =" + Integer.parseInt(id_inspeccion), null);
-
-        if (aRS.getCount() > 0) {
-            aData = new String[aRS.getCount()][];
-            while (aRS.moveToNext()) {
-                aData[count] = new String[4];
-                aData[count][0] = Integer.toString(aRS.getInt(aRS.getColumnIndex("id_foto")));
-                aData[count][1] = aRS.getString(aRS.getColumnIndex("foto"));
-                aData[count][2] = aRS.getString(aRS.getColumnIndex("comentario"));
-                aData[count][0] = Integer.toString(aRS.getInt(aRS.getColumnIndex("enviado")));
-            }
-        } else {
-            aData = new String[0][];
-        }
-        aRS.close();
-        db.close();
-        return (aData);
-    }
-
-
-    //Obtener el ultimo id_foto para armar el nombre incrementando en 1
-    public int obtieneUltimoIdfoto() {
-        int respuesta = 0;
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor ars = db.rawQuery("SELECT id_foto FROM FOTO", null);
-        if (ars.getCount() > 0) {
-            ars.moveToLast();
-            respuesta = ars.getInt(0);
-            ars.close();
-            db.close();
-        }
-        return respuesta;
-    }
-
     public void actualizarAsegInspeccion(Integer id_inspeccion, String asegurado, String apellidoP, String apellidoM, String rut, String direccion,
                                          Integer fono, String email, String comuna) {
         SQLiteDatabase db = getWritableDatabase();
@@ -604,16 +568,19 @@ public class DBprovider extends SQLiteOpenHelper {
         return rsp;
     }
 
-    /*public String foto(int id_inspeccion, int id_foto) {
+    //FOTOS
+    public String fotoFallida(int id_inspeccion) {
 
         String rsp = "";
         SQLiteDatabase db = getReadableDatabase();
-        Cursor ars = db.rawQuery("SELECT url FROM FOTO where id_inspeccion=" + id_inspeccion + " and id_foto=" + id_foto, null);
+        Cursor ars = db.rawQuery("SELECT url FROM FOTO_FALLIDA where id_inspeccion=" + id_inspeccion + " ORDER BY foto desc LIMIT 1", null);
         if (ars.moveToFirst()) {
             rsp = ars.getString(ars.getColumnIndex("url"));
         }
         return rsp;
-    }*/
+    }
+
+
 
 
     public String insertaFoto(int id_inspeccion, int id_foto, String imageName, String comentario, int estado, String url) {
@@ -932,7 +899,7 @@ public class DBprovider extends SQLiteOpenHelper {
         String[][] aData = null;
         // + "and enviado="+1+""
 
-            Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and enviado = 1", null);
+            Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and enviado in (0,1)", null);
 
 
         if (aRS.getCount() > 0) {
@@ -943,6 +910,34 @@ public class DBprovider extends SQLiteOpenHelper {
                 aData[count][1] = aRS.getString(aRS.getColumnIndex("foto"));
                 aData[count][2] = aRS.getString(aRS.getColumnIndex("comentario"));
                 aData[count][3] = aRS.getString(aRS.getColumnIndex("url"));
+                count++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+        aRS.close();
+        db.close();
+        return (aData);
+    }
+
+    //OBTENER LISTA CON LOS DATOS DE LAS FOTOS
+    public String[][] ListaDatosFotosFallida(int id_inspeccion) {
+        int count = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        String[][] aData = null;
+        // + "and enviado="+1+""
+
+        Cursor aRS = db.rawQuery("SELECT * FROM FOTO_FALLIDA WHERE id_inspeccion=" + id_inspeccion + " and enviado = 1", null);
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[count] = new String[5];
+                aData[count][0] = Integer.toString(aRS.getInt(aRS.getColumnIndex("id_inspeccion")));
+                aData[count][1] = aRS.getString(aRS.getColumnIndex("foto"));
+                aData[count][2] = aRS.getString(aRS.getColumnIndex("comentario"));
+                aData[count][3] = aRS.getString(aRS.getColumnIndex("url"));
+                aData[count][4] = aRS.getString(aRS.getColumnIndex("fechaHoraFallida"));
                 count++;
             }
         } else {
@@ -1045,8 +1040,12 @@ public class DBprovider extends SQLiteOpenHelper {
     public int fotosObligatoriasTomadas(int id_inspeccion) {
         int rsp = 0;
         SQLiteDatabase db = getReadableDatabase();
-        Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"" +
-                " and id_foto in (2,3,62,63,61,30,31,22,9,39,40,41,42,13,14,65,69,72)", null);
+        Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"" , null);
+
+        /*Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"" +
+                " and comentario in ('Posterior','Logo Luneta Posterior','Foto Motor','Foto Chasis(VIN)','Foto Cuna Motor','Foto Llantas y Neumaticos','Foto Rueda de Respuesto Llantas y Neumaticos'," +
+                "'Foto Lateral Izquierdo','Foto Lateral Derecho','Foto Panel desde Afuera Interior','Foto Panel desde Dentro Interior','Foto Radio Interior','Foto Kilometraje Interior'," +
+                "'Foto Frontal','Logo Parabrisas Frontal','Foto Documento','Foto Convertible')", null);*/
 
         //2,3,62,63,61,30,31,22,9,39,40,41,42,13,14,65,69,72
 
@@ -1064,6 +1063,17 @@ public class DBprovider extends SQLiteOpenHelper {
             db.execSQL("DELETE FROM INSPECCION WHERE id_inspeccion=" + id_inspeccion);
             db.execSQL("DELETE FROM FOTO WHERE id_inspeccion=" + id_inspeccion);
             db.execSQL("DELETE FROM VALOR WHERE idInspeccion=" + id_inspeccion);
+        }
+        db.close();
+    }
+
+    //borrar de la base de datos todos los registros de esta
+    public  void deleteInspeccionFallida(int id_inspeccion){
+        SQLiteDatabase db = getWritableDatabase();
+
+        if (db != null) {
+            db.execSQL("DELETE FROM INSPECCION_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
+            db.execSQL("DELETE FROM FOTO_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
         }
         db.close();
     }
@@ -1098,17 +1108,43 @@ public class DBprovider extends SQLiteOpenHelper {
 
         if (db != null) {
             db.execSQL("DELETE FROM INSPECCION_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
+            db.execSQL("DELETE FROM FOTO_FALLIDA WHERE id_inspeccion=" + id_inspeccion);
         }
         db.close();
     }
 
 
 
-    //Valida fotos obligatorias para transmitir
+
     public int correlativoFotos(int id_inspeccion){
         int rsp = 0;
         SQLiteDatabase db = getReadableDatabase();
         Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"", null);
+
+        if (ars.moveToFirst()) {
+            rsp = ars.getInt(ars.getColumnIndex("cantidad"));
+        }
+        return rsp;
+    }
+
+
+    public int idFotoFallida(int id_inspeccion){
+        int rsp = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT id_fallida FROM INSPECCION_FALLIDA WHERE id_inspeccion="+id_inspeccion+"", null);
+
+        if (ars.moveToFirst()) {
+            rsp = ars.getInt(ars.getColumnIndex("id_fallida"));
+        }
+        return rsp;
+    }
+
+
+
+    public int correlativoFotosFallida(int id_inspeccion){
+        int rsp = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO_FALLIDA WHERE id_inspeccion="+id_inspeccion+"", null);
 
         if (ars.moveToFirst()) {
             rsp = ars.getInt(ars.getColumnIndex("cantidad"));

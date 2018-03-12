@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -92,7 +94,6 @@
                         android:id="@+id/btnSeccionPos1E"
                         style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
                         android:text="Sección 1: Toma de Fotos Obligatorias"
                         android:textSize="18sp" />
@@ -163,7 +164,6 @@
                         android:id="@+id/seccionPos2E"
                         style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
                         android:text="Sección 2: Daños"
                         android:textSize="18sp" />
@@ -241,7 +241,6 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-
                         android:visibility="gone" />
 
 
@@ -249,10 +248,11 @@
                         android:id="@+id/seccionPos3E"
                         style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
                         android:text="Sección 3: Accesorios"
                         android:textSize="18sp" />
+
+
 
                     <CheckBox
                         android:id="@+id/sensoresPoE"
@@ -321,6 +321,104 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/seccionPos3MQ"
+                        style="@android:style/Widget.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sección 3.1: Accesorios"
+                        android:textSize="18sp" />
+
+                    <CheckBox
+                        android:id="@+id/equipoPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Equipo de frío"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imageEquipoE"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/border"
+                        android:visibility="gone" />
+
+                    <CheckBox
+                        android:id="@+id/camaraRefriPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cámara Refrigerada"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imageCamRePoE"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/border"
+                        android:visibility="gone" />
+
+                    <CheckBox
+                        android:id="@+id/cubrePickPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cubre pick up"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imageCubrePickPoE"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/border"
+                        android:visibility="gone" />
+
+                    <CheckBox
+                        android:id="@+id/tapaRiPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tapa rígida pick up"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imageTapaRPoE"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/border"
+                        android:visibility="gone" />
+
+                    <CheckBox
+                        android:id="@+id/LonaCubrePoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lona cubre pick up"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imageLonaCPoE"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/border"
+                        android:visibility="gone" />
+
+                    <CheckBox
+                        android:id="@+id/cajaHerrPoE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Caja herramientas apernada"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imageCajaHerrPoE"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/border"
                         android:visibility="gone" />
                 </LinearLayout>
             </ScrollView>

@@ -129,6 +129,27 @@
                         android:layout_gravity="center"
                         android:visibility="gone"/>
 
+                    <ImageView
+                        android:id="@+id/imagenFallida1"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/imagenFallida2"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/imagenFallida3"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"/>
+
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>

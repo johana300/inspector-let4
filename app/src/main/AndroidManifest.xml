@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.letchile.let">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -49,28 +51,36 @@
 
         <activity
             android:name=".VehLiviano.DatosAsegActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".VehLiviano.DatosVehActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".VehLiviano.AudioActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".VehLiviano.AccActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".VehLiviano.NeuActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".VehLiviano.ObsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".VehLiviano.TechoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".VehLiviano.DatosInspActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".VehPesado.SeccionVpActivity"
@@ -78,26 +88,40 @@
 
         <service android:name=".Servicios.TransferirFoto" />
         <service android:name=".Servicios.TransferirInspeccion" />
+        <service android:name=".Servicios.TransferirFotoFallida"/>
+        <service android:name=".Servicios.TransferirInspeccionFallida"/>
 
         <activity android:name=".VehLiviano.Fotos.Posterior"
             android:screenOrientation="portrait" />
-        <activity android:name=".VehLiviano.Fotos.frontal" />
-        <activity android:name=".VehLiviano.Fotos.lateralizquierdo" />
-        <activity android:name=".VehLiviano.Fotos.lateralderecho" />
-        <activity android:name=".VehLiviano.Fotos.llantasneumaticos" />
-        <activity android:name=".VehLiviano.Fotos.vl_techo" />
-        <activity android:name=".VehLiviano.Fotos.interior" />
-        <activity android:name=".VehLiviano.Fotos.motor" />
-        <activity android:name=".VehLiviano.Fotos.documento" />
+        <activity android:name=".VehLiviano.Fotos.frontal"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.lateralizquierdo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.lateralderecho"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.llantasneumaticos"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.vl_techo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.interior"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.motor"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.Fotos.documento"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".VehPesado.DatosAsegVpActivity"/>
-        <activity android:name=".VehPesado.DatosInspVpActivity"/>
-        <activity android:name=".VehPesado.ObsVpActivity"/>
+        <activity android:name=".VehPesado.DatosAsegVpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehPesado.DatosInspVpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VehPesado.ObsVpActivity"
+            android:screenOrientation="portrait"/>
 
 
 
-        <activity android:name=".Fallida.Fallida">
-        </activity>
+        <activity android:name=".Fallida.Fallida"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 
