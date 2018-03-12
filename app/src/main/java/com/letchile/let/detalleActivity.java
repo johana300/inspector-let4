@@ -218,19 +218,20 @@ public class detalleActivity extends AppCompatActivity {
                 if(perfil.equals("3"))
                 {
                     if(minutosDiferencia<=30 && minutosDiferencia>=-30){
-                        Intent intent = new Intent(detalleActivity.this,Fallida.class);
+                        /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
                         intent.putExtra("id_inspeccion",n_oi.getText().toString());
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
                     }else{
                         Toast.makeText(detalleActivity.this, "Fuera de rango de horario" , Toast.LENGTH_LONG).show();
                     }
                 }
                 else
                 {
-                    Intent intent = new Intent(detalleActivity.this,Fallida.class);
-                    intent.putExtra("id_inspeccion",n_oi.getText().toString());
-
                     new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
+                    /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
+                    intent.putExtra("id_inspeccion",n_oi.getText().toString());
+                    new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());*/
 
                     //startActivity(intent);
                 }
