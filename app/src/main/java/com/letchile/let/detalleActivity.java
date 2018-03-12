@@ -234,6 +234,7 @@ public class detalleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 //pregunto perfil, si es 3 validar horario de fallida, 6 sin validaciones
                 if(perfil.equals("3"))
                 {
