@@ -45,29 +45,33 @@ public class TransferirFoto extends Service {
     public int onStartCommand(Intent intent,int flags,int startId){
         super.onStartCommand(intent,flags,startId);
 
-        String id_inspeccion = (String) intent.getExtras().get("id_inspeccion");
-        String comentario = (String) intent.getExtras().get("comentario");
-        //Trae datos de la foto
-        String datosFotos[][] = db.DatosFotos(Integer.parseInt(id_inspeccion), comentario);
-        para1 = datosFotos[0][0].toString();
-        para2 = datosFotos[0][1].toString();
-        para3 = datosFotos[0][2].toString();
-        para4 = datosFotos[0][3].toString();
+        try {
+            String id_inspeccion = (String) intent.getExtras().get("id_inspeccion");
+            String comentario = (String) intent.getExtras().get("comentario");
+            //Trae datos de la foto
+            String datosFotos[][] = db.DatosFotos(Integer.parseInt(id_inspeccion), comentario);
+            para1 = datosFotos[0][0].toString();
+            para2 = datosFotos[0][1].toString();
+            para3 = datosFotos[0][2].toString();
+            para4 = datosFotos[0][3].toString();
 
-        connec = new ConexionInternet(this).isConnectingToInternet();
-        if(connec) {
-            //Toast.makeText(this, "Transferencia iniciada", Toast.LENGTH_SHORT).show();
+            connec = new ConexionInternet(this).isConnectingToInternet();
+            if (connec) {
+                //Toast.makeText(this, "Transferencia iniciada", Toast.LENGTH_SHORT).show();
 
-            transferirbackground transfer = new transferirbackground();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                transfer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, para1.toString(), para2.toString(), para3.toString(), para4.toString());
-            else
-                transfer.execute(para1.toString(), para2.toString(), para3.toString(), para4.toString());
-        }else{
+                transferirbackground transfer = new transferirbackground();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                    transfer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, para1.toString(), para2.toString(), para3.toString(), para4.toString());
+                else
+                    transfer.execute(para1.toString(), para2.toString(), para3.toString(), para4.toString());
+            } else {
 
-            //CAMBIAR A ESTADO POR TRANSMITIR
-            db.cambiarEstadoFoto(Integer.parseInt(id_inspeccion),para2.toString(),para3.toString(),1);
-            onDestroy();
+                //CAMBIAR A ESTADO POR TRANSMITIR
+                db.cambiarEstadoFoto(Integer.parseInt(id_inspeccion), para2.toString(), para3.toString(), 1);
+                onDestroy();
+            }
+        }catch (Exception e){
+            Log.e("Error",e.getMessage());
         }
 
         return START_STICKY;

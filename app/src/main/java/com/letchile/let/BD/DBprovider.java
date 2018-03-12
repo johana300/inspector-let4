@@ -899,7 +899,7 @@ public class DBprovider extends SQLiteOpenHelper {
         String[][] aData = null;
         // + "and enviado="+1+""
 
-            Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and enviado = 1", null);
+            Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and enviado in (0,1)", null);
 
 
         if (aRS.getCount() > 0) {
