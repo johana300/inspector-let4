@@ -828,7 +828,6 @@ public class Posterior extends AppCompatActivity {
         }
     }
 
-
     private void showOptionCubrePickup(String id_inspeccion){openCameraCubrePickup(id_inspeccion);}
     private void openCameraCubrePickup(String id){
         String id_inspeccion = id;

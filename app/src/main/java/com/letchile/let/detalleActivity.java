@@ -215,7 +215,7 @@ public class detalleActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //pregunto perfil, si es 3 validar horario de fallida, 6 sin validaciones
-                if(perfil.equals("3"))
+                if(perfil.equals("6"))
                 {
                     if(minutosDiferencia<=30 && minutosDiferencia>=-30){
                         /*Intent intent = new Intent(detalleActivity.this,Fallida.class);

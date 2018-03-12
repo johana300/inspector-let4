@@ -40,9 +40,11 @@
             android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/textTec1"
             android:layout_marginStart="1dp"
+            android:background="@drawable/boton_redondo"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:textSize="12sp"
-            android:text="Secciones" />
+            android:text="Volver "
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnPenTecJg"
@@ -63,9 +65,11 @@
             android:layout_alignTop="@+id/textTec1"
             android:layout_marginStart="1dp"
             android:layout_toEndOf="@+id/btnPenTecJg"
-            android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Guardar "
-            android:textSize="12sp" />
+            android:background="@drawable/boton_redondo"
+            android:drawableLeft="@android:drawable/ic_menu_revert"
+            android:text="Siguiente "
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -86,17 +90,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView98"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Parrilla:" />
-
                     <CheckBox
                         android:id="@+id/cParrilla"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CheckBox" />
+                        android:text="Parrilla" />
 
                     <TextView
                         android:id="@+id/textView99"
@@ -111,17 +109,11 @@
                         android:ems="10"
                         android:inputType="textMultiLine" />
 
-                    <TextView
-                        android:id="@+id/textView100"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Barras porta equipaje:" />
-
                     <CheckBox
                         android:id="@+id/cBarras"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CheckBox" />
+                        android:text="Barras porta equipaje:" />
 
                     <TextView
                         android:id="@+id/textView102"
@@ -136,17 +128,11 @@
                         android:ems="10"
                         android:inputType="textMultiLine" />
 
-                    <TextView
-                        android:id="@+id/textView101"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Porta equipaje:" />
-
                     <CheckBox
                         android:id="@+id/cportaE"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CheckBox" />
+                        android:text="Porta equipaje:" />
 
                     <TextView
                         android:id="@+id/textView103"
@@ -161,17 +147,11 @@
                         android:ems="10"
                         android:inputType="textMultiLine" />
 
-                    <TextView
-                        android:id="@+id/textView105"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Porta Ski" />
-
                     <CheckBox
                         android:id="@+id/cPortaSk"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CheckBox" />
+                        android:text="Porta Ski" />
 
                     <TextView
                         android:id="@+id/textView104"

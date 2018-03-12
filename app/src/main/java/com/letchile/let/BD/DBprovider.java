@@ -1041,7 +1041,9 @@ public class DBprovider extends SQLiteOpenHelper {
         int rsp = 0;
         SQLiteDatabase db = getReadableDatabase();
         Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"" +
-                " and id_foto in (2,3,62,63,61,30,31,22,9,39,40,41,42,13,14,65,69,72)", null);
+                " and comentario in ('Posterior','Logo Luneta Posterior','Foto Motor','Foto Chasis(VIN)','Foto Cuna Motor','Foto Llantas y Neumaticos','Foto Rueda de Respuesto Llantas y Neumaticos'," +
+                "'Foto Lateral Izquierdo','Foto Lateral Derecho','Foto Panel desde Afuera Interior','Foto Panel desde Dentro Interior','Foto Radio Interior','Foto Kilometraje Interior'," +
+                "'Foto Frontal','Logo Parabrisas Frontal','Foto Documento','Foto Convertible')", null);
 
         //2,3,62,63,61,30,31,22,9,39,40,41,42,13,14,65,69,72
 

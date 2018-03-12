@@ -109,10 +109,10 @@ public class TransferirFotoFallida extends Service{
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("id_inspeccion", strings[0]);
                 postDataParams.put("nombre_foto", strings[1]);
-                postDataParams.put("archivo", strings[3]);
                 postDataParams.put("comentFallida", strings[2]);
                 postDataParams.put("fechaHoraFallida", strings[4]);
                 postDataParams.put("usr", db.obtenerUsuario());
+                postDataParams.put("archivo", strings[3]);
                 Log.e("Parametos a pasar", postDataParams.toString());
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");

@@ -221,21 +221,18 @@ public class Fallida extends AppCompatActivity{
                     imagenFallida.setVisibility(View.VISIBLE);
                     String imagen = foto.convertirImagenDano(bitmap);
                     //el id se trae de la base de datos
-                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
+                    //db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
+                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, 1, fechaHoraFallida, 0, imagen,"Foto Fallida");
                     break;
             }
 
             //TRANSFERIR FOTO
-                Intent servis = new Intent(contexto, TransferirFotoFallida.class);
-                servis.putExtra("nombreFoto",nombreimagen);
-                servis.putExtra("id_inspeccion",id_inspeccion);
-                startService(servis);
+            Intent servis = new Intent(contexto, TransferirFotoFallida.class);
+            servis.putExtra("nombreFoto",nombreimagen);
+            servis.putExtra("id_inspeccion",id_inspeccion);
+            startService(servis);
 
 
-
-                //volver a pendientes
-                Intent pendientes = new Intent(contexto, InsPendientesActivity.class);
-                startActivity(pendientes);
 
         }
     }
@@ -244,4 +241,3 @@ public class Fallida extends AppCompatActivity{
 
 
 }
-
