@@ -56,7 +56,7 @@ public class TransferirFoto extends Service {
 
         connec = new ConexionInternet(this).isConnectingToInternet();
         if(connec) {
-            Toast.makeText(this, "Transferencia iniciada", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Transferencia iniciada", Toast.LENGTH_SHORT).show();
 
             transferirbackground transfer = new transferirbackground();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
@@ -85,7 +85,7 @@ public class TransferirFoto extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this,"Tranmisión finalizada",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Tranmisión finalizada",Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -168,7 +168,7 @@ public class SeccionActivity extends Activity {
 
                 int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-                if(fotosTomadas==18){
+                if(fotosTomadas>=18){
 
                     //cambiar inspeccion a estado para transmitir
                     db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
