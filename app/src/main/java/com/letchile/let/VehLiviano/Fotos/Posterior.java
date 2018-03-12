@@ -1245,6 +1245,7 @@ public class Posterior extends AppCompatActivity {
                     break;
 
 
+
                 case TAKE_CUBREPICK:
                     MediaScannerConnection.scanFile(this,
                             new String[]{mPath}, null,
