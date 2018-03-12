@@ -83,11 +83,11 @@ public class Fallida extends AppCompatActivity{
 
 
 
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
         try {
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             fechaHoraFallida = sdf.format(new Date());
 
         } catch (Exception exception) {
