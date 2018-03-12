@@ -1,9 +1,13 @@
 package com.letchile.let;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -132,6 +136,22 @@ public class detalleActivity extends AppCompatActivity {
 
         fono = (TextView)findViewById(R.id.telefonoM);
         fono.setText(datosInspeccion[0][2]);
+
+        Button btnLlamar = (Button)findViewById(R.id.llamarContacto);
+        btnLlamar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:"+fono.getText().toString()));
+
+                if (ActivityCompat.checkSelfPermission(detalleActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        });
+
 
         marca = (TextView)findViewById(R.id.MarcaMQ);
         marca.setText(datosInspeccion[0][13]);

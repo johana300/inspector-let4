@@ -165,7 +165,7 @@ public class AccActivity extends AppCompatActivity {
                 }
 
 
-                Intent intent = new Intent( AccActivity.this, SeccionActivity.class);
+                Intent intent = new Intent( AccActivity.this, AudioActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

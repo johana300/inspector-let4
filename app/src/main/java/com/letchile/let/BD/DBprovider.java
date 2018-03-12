@@ -899,7 +899,7 @@ public class DBprovider extends SQLiteOpenHelper {
         String[][] aData = null;
         // + "and enviado="+1+""
 
-            Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and enviado = 1", null);
+            Cursor aRS = db.rawQuery("SELECT * FROM FOTO WHERE id_inspeccion=" + id_inspeccion + " and enviado in (0,1)", null);
 
 
         if (aRS.getCount() > 0) {
@@ -1040,10 +1040,12 @@ public class DBprovider extends SQLiteOpenHelper {
     public int fotosObligatoriasTomadas(int id_inspeccion) {
         int rsp = 0;
         SQLiteDatabase db = getReadableDatabase();
-        Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"" +
+        Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"" , null);
+
+        /*Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"" +
                 " and comentario in ('Posterior','Logo Luneta Posterior','Foto Motor','Foto Chasis(VIN)','Foto Cuna Motor','Foto Llantas y Neumaticos','Foto Rueda de Respuesto Llantas y Neumaticos'," +
                 "'Foto Lateral Izquierdo','Foto Lateral Derecho','Foto Panel desde Afuera Interior','Foto Panel desde Dentro Interior','Foto Radio Interior','Foto Kilometraje Interior'," +
-                "'Foto Frontal','Logo Parabrisas Frontal','Foto Documento','Foto Convertible')", null);
+                "'Foto Frontal','Logo Parabrisas Frontal','Foto Documento','Foto Convertible')", null);*/
 
         //2,3,62,63,61,30,31,22,9,39,40,41,42,13,14,65,69,72
 
