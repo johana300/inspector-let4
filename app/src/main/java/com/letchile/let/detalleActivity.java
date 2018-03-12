@@ -51,7 +51,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class detalleActivity extends AppCompatActivity {
 
     DBprovider db;
-    TextView n_oi,pantete,asegurado,direccion,comentario,fono,ramo,pac;
+    TextView n_oi,pantete,asegurado,direccion,comentario,fono,ramo,pac,marca,modelo;
     Button btnInspeccion, btnAddhito, btnVolver,btnFallida;
     Boolean conexion1 = false;
     ProgressDialog pDialog;
@@ -133,6 +133,12 @@ public class detalleActivity extends AppCompatActivity {
         fono = (TextView)findViewById(R.id.telefonoM);
         fono.setText(datosInspeccion[0][2]);
 
+        marca = (TextView)findViewById(R.id.MarcaMQ);
+        marca.setText(datosInspeccion[0][13]);
+
+        modelo = (TextView)findViewById(R.id.modeloMQ);
+        modelo.setText(datosInspeccion[0][14]);
+
         ramo = (TextView)findViewById(R.id.tipoVehiculoM);
         if(datosInspeccion[0][7].toString().equals("vl1")) {
             ramo.setText("Vehículo liviano");
@@ -209,22 +215,23 @@ public class detalleActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //pregunto perfil, si es 3 validar horario de fallida, 6 sin validaciones
-                if(perfil.equals("6"))
+                if(perfil.equals("3"))
                 {
                     if(minutosDiferencia<=30 && minutosDiferencia>=-30){
-                        Intent intent = new Intent(detalleActivity.this,Fallida.class);
+                        /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
                         intent.putExtra("id_inspeccion",n_oi.getText().toString());
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
                     }else{
                         Toast.makeText(detalleActivity.this, "Fuera de rango de horario" , Toast.LENGTH_LONG).show();
                     }
                 }
                 else
                 {
-                    Intent intent = new Intent(detalleActivity.this,Fallida.class);
-                    intent.putExtra("id_inspeccion",n_oi.getText().toString());
-
                     new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
+                    /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
+                    intent.putExtra("id_inspeccion",n_oi.getText().toString());
+                    new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());*/
 
                     //startActivity(intent);
                 }

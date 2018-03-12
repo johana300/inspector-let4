@@ -305,7 +305,7 @@ public class DBprovider extends SQLiteOpenHelper {
         if (aRs.getCount() > 0) {
             aData = new String[aRs.getCount()][];
             while (aRs.moveToNext()) {
-                aData[count] = new String[13];
+                aData[count] = new String[15];
                 aData[count][0] = Integer.toString(aRs.getInt(aRs.getColumnIndex("id_inspeccion")));
                 aData[count][1] = aRs.getString(aRs.getColumnIndex("asegurado"));
                 aData[count][2] = Integer.toString(aRs.getInt(aRs.getColumnIndex("fono")));
@@ -319,6 +319,8 @@ public class DBprovider extends SQLiteOpenHelper {
                 aData[count][10] = aRs.getString(aRs.getColumnIndex("rut"));
                 aData[count][11] = aRs.getString(aRs.getColumnIndex("email"));
                 aData[count][12] = aRs.getString(aRs.getColumnIndex("pac"));
+                aData[count][13] = aRs.getString(aRs.getColumnIndex("marca"));
+                aData[count][14] = aRs.getString(aRs.getColumnIndex("modelo"));
                 count++;
             }
         } else {

@@ -86,11 +86,7 @@ public class TransferirInspeccionFallida extends Service {
         return START_STICKY;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        notificationManager.cancel(ID_NOTIFICACION);
-    }
+
 
     @Nullable
     @Override
@@ -118,8 +114,9 @@ public class TransferirInspeccionFallida extends Service {
                     postDataParams.put("id_inspeccion", fotos[i][0]);
                     postDataParams.put("nombre_foto", fotos[i][1]);
                     postDataParams.put("archivo", fotos[i][3]);
-                    postDataParams.put("comentario", fotos[i][2]);
+                    postDataParams.put("comentFallida", fotos[i][2]);
                     postDataParams.put("fechaHoraFallida", fotos[i][4]);
+                    postDataParams.put("usr", db.obtenerUsuario());
                     Log.e("Parametos a pasar", postDataParams.toString());
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
@@ -167,6 +164,8 @@ public class TransferirInspeccionFallida extends Service {
                         }
                     }else{
                         onDestroy(); // sin internet o otro error
+                        //ARREGLAR BUG
+                        i=90;
                     }
 
                 }catch (Exception e){
@@ -212,6 +211,12 @@ public class TransferirInspeccionFallida extends Service {
             result.append(URLEncoder.encode(value.toString(), "UTF-8"));
         }
         return result.toString();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        notificationManager.cancel(ID_NOTIFICACION);
     }
 
 }

@@ -126,12 +126,19 @@ public class Fallida extends AppCompatActivity{
         btnEnviarFallida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ine = new Intent(Fallida.this, TransferirInspeccionFallida.class);
-                ine.putExtra("id_inspeccion",id_inspeccion);
-                startService(ine);
 
-                Intent in = new Intent(Fallida.this,InsPendientesActivity.class);
-                startActivity(in);
+                connec = new ConexionInternet(Fallida.this).isConnectingToInternet();
+                if(connec) {
+                    Intent ine = new Intent(Fallida.this, TransferirInspeccionFallida.class);
+                    ine.putExtra("id_inspeccion", id_inspeccion);
+                    startService(ine);
+
+                    Intent in = new Intent(Fallida.this,InsPendientesActivity.class);
+                    startActivity(in);
+                }else{
+                    Intent in = new Intent(Fallida.this,InsPendientesActivity.class);
+                    startActivity(in);
+                }
             }
         });
 
@@ -214,9 +221,7 @@ public class Fallida extends AppCompatActivity{
                     imagenFallida.setVisibility(View.VISIBLE);
                     String imagen = foto.convertirImagenDano(bitmap);
                     //el id se trae de la base de datos
-                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita,1, fechaHoraFallida, 0, imagen,"Foto Fallida");
-
-                    //db.idFotoFallida(Integer.parseInt(id_inspeccion))
+                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
                     break;
             }
 
@@ -225,6 +230,12 @@ public class Fallida extends AppCompatActivity{
                 servis.putExtra("nombreFoto",nombreimagen);
                 servis.putExtra("id_inspeccion",id_inspeccion);
                 startService(servis);
+
+
+
+                //volver a pendientes
+                Intent pendientes = new Intent(contexto, InsPendientesActivity.class);
+                startActivity(pendientes);
 
         }
     }
