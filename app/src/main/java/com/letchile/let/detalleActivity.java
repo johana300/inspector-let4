@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -141,14 +143,17 @@ public class detalleActivity extends AppCompatActivity {
         btnLlamar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:"+fono.getText().toString()));
+                final int REQUEST_PHONE_CALL = 1;
+                Intent callIntent2 = new Intent(Intent.ACTION_CALL);
+                callIntent2.setData(Uri.parse("tel:"+fono.getText().toString()));
 
-                if (ActivityCompat.checkSelfPermission(detalleActivity.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if(ContextCompat.checkSelfPermission(detalleActivity.this,Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(detalleActivity.this,new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+                    }else{
+                        startActivity(callIntent2);
+                    }
                 }
-                startActivity(callIntent);
             }
         });
 
@@ -235,27 +240,44 @@ public class detalleActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                //pregunto perfil, si es 3 validar horario de fallida, 6 sin validaciones
-                if(perfil.equals("3"))
-                {
-                    if(minutosDiferencia<=30 && minutosDiferencia>=-30){
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(detalleActivity.this);
+                builder.setCancelable(false);
+                builder.setMessage(Html.fromHtml("¿Desea declarar fallida la inspeccion <b>N°: "+id_inspeccion+"</b>?."));
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //pregunto perfil, si es 3 validar horario de fallida, 6 sin validaciones
+                        if(perfil.equals("3"))
+                        {
+                            if(minutosDiferencia<=30 && minutosDiferencia>=-30){
                         /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
                         intent.putExtra("id_inspeccion",n_oi.getText().toString());
                         startActivity(intent);*/
-                        new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
-                    }else{
-                        Toast.makeText(detalleActivity.this, "Fuera de rango de horario" , Toast.LENGTH_LONG).show();
-                    }
-                }
-                else
-                {
-                    new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
+                                new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
+                            }else{
+                                Toast.makeText(detalleActivity.this, "Fuera de rango de horario" , Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        else
+                        {
+                            new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
                     /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
                     intent.putExtra("id_inspeccion",n_oi.getText().toString());
                     new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());*/
 
-                    //startActivity(intent);
-                }
+                            //startActivity(intent);
+                        }
+                    }
+                });
+
+                builder.setNegativeButton("Rechazar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(detalleActivity.this, "Inspección no fallida", Toast.LENGTH_LONG).show();
+                    }
+                });
+                android.app.AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
