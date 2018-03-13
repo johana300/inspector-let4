@@ -284,101 +284,106 @@ public class motor extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         final String id_inspeccion=bundle.getString("id_inspeccion");
 
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case PHOTO_CUNA:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+        try {
+            if (resultCode == RESULT_OK) {
+                switch (requestCode) {
+                    case PHOTO_CUNA:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(mPath);
-                    bitmap = foto.redimensiomarImagen(bitmap);
-                    imageCunaMotorE.setImageBitmap(bitmap);
-                    String imagen = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Cuna Motor", 0, imagen);
+                        Bitmap bitmap = BitmapFactory.decodeFile(mPath);
+                        bitmap = foto.redimensiomarImagen(bitmap);
+                        imageCunaMotorE.setImageBitmap(bitmap);
+                        String imagen = foto.convertirImagenDano(bitmap);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Cuna Motor", 0, imagen);
 
                         Intent servis = new Intent(motor.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Cuna Motor");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Cuna Motor");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_MOTOR:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+                        break;
+                    case PHOTO_MOTOR:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmapMotor = BitmapFactory.decodeFile(mPath);
-                    bitmapMotor = foto.redimensiomarImagen(bitmapMotor);
-                    imageMotorE.setImageBitmap(bitmapMotor);
-                    String imagenMotor = foto.convertirImagenDano(bitmapMotor);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Motor", 0, imagenMotor);
-
-                     servis = new Intent(motor.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Motor");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
-                        startService(servis);
-
-                    break;
-                case PHOTO_CHASIS:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
-
-                    Bitmap bitmapChasis = BitmapFactory.decodeFile(mPath);
-                    bitmapChasis = foto.redimensiomarImagen(bitmapChasis);
-                    imageChasisVinE.setImageBitmap(bitmapChasis);
-                    String imagenChasis = foto.convertirImagenDano(bitmapChasis);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Chasis(VIN)", 0, imagenChasis);
+                        Bitmap bitmapMotor = BitmapFactory.decodeFile(mPath);
+                        bitmapMotor = foto.redimensiomarImagen(bitmapMotor);
+                        imageMotorE.setImageBitmap(bitmapMotor);
+                        String imagenMotor = foto.convertirImagenDano(bitmapMotor);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Motor", 0, imagenMotor);
 
                         servis = new Intent(motor.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Chasis(VIN)");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Motor");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_ADICIONAL:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+                        break;
+                    case PHOTO_CHASIS:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmapAdicional = BitmapFactory.decodeFile(mPath);
-                    bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
-                    imageAdicionalE.setImageBitmap(bitmapAdicional);
-                    String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Motor", 0, imagenAdicional);
+                        Bitmap bitmapChasis = BitmapFactory.decodeFile(mPath);
+                        bitmapChasis = foto.redimensiomarImagen(bitmapChasis);
+                        imageChasisVinE.setImageBitmap(bitmapChasis);
+                        String imagenChasis = foto.convertirImagenDano(bitmapChasis);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Chasis(VIN)", 0, imagenChasis);
 
                         servis = new Intent(motor.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Adicional Motor");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Chasis(VIN)");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
+                        break;
+                    case PHOTO_ADICIONAL:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
+
+                        Bitmap bitmapAdicional = BitmapFactory.decodeFile(mPath);
+                        bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
+                        imageAdicionalE.setImageBitmap(bitmapAdicional);
+                        String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Motor", 0, imagenAdicional);
+
+                        servis = new Intent(motor.this, TransferirFoto.class);
+                        servis.putExtra("comentario", "Foto Adicional Motor");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
+                        startService(servis);
+
+                        break;
+                }
             }
+        }catch (Exception e){
+            Log.e("Error",e.getMessage());
+            Toast.makeText(motor.this,"Por favor intente tomar nuevamente la fotografía",Toast.LENGTH_SHORT).show();
         }
     }
 
