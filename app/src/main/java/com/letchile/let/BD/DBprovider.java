@@ -37,6 +37,9 @@ public class DBprovider extends SQLiteOpenHelper {
     private static final String TABLA_FOTO = "CREATE TABLE FOTO " +
             "(id_inspeccion INTEGER,id_foto INTEGER, foto TEXT, comentario TEXT,enviado INTEGER,url BLOB)";
 
+    private static final String LOG_FOTO_DANO = "CREATE TABLE LOG_FDANO " +
+            "(id_fdano INTEGER, id_inspeccion INTEGER, comentario TEXT, ubicacion TEXT)";
+
     private static final String TABLA_FOTOFLLD ="CREATE TABLE FOTO_FALLIDA " +
             "(id_inspeccion INTEGER, foto TEXT, fecha DATE, id_fallida  INTEGER, fechaHoraFallida DATETIME, enviado INTEGER, url BLOB, comentario TEXT)";
 
@@ -79,6 +82,7 @@ public class DBprovider extends SQLiteOpenHelper {
         db.execSQL(TABLA_PIEZA);
         db.execSQL(TABLA_DANIOS);
         db.execSQL(TABLA_DEDUCIBLES);
+        db.execSQL(LOG_FOTO_DANO);
 
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (463,386,'Parachoque', 'posterior')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (151,148,'Maleta Portalon','posterior')");
@@ -1148,6 +1152,44 @@ public class DBprovider extends SQLiteOpenHelper {
 
         if (ars.moveToFirst()) {
             rsp = ars.getInt(ars.getColumnIndex("cantidad"));
+        }
+        return rsp;
+    }
+
+
+    /*private static final String LOG_FOTO_DANO = "CREATE LOG_FDANO " + "(id_fdano INTEGER, id_inspeccion INTEGER, comentario TEXT, ubicacion TEXT)";**/
+
+    //"(id_inspeccion INTEGER, foto TEXT, fecha DATE, id_fallida  INTEGER, fechaHoraFallida DATETIME, enviado INTEGER, url BLOB, comentario TEXT)";
+    public String insertarComentarioFoto(int id_inspeccion, String comentario, String ubicacion){
+        String resp = "";
+        ContentValues valores = new ContentValues();
+
+        SQLiteDatabase dbl = getReadableDatabase();
+        Cursor ars = dbl.rawQuery("SELECT * FROM LOG_FDANO WHERE id_inspeccion =" + id_inspeccion +"", null);
+        Integer numero = ars.getCount();
+
+        valores.put("id_fdano",numero);
+        valores.put("id_inspeccion",id_inspeccion);
+        valores.put("comentario",comentario);
+        valores.put("ubicacion",ubicacion);
+
+
+        SQLiteDatabase db = getWritableDatabase();
+        if (db != null) {
+            db.insert("LOG_FDANO", null, valores);
+            resp = "Insertado";
+        }
+        return resp;
+    }
+
+
+    public String comentarioFoto(int id_inspeccion, String ubicacion){
+        String rsp = "";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT comentario FROM LOG_FDANO WHERE id_inspeccion="+id_inspeccion+" and ubicacion ='"+ubicacion+"' ORDER BY id_fdano desc LIMIT 1", null);
+
+        if (ars.moveToFirst()) {
+            rsp = ars.getString(ars.getColumnIndex("comentario"));
         }
         return rsp;
     }

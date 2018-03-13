@@ -155,6 +155,7 @@ public class TransferirFoto extends Service {
                     //CAMBIAR A ESTADO TRANSMITIDA
                     try {
                         if (sb.toString().equals("Ok")){
+
                             db.cambiarEstadoFoto(Integer.parseInt(strings[0]),strings[1],strings[2],2);
                         }
                     }catch (Exception e){

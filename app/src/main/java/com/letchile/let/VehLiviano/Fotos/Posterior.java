@@ -88,7 +88,7 @@ public class Posterior extends AppCompatActivity {
     private String ruta = "";
     private CheckBox sensoresPoE,camaraPoE,cocoPoE,muelaPoE,enchufeRemolque,camaraRefriPoE,cubrePickPoE,equipoPoE,tapaRiPoE,LonaCubrePoE,cajaHerrPoE ;
     PropiedadesFoto foto;
-    String nombreimagen = "";
+    String nombreimagen = "", comentarioDañoImg="";
     Validaciones validaciones;
     int correlativo = 0;
 
@@ -989,10 +989,15 @@ public class Posterior extends AppCompatActivity {
                     bitmap = foto.redimensiomarImagen(bitmap);
                     mSetImage.setImageBitmap(bitmap);
                     String imagenDano = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Daño Posterior",0,imagenDano);
+
+                    comentarioDañoImg = spinnerPiezaPoE.getSelectedItem().toString()+' '+spinnerDanoPoE.getSelectedItem().toString()+' '+spinnerDeduciblePoE.getSelectedItem().toString()+' ';
+                    db.insertarComentarioFoto(Integer.parseInt(id_inspeccion),comentarioDañoImg,"posterior");
+                    String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"posterior");
+
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, comentarito,0,imagenDano);
 
                         Intent servis = new Intent(Posterior.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Daño Posterior");
+                    servis.putExtra("comentario",comentarito);
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1509,7 +1514,7 @@ public class Posterior extends AppCompatActivity {
             cajaHerrPoE.setVisibility(View.GONE);
             imageCajaHerrPoE.setImageBitmap(null);
 
-            String imagenDanoPosterior = db.foto(Integer.parseInt(id),"Daño Posterior");
+            String imagenDanoPosterior = db.foto(Integer.parseInt(id),db.comentarioFoto(Integer.parseInt(id),"posterior"));
 
             if(imagenDanoPosterior.length()>=3 )
             {
