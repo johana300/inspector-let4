@@ -199,7 +199,6 @@
                         android:id="@+id/btnSeccionTresInterior"
                         style="@android:style/Widget.Button"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
                         android:text="Sección 3: Accesorios"
                         android:textSize="18sp" />
@@ -340,6 +339,14 @@
                         android:layout_height="130dp"
                         android:layout_gravity="center"
                         android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btnSeccionTresInteriorMQ"
+                        style="@android:style/Widget.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sección 3.1: Accesorios"
+                        android:textSize="18sp" />
 
                     <CheckBox
                         android:id="@+id/retroElectE"

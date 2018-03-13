@@ -63,7 +63,7 @@ public class interior extends AppCompatActivity {
     private final int PHOTO_WOOFER = 2100;
     private final int PHOTO_PANTALLA = 2200;
     private final int PHOTO_GPS = 2300;
-    private Button btnVolverInteriorE,btnVolverSecInteriorE,btnSiguienteInteriorE,btnPanelFueraInteE,btnPanelDentroInteE,btnRadioInteriorE,btnKilometrajeE,btnAdicionalInteriorE,btnSeccionUnoInterior, btnSeccionTresInterior;
+    private Button btnVolverInteriorE,btnVolverSecInteriorE,btnSiguienteInteriorE,btnPanelFueraInteE,btnPanelDentroInteE,btnRadioInteriorE,btnKilometrajeE,btnAdicionalInteriorE,btnSeccionUnoInterior, btnSeccionTresInterior, btnSeccionTresMQ;
     private ImageView imagePanelFueraInteE,imagePanelDentroInteE,imageRadioInteriorE,imageKilometrajeE,imageAdicionalInteriorE,imageLuzCheckEngineE,imageluzTestigoAirE,
             imageControlCruceE,imageBluetoothE,imageTapizCueroE,imageButacaElectE,imageCortaCorriE,imageAlzavidrioDeE,imageAlzavidrioTrE,imageRetroElectE,imageParlantesE,
             imageTweeterE,imageAmplifiUnoE,imageAmplifiDosE,imageWooferE,imagePantallaDvdE,imageGpsE;
@@ -138,6 +138,7 @@ public class interior extends AppCompatActivity {
         btnSeccionUnoInterior = findViewById(R.id.btnSeccionUnoInterior);
         btnSeccionTresInterior = findViewById(R.id.btnSeccionTresInterior);
         txtAlzavidrioE = findViewById(R.id.txtAlzavidrioE);
+        btnSeccionTresMQ = findViewById(R.id.btnSeccionTresInteriorMQ);
 
 
         btnPanelFueraInteE.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +177,14 @@ public class interior extends AppCompatActivity {
             @Override
             public void onClick(View v) {desplegarCamposSeccionTres(id_inspeccion);  }
         });
+
+        btnSeccionTresMQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                desplegarCamposSeccionTresMQ(id_inspeccion);
+            }
+        });
+
 
 
         luzCheckEngineE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),791));
@@ -1915,6 +1924,28 @@ try {
             alzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setImageBitmap(null);
+
+
+        }
+        else
+        {
+            //seccion uno
+            btnPanelFueraInteE.setVisibility(View.GONE);
+            imagePanelFueraInteE.setVisibility(View.GONE);
+            imagePanelFueraInteE.setImageBitmap(null);
+            btnPanelDentroInteE.setVisibility(View.GONE);
+            imagePanelDentroInteE.setVisibility(View.GONE);
+            imagePanelDentroInteE.setImageBitmap(null);
+            btnRadioInteriorE.setVisibility(View.GONE);
+            imageRadioInteriorE.setVisibility(View.GONE);
+            imageRadioInteriorE.setImageBitmap(null);
+            btnKilometrajeE.setVisibility(View.GONE);
+            imageKilometrajeE.setVisibility(View.GONE);
+            imageKilometrajeE.setImageBitmap(null);
+            btnAdicionalInteriorE.setVisibility(View.GONE);
+            imageAdicionalInteriorE.setVisibility(View.GONE);
+            imageAdicionalInteriorE.setImageBitmap(null);
+
             retroElectE.setVisibility(View.GONE);
             imageRetroElectE.setVisibility(View.GONE);
             imageRetroElectE.setImageBitmap(null);
@@ -1940,25 +1971,6 @@ try {
             imageGpsE.setVisibility(View.GONE);
             imageGpsE.setImageBitmap(null);
             txtAlzavidrioE.setVisibility(View.GONE);
-        }
-        else
-        {
-            //seccion uno
-            btnPanelFueraInteE.setVisibility(View.GONE);
-            imagePanelFueraInteE.setVisibility(View.GONE);
-            imagePanelFueraInteE.setImageBitmap(null);
-            btnPanelDentroInteE.setVisibility(View.GONE);
-            imagePanelDentroInteE.setVisibility(View.GONE);
-            imagePanelDentroInteE.setImageBitmap(null);
-            btnRadioInteriorE.setVisibility(View.GONE);
-            imageRadioInteriorE.setVisibility(View.GONE);
-            imageRadioInteriorE.setImageBitmap(null);
-            btnKilometrajeE.setVisibility(View.GONE);
-            imageKilometrajeE.setVisibility(View.GONE);
-            imageKilometrajeE.setImageBitmap(null);
-            btnAdicionalInteriorE.setVisibility(View.GONE);
-            imageAdicionalInteriorE.setVisibility(View.GONE);
-            imageAdicionalInteriorE.setImageBitmap(null);
 
 
             String imageLuzCheckEngine = db.foto(Integer.parseInt(id),"Foto Check Engine Interior");
@@ -1970,14 +1982,7 @@ try {
             String imageCortaCorri = db.foto(Integer.parseInt(id),"Foto Corta Corriente Interior");
             String imageAlzavidrioDe = db.foto(Integer.parseInt(id),"Foto Alza Vidrio Delantero Interior");
             String imageAlzavidrioTr = db.foto(Integer.parseInt(id),"Foto Alza Vidrio Trasero Interior");
-            String imageRetroElect = db.foto(Integer.parseInt(id),"Foto Retrovisor Eléctrico Interior");
-            String imageParlantes = db.foto(Integer.parseInt(id),"Foto Parlantes Interior");
-            String imageTweeter = db.foto(Integer.parseInt(id),"Foto Tweeter Interior");
-            String imageAmplifiUno = db.foto(Integer.parseInt(id),"Foto Amplificador Uno Interior");
-            String imageAmplifiDos = db.foto(Integer.parseInt(id),"Foto Amplificador Dos Interior");
-            String imageWoofer = db.foto(Integer.parseInt(id),"Foto Woofer Interior");
-            String imagePantallaDvd = db.foto(Integer.parseInt(id),"Foto Pantalla DVD Interior");
-            String imageGps = db.foto(Integer.parseInt(id),"Foto GPS Interior");
+
 
 
             if(imageLuzCheckEngine.length()>3)
@@ -2043,62 +2048,7 @@ try {
                 imageAlzavidrioTrE.setImageBitmap(decodedByte);
                 alzavidrioTrE.setChecked(true);
             }
-            if(imageRetroElect.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imageRetroElect, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageRetroElectE.setImageBitmap(decodedByte);
-                retroElectE.setChecked(true);
-            }
-            if(imageParlantes.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imageParlantes, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageParlantesE.setImageBitmap(decodedByte);
-                parlantesE.setChecked(true);
-            }
-            if(imageTweeter.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imageTweeter, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageTweeterE.setImageBitmap(decodedByte);
-                tweeterE.setChecked(true);
-            }
-            if(imageAmplifiUno.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imageAmplifiUno, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageAmplifiUnoE.setImageBitmap(decodedByte);
-                amplifiUnoE.setChecked(true);
-            }
-            if(imageAmplifiDos.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imageAmplifiDos, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageAmplifiDosE.setImageBitmap(decodedByte);
-                amplifiDosE.setChecked(true);
-            }
-            if(imageWoofer.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imageWoofer, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageWooferE.setImageBitmap(decodedByte);
-                wooferE.setChecked(true);
-            }
-            if(imagePantallaDvd.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imagePantallaDvd, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imagePantallaDvdE.setImageBitmap(decodedByte);
-                pantallaDvdE.setChecked(true);
-            }
-            if(imageGps.length()>3)
-            {
-                byte[] decodedString = Base64.decode(imageGps, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageGpsE.setImageBitmap(decodedByte);
-                gpsE.setChecked(true);
-            }
+
 
 
 
@@ -2120,6 +2070,152 @@ try {
             imageAlzavidrioDeE.setVisibility(View.VISIBLE);
             alzavidrioTrE.setVisibility(View.VISIBLE);
             imageAlzavidrioTrE.setVisibility(View.VISIBLE);
+            txtAlzavidrioE.setVisibility(View.VISIBLE);
+
+
+        }
+
+    }
+
+    private void desplegarCamposSeccionTresMQ(String id){
+        if (retroElectE.getVisibility() == View.VISIBLE) {
+
+
+            retroElectE.setVisibility(View.GONE);
+            imageRetroElectE.setVisibility(View.GONE);
+            imageRetroElectE.setImageBitmap(null);
+            parlantesE.setVisibility(View.GONE);
+            imageParlantesE.setVisibility(View.GONE);
+            imageParlantesE.setImageBitmap(null);
+            tweeterE.setVisibility(View.GONE);
+            imageTweeterE.setVisibility(View.GONE);
+            imageTweeterE.setImageBitmap(null);
+            amplifiUnoE.setVisibility(View.GONE);
+            imageAmplifiUnoE.setVisibility(View.GONE);
+            imageAmplifiUnoE.setImageBitmap(null);
+            amplifiDosE.setVisibility(View.GONE);
+            imageAmplifiDosE.setVisibility(View.GONE);
+            imageAmplifiDosE.setImageBitmap(null);
+            wooferE.setVisibility(View.GONE);
+            imageWooferE.setVisibility(View.GONE);
+            imageWooferE.setImageBitmap(null);
+            pantallaDvdE.setVisibility(View.GONE);
+            imagePantallaDvdE.setVisibility(View.GONE);
+            imagePantallaDvdE.setImageBitmap(null);
+            gpsE.setVisibility(View.GONE);
+            imageGpsE.setVisibility(View.GONE);
+            imageGpsE.setImageBitmap(null);
+            txtAlzavidrioE.setVisibility(View.GONE);
+        }
+        else {
+            //seccion uno
+            btnPanelFueraInteE.setVisibility(View.GONE);
+            imagePanelFueraInteE.setVisibility(View.GONE);
+            imagePanelFueraInteE.setImageBitmap(null);
+            btnPanelDentroInteE.setVisibility(View.GONE);
+            imagePanelDentroInteE.setVisibility(View.GONE);
+            imagePanelDentroInteE.setImageBitmap(null);
+            btnRadioInteriorE.setVisibility(View.GONE);
+            imageRadioInteriorE.setVisibility(View.GONE);
+            imageRadioInteriorE.setImageBitmap(null);
+            btnKilometrajeE.setVisibility(View.GONE);
+            imageKilometrajeE.setVisibility(View.GONE);
+            imageKilometrajeE.setImageBitmap(null);
+            btnAdicionalInteriorE.setVisibility(View.GONE);
+            imageAdicionalInteriorE.setVisibility(View.GONE);
+            imageAdicionalInteriorE.setImageBitmap(null);
+
+            luzCheckEngineE.setVisibility(View.GONE);
+            imageLuzCheckEngineE.setVisibility(View.GONE);
+            imageLuzCheckEngineE.setImageBitmap(null);
+            luzTestigoAirE.setVisibility(View.GONE);
+            imageluzTestigoAirE.setVisibility(View.GONE);
+            imageluzTestigoAirE.setImageBitmap(null);
+            controlCruceE.setVisibility(View.GONE);
+            imageControlCruceE.setVisibility(View.GONE);
+            imageControlCruceE.setImageBitmap(null);
+            bluetoothE.setVisibility(View.GONE);
+            imageBluetoothE.setVisibility(View.GONE);
+            imageBluetoothE.setImageBitmap(null);
+            tapizCueroE.setVisibility(View.GONE);
+            imageTapizCueroE.setVisibility(View.GONE);
+            imageTapizCueroE.setImageBitmap(null);
+            butacaElectE.setVisibility(View.GONE);
+            imageButacaElectE.setVisibility(View.GONE);
+            imageButacaElectE.setImageBitmap(null);
+            cortaCorriE.setVisibility(View.GONE);
+            imageCortaCorriE.setVisibility(View.GONE);
+            imageCortaCorriE.setImageBitmap(null);
+            alzavidrioDeE.setVisibility(View.GONE);
+            imageAlzavidrioDeE.setVisibility(View.GONE);
+            imageAlzavidrioDeE.setImageBitmap(null);
+            alzavidrioTrE.setVisibility(View.GONE);
+            imageAlzavidrioTrE.setVisibility(View.GONE);
+            imageAlzavidrioTrE.setImageBitmap(null);
+
+
+            String imageRetroElect = db.foto(Integer.parseInt(id), "Foto Retrovisor Eléctrico Interior");
+            String imageParlantes = db.foto(Integer.parseInt(id), "Foto Parlantes Interior");
+            String imageTweeter = db.foto(Integer.parseInt(id), "Foto Tweeter Interior");
+            String imageAmplifiUno = db.foto(Integer.parseInt(id), "Foto Amplificador Uno Interior");
+            String imageAmplifiDos = db.foto(Integer.parseInt(id), "Foto Amplificador Dos Interior");
+            String imageWoofer = db.foto(Integer.parseInt(id), "Foto Woofer Interior");
+            String imagePantallaDvd = db.foto(Integer.parseInt(id), "Foto Pantalla DVD Interior");
+            String imageGps = db.foto(Integer.parseInt(id), "Foto GPS Interior");
+
+
+
+            if (imageRetroElect.length() > 3) {
+                byte[] decodedString = Base64.decode(imageRetroElect, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageRetroElectE.setImageBitmap(decodedByte);
+                retroElectE.setChecked(true);
+            }
+            if (imageParlantes.length() > 3) {
+                byte[] decodedString = Base64.decode(imageParlantes, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageParlantesE.setImageBitmap(decodedByte);
+                parlantesE.setChecked(true);
+            }
+            if (imageTweeter.length() > 3) {
+                byte[] decodedString = Base64.decode(imageTweeter, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageTweeterE.setImageBitmap(decodedByte);
+                tweeterE.setChecked(true);
+            }
+            if (imageAmplifiUno.length() > 3) {
+                byte[] decodedString = Base64.decode(imageAmplifiUno, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageAmplifiUnoE.setImageBitmap(decodedByte);
+                amplifiUnoE.setChecked(true);
+            }
+            if (imageAmplifiDos.length() > 3) {
+                byte[] decodedString = Base64.decode(imageAmplifiDos, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageAmplifiDosE.setImageBitmap(decodedByte);
+                amplifiDosE.setChecked(true);
+            }
+            if (imageWoofer.length() > 3) {
+                byte[] decodedString = Base64.decode(imageWoofer, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageWooferE.setImageBitmap(decodedByte);
+                wooferE.setChecked(true);
+            }
+            if (imagePantallaDvd.length() > 3) {
+                byte[] decodedString = Base64.decode(imagePantallaDvd, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imagePantallaDvdE.setImageBitmap(decodedByte);
+                pantallaDvdE.setChecked(true);
+            }
+            if (imageGps.length() > 3) {
+                byte[] decodedString = Base64.decode(imageGps, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageGpsE.setImageBitmap(decodedByte);
+                gpsE.setChecked(true);
+            }
+
+
+
             retroElectE.setVisibility(View.VISIBLE);
             imageRetroElectE.setVisibility(View.VISIBLE);
             parlantesE.setVisibility(View.VISIBLE);
@@ -2136,11 +2232,8 @@ try {
             imagePantallaDvdE.setVisibility(View.VISIBLE);
             gpsE.setVisibility(View.VISIBLE);
             imageGpsE.setVisibility(View.VISIBLE);
-            txtAlzavidrioE.setVisibility(View.VISIBLE);
-
 
         }
-
     }
 
 }
