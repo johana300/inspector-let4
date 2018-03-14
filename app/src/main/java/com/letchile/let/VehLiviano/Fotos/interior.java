@@ -488,6 +488,7 @@ public class interior extends AppCompatActivity {
                     Intent intent = new Intent(interior.this, motor.class);
                     intent.putExtra("id_inspeccion", id_inspeccion);
                     startActivity(intent);
+                    finish();
                 }
 
             }

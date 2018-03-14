@@ -1067,6 +1067,7 @@ public class DBprovider extends SQLiteOpenHelper {
             db.execSQL("DELETE FROM INSPECCION WHERE id_inspeccion=" + id_inspeccion);
             db.execSQL("DELETE FROM FOTO WHERE id_inspeccion=" + id_inspeccion);
             db.execSQL("DELETE FROM VALOR WHERE idInspeccion=" + id_inspeccion);
+            db.execSQL("DELETE FROM LOG_FDANO WHERE id_inspeccion="+id_inspeccion);
         }
         db.close();
     }

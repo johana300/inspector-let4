@@ -53,6 +53,7 @@ public class SeccionActivity extends Activity {
                 Intent intent = new Intent(SeccionActivity.this, Posterior.class);
                 intent.putExtra("id_inspeccion", id_inspeccion);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -184,12 +185,14 @@ public class SeccionActivity extends Activity {
                                 if (!compruebaServicio(TransferirInspeccion.class)) {
                                     Intent servis = new Intent(SeccionActivity.this, TransferirInspeccion.class);
                                     startService(servis);
+                                    finish();
                                 }
                             }
 
 
                             Intent seccion = new Intent(SeccionActivity.this, InsPendientesActivity.class);
                             startActivity(seccion);
+                            finish();
 
                         }else{
                             Toast.makeText(SeccionActivity.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();

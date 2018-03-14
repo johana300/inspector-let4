@@ -259,6 +259,7 @@ public class frontal extends AppCompatActivity {
                     Intent intent = new Intent(frontal.this, lateralizquierdo.class);
                     intent.putExtra("id_inspeccion",id_inspeccion);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

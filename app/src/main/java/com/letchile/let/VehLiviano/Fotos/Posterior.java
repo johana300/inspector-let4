@@ -463,6 +463,7 @@ public class Posterior extends AppCompatActivity {
                     Intent intent   = new Intent(Posterior.this,lateralderecho.class);
                     intent.putExtra("id_inspeccion",id_inspeccion);
                     startActivity(intent);
+                    finish();
 
                 }
             }
@@ -1861,5 +1862,9 @@ public class Posterior extends AppCompatActivity {
 
 
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
 }

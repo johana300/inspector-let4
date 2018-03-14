@@ -190,6 +190,7 @@ public class documento extends AppCompatActivity {
                             Intent intent = new Intent(documento.this,DatosAsegActivity.class);
                             intent.putExtra("id_inspeccion",id_inspeccion);
                             startActivity(intent);
+                            finish();
                         }
 
                     }

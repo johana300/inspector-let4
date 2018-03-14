@@ -161,6 +161,7 @@ public class lateralderecho extends AppCompatActivity {
                     Intent intent = new Intent(lateralderecho.this, frontal.class);
                     intent.putExtra("id_inspeccion",id_inspeccion);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

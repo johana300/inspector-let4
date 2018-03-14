@@ -192,10 +192,18 @@ public class DatosAsegActivity extends AppCompatActivity {
                 Intent intent = new Intent(DatosAsegActivity.this, SeccionActivity.class);//cambiar por volver a fotos
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
+                onDestroy();
+                //finish();
             }
         });
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
     }
 }
 

@@ -230,6 +230,7 @@ public class lateralizquierdo extends AppCompatActivity {
                     Intent intent = new Intent(lateralizquierdo.this, llantasneumaticos.class);
                     intent.putExtra("id_inspeccion", id_inspeccion);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

@@ -140,6 +140,7 @@ public class motor extends AppCompatActivity {
                     Intent intent = new Intent(motor.this, documento.class);
                     intent.putExtra("id_inspeccion", id_inspeccion);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

@@ -207,6 +207,7 @@ public class vl_techo extends AppCompatActivity {
                 Intent intent   = new Intent(vl_techo.this,interior.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
+                finish();
             }
         });
 

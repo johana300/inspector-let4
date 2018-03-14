@@ -130,6 +130,7 @@ public class llantasneumaticos extends AppCompatActivity {
                     Intent intent   = new Intent(llantasneumaticos.this,vl_techo.class);
                     intent.putExtra("id_inspeccion",id_inspeccion);
                     startActivity(intent);
+                    finish();
                 }
 
             }
