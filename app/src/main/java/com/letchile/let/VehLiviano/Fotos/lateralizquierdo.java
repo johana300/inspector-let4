@@ -59,7 +59,7 @@ public class lateralizquierdo extends AppCompatActivity {
     private String mPath;
     private File ruta_sd;
     private String ruta = "";
-    String nombreimagen = "";
+    String nombreimagen = "", comentarioDañoImg="";
     PropiedadesFoto foto;
     Validaciones validaciones;
     int correlativo = 0;
@@ -590,11 +590,16 @@ public class lateralizquierdo extends AppCompatActivity {
                     bitmapDano = foto.redimensiomarImagen(bitmapDano);
                     imagenIzDanoE.setImageBitmap(bitmapDano);
                     String imagenDano = foto.convertirImagenDano(bitmapDano);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto  Daño Lateral Izquierdo", 0, imagenDano);
+
+                    comentarioDañoImg = spinnerPiezaIzE.getSelectedItem().toString()+' '+spinnerDanoIzE.getSelectedItem().toString()+' '+spinnerDeducibleIzE.getSelectedItem().toString()+' ';
+                    db.insertarComentarioFoto(Integer.parseInt(id_inspeccion),comentarioDañoImg,"lateral_izquierdo");
+                    String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"lateral_izquierdo");
+
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, comentarito, 0, imagenDano);
 
 
                          servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto  Daño Lateral Izquierdo");
+                    servis.putExtra("comentario",comentarito);
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -819,7 +824,7 @@ public class lateralizquierdo extends AppCompatActivity {
             imagePolarizadoLaIzE.setVisibility(View.GONE);
             imagePolarizadoLaIzE.setImageBitmap(null);
 
-            String imagenIzDano = db.foto(Integer.parseInt(id),"Foto  Daño Lateral Izquierdo");
+            String imagenIzDano = db.foto(Integer.parseInt(id),db.comentarioFoto(Integer.parseInt(id),"lateral_izquierdo"));
 
             if(imagenIzDano.length()>3)
             {

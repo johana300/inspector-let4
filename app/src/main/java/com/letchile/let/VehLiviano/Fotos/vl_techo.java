@@ -56,7 +56,7 @@ public class vl_techo extends AppCompatActivity {
     private File ruta_sd;
     private String ruta = "";
     PropiedadesFoto foto;
-    String nombreimagen = "";
+    String nombreimagen = "", comentarioDañoImg="";
     Validaciones validaciones;
     int correlativo=0;
 
@@ -430,10 +430,15 @@ public class vl_techo extends AppCompatActivity {
                     bitmapTecho = foto.redimensiomarImagen(bitmapTecho);
                     imagenTechoDanoE.setImageBitmap(bitmapTecho);
                     String imagenTechoDano = foto.convertirImagenDano(bitmapTecho);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Daño Techo", 0, imagenTechoDano);
+
+                    comentarioDañoImg = spinnerPiezaTechoE.getSelectedItem().toString()+' '+spinnerDanoTechoE.getSelectedItem().toString()+' '+spinnerDeducibleTechoE.getSelectedItem().toString()+' ';
+                    db.insertarComentarioFoto(Integer.parseInt(id_inspeccion),comentarioDañoImg,"techo");
+                    String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"techo");
+
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, comentarito, 0, imagenTechoDano);
 
                         Intent servis = new Intent(vl_techo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Daño Techo");
+                    servis.putExtra("comentario",comentarito);
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -605,7 +610,7 @@ public class vl_techo extends AppCompatActivity {
             imageSunroofE.setVisibility(View.GONE);
             imageSunroofE.setImageBitmap(null);
 
-            String imagenTechoDano = db.foto(Integer.parseInt(id),"Foto Daño Techo");
+            String imagenTechoDano = db.foto(Integer.parseInt(id),db.comentarioFoto(Integer.parseInt(id),"techo"));
 
             if(imagenTechoDano.length()>3)
             {

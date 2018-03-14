@@ -61,7 +61,7 @@ public class frontal extends AppCompatActivity {
     private File ruta_sd;
     private String ruta = "";
     PropiedadesFoto foto;
-    String nombreimagen = "";
+    String nombreimagen = "",comentarioDañoImg="";
     Validaciones validaciones;
     int correlativo = 0;
 
@@ -655,10 +655,15 @@ public class frontal extends AppCompatActivity {
                     bitmapDano = foto.redimensiomarImagen(bitmapDano);
                     imagenFrontalDanoE.setImageBitmap(bitmapDano);
                     String imagendano = foto.convertirImagenDano(bitmapDano);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Daño Frontal",0,imagendano);
+
+                    comentarioDañoImg = spinnerPiezaFrontalE.getSelectedItem().toString()+' '+spinnerDanoFrontalE.getSelectedItem().toString()+' '+spinnerDeducibleFrontalE.getSelectedItem().toString()+' ';
+                    db.insertarComentarioFoto(Integer.parseInt(id_inspeccion),comentarioDañoImg,"frontal");
+                    String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"frontal");
+
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, comentarito,0,imagendano);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Daño Frontal");
+                    servis.putExtra("comentario",comentarito);
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -916,7 +921,7 @@ public class frontal extends AppCompatActivity {
             imageLogoE.setVisibility(View.GONE);
             imageLogoE.setImageBitmap(null);
 
-            String imagenFrontalDano = db.foto(Integer.parseInt(id),"Daño Frontal");
+            String imagenFrontalDano = db.foto(Integer.parseInt(id),db.comentarioFoto(Integer.parseInt(id),"frontal"));
 
             if(imagenFrontalDano.length()>=3 )
             {

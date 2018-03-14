@@ -52,7 +52,7 @@ public class lateralderecho extends AppCompatActivity {
     private String mPath;
     private File ruta_sd;
     private String ruta = "";
-    String nombreimagen = "";
+    String nombreimagen = "",comentarioDañoImg="";
     PropiedadesFoto foto;
     int correlativo = 0;
 
@@ -321,6 +321,8 @@ public class lateralderecho extends AppCompatActivity {
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imagenLateDerechoE.setImageBitmap(bitmap);
                     String imagen = foto.convertirImagenDano(bitmap);
+
+
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lateral Derecho", 0, imagen);
 
                         Intent servis = new Intent(lateralderecho.this, TransferirFoto.class);
@@ -392,10 +394,15 @@ public class lateralderecho extends AppCompatActivity {
                     bitmapDano = foto.redimensiomarImagen(bitmapDano);
                     imagenLaDeDanoE.setImageBitmap(bitmapDano);
                     String imagenDano = foto.convertirImagenDano(bitmapDano);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Daño Lateral Derecho",0,imagenDano);
+
+                    comentarioDañoImg = spinnerPiezaDeE.getSelectedItem().toString()+' '+spinnerDanoDeE.getSelectedItem().toString()+' '+spinnerDeducibleDeE.getSelectedItem().toString()+' ';
+                    db.insertarComentarioFoto(Integer.parseInt(id_inspeccion),comentarioDañoImg,"lateral_derecho");
+                    String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"lateral_derecho");
+
+                    db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, comentarito,0,imagenDano);
 
                         servis = new Intent(lateralderecho.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Daño Lateral Derecho");
+                    servis.putExtra("comentario",comentarito);
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -498,7 +505,7 @@ public class lateralderecho extends AppCompatActivity {
 
 
 
-            String imagenLaDeDano = db.foto(Integer.parseInt(id),"Daño Lateral Derecho");
+            String imagenLaDeDano = db.foto(Integer.parseInt(id),db.comentarioFoto(Integer.parseInt(id),"lateral_derecho"));
 
             if(imagenLaDeDano.length()>=3)
             {
