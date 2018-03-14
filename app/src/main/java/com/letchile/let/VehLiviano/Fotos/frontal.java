@@ -660,6 +660,9 @@ public class frontal extends AppCompatActivity {
                     imagenFrontalDanoE.setImageBitmap(bitmapDano);
                     String imagendano = foto.convertirImagenDano(bitmapDano);
 
+
+
+
                     comentarioDañoImg = spinnerPiezaFrontalE.getSelectedItem().toString()+' '+spinnerDanoFrontalE.getSelectedItem().toString()+' '+spinnerDeducibleFrontalE.getSelectedItem().toString()+' ';
                     db.insertarComentarioFoto(Integer.parseInt(id_inspeccion),comentarioDañoImg,"frontal");
                     String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"frontal");
