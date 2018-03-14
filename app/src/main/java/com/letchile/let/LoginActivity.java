@@ -19,7 +19,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.annotations.Expose;
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.LoginEnv;
+import com.letchile.let.Clases.LoginResp;
+import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 
 import org.json.JSONObject;
@@ -35,6 +39,12 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -67,23 +77,74 @@ public class LoginActivity extends AppCompatActivity {
         else
             btnLogin.setEnabled(false);
 
+        final EditText usuario = (EditText) findViewById(R.id.usuarioM);
+        final EditText password = (EditText) findViewById(R.id.contrasenaM);
 
         //llamar al usuario insertado de la base de datos para omitir el login
-        String usuario = db.obtenerUsuario();
+        /*String usuario = db.obtenerUsuario();
         if(usuario.equals("")) {
             btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EditText usuario = (EditText) findViewById(R.id.usuarioM);
-                    EditText password = (EditText) findViewById(R.id.contrasenaM);
-
                     new SendPostRequest().execute(usuario.getText().toString(), password.getText().toString());
                 }
             });
         }else{
             Intent i = new Intent(LoginActivity.this, InsPendientesActivity.class);
             startActivity(i);
-        }
+        }*/
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(getString(R.string.URL_LOGIN))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            final InterfacePost servicio = retrofit.create(InterfacePost.class);
+
+
+        pDialog= new ProgressDialog(LoginActivity.this);
+        pDialog.setMessage("Autenticando...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                pDialog.show();
+
+                LoginEnv loginEnv = new LoginEnv();
+
+                loginEnv.setUsr(usuario.getText().toString());
+                loginEnv.setPwd(password.getText().toString());
+
+                Call<LoginResp> loginRespCall = servicio.getAcceso(loginEnv);
+
+                loginRespCall.enqueue(new Callback<LoginResp>() {
+                    @Override
+                    public void onResponse(Call<LoginResp> call, Response<LoginResp> response) {
+                        int statusCode = response.code();
+
+                        LoginResp loginResp = response.body();
+
+                        Log.d("login","onResponse "+statusCode);
+
+                        Toast.makeText(LoginActivity.this,"onResponse "+statusCode+ ' '+ loginResp.getMSJ(),Toast.LENGTH_SHORT).show();
+
+                        pDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResp> call, Throwable t) {
+                        Log.e("login","onFailure"+ t.getMessage());
+                        Toast.makeText(LoginActivity.this,"onFailure"+ t.getMessage(),Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
+                    }
+                });
+            }
+        });
 
     }
 
@@ -277,6 +338,9 @@ public class LoginActivity extends AppCompatActivity {
         }
         return result.toString();
     }
+
+
+
 }
 
 

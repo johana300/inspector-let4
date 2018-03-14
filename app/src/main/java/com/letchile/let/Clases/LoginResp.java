@@ -1,24 +1,20 @@
 package com.letchile.let.Clases;
 
-/**
- * Created by LET-CHILE on 13-03-2018.
- */
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RespuestaServicioFoto {
+/**
+ * Created by LET-CHILE on 14-03-2018.
+ */
+
+public class LoginResp {
 
     @SerializedName("MSJ")
     @Expose
-    private String mSJ;
+    private String MSJ;
 
     public String getMSJ() {
-        return mSJ;
-    }
-
-    public void setMSJ(String mSJ) {
-        this.mSJ = mSJ;
+        return MSJ;
     }
 
 
