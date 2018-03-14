@@ -400,7 +400,7 @@ public class lateralderecho extends AppCompatActivity {
                     String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"lateral_derecho");
 
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, comentarito,0,imagenDano);
-
+                    dañosDedu = db.DeduciblePieza(spinnerPiezaDeE.getSelectedItem().toString(), "lateral_derecho");
                     //daño
                     db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][0]),String.valueOf(db.obtenerDanio(spinnerDanoDeE.getSelectedItem().toString())));
 
@@ -409,7 +409,8 @@ public class lateralderecho extends AppCompatActivity {
 
                     servis = new Intent(lateralderecho.this, TransferirFoto.class);
                     servis.putExtra("comentario",comentarito);
-                    dañosDedu = db.DeduciblePieza(spinnerPiezaDeE.getSelectedItem().toString(), "lateral_derecho");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
                     //danioPo=db.Deducible(spinnerDeduciblePoE.getSelectedItem().toString());
 
                     break;
