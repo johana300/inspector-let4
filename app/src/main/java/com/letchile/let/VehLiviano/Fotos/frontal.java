@@ -64,6 +64,7 @@ public class frontal extends AppCompatActivity {
     String nombreimagen = "",comentarioDañoImg="";
     Validaciones validaciones;
     int correlativo = 0;
+    String dañosDedu[][];
 
     public frontal(){db = new DBprovider(this);foto=new PropiedadesFoto(this);validaciones = new Validaciones(this);
     }
@@ -586,6 +587,9 @@ public class frontal extends AppCompatActivity {
                     String imagen = foto.convertirImagenDano(bitmap);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Frontal", 0, imagen);
 
+
+
+
                         Intent servis = new Intent(frontal.this, TransferirFoto.class);
                     servis.putExtra("comentario","Foto Frontal");
                         servis.putExtra("id_inspeccion",id_inspeccion);
@@ -661,6 +665,16 @@ public class frontal extends AppCompatActivity {
                     String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"frontal");
 
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, comentarito,0,imagendano);
+
+
+                    dañosDedu = db.DeduciblePieza(spinnerPiezaFrontalE.getSelectedItem().toString(), "frontal");
+                    //danioPo=db.Deducible(spinnerDeduciblePoE.getSelectedItem().toString());
+
+                    //daño
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][0]),String.valueOf(db.obtenerDanio(spinnerDanoFrontalE.getSelectedItem().toString())));
+
+                    //deducible
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][1]),db.obtenerDeducible(db.obtenerDanio(spinnerDanoFrontalE.getSelectedItem().toString()),spinnerDeducibleFrontalE.getSelectedItem().toString()));
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                     servis.putExtra("comentario",comentarito);

@@ -59,6 +59,7 @@ public class vl_techo extends AppCompatActivity {
     String nombreimagen = "", comentarioDañoImg="";
     Validaciones validaciones;
     int correlativo=0;
+    String dañosDedu[][];
 
     public vl_techo(){db = new DBprovider(this);foto=new PropiedadesFoto(this); validaciones = new Validaciones(this);
     }
@@ -235,6 +236,7 @@ public class vl_techo extends AppCompatActivity {
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Dano.jpg";
+
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -436,6 +438,18 @@ public class vl_techo extends AppCompatActivity {
                     String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"techo");
 
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, comentarito, 0, imagenTechoDano);
+
+
+                    dañosDedu = db.DeduciblePieza(spinnerPiezaTechoE.getSelectedItem().toString(), "techo");
+                    //danioPo=db.Deducible(spinnerDeduciblePoE.getSelectedItem().toString());
+
+                    //daño
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][0]),String.valueOf(db.obtenerDanio(spinnerDanoTechoE.getSelectedItem().toString())));
+
+                    //deducible
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][1]),db.obtenerDeducible(db.obtenerDanio(spinnerDanoTechoE.getSelectedItem().toString()),spinnerDeducibleTechoE.getSelectedItem().toString()));
+
+
 
                         Intent servis = new Intent(vl_techo.this, TransferirFoto.class);
                     servis.putExtra("comentario",comentarito);
