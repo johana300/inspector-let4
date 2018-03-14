@@ -55,6 +55,7 @@ public class lateralderecho extends AppCompatActivity {
     String nombreimagen = "";
     PropiedadesFoto foto;
     int correlativo = 0;
+    String dañosDedu[][];
 
 
     public lateralderecho(){db = new DBprovider(this);foto=new PropiedadesFoto(this);
@@ -323,7 +324,8 @@ public class lateralderecho extends AppCompatActivity {
                     String imagen = foto.convertirImagenDano(bitmap);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lateral Derecho", 0, imagen);
 
-                        Intent servis = new Intent(lateralderecho.this, TransferirFoto.class);
+
+                    Intent servis = new Intent(lateralderecho.this, TransferirFoto.class);
                     servis.putExtra("comentario","Foto Lateral Derecho");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
@@ -394,7 +396,18 @@ public class lateralderecho extends AppCompatActivity {
                     String imagenDano = foto.convertirImagenDano(bitmapDano);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Daño Lateral Derecho",0,imagenDano);
 
-                        servis = new Intent(lateralderecho.this, TransferirFoto.class);
+                    dañosDedu = db.DeduciblePieza(spinnerPiezaDeE.getSelectedItem().toString(), "lateral_derecho");
+                    //danioPo=db.Deducible(spinnerDeduciblePoE.getSelectedItem().toString());
+
+                    //daño
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][0]),String.valueOf(db.obtenerDanio(spinnerDanoDeE.getSelectedItem().toString())));
+
+                    //deducible
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][1]),db.obtenerDeducible(db.obtenerDanio(spinnerDanoDeE.getSelectedItem().toString()),spinnerDeducibleDeE.getSelectedItem().toString()));
+
+
+
+                    servis = new Intent(lateralderecho.this, TransferirFoto.class);
                     servis.putExtra("comentario","Daño Lateral Derecho");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);

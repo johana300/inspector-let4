@@ -1152,4 +1152,78 @@ public class DBprovider extends SQLiteOpenHelper {
         return rsp;
     }
 
+
+    /// LISTA PIEZAS PARA ENVIAR
+  public String[][] DeduciblePieza(String pieza, String ubicacion) {
+        int count = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        String[][] aData = null;
+        //idDdeducible,idCampo, pieza, ubicacion
+        Cursor aRS = db.rawQuery("SELECT * FROM PIEZA WHERE pieza = '"+pieza+"' and ubicacion='"+ubicacion+"'", null);
+
+        if (aRS.getCount() > 0) {
+            aData = new String[aRS.getCount()][];
+            while (aRS.moveToNext()) {
+                aData[count] = new String[2];
+                aData[count][0] = aRS.getString(aRS.getColumnIndex("idCampo"));
+                aData[count][1] = aRS.getString(aRS.getColumnIndex("idDdeducible"));
+                count++;
+            }
+        } else {
+            aData = new String[0][];
+        }
+        aRS.close();
+        db.close();
+        return (aData);
+    }
+
+
+
+    //db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (1, 'Abolladura')");
+
+    public int obtenerDanio(String glosa){
+        int rsp = 0;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("select idDano from DANIOS where dano ='"+glosa+"'",null);
+
+        if(ars.moveToFirst()){
+            rsp = ars.getInt(ars.getColumnIndex("idDano"));
+        }
+        return rsp;
+    }
+
+
+    //db.execSQL("INSERT INTO DEDUCIBLES (tipoDanio, valorDeducible, glosaDeducible) VALUES (1, '2.0', 'LEVE')");
+
+    public String obtenerDeducible(int tipoDanio, String glosa){
+        String rsp = "";
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("select valorDeducible from DEDUCIBLES where tipoDanio ="+tipoDanio+" and glosaDeducible='"+glosa+"'",null);
+
+        if(ars.moveToFirst()){
+            rsp = ars.getString(ars.getColumnIndex("valorDeducible"));
+        }
+        return rsp;
+    }
+
+
+    /*public String Deducible(String glosa) {
+        String rsp = "";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT * FROM DEDUCIBLE WHERE glosaDeducible="+glosa+"' and tipoDanio='"+tipoD+"'", null);
+
+        if (ars.moveToFirst()) {
+            rsp = ars.getString(ars.getColumnIndex("cantidad"));
+        }
+        return rsp;
+    }*/
+
+
+
+
+
+
+
 }

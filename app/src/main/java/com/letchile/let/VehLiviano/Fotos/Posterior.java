@@ -91,6 +91,8 @@ public class Posterior extends AppCompatActivity {
     String nombreimagen = "";
     Validaciones validaciones;
     int correlativo = 0;
+    String dañosDedu[][];
+
 
     public Posterior(){db = new DBprovider(this);foto=new PropiedadesFoto(this);validaciones = new Validaciones(this);
     }
@@ -426,6 +428,8 @@ public class Posterior extends AppCompatActivity {
                     //Toast toast =  Toast.makeText(prueba.this, "Debe Tomar Fotos Obligatorias", Toast.LENGTH_SHORT);
                     //toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     //toast.show();
+
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
@@ -990,9 +994,23 @@ public class Posterior extends AppCompatActivity {
                     mSetImage.setImageBitmap(bitmap);
                     String imagenDano = foto.convertirImagenDano(bitmap);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Daño Posterior",0,imagenDano);
+                    //db.insertarValor(Integer.parseInt(id_inspeccion),317,"Ok");
 
-                        Intent servis = new Intent(Posterior.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Daño Posterior");
+                    //spinnerDanoPoE.getSelectedItem().toString();
+
+                    dañosDedu = db.DeduciblePieza(spinnerPiezaPoE.getSelectedItem().toString(), "posterior");
+                    //danioPo=db.Deducible(spinnerDeduciblePoE.getSelectedItem().toString());
+
+                    //daño
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][0]),String.valueOf(db.obtenerDanio(spinnerDanoPoE.getSelectedItem().toString())));
+
+                    //deducible
+                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][1]),db.obtenerDeducible(db.obtenerDanio(spinnerDanoPoE.getSelectedItem().toString()),spinnerDeduciblePoE.getSelectedItem().toString()));
+
+
+
+                    Intent servis = new Intent(Posterior.this, TransferirFoto.class);
+                        servis.putExtra("comentario","Daño Posterior");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
@@ -1552,7 +1570,7 @@ public class Posterior extends AppCompatActivity {
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                 if(i !=0) { // 6 -> faltante
                                     String[][] listadedu = db.listaDeduciblesPosterior(spinnerDanoPoE.getSelectedItem().toString());
-                                    Spinner spinnerDeduciblePoE = (Spinner) findViewById(R.id.spinnerDeduciblePoE);
+                                    final Spinner spinnerDeduciblePoE = (Spinner) findViewById(R.id.spinnerDeduciblePoE);
                                     txtDeducibleE.setVisibility(View.VISIBLE);
                                     spinnerDeduciblePoE.setVisibility(View.VISIBLE);
                                     String[] spinnerDedu = new String[listadedu.length];
