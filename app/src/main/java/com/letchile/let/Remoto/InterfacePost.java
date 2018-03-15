@@ -1,10 +1,10 @@
 package com.letchile.let.Remoto;
 
-import com.letchile.let.Clases.LoginEnv;
-import com.letchile.let.Clases.LoginResp;
+import com.letchile.let.Remoto.Data.LoginResp;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -13,8 +13,8 @@ import retrofit2.http.POST;
 
 public interface InterfacePost {
 
-
-    @POST("login Usuario")
-    Call<LoginResp> getAcceso(@Body LoginEnv loginEnv);
+    @FormUrlEncoded
+    @POST("login/verificaLogeo")
+    Call<LoginResp> getAcceso(@Field("usr") String usr, @Field("pwd") String pwd);
 
 }

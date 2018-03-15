@@ -1,4 +1,4 @@
-package com.letchile.let.Clases;
+package com.letchile.let.Remoto.Data;
 
 /**
  * Created by LET-CHILE on 14-03-2018.
