@@ -40,11 +40,11 @@ import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -95,12 +95,12 @@ public class LoginActivity extends AppCompatActivity {
         }*/
 
 
-            Retrofit retrofit = new Retrofit.Builder()
+            /*Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(getString(R.string.URL_LOGIN))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            final InterfacePost servicio = retrofit.create(InterfacePost.class);
+            final InterfacePost servicio = retrofit.create(InterfacePost.class);*/
 
 
         pDialog= new ProgressDialog(LoginActivity.this);
@@ -109,42 +109,46 @@ public class LoginActivity extends AppCompatActivity {
         pDialog.setCancelable(false);
 
 
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RestAdapter adapter = new RestAdapter.Builder()
+                        .setEndpoint(getString(R.string.URL_LOGIN))
+                        .build();
 
-                pDialog.show();
+                InterfacePost api = adapter.create(InterfacePost.class);
 
-                LoginEnv loginEnv = new LoginEnv();
+                api.logeoUser(usuario.getText().toString(),password.getText().toString(),
+                        new Callback<Response>(){
+                            @Override
+                            public void success(Response response, Response response2) {
+                                BufferedReader reader = null;
 
-                loginEnv.setUsr(usuario.getText().toString());
-                loginEnv.setPwd(password.getText().toString());
+                                String output = "";
+                                try{
+                                    reader = new BufferedReader(new InputStreamReader(response.getBody().in()));
 
-                Call<LoginResp> loginRespCall = servicio.getAcceso(loginEnv);
+                                    output = reader.readLine();
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                                Toast.makeText(LoginActivity.this,output,Toast.LENGTH_SHORT).show();
+                            }
 
-                loginRespCall.enqueue(new Callback<LoginResp>() {
-                    @Override
-                    public void onResponse(Call<LoginResp> call, Response<LoginResp> response) {
-                        int statusCode = response.code();
-
-                        LoginResp loginResp = response.body();
-
-                        Log.d("login","onResponse "+statusCode);
-
-                        Toast.makeText(LoginActivity.this,"onResponse "+statusCode+ ' '+ loginResp.getMSJ(),Toast.LENGTH_SHORT).show();
-
-                        pDialog.dismiss();
-                    }
-
-                    @Override
-                    public void onFailure(Call<LoginResp> call, Throwable t) {
-                        Log.e("login","onFailure"+ t.getMessage());
-                        Toast.makeText(LoginActivity.this,"onFailure"+ t.getMessage(),Toast.LENGTH_SHORT).show();
-                        pDialog.dismiss();
-                    }
-                });
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Toast.makeText(LoginActivity.this, error.toString(),Toast.LENGTH_LONG).show();
+                            }
+                        });
             }
         });
+
+
+
+
+
+
 
     }
 

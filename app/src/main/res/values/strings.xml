@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">LET INSPECTOR</string>
-    <string name="URL_LOGIN">https://www.autoagenda.cl/movil/login/verificaLogeo/</string>
+    <string name="URL_LOGIN">https://www.autoagenda.cl/movil/</string>
 </resources>
