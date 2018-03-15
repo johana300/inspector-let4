@@ -598,16 +598,13 @@ public class lateralizquierdo extends AppCompatActivity {
                     String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"lateral_izquierdo");
 
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, comentarito, 0, imagenDano);
-/*
-                    dañosDedu = db.DeduciblePieza(spinnerPiezaIzE.getSelectedItem().toString(), "lateral izquierdo");
-                    //danioPo=db.Deducible(spinnerDeduciblePoE.getSelectedItem().toString());
 
+                    dañosDedu = db.DeduciblePieza(spinnerPiezaIzE.getSelectedItem().toString(), "lateral_izquierdo");
                     //daño
                     db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][0]),String.valueOf(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString())));
-
                     //deducible
                     db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][1]),db.obtenerDeducible(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString()),spinnerDeducibleIzE.getSelectedItem().toString()));
-*/
+
 
                          servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                     servis.putExtra("comentario",comentarito);
