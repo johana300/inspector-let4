@@ -118,6 +118,11 @@ public class DatosInspActivity extends AppCompatActivity {
         spinnerInsp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),1).toString()));
 
 
+
+
+
+
+
         //region
 
         String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
