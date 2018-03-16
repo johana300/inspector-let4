@@ -34,12 +34,12 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/btnVolverPoE"
+            android:id="@+id/btnVolverPvpMQ"
             style="@android:style/Widget.Button"
             android:layout_width="136dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/btnVolerSecPoE"
+            android:layout_alignTop="@+id/btnVolerSecPvpMQ"
             android:background="@drawable/boton_redondo"
             android:drawableLeft="@android:drawable/ic_menu_revert"
             android:text="Volver "
@@ -47,13 +47,13 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnVolerSecPoE"
+            android:id="@+id/btnVolerSecPvpMQ"
             style="@android:style/Widget.Button"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:textColor="@android:color/background_light"
-            android:layout_toEndOf="@+id/btnVolverPoE"
+            android:layout_toEndOf="@+id/btnVolverPvpMQ"
             android:text="Volver a Secciones"
             android:textSize="12sp"
             android:visibility="invisible" />
@@ -63,13 +63,12 @@
             style="@android:style/Widget.Button"
             android:layout_width="1200dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/btnVolerSecPoE"
-            android:layout_toEndOf="@+id/btnVolerSecPoE"
+            android:layout_alignTop="@+id/btnVolerSecPvpMQ"
+            android:layout_toEndOf="@+id/btnVolerSecPvpMQ"
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Siguiente"
-
             android:textSize="18sp" />
 
         <RelativeLayout

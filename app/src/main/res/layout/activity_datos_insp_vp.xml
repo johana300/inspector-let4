@@ -14,14 +14,12 @@
             android:id="@+id/textInsp2"
             android:layout_width="500dp"
             android:layout_height="35dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:background="@android:color/holo_orange_dark"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:background="@android:color/holo_orange_dark"
-            android:gravity="center"
-            android:text="Datos de Inspección"
-            android:textColor="@android:color/background_dark"
-            android:textSize="24sp"/>
-
+            android:text="Datos de Inspección" />
 
         <TextView
             android:id="@+id/textInsp3"
@@ -29,24 +27,22 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:background="@android:color/holo_orange_dark"
             android:gravity="center"
             android:text=""
+            android:background="@android:color/holo_orange_dark"
             android:textSize="24sp" />
-
 
         <Button
             android:id="@+id/btnVolverInspVpJg"
             style="@android:style/Widget.Button"
-            android:layout_width="115dp"
+            android:layout_width="130dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
-            android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
-            android:layout_alignTop="@+id/btnPenInspVpJg"
+            android:layout_alignTop="@+id/textInsp3"
+            android:layout_marginStart="1dp"
             android:drawableLeft="@android:drawable/ic_menu_revert"
+            android:textSize="12sp"
             android:text="Secciones" />
-
 
         <Button
             android:id="@+id/btnPenInspVpJg"
@@ -56,22 +52,19 @@
             android:layout_alignTop="@+id/textInsp3"
             android:layout_centerHorizontal="true"
             android:text="Pendientes"
-            android:textSize="12sp"
-            android:visibility="invisible"/>
-
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btnSigInspJg"
             style="@android:style/Widget.Button"
-            android:layout_width="1100dp"
+            android:layout_width="1200dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/btnPenInspVpJg"
+            android:layout_alignTop="@+id/textInsp3"
+            android:layout_marginStart="1dp"
             android:layout_toEndOf="@+id/btnPenInspVpJg"
-            android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Siguiente" />
-
+            android:text="Guardar "
+            android:textSize="12sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -116,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="textMultiLine" />
 
                     <TextView
                         android:id="@+id/textView109"
@@ -126,10 +119,10 @@
                         android:text="Región" />
 
                     <Spinner
-                        android:id="@+id/comboRegP"
-                        style="@android:style/Widget.Spinner.DropDown"
+                        android:id="@+id/spinner23"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        style="@android:style/Widget.Spinner.DropDown"/>
 
                     <TextView
                         android:id="@+id/textView108"
@@ -139,10 +132,10 @@
                         android:text="Comunas" />
 
                     <Spinner
-                        android:id="@+id/comboCoP"
-                        style="@android:style/Widget.Spinner.DropDown"
+                        android:id="@+id/spinner24"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        style="@android:style/Widget.Spinner.DropDown"/>
 
                     <TextView
                         android:id="@+id/textView110"
@@ -156,7 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="date" />
 
                     <TextView
                         android:id="@+id/textView111"
@@ -169,7 +162,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="time" />
 
                     <TextView
                         android:id="@+id/textView112"
@@ -182,7 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="textMultiLine" />
 
                     <Button
                         android:id="@+id/fotoComprobanteV"

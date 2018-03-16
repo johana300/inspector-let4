@@ -241,7 +241,7 @@ public class NeuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent( NeuActivity.this, AudioActivity.class);
+                Intent intent = new Intent( NeuActivity.this, SeccionActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

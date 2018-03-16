@@ -1,6 +1,5 @@
 package com.letchile.let;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -20,6 +19,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Remoto.Data.LoginEnv;
+import com.letchile.let.Remoto.Data.LoginResp;
+import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 
 import org.json.JSONObject;
@@ -35,6 +37,12 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -58,8 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        conexion = new ConexionInternet(this).isConnectingToInternet();
-
         btnLogin = (Button) findViewById(R.id.btnlogin);
 
         if(mayRequestStoragePermission())
@@ -67,24 +73,83 @@ public class LoginActivity extends AppCompatActivity {
         else
             btnLogin.setEnabled(false);
 
+        final EditText usuario = (EditText) findViewById(R.id.usuarioM);
+        final EditText password = (EditText) findViewById(R.id.contrasenaM);
 
-        //llamar al usuario insertado de la base de datos para omitir el login
-        String usuario = db.obtenerUsuario();
-        if(usuario.equals("")) {
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EditText usuario = (EditText) findViewById(R.id.usuarioM);
-                    EditText password = (EditText) findViewById(R.id.contrasenaM);
 
-                    new SendPostRequest().execute(usuario.getText().toString(), password.getText().toString());
-                }
-            });
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(getString(R.string.URL_BASE))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            final InterfacePost servicio = retrofit.create(InterfacePost.class);
+
+
+        pDialog= new ProgressDialog(LoginActivity.this);
+        pDialog.setMessage("Autenticando...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+
+        String usuarioAp = db.obtenerUsuario();
+        if (usuarioAp.equals("")) {
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //comprobar si existe el usuario
+                    conexion = new ConexionInternet(LoginActivity.this).isConnectingToInternet();
+                    if (conexion) {
+
+                        pDialog.show();
+
+                        final LoginEnv loginEnv = new LoginEnv();
+
+                        loginEnv.setUsr(usuario.getText().toString());
+                        loginEnv.setPwd(password.getText().toString());
+
+                        Call<LoginResp> loginRespCall = servicio.getAcceso(loginEnv.getUsr(), loginEnv.getPwd());
+
+                        loginRespCall.enqueue(new Callback<LoginResp>() {
+                            @Override
+                            public void onResponse(Call<LoginResp> call, Response<LoginResp> response) {
+                                int statusCode = response.code();
+                                LoginResp loginResp = response.body();
+                                Log.d("login", "onResponse " + statusCode);
+
+                                if (loginResp.getMSJ().equals("3") || loginResp.getMSJ().equals("6")) {
+                                    //Insertar usuario
+                                    db.inserUsuario(loginEnv.getUsr(), loginEnv.getPwd(), Integer.parseInt(loginResp.getMSJ()));
+
+                                    //iniciar aplicaciones
+                                    Intent i = new Intent(LoginActivity.this, InsPendientesActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                                }
+
+                                pDialog.dismiss();
+                            }
+
+                            @Override
+                            public void onFailure(Call<LoginResp> call, Throwable t) {
+                                Log.e("login", "onFailure" + t.getMessage());
+                                Toast.makeText(LoginActivity.this, "onFailure" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                pDialog.dismiss();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(LoginActivity.this, "No hay conexión", Toast.LENGTH_SHORT).show();
+                    }
+            }
+        });
+
         }else{
+            //si ya existe inicia automaticamente
             Intent i = new Intent(LoginActivity.this, InsPendientesActivity.class);
             startActivity(i);
         }
-
     }
 
     private boolean mayRequestStoragePermission() {
@@ -142,141 +207,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public class SendPostRequest extends AsyncTask<String, Void, String> {
-
-        protected void onPreExecute(){
-            pDialog= new ProgressDialog(LoginActivity.this);
-            pDialog.setMessage("Autenticando...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-
-        }
-
-        protected String doInBackground(String... parametros) {
-
-            //*********************************************LOGIN*****************************************//
-            try {
-                if(conexion){
-                    URL url = new URL("https://www.autoagenda.cl/movil/login/verificaLogeo"); // here is your URL path
-
-                    JSONObject postDataParams = new JSONObject();
-                    postDataParams.put("usr", parametros[0]);
-                    postDataParams.put("pwd", parametros[1]);
-                    Log.e("params", postDataParams.toString());
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(15000 /* milliseconds */);
-                    conn.setConnectTimeout(15000 /* milliseconds */);
-                    conn.setRequestMethod("POST");
-                    conn.setDoInput(true);
-                    conn.setDoOutput(true);
-
-                    OutputStream os = conn.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(getPostDataString(postDataParams));
-
-                    writer.flush();
-                    writer.close();
-                    os.close();
-
-                    int responseCode = conn.getResponseCode();
-
-                    if (responseCode == HttpsURLConnection.HTTP_OK) {
-
-                        BufferedReader in = new BufferedReader(new
-                                InputStreamReader(
-                                conn.getInputStream()));
-
-                        StringBuffer sb = new StringBuffer("");
-                        String line = "";
-
-                        while ((line = in.readLine()) != null) {
-
-                            sb.append(line);
-                            break;
-                        }
-
-                        in.close();
-
-                        //agregar el usuario del telefono
-                        String json = sb.toString();
-                        try {
-                            JSONObject obj = new JSONObject(json);
-                            if (obj.getString("MSJ").equals("3") || obj.getString("MSJ").equals("6")) {
-                                db.inserUsuario(parametros[0], parametros[1],Integer.parseInt(obj.getString("MSJ")));
-                            }
-                        } catch (Throwable t) {
-                            Log.e("LET", "Could not parse malformed JSON: \"" + json + "\"");
-                        }
-
-                        //String con el json de respuesta
-                        return sb.toString();
-
-                    } else {
-                        return new String("false : " + responseCode);
-                    }
-
-
-                }else{
-                    return "No hay conexión";
-                }
-
-
-
-            }
-            catch(Exception e){
-                return new String("Exception: " + e.getMessage());
-            }
-
-
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            String json = result;
-            try {
-                //crear json para leer viñeta
-                JSONObject obj = new JSONObject(json);
-                if (obj.getString("MSJ").equals("3") || obj.getString("MSJ").equals("6")) {
-                    pDialog.dismiss();
-                    Intent i = new Intent(LoginActivity.this, InsPendientesActivity.class);
-                    startActivity(i);
-                } else {
-                    pDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrectas", Toast.LENGTH_SHORT).show();
-                }
-            }catch (Throwable t){
-                Log.e("My App", "No se pudo convertir el json: \"" + json + "\"");
-            }
-        }
-    }
-
-    public String getPostDataString(JSONObject params) throws Exception {
-
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-
-        Iterator<String> itr = params.keys();
-
-        while(itr.hasNext()){
-
-            String key= itr.next();
-            Object value = params.get(key);
-
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(key, "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
-        }
-        return result.toString();
-    }
 }
 
 

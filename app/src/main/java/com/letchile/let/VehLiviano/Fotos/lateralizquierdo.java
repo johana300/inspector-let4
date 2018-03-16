@@ -506,213 +506,213 @@ public class lateralizquierdo extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         final String id_inspeccion=bundle.getString("id_inspeccion");
 
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case PHOTO_LATERALIZ:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+        try {
+            if (resultCode == RESULT_OK) {
+                switch (requestCode) {
+                    case PHOTO_LATERALIZ:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(mPath);
-                    bitmap = foto.redimensiomarImagen(bitmap);
-                    imageLateIzE.setImageBitmap(bitmap);
-                    String imagen = foto.convertirImagenDano(bitmap);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lateral Izquierdo", 0, imagen);
+                        Bitmap bitmap = BitmapFactory.decodeFile(mPath);
+                        bitmap = foto.redimensiomarImagen(bitmap);
+                        imageLateIzE.setImageBitmap(bitmap);
+                        String imagen = foto.convertirImagenDano(bitmap);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lateral Izquierdo", 0, imagen);
 
                         Intent servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Lateral Izquierdo");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Lateral Izquierdo");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_ADICIONAL1:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+                        break;
+                    case PHOTO_ADICIONAL1:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmapAdicional1 = BitmapFactory.decodeFile(mPath);
-                    bitmapAdicional1 = foto.redimensiomarImagen(bitmapAdicional1);
-                    imageAdicionalIzE.setImageBitmap(bitmapAdicional1);
-                    String imagenAdicional1 = foto.convertirImagenDano(bitmapAdicional1);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 1 Lateral Izquierdo", 0, imagenAdicional1);
-
-                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Adicional 1 Lateral Izquierdo");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
-                        startService(servis);
-
-                    break;
-                case PHOTO_ADICIONAL2:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
-
-                    Bitmap bitmapAdicional2 = BitmapFactory.decodeFile(mPath);
-                    bitmapAdicional2 = foto.redimensiomarImagen(bitmapAdicional2);
-                    imageAdicionalIz2E.setImageBitmap(bitmapAdicional2);
-                    String imagenAdicional2 = foto.convertirImagenDano(bitmapAdicional2);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 2 Lateral Izquierdo", 0, imagenAdicional2);
-
-                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Adicional 2 Lateral Izquierdo");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
-                        startService(servis);
-
-                    break;
-                case PHOTO_DANO:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
-
-                    Bitmap bitmapDano = BitmapFactory.decodeFile(mPath);
-                    bitmapDano = foto.redimensiomarImagen(bitmapDano);
-                    imagenIzDanoE.setImageBitmap(bitmapDano);
-                    String imagenDano = foto.convertirImagenDano(bitmapDano);
-
-                    comentarioDañoImg = spinnerPiezaIzE.getSelectedItem().toString()+' '+spinnerDanoIzE.getSelectedItem().toString()+' '+spinnerDeducibleIzE.getSelectedItem().toString()+' ';
-                    db.insertarComentarioFoto(Integer.parseInt(id_inspeccion),comentarioDañoImg,"lateral_izquierdo");
-                    String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion),"lateral_izquierdo");
-
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, comentarito, 0, imagenDano);
-
-                    dañosDedu = db.DeduciblePieza(spinnerPiezaIzE.getSelectedItem().toString(), "lateral izquierdo");
-                    //danioPo=db.Deducible(spinnerDeduciblePoE.getSelectedItem().toString());
-
-                    //daño
-                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][0]),String.valueOf(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString())));
-
-                    //deducible
-                    db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][1]),db.obtenerDeducible(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString()),spinnerDeducibleIzE.getSelectedItem().toString()));
-
-
-
-                    servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario",comentarito);
-                    servis.putExtra("id_inspeccion",id_inspeccion);
-                    startService(servis);
-
-
-                    break;
-                case PHOTO_GRABA:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
-
-                    Bitmap bitmapGraba = BitmapFactory.decodeFile(mPath);
-                    bitmapGraba = foto.redimensiomarImagen(bitmapGraba);
-                    imageGabradoPatenteE.setImageBitmap(bitmapGraba);
-                    String imagenGraba = foto.convertirImagenDano(bitmapGraba);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Grabado Patente Lateral Izquierdo", 0, imagenGraba);
-                    db.insertarValor(Integer.parseInt(id_inspeccion),298,"Ok");
+                        Bitmap bitmapAdicional1 = BitmapFactory.decodeFile(mPath);
+                        bitmapAdicional1 = foto.redimensiomarImagen(bitmapAdicional1);
+                        imageAdicionalIzE.setImageBitmap(bitmapAdicional1);
+                        String imagenAdicional1 = foto.convertirImagenDano(bitmapAdicional1);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 1 Lateral Izquierdo", 0, imagenAdicional1);
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Grabado Patente Lateral Izquierdo");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Adicional 1 Lateral Izquierdo");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_LAMINA:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+                        break;
+                    case PHOTO_ADICIONAL2:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmapLamina = BitmapFactory.decodeFile(mPath);
-                    bitmapLamina = foto.redimensiomarImagen(bitmapLamina);
-                    imagelaminasSeguridadLaIzE.setImageBitmap(bitmapLamina);
-                    String imagenLamina = foto.convertirImagenDano(bitmapLamina);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lamina de Seguridad Lateral Izquierdo", 0, imagenLamina);
-                    db.insertarValor(Integer.parseInt(id_inspeccion),342,"Ok");
+                        Bitmap bitmapAdicional2 = BitmapFactory.decodeFile(mPath);
+                        bitmapAdicional2 = foto.redimensiomarImagen(bitmapAdicional2);
+                        imageAdicionalIz2E.setImageBitmap(bitmapAdicional2);
+                        String imagenAdicional2 = foto.convertirImagenDano(bitmapAdicional2);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 2 Lateral Izquierdo", 0, imagenAdicional2);
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Lamina de Seguridad Lateral Izquierdo");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Adicional 2 Lateral Izquierdo");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_PIZADERA:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+                        break;
+                    case PHOTO_DANO:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmapPisadera = BitmapFactory.decodeFile(mPath);
-                    bitmapPisadera = foto.redimensiomarImagen(bitmapPisadera);
-                    imagePisaderasLaIzE.setImageBitmap(bitmapPisadera);
-                    String imagenPisadera = foto.convertirImagenDano(bitmapPisadera);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Pisadera Lateral Izquierdo", 0, imagenPisadera);
-                    db.insertarValor(Integer.parseInt(id_inspeccion),276,"Ok");
+                        Bitmap bitmapDano = BitmapFactory.decodeFile(mPath);
+                        bitmapDano = foto.redimensiomarImagen(bitmapDano);
+                        imagenIzDanoE.setImageBitmap(bitmapDano);
+                        String imagenDano = foto.convertirImagenDano(bitmapDano);
+
+                        comentarioDañoImg = spinnerPiezaIzE.getSelectedItem().toString() + ' ' + spinnerDanoIzE.getSelectedItem().toString() + ' ' + spinnerDeducibleIzE.getSelectedItem().toString() + ' ';
+                        db.insertarComentarioFoto(Integer.parseInt(id_inspeccion), comentarioDañoImg, "lateral_izquierdo");
+                        String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion), "lateral_izquierdo");
+
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, comentarito, 0, imagenDano);
+
+                        dañosDedu = db.DeduciblePieza(spinnerPiezaIzE.getSelectedItem().toString(), "lateral_izquierdo");
+                        //daño
+                        db.insertarValor(Integer.parseInt(id_inspeccion), Integer.parseInt(dañosDedu[0][0]), String.valueOf(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString())));
+                        //deducible
+                        db.insertarValor(Integer.parseInt(id_inspeccion), Integer.parseInt(dañosDedu[0][1]), db.obtenerDeducible(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString()), spinnerDeducibleIzE.getSelectedItem().toString()));
+
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Pisadera Lateral Izquierdo");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", comentarito);
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_POLARIZADO:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
 
-                    Bitmap bitmapPolarizado = BitmapFactory.decodeFile(mPath);
-                    bitmapPolarizado = foto.redimensiomarImagen(bitmapPolarizado);
-                    imagePolarizadoLaIzE.setImageBitmap(bitmapPolarizado);
-                    String imagenPolarizado = foto.convertirImagenDano(bitmapPolarizado);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Polarizado Lateral Izquierdo", 0, imagenPolarizado);
-                    db.insertarValor(Integer.parseInt(id_inspeccion),341,"Ok");
+                        break;
+                    case PHOTO_GRABA:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
+
+                        Bitmap bitmapGraba = BitmapFactory.decodeFile(mPath);
+                        bitmapGraba = foto.redimensiomarImagen(bitmapGraba);
+                        imageGabradoPatenteE.setImageBitmap(bitmapGraba);
+                        String imagenGraba = foto.convertirImagenDano(bitmapGraba);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Grabado Patente Lateral Izquierdo", 0, imagenGraba);
+                        db.insertarValor(Integer.parseInt(id_inspeccion), 298, "Ok");
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
-                        servis.putExtra("comentario","Foto Polarizado Lateral Izquierdo");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Grabado Patente Lateral Izquierdo");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
-                    break;
+
+                        break;
+                    case PHOTO_LAMINA:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
+
+                        Bitmap bitmapLamina = BitmapFactory.decodeFile(mPath);
+                        bitmapLamina = foto.redimensiomarImagen(bitmapLamina);
+                        imagelaminasSeguridadLaIzE.setImageBitmap(bitmapLamina);
+                        String imagenLamina = foto.convertirImagenDano(bitmapLamina);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lamina de Seguridad Lateral Izquierdo", 0, imagenLamina);
+                        db.insertarValor(Integer.parseInt(id_inspeccion), 342, "Ok");
+
+                        servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
+                        servis.putExtra("comentario", "Foto Lamina de Seguridad Lateral Izquierdo");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
+                        startService(servis);
+
+                        break;
+                    case PHOTO_PIZADERA:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
+
+                        Bitmap bitmapPisadera = BitmapFactory.decodeFile(mPath);
+                        bitmapPisadera = foto.redimensiomarImagen(bitmapPisadera);
+                        imagePisaderasLaIzE.setImageBitmap(bitmapPisadera);
+                        String imagenPisadera = foto.convertirImagenDano(bitmapPisadera);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Pisadera Lateral Izquierdo", 0, imagenPisadera);
+                        db.insertarValor(Integer.parseInt(id_inspeccion), 276, "Ok");
+
+                        servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
+                        servis.putExtra("comentario", "Foto Pisadera Lateral Izquierdo");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
+                        startService(servis);
+
+                        break;
+                    case PHOTO_POLARIZADO:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
+
+                        Bitmap bitmapPolarizado = BitmapFactory.decodeFile(mPath);
+                        bitmapPolarizado = foto.redimensiomarImagen(bitmapPolarizado);
+                        imagePolarizadoLaIzE.setImageBitmap(bitmapPolarizado);
+                        String imagenPolarizado = foto.convertirImagenDano(bitmapPolarizado);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Polarizado Lateral Izquierdo", 0, imagenPolarizado);
+                        db.insertarValor(Integer.parseInt(id_inspeccion), 341, "Ok");
+
+                        servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
+                        servis.putExtra("comentario", "Foto Polarizado Lateral Izquierdo");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
+                        startService(servis);
+                        break;
+                }
             }
+        }catch (Exception e){
+            Log.e("Error",e.getMessage());
         }
     }
 

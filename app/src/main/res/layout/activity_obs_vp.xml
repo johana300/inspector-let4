@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textOb"
+            android:id="@+id/textOb2"
             android:layout_width="500dp"
             android:layout_height="35dp"
             android:gravity="center"
@@ -22,9 +22,9 @@
             android:text="Observaciones" />
 
         <TextView
-            android:id="@+id/textObs1"
+            android:id="@+id/textObs3"
             android:layout_width="500dp"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:gravity="center"
@@ -33,49 +33,46 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/btnVolverObsVpJg"
+            android:id="@+id/btnVolverObsVpJgJg"
             style="@android:style/Widget.Button"
-            android:layout_width="115dp"
+            android:layout_width="130dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/btnPenObsVpJg"
-            android:background="@drawable/boton_redondo"
+            android:layout_alignTop="@+id/textObs3"
+            android:layout_marginStart="1dp"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Volver"
-            android:textColor="@android:color/background_light" />
+            android:textSize="12sp"
+            android:text="Secciones" />
 
         <Button
             android:id="@+id/btnPenObsVpJg"
             style="@android:style/Widget.Button"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
-            android:layout_toEndOf="@+id/btnVolverObsVpJg"
+            android:layout_alignTop="@+id/textObs3"
+            android:layout_centerHorizontal="true"
             android:text="Pendientes"
-            android:textSize="12sp"
-            android:visibility="invisible" />
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btnSigObsVpJg"
             style="@android:style/Widget.Button"
-            android:layout_width="1100dp"
+            android:layout_width="1200dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/btnPenObsVpJg"
+            android:layout_alignTop="@+id/textObs3"
+            android:layout_marginStart="1dp"
             android:layout_toEndOf="@+id/btnPenObsVpJg"
-            android:background="@drawable/boton_redondo"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Siguiente"
-            android:textColor="@android:color/background_light" />
+            android:text="Guardar "
+            android:textSize="12sp" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/textObs1"
+            android:layout_above="@+id/textObs3"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textOb">
+            android:layout_below="@+id/textOb2">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -95,15 +92,8 @@
                         android:layout_height="wrap_content"
                         android:text="Observación 1 " />
 
-                    <EditText
-                        android:id="@+id/obs1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="text" />
-
                     <TextView
-                        android:id="@+id/textView117"
+                        android:id="@+id/textt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Observación 2" />
@@ -113,7 +103,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="textMultiLine" />
 
                     <TextView
                         android:id="@+id/textView116"
@@ -126,10 +116,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/textView118"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Observación 4" />
+
+                    <EditText
+                        android:id="@+id/obs4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
 
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>
+
+        <EditText
+            android:id="@+id/obs1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/btnVolverObsVpJgJg"
+            android:layout_below="@+id/textOb2"
+            android:layout_marginTop="54dp"
+            android:ems="10"
+            android:inputType="textMultiLine" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

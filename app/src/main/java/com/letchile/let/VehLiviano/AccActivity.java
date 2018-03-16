@@ -178,7 +178,7 @@ public class AccActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                Intent intent = new Intent( AccActivity.this, DatosVehActivity.class);
+                Intent intent = new Intent( AccActivity.this, SeccionActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

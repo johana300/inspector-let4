@@ -16,6 +16,7 @@ import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirInspeccion;
+import com.letchile.let.VehPesado.Fotos.posterior_vp;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +53,15 @@ public class SeccionVpActivity extends AppCompatActivity {
 
         //Botón foto
         // vehPesado=tipoVehPesado.getSelectedItem().toString();
+        Button btnFoto = (Button)findViewById(R.id.btnFotoVpJg);
+        btnFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SeccionVpActivity.this, posterior_vp.class);
+                intent.putExtra("id_inspeccion", id_inspeccion);
+                startActivity(intent);
+            }
+        });
 
 
         //Botón Datos Asegurado
@@ -144,7 +154,7 @@ public class SeccionVpActivity extends AppCompatActivity {
 
     }
 
-   private boolean compruebaServicio(Class<?> serviceClass) {
+    private boolean compruebaServicio(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {

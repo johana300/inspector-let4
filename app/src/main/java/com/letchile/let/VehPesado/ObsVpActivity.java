@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.R;
-import com.letchile.let.Servicios.ConexionInternet;
-import com.letchile.let.VehLiviano.DatosAsegActivity;
-import com.letchile.let.VehLiviano.DatosVehActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,18 +21,12 @@ public class ObsVpActivity extends AppCompatActivity {
     EditText obs1;
     EditText obs2;
     EditText obs3;
-    Boolean connec = false;
+    EditText obs4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_obs_vp);
-
-        connec = new ConexionInternet(this).isConnectingToInternet();
-
-        //Traspaso de datos
-        Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion=bundle.getString("id_inspeccion");
 
         //OBSERVACION 1
         obs1 = (EditText)findViewById(R.id.obs1);
@@ -99,19 +90,7 @@ public class ObsVpActivity extends AppCompatActivity {
                     Toast.makeText(ObsVpActivity.this, "", Toast.LENGTH_SHORT);
                 }
 
-                Intent intent = new Intent( ObsVpActivity.this, SeccionVpActivity.class);//IR A PAGINA SECCIONES
-                intent.putExtra("id_inspeccion",id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-
-        final Button btnVolverObsVpJg = (Button)findViewById(R.id.btnVolverObsVpJg);
-        btnVolverObsVpJg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent( ObsVpActivity.this, DatosInspVpActivity.class);
-                intent.putExtra("id_inspeccion",id_inspeccion);
+                Intent intent = new Intent( ObsVpActivity.this, ObsVpActivity.class);//IR A PAGINA SECCIONES
                 startActivity(intent);
             }
         });

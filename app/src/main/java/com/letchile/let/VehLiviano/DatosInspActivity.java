@@ -324,10 +324,10 @@ public class DatosInspActivity extends AppCompatActivity {
                     break;
             }
             //TRANSFERIR FOTO
-                Intent servis = new Intent(contexto, TransferirFoto.class);
-                servis.putExtra("comentario","Foto Comprobante");
-                servis.putExtra("id_inspeccion",id_inspeccion);
-                startService(servis);
+            Intent servis = new Intent(contexto, TransferirFoto.class);
+            servis.putExtra("comentario","Foto Comprobante");
+            servis.putExtra("id_inspeccion",id_inspeccion);
+            startService(servis);
 
         }
     }

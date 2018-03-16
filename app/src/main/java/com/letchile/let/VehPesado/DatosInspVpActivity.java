@@ -99,53 +99,50 @@ public class DatosInspVpActivity extends AppCompatActivity {
         entrevistado = (EditText)findViewById(R.id.entrevistado);
         entrevistado.getText().toString();
 
-        // cargar un combo inspeccion por
-        tipoVehVp = (Spinner)findViewById(R.id.tipo_veh_vp);
-        String[] arraytipo = getResources().getStringArray(R.array.insp);
+        // cargar un combo tipo vehiculo
+        /*tipoVehVp = (Spinner)findViewById(R.id.tipo_veh_vp);
+        String[] arraytipo = getResources().getStringArray(R.array.tipoVehVp);
         final List<String> arraytipolist = Arrays.asList(arraytipo);
-        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.insp , android.R.layout.simple_spinner_item);
+        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.tipoVehVp , android.R.layout.simple_spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoVehVp.setAdapter(spinner_adapter);
-        tipoVehVp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),364).toString()));
+        tipoVehVp.setSelection(arraytipolist.lastIndexOf(db.accesorio(92,364).toString()));*/
 
         //region
 
-        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
+        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
         String listaRegiones[][]=db.listaRegiones();
-        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegP);
-        String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]="Seleccione...";
-        for(int i=0;i<listaRegiones.length;i++)        {
-            arraySpinner[i+1]=listaRegiones[i][0];
+        region = (Spinner)findViewById(R.id.regionSpinnerMQ);
+        String[] arraySpinner = new String[listaRegiones.length];
+        arraySpinner[0]=regionInicial[0][0];
+        for(int i=1;i<listaRegiones.length;i++)        {
+            arraySpinner[i]=listaRegiones[i][0];
         }
         ArrayAdapter<String> adapterRegion = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arraySpinner);
         adapterRegion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        comboRegion.setAdapter(adapterRegion);
+        region.setAdapter(adapterRegion);
 
 
-        final Spinner comboComuna = (Spinner)findViewById(R.id.comboCoP);
-        comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        comuna = (Spinner)findViewById(R.id.comunaSpinner);
+        region.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Rescata el nombre del item elegido
-                String regionSelected = comboRegion.getSelectedItem().toString();
-                //Rescata la lista según el item elegido
-                String listaComunas[][] = db.listaComunas(regionSelected);
-                //Inicia el nuevo combo a llenar
-
-                //Se crea una variable array para ser llenado
-                String[] spinnerComuna = new String[listaComunas.length+1];
-                spinnerComuna[0] = "Seleccione...";
-                for(int i=0;i<listaComunas.length;i++){
-                    spinnerComuna[i+1] = listaComunas[i][0];
+                comuna.setAdapter(null);
+                String regionSelected = region.getSelectedItem().toString();
+                String listaComuna[][] = db.listaComunas(regionSelected);
+                String[] spinnercomuna = new String[listaComuna.length];
+                spinnercomuna[0] = "Seleccione";
+                for(int i=1;i<listaComuna.length;i++){
+                    spinnercomuna[i] = listaComuna[i][0];
                 }
-                ArrayAdapter<String> adapterComuna = new ArrayAdapter<String>(DatosInspVpActivity.this,android.R.layout.simple_spinner_item,spinnerComuna);
+                ArrayAdapter<String> adapterComuna = new ArrayAdapter<String>(DatosInspVpActivity.this,android.R.layout.simple_spinner_item,spinnercomuna);
                 adapterComuna.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                comboComuna.setAdapter(adapterComuna);
+                comuna.setAdapter(adapterComuna);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -231,24 +228,13 @@ public class DatosInspVpActivity extends AppCompatActivity {
                     Toast.makeText(DatosInspVpActivity.this, "", Toast.LENGTH_SHORT);
                 }
 
-
-
-                if (comboComuna.getSelectedItem().toString().equals("Seleccione...")) {
-
-                    Toast.makeText(DatosInspVpActivity.this, "Debe seleccionar región y comuna.", Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    Intent intent = new Intent( DatosInspVpActivity.this, ObsVpActivity.class);
-                    intent.putExtra("id_inspeccion",id_inspeccion);
-                    startActivity(intent);
-                }
-
+                Intent intent = new Intent( DatosInspVpActivity.this, ObsVpActivity.class);
+                startActivity(intent);
             }
         });
 
         //Botón volver pendiente
-       /* final Button btnVolverInspVpJg = (Button)findViewById(R.id.btnVolverInspVpJg);
+        final Button btnVolverInspVpJg = (Button)findViewById(R.id.btnVolverInspVpJg);
         btnVolverInspVpJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -257,15 +243,15 @@ public class DatosInspVpActivity extends AppCompatActivity {
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
-        });*/
+        });
 
         //Botón volver de secciones
-        final Button btnVolverInspVpJg = (Button)findViewById(R.id.btnVolverInspVpJg);
-        btnVolverInspVpJg.setOnClickListener(new View.OnClickListener() {
+        final Button btnVolverInspJg = (Button)findViewById(R.id.btnVolverInspJg);
+        btnVolverInspJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent( DatosInspVpActivity.this, DatosAsegVpActivity.class);
+                Intent intent = new Intent( DatosInspVpActivity.this, SeccionActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
