@@ -176,6 +176,10 @@ public class posterior_vp extends AppCompatActivity {
         });
         //endregion
 
+
+
+
+
     }
 
     @Override
@@ -268,8 +272,10 @@ public class posterior_vp extends AppCompatActivity {
             imgFotoDanoPvp.setVisibility(View.VISIBLE);
 
             btnFotoPosterior.setVisibility(View.GONE);
+            imagenPosteriorVp.setVisibility(View.GONE);
             imagenPosteriorVp.setImageBitmap(null);
             btnFotoAdicionalPosterior.setVisibility(View.GONE);
+            imagenAdicionalPosteriorVp.setVisibility(View.GONE);
             imagenAdicionalPosteriorVp.setImageBitmap(null);
 
             String imagenDanoPosterior = db.foto(Integer.parseInt(id_inspeccion),db.comentarioFoto(Integer.parseInt(id_inspeccion),"posterior"));
