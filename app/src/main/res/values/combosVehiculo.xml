@@ -105,20 +105,20 @@
     </string-array>
 
     <string-array name="tipo_rueda">
-        <item>Seleccione...</item>
+        <item>Seleccione tipo rueda repuesto...</item>
         <item>Normal</item>
         <item>Emergencia</item>
     </string-array>
 
     <string-array name="ubicacion_rueda">
-        <item>Seleccione...</item>
+        <item>Seleccione ubicación rueda repuesto...</item>
         <item>Interna</item>
         <item>Externa</item>
         <item>Int/Ext</item>
     </string-array>
 
     <string-array name="ubic_anti">
-        <item>Seleccione...</item>
+        <item>Seleccione ubicación barra antivuelco...</item>
         <item>Interna</item>
         <item>Externa</item>
         <item>Int/Ext</item>

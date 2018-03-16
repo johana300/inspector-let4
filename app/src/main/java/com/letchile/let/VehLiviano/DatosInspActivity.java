@@ -111,10 +111,10 @@ public class DatosInspActivity extends AppCompatActivity {
         String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
         String listaRegiones[][]=db.listaRegiones();
         region = (Spinner)findViewById(R.id.regionSpinnerMQ);
-        String[] arraySpinner = new String[listaRegiones.length];
-        arraySpinner[0]=regionInicial[0][0];
-        for(int i=1;i<listaRegiones.length;i++)        {
-            arraySpinner[i]=listaRegiones[i][0];
+        String[] arraySpinner = new String[listaRegiones.length+1];
+        arraySpinner[0]="Seleccione";
+        for(int i=0;i<listaRegiones.length;i++)        {
+            arraySpinner[i+1]=listaRegiones[i][0];
         }
         ArrayAdapter<String> adapterRegion = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arraySpinner);
         adapterRegion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -128,10 +128,10 @@ public class DatosInspActivity extends AppCompatActivity {
                 comuna.setAdapter(null);
                 String regionSelected = region.getSelectedItem().toString();
                 String listaComuna[][] = db.listaComunas(regionSelected);
-                String[] spinnercomuna = new String[listaComuna.length];
+                String[] spinnercomuna = new String[listaComuna.length+1];
                 spinnercomuna[0] = "Seleccione";
-                for(int i=1;i<listaComuna.length;i++){
-                    spinnercomuna[i] = listaComuna[i][0];
+                for(int i=0;i<listaComuna.length;i++){
+                    spinnercomuna[i+1] = listaComuna[i][0];
                 }
                 ArrayAdapter<String> adapterComuna = new ArrayAdapter<String>(DatosInspActivity.this,android.R.layout.simple_spinner_item,spinnercomuna);
                 adapterComuna.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

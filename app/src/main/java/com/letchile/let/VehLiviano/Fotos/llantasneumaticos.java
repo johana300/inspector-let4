@@ -130,6 +130,7 @@ public class llantasneumaticos extends AppCompatActivity {
                     Intent intent   = new Intent(llantasneumaticos.this,vl_techo.class);
                     intent.putExtra("id_inspeccion",id_inspeccion);
                     startActivity(intent);
+                    finish();
                 }
 
             }
@@ -240,78 +241,84 @@ public class llantasneumaticos extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Bundle bundle = getIntent().getExtras();
         final String id_inspeccion=bundle.getString("id_inspeccion");
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case PHOTO_LLANTAS:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
 
-                    Bitmap bitmapLlanatas = BitmapFactory.decodeFile(mPath);
-                    bitmapLlanatas = foto.redimensiomarImagen(bitmapLlanatas);
-                    imageLlantasNE.setImageBitmap(bitmapLlanatas);
-                    String imagenLlantas = foto.convertirImagenDano(bitmapLlanatas);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Llantas y Neumaticos", 0, imagenLlantas);
+        try {
+
+            if (resultCode == RESULT_OK) {
+                switch (requestCode) {
+                    case PHOTO_LLANTAS:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
+
+                        Bitmap bitmapLlanatas = BitmapFactory.decodeFile(mPath);
+                        bitmapLlanatas = foto.redimensiomarImagen(bitmapLlanatas);
+                        imageLlantasNE.setImageBitmap(bitmapLlanatas);
+                        String imagenLlantas = foto.convertirImagenDano(bitmapLlanatas);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Llantas y Neumaticos", 0, imagenLlantas);
 
                         Intent servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Llantas y Neumaticos");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Llantas y Neumaticos");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_RUEDA:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+                        break;
+                    case PHOTO_RUEDA:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmapRueda = BitmapFactory.decodeFile(mPath);
-                    bitmapRueda = foto.redimensiomarImagen(bitmapRueda);
-                    imageRuedaRespuestoLlantasE.setImageBitmap(bitmapRueda);
-                    String imagenRueda = foto.convertirImagenDano(bitmapRueda);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Rueda de Respuesto Llantas y Neumaticos", 0, imagenRueda);
+                        Bitmap bitmapRueda = BitmapFactory.decodeFile(mPath);
+                        bitmapRueda = foto.redimensiomarImagen(bitmapRueda);
+                        imageRuedaRespuestoLlantasE.setImageBitmap(bitmapRueda);
+                        String imagenRueda = foto.convertirImagenDano(bitmapRueda);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Rueda de Respuesto Llantas y Neumaticos", 0, imagenRueda);
 
                         servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Rueda de Respuesto Llantas y Neumaticos");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Rueda de Respuesto Llantas y Neumaticos");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
-                case PHOTO_ADICIONAL:
-                    MediaScannerConnection.scanFile(this,
-                            new String[]{mPath}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                    Log.i("ExternalStorage", "-> Uri = " + uri);
-                                }
-                            });
+                        break;
+                    case PHOTO_ADICIONAL:
+                        MediaScannerConnection.scanFile(this,
+                                new String[]{mPath}, null,
+                                new MediaScannerConnection.OnScanCompletedListener() {
+                                    @Override
+                                    public void onScanCompleted(String path, Uri uri) {
+                                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                                        Log.i("ExternalStorage", "-> Uri = " + uri);
+                                    }
+                                });
 
-                    Bitmap bitmapAdicionalLlantas = BitmapFactory.decodeFile(mPath);
-                    bitmapAdicionalLlantas = foto.redimensiomarImagen(bitmapAdicionalLlantas);
-                    imageAdicionalLlantasE.setImageBitmap(bitmapAdicionalLlantas);
-                    String imagenAdicionalLlantas = foto.convertirImagenDano(bitmapAdicionalLlantas);
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Llantas y Neumaticos", 0, imagenAdicionalLlantas);
+                        Bitmap bitmapAdicionalLlantas = BitmapFactory.decodeFile(mPath);
+                        bitmapAdicionalLlantas = foto.redimensiomarImagen(bitmapAdicionalLlantas);
+                        imageAdicionalLlantasE.setImageBitmap(bitmapAdicionalLlantas);
+                        String imagenAdicionalLlantas = foto.convertirImagenDano(bitmapAdicionalLlantas);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Llantas y Neumaticos", 0, imagenAdicionalLlantas);
 
                         servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
-                    servis.putExtra("comentario","Foto Adicional Llantas y Neumaticos");
-                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        servis.putExtra("comentario", "Foto Adicional Llantas y Neumaticos");
+                        servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
-                    break;
+                        break;
+                }
             }
+        }catch (Exception e){
+            Log.e("Error",e.getMessage());
         }
     }
 

@@ -249,6 +249,8 @@ try {
                                 db.cambiarEstadoFoto(Integer.parseInt(strings[0]),fotos[i][1].toString(),fotos[i][2].toString(),2);
                             }
                         }catch (Exception e){
+                            //sacar si esque se cae
+                            //i++;
                             Log.e("Errror transmision",e.getMessage());
                         }
                     }else{

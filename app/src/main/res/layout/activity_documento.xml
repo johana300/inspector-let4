@@ -60,11 +60,11 @@
             style="@android:style/Widget.Button"
             android:layout_width="1200dp"
             android:layout_height="45dp"
-            android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
             android:layout_alignTop="@+id/btnInvisibleDocuE"
             android:layout_toEndOf="@+id/btnInvisibleDocuE"
-            android:text="Volver a Secciones"
+            android:background="@drawable/boton_redondo"
+            android:text="Siguiente"
+            android:textColor="@android:color/background_light"
             android:textSize="12sp" />
 
         <RelativeLayout

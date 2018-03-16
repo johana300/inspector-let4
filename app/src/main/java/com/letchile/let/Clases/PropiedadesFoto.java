@@ -28,8 +28,8 @@ public class PropiedadesFoto {
     }
 
     //CAMBIAR LAS DIMENSIONES DE LAS FOTOS
-    float anchoNuevo = 1000;
-    float altoNuevo = 1200;
+    float anchoNuevo = 800;
+    float altoNuevo = 1000;
     public Bitmap redimensiomarImagen(Bitmap bitmap) {
 
         int ancho = bitmap.getWidth();

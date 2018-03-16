@@ -24,7 +24,7 @@
         <TextView
             android:id="@+id/textTec1"
             android:layout_width="500dp"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:gravity="center"
@@ -35,8 +35,8 @@
         <Button
             android:id="@+id/btnVolverTecJg"
             style="@android:style/Widget.Button"
-            android:layout_width="110dp"
-            android:layout_height="45dp"
+            android:layout_width="115dp"
+            android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/textTec1"
             android:layout_marginStart="1dp"
@@ -60,15 +60,15 @@
         <Button
             android:id="@+id/btnSigTecJg"
             style="@android:style/Widget.Button"
-            android:layout_width="1200dp"
-            android:layout_height="45dp"
+            android:layout_width="1100dp"
+            android:layout_height="50dp"
             android:layout_alignTop="@+id/textTec1"
             android:layout_marginStart="1dp"
             android:layout_toEndOf="@+id/btnPenTecJg"
             android:background="@drawable/boton_redondo"
-            android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Siguiente "
             android:textColor="@android:color/background_light"
+            android:drawableRight="@android:drawable/ic_media_play"
+            android:text="Siguiente "
             android:textSize="18sp" />
 
         <RelativeLayout

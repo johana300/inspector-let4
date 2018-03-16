@@ -647,6 +647,7 @@ public class InsPendientesActivity extends AppCompatActivity{
                                 Toast.makeText(InsPendientesActivity.this, "Debe transmitir la Inspección n°" + String.valueOf(inspeccionPendiente), Toast.LENGTH_SHORT).show();
                             } else {
                                 startActivity(i);
+                                finish();
                             }
                         }
                     }catch (Exception e){
@@ -680,6 +681,12 @@ public class InsPendientesActivity extends AppCompatActivity{
 
         }
         return result.toString();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
     }
 
 }
