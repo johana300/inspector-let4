@@ -17,4 +17,8 @@ public interface InterfacePost {
     @POST("login/verificaLogeo")
     Call<LoginResp> getAcceso(@Field("usr") String usr, @Field("pwd") String pwd);
 
+
+
+
+
 }
