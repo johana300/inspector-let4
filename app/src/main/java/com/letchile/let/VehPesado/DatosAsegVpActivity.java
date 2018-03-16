@@ -164,6 +164,10 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                     valor92.put("valor_id",532);
                     valor92.put("texto",mailVpJg.getText().toString());
 
+                    JSONObject datosValorVpCo = new JSONObject();
+                    datosValorVpCo.put("valor_id",370);
+                    datosValorVpCo.put("texto",comboComuna.getSelectedItem().toString());
+
 
 
 
@@ -176,6 +180,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                     jsonArray.put(valor90);
                     jsonArray.put(valor91);
                     jsonArray.put(valor92);
+                    jsonArray.put(datosValorVpCo);
 
 
 
@@ -197,26 +202,6 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                 }
 
 
-
-
-                /*   if (nChasis.getText().toString().equalsIgnoreCase(""))
-                {
-                    Toast.makeText(DatosVehActivity.this, "Debe digitar chasis de vehículo.",
-                            Toast.LENGTH_SHORT).show();
-
-                }
-                else if (anio.getText().toString().equalsIgnoreCase(""))
-                {
-                    Toast.makeText(DatosVehActivity.this, "Debe digitar año de vehículo.",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Intent intent = new Intent( DatosVehActivity.this, AccActivity.class);
-                    intent.putExtra("id_inspeccion",id_inspeccion);
-                    startActivity(intent);
-
-                }*/
                 if(comboComuna.getSelectedItem().toString().equals("Seleccione...")){
 
                     Toast.makeText(DatosAsegVpActivity.this, "Debe seleccionar región y comuna.",Toast.LENGTH_SHORT).show();

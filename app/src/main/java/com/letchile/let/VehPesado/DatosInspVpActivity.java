@@ -85,19 +85,19 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
         //direccion inspeccion
         dirIns = (EditText)findViewById(R.id.dirIns);
-        dirIns.getText().toString();
+        dirIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),733));
 
         //fecha inspeccion
         fechaInsp = (EditText)findViewById(R.id.fechaInsp);
-        fechaInsp.getText().toString();
+        fechaInsp.setText(db.accesorio(Integer.parseInt(id_inspeccion),737));
 
         //hora inspeccion
         horaInsp = (EditText)findViewById(R.id.horaInsp);
-        horaInsp.getText().toString();
+        horaInsp.setText(db.accesorio(Integer.parseInt(id_inspeccion),738));
 
         //entrevistado
         entrevistado = (EditText)findViewById(R.id.entrevistado);
-        entrevistado.getText().toString();
+        entrevistado.setText(db.accesorio(Integer.parseInt(id_inspeccion),755));
 
         // cargar un combo inspeccion por
         tipoVehVp = (Spinner)findViewById(R.id.tipo_veh_vp);
@@ -109,10 +109,9 @@ public class DatosInspVpActivity extends AppCompatActivity {
         tipoVehVp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),364).toString()));
 
         //region
-
-       /* String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
+        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),736).toString());
         String listaRegiones[][]=db.listaRegiones();
-        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVpJg);
+        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVep);
         String[] arraySpinner = new String[listaRegiones.length+1];
         arraySpinner[0]="Seleccione...";
         for(int i=0;i<listaRegiones.length;i++)        {
@@ -147,7 +146,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        });*/
+        });
 
         //FOOTER
         btnFotocomprobanteV = (Button)findViewById(R.id.fotoComprobanteV);
@@ -198,9 +197,9 @@ public class DatosInspVpActivity extends AppCompatActivity {
                     valor97.put("valor_id",364);
                     valor97.put("texto",tipoVehVp.getSelectedItem().toString());
 
-
-
-
+                    JSONObject datosValorVpCo = new JSONObject();
+                    datosValorVpCo.put("valor_id",736);
+                    datosValorVpCo.put("texto",comboComuna.getSelectedItem().toString());
 
 
                     JSONArray jsonArray = new JSONArray();
@@ -209,17 +208,14 @@ public class DatosInspVpActivity extends AppCompatActivity {
                     jsonArray.put(valor95);
                     jsonArray.put(valor96);
                     jsonArray.put(valor97);
-
-
-
-
+                    jsonArray.put(datosValorVpCo);
 
 
                     JSONObject llenado;
                     if (!jsonArray.isNull(0)) {
                         for(int i=0;i<jsonArray.length();i++){
                             llenado = new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(92,llenado.getInt("valor_id"),llenado.getString("texto"));
+                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
 
 
                         }
@@ -232,7 +228,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
                 }
 
 
-/*
+
                 if (comboComuna.getSelectedItem().toString().equals("Seleccione...")) {
 
                     Toast.makeText(DatosInspVpActivity.this, "Debe seleccionar región y comuna.", Toast.LENGTH_SHORT).show();
@@ -243,22 +239,12 @@ public class DatosInspVpActivity extends AppCompatActivity {
                     intent.putExtra("id_inspeccion",id_inspeccion);
                     startActivity(intent);
                 }
-                */
+
 
             }
         });
 
-        //Botón volver pendiente
-       /* final Button btnVolverInspVpJg = (Button)findViewById(R.id.btnVolverInspVpJg);
-        btnVolverInspVpJg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent( DatosInspVpActivity.this, InsPendientesActivity.class);
-                intent.putExtra("id_inspeccion",id_inspeccion);
-                startActivity(intent);
-            }
-        });*/
 
         //Botón volver de secciones
         final Button btnVolverInspVpJg = (Button)findViewById(R.id.btnVolverInspVpJg);

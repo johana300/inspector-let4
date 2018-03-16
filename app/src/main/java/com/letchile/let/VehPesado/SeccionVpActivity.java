@@ -2,9 +2,11 @@ package com.letchile.let.VehPesado;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirInspeccion;
+import com.letchile.let.VehLiviano.SeccionActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -97,6 +100,7 @@ public class SeccionVpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(SeccionVpActivity.this, InsPendientesActivity.class);
+                intent.putExtra("id_inspeccion", id_inspeccion);
                 startActivity(intent);
 
             }
@@ -112,34 +116,52 @@ public class SeccionVpActivity extends AppCompatActivity {
                 //verificar nuevamente la conexión
                 connec = new ConexionInternet(SeccionVpActivity.this).isConnectingToInternet();
 
-                //CUANDO SE TOMA LA PRIMERA FOTO EN LA SECCION POSTERIOR LA INSPECCIÓN ESTÁ EN ESTADO INICIADA
 
-                //2,3,62,63,61,30,31,22,9,39,40,41,42,13,14,65,69,72
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SeccionVpActivity.this);
+                builder.setCancelable(false);
+                builder.setMessage(Html.fromHtml("¿Seguro que desea transmitir la inspeccion <b>N°OI: "+id_inspeccion+"</b>?."));
 
-                int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-                if(fotosTomadas==18){
+                       /* if(fotosTomadas>=18){
+*/
+                            //cambiar inspeccion a estado para transmitir
+                            db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
 
-                    //cambiar inspeccion a estado para transmitir
-                    db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
+                            if(connec) {
+                                //comprobar que el servicio esté activo
+                                if (!compruebaServicio(TransferirInspeccion.class)) {
+                                    Intent servis = new Intent(SeccionVpActivity.this, TransferirInspeccion.class);
+                                    startService(servis);
+                                    finish();
+                                }
+                            }
 
-                    if(connec) {
-                        //comprobar que el servicio esté activo
-                        if (!compruebaServicio(TransferirInspeccion.class)) {
-                            Intent servis = new Intent(SeccionVpActivity.this, TransferirInspeccion.class);
-                            startService(servis);
-                        }
+
+                            Intent seccion = new Intent(SeccionVpActivity.this, InsPendientesActivity.class);
+                            startActivity(seccion);
+                            finish();
+
+                       /* }else{
+                            Toast.makeText(SeccionVpActivity.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
+                        }*/
                     }
+                });
 
-
-                    Intent seccion = new Intent(SeccionVpActivity.this, InsPendientesActivity.class);
-                    startActivity(seccion);
-
-                }else{
-                    Toast.makeText(SeccionVpActivity.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
-                }
+                builder.setNegativeButton("Rechazar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(SeccionVpActivity.this, "Inspección no transmitida", Toast.LENGTH_LONG).show();
+                    }
+                });
+                android.app.AlertDialog alert = builder.create();
+                alert.show();
             }
         });
+
 
 
     }

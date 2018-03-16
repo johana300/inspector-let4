@@ -21,10 +21,14 @@ public class ObsVpActivity extends AppCompatActivity {
 
     DBprovider db;
 
-    EditText obs1;
-    EditText obs2;
-    EditText obs3;
+    EditText obs1,obs2,obs3;
     Boolean connec = false;
+    JSONObject llenado;
+
+    public ObsVpActivity(){
+        db = new DBprovider(this);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +43,15 @@ public class ObsVpActivity extends AppCompatActivity {
 
         //OBSERVACION 1
         obs1 = (EditText)findViewById(R.id.obs1);
-        obs1.getText().toString();
+        obs1.setText(db.accesorio(Integer.parseInt(id_inspeccion),730).toString());
 
         //OBSERVACION 2
         obs2 = (EditText)findViewById(R.id.obs2);
-        obs2.getText().toString();
+        obs2.setText(db.accesorio(Integer.parseInt(id_inspeccion),731).toString());
 
         //OBSERVACION 3
         obs3 = (EditText)findViewById(R.id.obs3);
-        obs3.getText().toString();
+        obs3.setText(db.accesorio(Integer.parseInt(id_inspeccion),732).toString());
 
         //BOTON GUARDAR Y SIGUIENTE
         final Button btnSigObsVpJg = (Button)findViewById(R.id.btnSigObsVpJg);
@@ -79,17 +83,10 @@ public class ObsVpActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-                    JSONObject llenado;
                     if (!jsonArray.isNull(0)) {
                         for(int i=0;i<jsonArray.length();i++){
                             llenado = new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(92,llenado.getInt("valor_id"),llenado.getString("texto"));
-
-
+                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
                         }
                     }
 
@@ -106,7 +103,7 @@ public class ObsVpActivity extends AppCompatActivity {
         });
 
 
-        final Button btnVolverObsVpJg = (Button)findViewById(R.id.btnVolverObsVpJgJg);
+        final Button btnVolverObsVpJg = (Button)findViewById(R.id.btnVolverObsVpJg);
         btnVolverObsVpJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
