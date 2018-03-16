@@ -421,6 +421,10 @@ public class documento extends AppCompatActivity {
                                 }
                             });
 
+
+
+
+
                     Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imageDocumentoE.setImageBitmap(bitmap);
