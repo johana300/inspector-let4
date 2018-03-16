@@ -84,9 +84,9 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
         String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
         String listaRegiones[][]=db.listaRegiones();
-        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegJg);
+        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVpJg);
         String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]=regionInicial[0][0];
+        arraySpinner[0]="Seleccione";
         for(int i=0;i<listaRegiones.length;i++)        {
             arraySpinner[i+1]=listaRegiones[i][0];
         }
@@ -95,7 +95,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         comboRegion.setAdapter(adapterRegion);
 
 
-        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComJr);
+        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComVpJg);
         comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
