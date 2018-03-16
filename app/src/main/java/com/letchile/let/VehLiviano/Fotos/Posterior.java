@@ -1,20 +1,14 @@
 package com.letchile.let.VehLiviano.Fotos;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
@@ -40,11 +33,9 @@ import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
-import com.letchile.let.VehLiviano.SeccionActivity;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -379,7 +370,7 @@ public class Posterior extends AppCompatActivity {
 
 
 
-        btnVolverPoE = (Button)findViewById(R.id.btnVolverPoE);
+        btnVolverPoE = (Button)findViewById(R.id.btnVolverPvpMQ);
         btnVolverPoE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
