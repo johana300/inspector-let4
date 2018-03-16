@@ -45,8 +45,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -59,7 +61,7 @@ public class DatosInspActivity extends AppCompatActivity {
     DBprovider db;
     Button btnFotocomprobante,btbVolver,BtnPendientes,BtnGuardar,mOptionButton;
     EditText usrInspector,direccionIns,fechaIns,horaIns,entrevistado;
-    Spinner region,comuna;
+    Spinner region,comuna,spinnerInsp;
     private String mPath;
     private File ruta_sd;
     private String ruta = "";
@@ -91,8 +93,8 @@ public class DatosInspActivity extends AppCompatActivity {
         imagenCompro = findViewById(R.id.imagenCompro);
 
         //FORMULARIO
-        usrInspector = (EditText) findViewById(R.id.usrInspector);
-        usrInspector.setText(db.obtenerUsuario());
+        /*usrInspector = (EditText) findViewById(R.id.usrInspector);
+        usrInspector.setText(db.obtenerUsuario());*/
 
         direccionIns = (EditText) findViewById(R.id.direccionInspe);
         direccionIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),358));
@@ -105,6 +107,16 @@ public class DatosInspActivity extends AppCompatActivity {
 
         entrevistado = (EditText) findViewById(R.id.entrevistadoInsp);
         entrevistado.setText(db.accesorio(Integer.parseInt(id_inspeccion),755));
+
+        // cargar un combo inspeccion por
+        spinnerInsp = (Spinner)findViewById(R.id.spinnerInsp);
+        String[] arraytipo = getResources().getStringArray(R.array.insp);
+        final List<String> arraytipolist = Arrays.asList(arraytipo);
+        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.insp , android.R.layout.simple_spinner_item);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerInsp.setAdapter(spinner_adapter);
+        spinnerInsp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),1).toString()));
+
 
         //region
 
@@ -236,7 +248,7 @@ public class DatosInspActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent( DatosInspActivity.this, SeccionActivity.class);
+                Intent intent = new Intent( DatosInspActivity.this, TechoActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

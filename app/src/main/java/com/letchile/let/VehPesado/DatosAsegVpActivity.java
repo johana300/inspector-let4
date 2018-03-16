@@ -70,7 +70,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         dirJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),371).toString());
 
         //fono
-        fonoJg = (EditText)findViewById(R.id.fonoJg);
+        fonoJg = (EditText)findViewById(R.id.fonoVpJg);
         fonoJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),369).toString());
 
         //celular
@@ -84,9 +84,9 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
         String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
         String listaRegiones[][]=db.listaRegiones();
-        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegJg);
+        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVpJg);
         String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]=regionInicial[0][0];
+        arraySpinner[0]="Seleccione...";
         for(int i=0;i<listaRegiones.length;i++)        {
             arraySpinner[i+1]=listaRegiones[i][0];
         }
@@ -95,7 +95,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         comboRegion.setAdapter(adapterRegion);
 
 
-        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComJr);
+        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComVpJg);
         comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -107,7 +107,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
                 //Se crea una variable array para ser llenado
                 String[] spinnerComuna = new String[listaComunas.length+1];
-                spinnerComuna[0] = db.accesorio(Integer.parseInt(id_inspeccion),370).toString();
+                spinnerComuna[0] = "Seleccione...";
                 for(int i=0;i<listaComunas.length;i++){
                     spinnerComuna[i+1] = listaComunas[i][0];
                 }
@@ -197,13 +197,40 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                 }
 
 
-                db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),nomVpJg.getText().toString(),patVpJg.getText().toString(),
-                        matVpJg.getText().toString(),rutVpJg.getText().toString(),dirJg.getText().toString(),Integer.parseInt(fonoJg.getText().toString()),
-                        mailVpJg.getText().toString(),comboComuna.getSelectedItem().toString());
 
-                Intent intent = new Intent( DatosAsegVpActivity.this, DatosInspVpActivity.class);
-                startActivity(intent);
-                startActivity(intent);
+
+                /*   if (nChasis.getText().toString().equalsIgnoreCase(""))
+                {
+                    Toast.makeText(DatosVehActivity.this, "Debe digitar chasis de vehículo.",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+                else if (anio.getText().toString().equalsIgnoreCase(""))
+                {
+                    Toast.makeText(DatosVehActivity.this, "Debe digitar año de vehículo.",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent intent = new Intent( DatosVehActivity.this, AccActivity.class);
+                    intent.putExtra("id_inspeccion",id_inspeccion);
+                    startActivity(intent);
+
+                }*/
+                if(comboComuna.getSelectedItem().toString().equals("Seleccione...")){
+
+                    Toast.makeText(DatosAsegVpActivity.this, "Debe seleccionar región y comuna.",Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+
+                    Intent intent = new Intent( DatosAsegVpActivity.this, DatosInspVpActivity.class);
+                    intent.putExtra("id_inspeccion",id_inspeccion);
+                    startActivity(intent);
+                }
+
+
             }
         });
 
@@ -215,12 +242,10 @@ public class DatosAsegVpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent( DatosAsegVpActivity.this, SeccionVpActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
-
-
-        /*BOTON VOLVER A OI PENDIENTES*/
 
 
 

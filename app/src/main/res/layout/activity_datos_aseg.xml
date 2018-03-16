@@ -186,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:singleLine="true"
-                        android:nextFocusDown="@+id/fonoJg"/>
+                        android:nextFocusDown="@+id/fonoVpJg"/>
 
                     <TextView
                         android:id="@+id/textView9"
@@ -195,7 +195,7 @@
                         android:text="Celular" />
 
                     <EditText
-                        android:id="@+id/fonoJg"
+                        android:id="@+id/fonoVpJg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"

@@ -618,7 +618,7 @@ public class AudioActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent( AudioActivity.this, SeccionActivity.class);
+                Intent intent = new Intent( AudioActivity.this, AccActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

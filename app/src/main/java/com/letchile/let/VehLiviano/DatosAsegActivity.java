@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.Clases.Validaciones;
-import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 
 import org.json.JSONArray;
@@ -55,7 +54,7 @@ public class DatosAsegActivity extends AppCompatActivity {
         rut = (EditText)findViewById(R.id.rutJg);
         rut.setText(db.accesorio(Integer.parseInt(id_inspeccion),5).toString());
 
-        fono = (EditText)findViewById(R.id.fonoJg);
+        fono = (EditText)findViewById(R.id.fonoVpJg);
         fono.setText(db.accesorio(Integer.parseInt(id_inspeccion),6).toString());
 
         direccion = (EditText)findViewById(R.id.direccionM);
@@ -192,7 +191,11 @@ public class DatosAsegActivity extends AppCompatActivity {
                 Intent intent = new Intent(DatosAsegActivity.this, SeccionActivity.class);//cambiar por volver a fotos
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
-                onDestroy();
+               // onDestroy();
+
+                /*Intent intent = new Intent( NeuActivity.this, AudioActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(intent);*/
                 //finish();
             }
         });

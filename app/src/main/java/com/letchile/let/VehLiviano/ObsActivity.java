@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
-import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 
 import org.json.JSONArray;
@@ -108,12 +106,12 @@ public class ObsActivity extends AppCompatActivity {
 
 
         //Botón volver a secciones
-        final Button btnVolverObsJg = (Button)findViewById(R.id.btnVolverObsJg);
+        final Button btnVolverObsJg = (Button)findViewById(R.id.btnVolverObsVpJg);
         btnVolverObsJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent( ObsActivity.this, SeccionActivity.class);
+                Intent intent = new Intent( ObsActivity.this, DatosInspActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

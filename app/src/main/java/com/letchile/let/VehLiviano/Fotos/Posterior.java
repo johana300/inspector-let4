@@ -40,6 +40,7 @@ import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
+import com.letchile.let.VehLiviano.DatosAsegActivity;
 import com.letchile.let.VehLiviano.SeccionActivity;
 
 import java.io.File;
@@ -409,7 +410,7 @@ public class Posterior extends AppCompatActivity {
                     onBackPressed();
 
                 }
-
+                Intent intent = new Intent(Posterior.this, SeccionActivity.class);
                 //Intent intent =  new Intent(prueba.this, seccion.class);
                 //startActivity(intent);
             }

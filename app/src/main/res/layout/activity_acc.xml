@@ -43,7 +43,7 @@
             android:layout_alignTop="@+id/btnPenAccJg"
             android:background="@drawable/boton_redondo"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Secciones"
+            android:text="Volver"
             android:textColor="@android:color/background_light" />
 
         <Button

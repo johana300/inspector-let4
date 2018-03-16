@@ -8,18 +8,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="186dp">
 
         <TextView
             android:id="@+id/textAu"
             android:layout_width="500dp"
             android:layout_height="35dp"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:background="@android:color/holo_orange_dark"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Audio" />
+            android:background="@android:color/holo_orange_dark"
+            android:gravity="center"
+            android:text="Audio"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textAu1"
@@ -27,9 +29,9 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:background="@android:color/holo_orange_dark"
             android:gravity="center"
             android:text=""
-            android:background="@android:color/holo_orange_dark"
             android:textSize="24sp" />
 
         <Button
@@ -38,11 +40,11 @@
             android:layout_width="115dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
-            android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
             android:layout_alignTop="@+id/btnPenAuJg"
+            android:background="@drawable/boton_redondo"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Secciones" />
+            android:text="Volver"
+            android:textColor="@android:color/background_light" />
 
         <Button
             android:id="@+id/btnPenAuJg"
@@ -50,10 +52,10 @@
             android:layout_width="120dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
             android:layout_toEndOf="@+id/btnVolverAuJg"
+            android:background="@drawable/boton_redondo"
             android:text="Pendientes"
+            android:textColor="@android:color/background_light"
             android:textSize="12sp"
             android:visibility="invisible" />/>
 
@@ -65,9 +67,9 @@
             android:layout_alignTop="@+id/btnPenAuJg"
             android:layout_toEndOf="@+id/btnPenAuJg"
             android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Siguiente" />
+            android:text="Siguiente"
+            android:textColor="@android:color/background_light" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -222,11 +224,11 @@
                         android:id="@+id/textView48"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tweeter"
                         android:background="@android:color/holo_orange_dark"
+                        android:text="Tweeter"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/tweeterApernado"
@@ -288,11 +290,11 @@
                         android:id="@+id/textView49"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Woofer"
                         android:background="@android:color/holo_orange_dark"
+                        android:text="Woofer"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/checkWoofer"
@@ -354,11 +356,11 @@
                         android:id="@+id/textView58"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Amplificador 1"
                         android:background="@android:color/holo_orange_dark"
+                        android:text="Amplificador 1"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/amplifi1check"
@@ -420,11 +422,11 @@
                         android:id="@+id/textView59"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Amplificador 2"
                         android:background="@android:color/holo_orange_dark"
+                        android:text="Amplificador 2"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/amplifi2check"
@@ -486,11 +488,11 @@
                         android:id="@+id/textView60"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lector DVD"
                         android:background="@android:color/holo_orange_dark"
+                        android:text="Lector DVD"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/apernadoDvd"
@@ -552,11 +554,11 @@
                         android:id="@+id/textView61"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Pantalla"
                         android:background="@android:color/holo_orange_dark"
+                        android:text="Pantalla"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/apernadoPantalla"
@@ -618,11 +620,11 @@
                         android:id="@+id/textView62"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="DVD Modular"
                         android:background="@android:color/holo_orange_dark"
+                        android:text="DVD Modular"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/apernadoDvdModular"
