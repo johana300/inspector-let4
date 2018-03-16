@@ -250,7 +250,7 @@ try {
                             }
                         }catch (Exception e){
                             //sacar si esque se cae
-                            i++;
+                            //i++;
                             Log.e("Errror transmision",e.getMessage());
                         }
                     }else{
