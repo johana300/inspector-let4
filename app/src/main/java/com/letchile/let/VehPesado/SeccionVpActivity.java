@@ -133,49 +133,32 @@ public class SeccionVpActivity extends AppCompatActivity {
                 //verificar nuevamente la conexión
                 connec = new ConexionInternet(SeccionVpActivity.this).isConnectingToInternet();
 
+                //CUANDO SE TOMA LA PRIMERA FOTO EN LA SECCION POSTERIOR LA INSPECCIÓN ESTÁ EN ESTADO INICIADA
 
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SeccionVpActivity.this);
-                builder.setCancelable(false);
-                builder.setMessage(Html.fromHtml("¿Seguro que desea transmitir la inspeccion <b>N°OI: "+id_inspeccion+"</b>?."));
+                //2,3,62,63,61,30,31,22,9,39,40,41,42,13,14,65,69,72
 
-                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
+                int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-                       /* if(fotosTomadas>=18){
-*/
-                            //cambiar inspeccion a estado para transmitir
-                            db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
+                if(fotosTomadas==18){
 
-                            if(connec) {
-                                //comprobar que el servicio esté activo
-                                if (!compruebaServicio(TransferirInspeccion.class)) {
-                                    Intent servis = new Intent(SeccionVpActivity.this, TransferirInspeccion.class);
-                                    startService(servis);
-                                    finish();
-                                }
-                            }
+                    //cambiar inspeccion a estado para transmitir
+                    db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
 
-
-                            Intent seccion = new Intent(SeccionVpActivity.this, InsPendientesActivity.class);
-                            startActivity(seccion);
-                            finish();
-
-                       /* }else{
-                            Toast.makeText(SeccionVpActivity.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
-                        }*/
+                    if(connec) {
+                        //comprobar que el servicio esté activo
+                        if (!compruebaServicio(TransferirInspeccion.class)) {
+                            Intent servis = new Intent(SeccionVpActivity.this, TransferirInspeccion.class);
+                            startService(servis);
+                        }
                     }
-                });
 
-                builder.setNegativeButton("Rechazar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(SeccionVpActivity.this, "Inspección no transmitida", Toast.LENGTH_LONG).show();
-                    }
-                });
-                android.app.AlertDialog alert = builder.create();
-                alert.show();
+
+                    Intent seccion = new Intent(SeccionVpActivity.this, InsPendientesActivity.class);
+                    startActivity(seccion);
+
+                }else{
+                    Toast.makeText(SeccionVpActivity.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

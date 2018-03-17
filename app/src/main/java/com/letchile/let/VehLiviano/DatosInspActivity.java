@@ -118,14 +118,9 @@ public class DatosInspActivity extends AppCompatActivity {
         spinnerInsp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),1).toString()));
 
 
-
-
-
-
-
         //region
 
-        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
+        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),359).toString());
         String listaRegiones[][]=db.listaRegiones();
         region = (Spinner)findViewById(R.id.regionSpinnerMQ);
         String[] arraySpinner = new String[listaRegiones.length+1];
@@ -205,12 +200,17 @@ public class DatosInspActivity extends AppCompatActivity {
                     datosValorD.put("valor_id",755);
                     datosValorD.put("texto",entrevistado.getText().toString());
 
+                    JSONObject datosValorCo = new JSONObject();
+                    datosValorCo.put("valor_id",359);
+                    datosValorCo.put("texto",comuna.getSelectedItem().toString());
+
                     JSONArray jsonArray = new JSONArray();
 
                     jsonArray.put(datosValorA);
                     jsonArray.put(datosValorB);
                     jsonArray.put(datosValorC);
                     jsonArray.put(datosValorD);
+                    jsonArray.put(datosValorCo);
 
 
                     //PREGUNTO SI ES NULO PARA INSERTAR LOS DATOS

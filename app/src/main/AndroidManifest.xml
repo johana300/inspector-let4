@@ -130,9 +130,7 @@
         <activity android:name=".VehPesado.Fotos.posterior_vp" />
         <activity android:name=".VehPesado.Fotos.lateral_derecho_vp" />
         <activity
-            android:name=".VehPesado.Fotos.frontal_vp"
-            android:label="@string/title_activity_frontal_vp"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".VehPesado.Fotos.frontal_vp" />
         <activity android:name=".VehPesado.Fotos.lateral_izquierdo_vp" />
         <activity android:name=".VehPesado.Fotos.llanaNeuma_vp" />
         <activity android:name=".VehPesado.Fotos.interior_vp" />

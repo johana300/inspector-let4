@@ -86,7 +86,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         String listaRegiones[][]=db.listaRegiones();
         final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVpJg);
         String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]="Seleccione";
+        arraySpinner[0]="Seleccione...";
         for(int i=0;i<listaRegiones.length;i++)        {
             arraySpinner[i+1]=listaRegiones[i][0];
         }
@@ -107,7 +107,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
                 //Se crea una variable array para ser llenado
                 String[] spinnerComuna = new String[listaComunas.length+1];
-                spinnerComuna[0] = db.accesorio(Integer.parseInt(id_inspeccion),370).toString();
+                spinnerComuna[0] = "Seleccione...";
                 for(int i=0;i<listaComunas.length;i++){
                     spinnerComuna[i+1] = listaComunas[i][0];
                 }
@@ -164,6 +164,10 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                     valor92.put("valor_id",532);
                     valor92.put("texto",mailVpJg.getText().toString());
 
+                    JSONObject datosValorVpCo = new JSONObject();
+                    datosValorVpCo.put("valor_id",370);
+                    datosValorVpCo.put("texto",comboComuna.getSelectedItem().toString());
+
 
 
 
@@ -176,6 +180,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                     jsonArray.put(valor90);
                     jsonArray.put(valor91);
                     jsonArray.put(valor92);
+                    jsonArray.put(datosValorVpCo);
 
 
 
@@ -197,13 +202,20 @@ public class DatosAsegVpActivity extends AppCompatActivity {
                 }
 
 
-                db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),nomVpJg.getText().toString(),patVpJg.getText().toString(),
-                        matVpJg.getText().toString(),rutVpJg.getText().toString(),dirJg.getText().toString(),Integer.parseInt(fonoJg.getText().toString()),
-                        mailVpJg.getText().toString(),comboComuna.getSelectedItem().toString());
+                if(comboComuna.getSelectedItem().toString().equals("Seleccione...")){
 
-                Intent intent = new Intent( DatosAsegVpActivity.this, DatosInspVpActivity.class);
-                startActivity(intent);
-                startActivity(intent);
+                    Toast.makeText(DatosAsegVpActivity.this, "Debe seleccionar región y comuna.",Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+
+                    Intent intent = new Intent( DatosAsegVpActivity.this, DatosInspVpActivity.class);
+                    intent.putExtra("id_inspeccion",id_inspeccion);
+                    startActivity(intent);
+                }
+
+
             }
         });
 
@@ -215,12 +227,10 @@ public class DatosAsegVpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent( DatosAsegVpActivity.this, SeccionVpActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
-
-
-        /*BOTON VOLVER A OI PENDIENTES*/
 
 
 

@@ -352,137 +352,190 @@ public class InsPendientesActivity extends AppCompatActivity{
                                             jsonbb.getString("patente"),jsonbb.getString("cia"),jsonbb.getString("corredor"),jsonbb.getString("pac"));
 
                                     //[{,","","",","","pac":null,"motor":"","chasis":"","anio":"0"}
-                                    //hacer jsons
-                                    JSONObject valor1 = new JSONObject();
-                                    valor1.put("valor_id",2);
-                                    valor1.put("texto",jsonbb.getString("asegurado"));
+                                    if(jsonbb.getString("id_ramo").equals("vl1"))
+                                    {
+                                        //hacer jsons
+                                        JSONObject valor1 = new JSONObject();
+                                        valor1.put("valor_id",2);
+                                        valor1.put("texto",jsonbb.getString("asegurado"));
 
-                                    JSONObject valor2 = new JSONObject();
-                                    valor2.put("valor_id",3);
-                                    valor2.put("texto",jsonbb.getString("paterno_asegurado"));
+                                        JSONObject valor2 = new JSONObject();
+                                        valor2.put("valor_id",3);
+                                        valor2.put("texto",jsonbb.getString("paterno_asegurado"));
 
-                                    JSONObject valor3 = new JSONObject();
-                                    valor3.put("valor_id",4);
-                                    valor3.put("texto",jsonbb.getString("materno_asegurado"));
+                                        JSONObject valor3 = new JSONObject();
+                                        valor3.put("valor_id",4);
+                                        valor3.put("texto",jsonbb.getString("materno_asegurado"));
 
-                                    JSONObject valor4 = new JSONObject();
-                                    valor4.put("valor_id",5);
-                                    valor4.put("texto",jsonbb.getString("rut"));
+                                        JSONObject valor4 = new JSONObject();
+                                        valor4.put("valor_id",5);
+                                        valor4.put("texto",jsonbb.getString("rut"));
 
-                                    JSONObject valor5 = new JSONObject();
-                                    valor5.put("valor_id",7);
-                                    valor5.put("texto",jsonbb.getString("comuna_asegurado"));
+                                        JSONObject valor5 = new JSONObject();
+                                        valor5.put("valor_id",7);
+                                        valor5.put("texto",jsonbb.getString("comuna_asegurado"));
 
-                                    JSONObject valor6 = new JSONObject();
-                                    valor6.put("valor_id",6);
-                                    valor6.put("texto",jsonbb.getInt("fono"));
+                                        JSONObject valor6 = new JSONObject();
+                                        valor6.put("valor_id",6);
+                                        valor6.put("texto",jsonbb.getInt("fono"));
 
-                                    JSONObject valor9 = new JSONObject();
-                                    valor9.put("valor_id",8);
-                                    valor9.put("texto",jsonbb.getString("direccion_asegurado"));
+                                        JSONObject valor9 = new JSONObject();
+                                        valor9.put("valor_id",8);
+                                        valor9.put("texto",jsonbb.getString("direccion_asegurado"));
 
-                                    JSONObject valor10 = new JSONObject();
-                                    valor10.put("valor_id",10);
-                                    valor10.put("texto",jsonbb.getString("marca"));
+                                        JSONObject valor10 = new JSONObject();
+                                        valor10.put("valor_id",10);
+                                        valor10.put("texto",jsonbb.getString("marca"));
 
-                                    JSONObject valor11 = new JSONObject();
-                                    valor11.put("valor_id",11);
-                                    valor11.put("texto",jsonbb.getString("modelo"));
+                                        JSONObject valor11 = new JSONObject();
+                                        valor11.put("valor_id",11);
+                                        valor11.put("texto",jsonbb.getString("modelo"));
 
-                                    //direccion_cita
-                                    JSONObject valor12 = new JSONObject();
-                                    valor12.put("valor_id",358);
-                                    valor12.put("texto",jsonbb.getString("direccion_cita"));
+                                        //direccion_cita
+                                        JSONObject valor12 = new JSONObject();
+                                        valor12.put("valor_id",358);
+                                        valor12.put("texto",jsonbb.getString("direccion_cita"));
 
-                                    //FECHA CITA
-                                    JSONObject valor13 = new JSONObject();
-                                    valor13.put("valor_id",360);
-                                    valor13.put("texto",jsonbb.getString("fecha_cita"));
+                                        //FECHA CITA
+                                        JSONObject valor13 = new JSONObject();
+                                        valor13.put("valor_id",360);
+                                        valor13.put("texto",jsonbb.getString("fecha_cita"));
 
-                                    //HORA CITA
-                                    JSONObject valor14 = new JSONObject();
-                                    valor14.put("valor_id",361);
-                                    valor14.put("texto",jsonbb.getString("hora_cita"));
+                                        //HORA CITA
+                                        JSONObject valor14 = new JSONObject();
+                                        valor14.put("valor_id",361);
+                                        valor14.put("texto",jsonbb.getString("hora_cita"));
 
-                                    //comuna_cita
-                                    JSONObject valor15 = new JSONObject();
-                                    valor15.put("valor_id",359);
-                                    valor15.put("texto",jsonbb.getString("comuna_cita"));
+                                        //comuna_cita
+                                        JSONObject valor15 = new JSONObject();
+                                        valor15.put("valor_id",359);
+                                        valor15.put("texto",jsonbb.getString("comuna_cita"));
 
-                                    JSONObject valor16 = new JSONObject();
-                                    valor16.put("valor_id",301);
-                                    valor16.put("texto",jsonbb.getString("comentario_cita"));
+                                        JSONObject valor16 = new JSONObject();
+                                        valor16.put("valor_id",301);
+                                        valor16.put("texto",jsonbb.getString("comentario_cita"));
 
                                     /*JSONObject valor8 = new JSONObject();
                                     valor7.put("valor_id",);
                                     valor7.put("texto",jsonbb.getString("id_ramo"));*/
 
-                                    JSONObject valor17 = new JSONObject();
-                                    valor17.put("valor_id",363);
-                                    valor17.put("texto",jsonbb.getString("patente"));
+                                        JSONObject valor17 = new JSONObject();
+                                        valor17.put("valor_id",363);
+                                        valor17.put("texto",jsonbb.getString("patente"));
 
-                                    //cia
+                                        //cia
                                     /*JSONObject valor18 = new JSONObject();
                                     valor18.put("valor_id",)*/
 
-                                    JSONObject valor19 = new JSONObject();
-                                    valor19.put("valor_id",9);
-                                    valor19.put("texto",jsonbb.getString("corredor"));
-                                    //pac
+                                        JSONObject valor19 = new JSONObject();
+                                        valor19.put("valor_id",9);
+                                        valor19.put("texto",jsonbb.getString("corredor"));
+                                        //pac
                                     /*JSONObject valor20 = new JSONObject();
                                     valor20.put()*/
 
-                                    JSONObject valor21 = new JSONObject();
-                                    valor21.put("valor_id",16);
-                                    valor21.put("texto",jsonbb.getString("motor"));
+                                        JSONObject valor21 = new JSONObject();
+                                        valor21.put("valor_id",16);
+                                        valor21.put("texto",jsonbb.getString("motor"));
 
-                                    JSONObject valor22 = new JSONObject();
-                                    valor22.put("valor_id",17);
-                                    valor22.put("texto",jsonbb.getString("chasis"));
+                                        JSONObject valor22 = new JSONObject();
+                                        valor22.put("valor_id",17);
+                                        valor22.put("texto",jsonbb.getString("chasis"));
 
-                                    JSONObject valor23 = new JSONObject();
-                                    valor23.put("valor_id",13);
-                                    valor23.put("texto",jsonbb.getString("anio"));
-
-
+                                        JSONObject valor23 = new JSONObject();
+                                        valor23.put("valor_id",13);
+                                        valor23.put("texto",jsonbb.getString("anio"));
 
 
+                                        JSONArray datosvalores = new JSONArray();
+                                        datosvalores.put(valor1);
+                                        datosvalores.put(valor2);
+                                        datosvalores.put(valor3);
+                                        datosvalores.put(valor4);
+                                        datosvalores.put(valor5);
+                                        datosvalores.put(valor6);
+                                        //datosvalores.put(valor7);
+                                        //datosvalores.put(valor8);
+                                        datosvalores.put(valor9);
+                                        datosvalores.put(valor10);
+                                        datosvalores.put(valor11);
+                                        datosvalores.put(valor12);
+                                        datosvalores.put(valor13);
+                                        datosvalores.put(valor14);
+                                        datosvalores.put(valor15);
+                                        datosvalores.put(valor16);
+                                        datosvalores.put(valor17);
+                                        //datosvalores.put(valor18);
+                                        datosvalores.put(valor19);
+                                        //datosvalores.put(valor20);
+                                        datosvalores.put(valor21);
+                                        datosvalores.put(valor22);
+                                        datosvalores.put(valor23);
+                                        //datosvalores.put(valor24);
 
-                                    JSONArray datosvalores = new JSONArray();
-                                    datosvalores.put(valor1);
-                                    datosvalores.put(valor2);
-                                    datosvalores.put(valor3);
-                                    datosvalores.put(valor4);
-                                    datosvalores.put(valor5);
-                                    datosvalores.put(valor6);
-                                    //datosvalores.put(valor7);
-                                    //datosvalores.put(valor8);
-                                    datosvalores.put(valor9);
-                                    datosvalores.put(valor10);
-                                    datosvalores.put(valor11);
-                                    datosvalores.put(valor12);
-                                    datosvalores.put(valor13);
-                                    datosvalores.put(valor14);
-                                    datosvalores.put(valor15);
-                                    datosvalores.put(valor16);
-                                    datosvalores.put(valor17);
-                                    //datosvalores.put(valor18);
-                                    datosvalores.put(valor19);
-                                    //datosvalores.put(valor20);
-                                    datosvalores.put(valor21);
-                                    datosvalores.put(valor22);
-                                    datosvalores.put(valor23);
-                                    //datosvalores.put(valor24);
+                                        //SE ACTUALIZAN LOS DATOS DE LAS INSPECCIONES
 
-                                    //SE ACTUALIZAN LOS DATOS DE LAS INSPECCIONES
-
-                                    if(!datosvalores.isNull(0)){
-                                        for(int ii=0;ii<datosvalores.length();ii++){
-                                            llenado = new JSONObject(datosvalores.getString(ii));
-                                            db.insertarValor(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
-                                            //validaciones.insertarDatos(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
+                                        if(!datosvalores.isNull(0)){
+                                            for(int ii=0;ii<datosvalores.length();ii++){
+                                                llenado = new JSONObject(datosvalores.getString(ii));
+                                                db.insertarValor(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
+                                                //validaciones.insertarDatos(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
+                                            }
                                         }
                                     }
+                                    else
+                                    {
+
+                                        JSONObject valor85 = new JSONObject();
+                                        valor85.put("valor_id",365);
+                                        valor85.put("texto",jsonbb.getString("asegurado"));
+
+                                        JSONObject valor86 = new JSONObject();
+                                        valor86.put("valor_id",366);
+                                        valor86.put("texto",jsonbb.getString("paterno_asegurado"));
+
+                                        JSONObject valor87 = new JSONObject();
+                                        valor87.put("valor_id",367);
+                                        valor87.put("texto",jsonbb.getString("materno_asegurado"));
+
+                                        JSONObject valor88 = new JSONObject();
+                                        valor88.put("valor_id",368);
+                                        valor88.put("texto",jsonbb.getString("rut"));
+
+                                        JSONObject valor89 = new JSONObject();
+                                        valor89.put("valor_id",371);
+                                        valor89.put("texto",jsonbb.getString("direccion_asegurado"));
+
+                                        JSONObject valor90 = new JSONObject();
+                                        valor90.put("valor_id",369);
+                                        valor90.put("texto",jsonbb.getInt("fono"));
+
+
+                                        JSONObject datosValorVpCo = new JSONObject();
+                                        datosValorVpCo.put("valor_id",370);
+                                        datosValorVpCo.put("texto",jsonbb.getString("comuna_asegurado"));
+
+                                        JSONArray datosvalores = new JSONArray();
+                                        datosvalores.put(valor85);
+                                        datosvalores.put(valor86);
+                                        datosvalores.put(valor88);
+                                        datosvalores.put(valor89);
+                                        datosvalores.put(valor90);
+                                        datosvalores.put(datosValorVpCo);
+
+                                        //SE ACTUALIZAN LOS DATOS DE LAS INSPECCIONES
+
+                                        if(!datosvalores.isNull(0)){
+                                            for(int ii=0;ii<datosvalores.length();ii++){
+                                                llenado = new JSONObject(datosvalores.getString(ii));
+                                                db.insertarValor(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
+                                                //validaciones.insertarDatos(jsonbb.getInt("id_inspeccion"),llenado.getInt("valor_id"),llenado.getString("texto"));
+                                            }
+                                        }
+                                    }
+
+
+
 
                                     //falta hacer filtro para descargar inspeccion = poner estado
                                     if(result.equals("Ok"))
