@@ -61,6 +61,8 @@ public class posterior_vp extends AppCompatActivity {
         foto = new PropiedadesFoto(this);
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -18,6 +18,7 @@ import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirInspeccion;
+import com.letchile.let.VehPesado.Fotos.posterior_vp;
 import com.letchile.let.VehLiviano.SeccionActivity;
 
 import java.util.Arrays;
@@ -55,6 +56,21 @@ public class SeccionVpActivity extends AppCompatActivity {
 
         //Botón foto
         // vehPesado=tipoVehPesado.getSelectedItem().toString();
+        Button btnFoto = (Button)findViewById(R.id.btnFotoVpJg);
+        btnFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SeccionVpActivity.this, posterior_vp.class);
+                intent.putExtra("id_inspeccion", id_inspeccion);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
+
 
 
         //Botón Datos Asegurado
