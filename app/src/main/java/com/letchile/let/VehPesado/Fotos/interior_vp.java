@@ -23,6 +23,7 @@ import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
 import com.letchile.let.R;
+import com.letchile.let.Servicios.TransferirFoto;
 import com.letchile.let.VehPesado.SeccionVpActivity;
 
 import java.io.File;
@@ -59,6 +60,8 @@ public class interior_vp extends AppCompatActivity {
     int correlativo = 0;
     DBprovider db;
     PropiedadesFoto foto;
+    Intent servis;
+
 
     public interior_vp(){
         db = new DBprovider(this);
@@ -309,6 +312,11 @@ public class interior_vp extends AppCompatActivity {
                     String imagenPosterior = foto.convertirImagenDano(bitPosterior);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Panel_Interior",0,imagenPosterior);
 
+                    servis = new Intent(interior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Panel_Interior");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
                     break;
 
                 case TAKE_POSTERIOR2:
@@ -328,6 +336,11 @@ public class interior_vp extends AppCompatActivity {
                     imagenPosteriorVp2.setImageBitmap(bitPosterior2);
                     String imagenPosterior2 = foto.convertirImagenDano(bitPosterior2);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Panel_Exterior",0,imagenPosterior2);
+
+                    servis = new Intent(interior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Panel_Exterior");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
 
@@ -349,6 +362,11 @@ public class interior_vp extends AppCompatActivity {
                     String imagenPosterior3 = foto.convertirImagenDano(bitPosterior3);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Radio",0,imagenPosterior3);
 
+                    servis = new Intent(interior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Radio");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
                     break;
 
                 case TAKE_ADDPOVP:
@@ -369,6 +387,11 @@ public class interior_vp extends AppCompatActivity {
                     String imagenAddPosterior = foto.convertirImagenDano(bitAddPosterior);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Kilometraje",0,imagenAddPosterior);
 
+                    servis = new Intent(interior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Kilometraje");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
                     break;
 
                 case TAKE_ADDPOVP2:
@@ -388,6 +411,11 @@ public class interior_vp extends AppCompatActivity {
                     imagenAdicionalPosteriorVp2.setImageBitmap(bitAddPosterior2);
                     String imagenAddPosterior2 = foto.convertirImagenDano(bitAddPosterior2);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Adicional Interior",0,imagenAddPosterior2);
+
+                    servis = new Intent(interior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Adicional Interior");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
 
@@ -413,7 +441,10 @@ public class interior_vp extends AppCompatActivity {
 
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen,comentarito,0,imagenDanoDePost);
 
-
+                    servis = new Intent(interior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario",comentarito);
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
             }

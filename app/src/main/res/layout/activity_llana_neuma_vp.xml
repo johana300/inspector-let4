@@ -104,10 +104,10 @@
                         style="@android:style/Widget.Button"
                         android:layout_width="230dp"
                         android:layout_height="45dp"
+                        android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="8dp"
-                        android:text="Foto Posterior"
-                        android:background="@drawable/boton_redondo"
+                        android:text="Foto Llanta/Nuemát."
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
                         android:visibility="gone" />
@@ -124,10 +124,10 @@
                         style="@android:style/Widget.Button"
                         android:layout_width="230dp"
                         android:layout_height="45dp"
+                        android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="8dp"
-                        android:text="Foto Posterior"
-                        android:background="@drawable/boton_redondo"
+                        android:text="Foto Rueda Resp."
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
                         android:visibility="gone" />
@@ -144,10 +144,10 @@
                         style="@android:style/Widget.Button"
                         android:layout_width="230dp"
                         android:layout_height="45dp"
+                        android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="8dp"
-                        android:text="Foto Posterior"
-                        android:background="@drawable/boton_redondo"
+                        android:text="Foto Chasis"
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
                         android:visibility="gone" />
@@ -168,7 +168,7 @@
                         android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="9dp"
-                        android:text="Foto Adicional"
+                        android:text="Foto Adicional 1"
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
                         android:visibility="gone" />
@@ -188,7 +188,7 @@
                         android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="9dp"
-                        android:text="Foto Adicional"
+                        android:text="Foto Adicional 2"
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
                         android:visibility="gone" />
@@ -231,11 +231,10 @@
                         android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="9dp"
-                        android:text="Foto Adicional"
+                        android:text="Fotografiar"
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/imgFotoDanoPvp"

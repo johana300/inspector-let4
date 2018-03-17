@@ -23,6 +23,7 @@ import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
 import com.letchile.let.R;
+import com.letchile.let.Servicios.TransferirFoto;
 import com.letchile.let.VehPesado.SeccionVpActivity;
 
 import java.io.File;
@@ -59,6 +60,7 @@ public class llanaNeuma_vp extends AppCompatActivity {
     int correlativo = 0;
     DBprovider db;
     PropiedadesFoto foto;
+    Intent servis;
 
 
     public llanaNeuma_vp(){
@@ -309,6 +311,12 @@ public class llanaNeuma_vp extends AppCompatActivity {
                     String imagenPosterior = foto.convertirImagenDano(bitPosterior);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "llanta/Nuematico",0,imagenPosterior);
 
+
+                    servis = new Intent(llanaNeuma_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","llanta/Nuematico");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
                     break;
 
                 case TAKE_POSTERIOR2:
@@ -328,6 +336,11 @@ public class llanaNeuma_vp extends AppCompatActivity {
                     imagenPosteriorVp2.setImageBitmap(bitPosterior2);
                     String imagenPosterior2 = foto.convertirImagenDano(bitPosterior2);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "ruedaRepuesto",0,imagenPosterior2);
+
+                    servis = new Intent(llanaNeuma_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","ruedaRepuesto");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
 
@@ -349,6 +362,11 @@ public class llanaNeuma_vp extends AppCompatActivity {
                     String imagenPosterior3 = foto.convertirImagenDano(bitPosterior3);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "chasis",0,imagenPosterior3);
 
+                    servis = new Intent(llanaNeuma_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","chasis");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
                     break;
 
                 case TAKE_ADDPOVP:
@@ -369,6 +387,11 @@ public class llanaNeuma_vp extends AppCompatActivity {
                     String imagenAddPosterior = foto.convertirImagenDano(bitAddPosterior);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Adicional llantaNeumatico 1",0,imagenAddPosterior);
 
+                    servis = new Intent(llanaNeuma_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Adicional llantaNeumatico 1");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
                     break;
 
                 case TAKE_ADDPOVP2:
@@ -388,6 +411,11 @@ public class llanaNeuma_vp extends AppCompatActivity {
                     imagenAdicionalPosteriorVp2.setImageBitmap(bitAddPosterior2);
                     String imagenAddPosterior2 = foto.convertirImagenDano(bitAddPosterior2);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Adicional llantaNeumatico 2",0,imagenAddPosterior2);
+
+                    servis = new Intent(llanaNeuma_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Adicional llantaNeumatico 2");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
 
@@ -413,7 +441,10 @@ public class llanaNeuma_vp extends AppCompatActivity {
 
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen,comentarito,0,imagenDanoDePost);
 
-
+                    servis = new Intent(llanaNeuma_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario",comentarito);
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
             }

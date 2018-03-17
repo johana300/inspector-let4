@@ -24,7 +24,9 @@ import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
 import com.letchile.let.R;
+import com.letchile.let.Servicios.TransferirFoto;
 import com.letchile.let.VehLiviano.Fotos.Posterior;
+import com.letchile.let.VehLiviano.Fotos.documento;
 import com.letchile.let.VehPesado.SeccionVpActivity;
 
 import java.io.File;
@@ -55,6 +57,7 @@ public class posterior_vp extends AppCompatActivity {
     int correlativo = 0;
     DBprovider db;
     PropiedadesFoto foto;
+    Intent servis;
 
     public posterior_vp(){
         db = new DBprovider(this);
@@ -209,6 +212,11 @@ public class posterior_vp extends AppCompatActivity {
                     String imagenPosterior = foto.convertirImagenDano(bitPosterior);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Posterior",0,imagenPosterior);
 
+                    servis = new Intent(posterior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Posterior");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
+
                     break;
 
                 case TAKE_ADDPOVP:
@@ -228,6 +236,11 @@ public class posterior_vp extends AppCompatActivity {
                     imagenAdicionalPosteriorVp.setImageBitmap(bitAddPosterior);
                     String imagenAddPosterior = foto.convertirImagenDano(bitAddPosterior);
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen, "Adicional Posterior",0,imagenAddPosterior);
+
+                    servis = new Intent(posterior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario","Adicional Posterior");
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
 
@@ -253,7 +266,10 @@ public class posterior_vp extends AppCompatActivity {
 
                     db.insertaFoto(Integer.parseInt(id_inspeccion),db.correlativoFotos(Integer.parseInt(id_inspeccion)),nombreimagen,comentarito,0,imagenDanoDePost);
 
-
+                    servis = new Intent(posterior_vp.this, TransferirFoto.class);
+                    servis.putExtra("comentario",comentarito);
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
 
                     break;
             }
