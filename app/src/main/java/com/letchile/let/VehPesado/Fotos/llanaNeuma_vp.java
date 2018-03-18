@@ -55,7 +55,7 @@ public class llanaNeuma_vp extends AppCompatActivity {
     @BindView(R.id.imgFotoDanoPvp)ImageView imgFotoDanoPvp;
 
     private final int TAKE_POSTERIOR = 100,TAKE_POSTERIOR2=400,TAKE_POSTERIOR3=500, TAKE_ADDPOVP=200,TAKE_ADDPOVP2=600,TAKE_DANOPVP=300;
-    String id_inspeccion,ruta,mPath,nombreimagen;
+    String id_inspeccion,ruta,mPath,nombreimagen,tipoVeh;
     private File ruta_sd;
     int correlativo = 0;
     DBprovider db;
@@ -76,6 +76,7 @@ public class llanaNeuma_vp extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         id_inspeccion = bundle.getString("id_inspeccion");
+        tipoVeh = bundle.getString("tipoVeh");
 
         //region Sacar foto a posterior
         btnFotoPosterior.setOnClickListener(new View.OnClickListener() {
@@ -571,20 +572,26 @@ public class llanaNeuma_vp extends AppCompatActivity {
 
     @OnClick(R.id.btnSiguientePvpMQ)//Seguir a la siguiente seccion de camara
     public void seguir(View view){
-
-
-        //VALIDAR
-
-        Intent in = new Intent(llanaNeuma_vp.this, interior_vp.class);
-        in.putExtra("id_inspeccion",id_inspeccion);
-        startActivity(in);
-        finish();
+        if(tipoVeh.equals("4")) {
+            Intent in = new Intent(llanaNeuma_vp.this, interior_vp.class);
+            in.putExtra("id_inspeccion",id_inspeccion);
+            in.putExtra("tipoVeh",tipoVeh);
+            startActivity(in);
+            finish();
+        }else{
+            Intent in = new Intent(llanaNeuma_vp.this, documentos_vp.class);
+            in.putExtra("id_inspeccion",id_inspeccion);
+            in.putExtra("tipoVeh",tipoVeh);
+            startActivity(in);
+            finish();
+        }
     }
 
     @OnClick(R.id.btnVolverPvpMQ)//Volver a las secciones
     public void volver(View view){
         Intent in = new Intent(llanaNeuma_vp.this, lateral_izquierdo_vp.class);
         in.putExtra("id_inspeccion",id_inspeccion);
+        in.putExtra("tipoVeh",tipoVeh);
         startActivity(in);
         finish();
     }

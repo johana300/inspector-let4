@@ -48,7 +48,7 @@ public class lateral_derecho_vp extends AppCompatActivity {
     @BindView(R.id.imgFotoDanoPvp)ImageView imgFotoDanoPvp;
 
     private final int TAKE_POSTERIOR = 100, TAKE_ADDPOVP=200,TAKE_DANOPVP=300;
-    String id_inspeccion,ruta,mPath,nombreimagen;
+    String id_inspeccion,ruta,mPath,nombreimagen,tipoVeh;
     private File ruta_sd;
     int correlativo = 0;
     DBprovider db;
@@ -68,6 +68,7 @@ public class lateral_derecho_vp extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         id_inspeccion = bundle.getString("id_inspeccion");
+        tipoVeh = bundle.getString("tipoVeh");
 
         //region Sacar foto a posterior
         btnFotoPosterior.setOnClickListener(new View.OnClickListener() {
@@ -340,6 +341,7 @@ public class lateral_derecho_vp extends AppCompatActivity {
     public void seguir(View view){
         Intent in = new Intent(lateral_derecho_vp.this, frontal_vp.class);
         in.putExtra("id_inspeccion",id_inspeccion);
+        in.putExtra("tipoVeh",tipoVeh);
         startActivity(in);
         finish();
     }
@@ -348,6 +350,7 @@ public class lateral_derecho_vp extends AppCompatActivity {
     public void volver(View view){
         Intent in = new Intent(lateral_derecho_vp.this, posterior_vp.class);
         in.putExtra("id_inspeccion",id_inspeccion);
+        in.putExtra("tipoVeh",tipoVeh);
         startActivity(in);
         finish();
     }
