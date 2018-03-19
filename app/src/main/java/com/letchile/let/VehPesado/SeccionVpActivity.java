@@ -68,7 +68,7 @@ public class SeccionVpActivity extends AppCompatActivity {
         if(tipoVehPesado.getSelectedItemPosition()!=0){
             Intent intent = new Intent(SeccionVpActivity.this, posterior_vp.class);
             intent.putExtra("id_inspeccion", id_inspeccion);
-            intent.putExtra("tipoVeh",tipoVehPesado.getSelectedItemPosition());
+            intent.putExtra("tipoVeh",String.valueOf(tipoVehPesado.getSelectedItemPosition()));
             startActivity(intent);
         }else{
             Toast.makeText(SeccionVpActivity.this,"Debe seleccionar el tipo de vehículo",Toast.LENGTH_SHORT).show();
@@ -114,7 +114,7 @@ public class SeccionVpActivity extends AppCompatActivity {
 
         int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-        if(fotosTomadas==10){
+        if(fotosTomadas>=10){
 
             //cambiar inspeccion a estado para transmitir
             db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
