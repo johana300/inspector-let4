@@ -573,11 +573,22 @@ public class interior_vp extends AppCompatActivity {
 
     @OnClick(R.id.btnSiguientePvpMQ)//Seguir a la siguiente seccion de camara
     public void seguir(View view){
-        Intent in = new Intent(interior_vp.this, documentos_vp.class);
-        in.putExtra("id_inspeccion",id_inspeccion);
-        in.putExtra("tipoVeh",tipoVeh);
-        startActivity(in);
-        finish();
+
+        String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"Panel_Interior");
+        String imagenPosterior2 = db.foto(Integer.parseInt(id_inspeccion),"Panel_Exterior");
+        String imagenPosterior3 = db.foto(Integer.parseInt(id_inspeccion),"Radio");
+        String imagenAdicional = db.foto(Integer.parseInt(id_inspeccion),"Kilometraje");
+
+        if(imagenPosterior.length()>=3 && imagenPosterior2.length()>=3 && imagenPosterior3.length()>=3 && imagenAdicional.length()>=3) {
+
+            Intent in = new Intent(interior_vp.this, documentos_vp.class);
+            in.putExtra("id_inspeccion", id_inspeccion);
+            in.putExtra("tipoVeh", tipoVeh);
+            startActivity(in);
+            finish();
+        }else{
+            Toast.makeText(interior_vp.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.btnVolverPvpMQ)//Volver a las secciones

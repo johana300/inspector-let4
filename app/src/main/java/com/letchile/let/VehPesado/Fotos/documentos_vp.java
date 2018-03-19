@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
@@ -381,11 +382,19 @@ public class documentos_vp extends AppCompatActivity {
 
     @OnClick(R.id.btnSiguientePvpMQ)//Seguir a la siguiente seccion de camara
     public void seguir(View view){
-        Intent in = new Intent(documentos_vp.this, DatosAsegVpActivity.class);
-        in.putExtra("id_inspeccion",id_inspeccion);
-        in.putExtra("tipoVeh",tipoVeh);
-        startActivity(in);
-        finish();
+
+        String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"Documento");
+
+        if(imagenPosterior.length()>=3) {
+
+            Intent in = new Intent(documentos_vp.this, DatosAsegVpActivity.class);
+            in.putExtra("id_inspeccion", id_inspeccion);
+            in.putExtra("tipoVeh", tipoVeh);
+            startActivity(in);
+            finish();
+        }else{
+            Toast.makeText(documentos_vp.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.btnVolverPvpMQ)//Volver a las secciones

@@ -572,19 +572,30 @@ public class llanaNeuma_vp extends AppCompatActivity {
 
     @OnClick(R.id.btnSiguientePvpMQ)//Seguir a la siguiente seccion de camara
     public void seguir(View view){
-        if(tipoVeh.equals("4")) {
-            Intent in = new Intent(llanaNeuma_vp.this, interior_vp.class);
-            in.putExtra("id_inspeccion",id_inspeccion);
-            in.putExtra("tipoVeh",tipoVeh);
-            startActivity(in);
-            finish();
+
+        String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"llanta/Nuematico");
+        String imagenPosterior2 = db.foto(Integer.parseInt(id_inspeccion),"ruedaRepuesto");
+        String imagenPosterior3 = db.foto(Integer.parseInt(id_inspeccion),"chasis");
+
+        if(imagenPosterior.length()>=3 && imagenPosterior2.length()>=3 && imagenPosterior3.length()>=3) {
+
+            if (tipoVeh.equals("4")) {
+                Intent in = new Intent(llanaNeuma_vp.this, interior_vp.class);
+                in.putExtra("id_inspeccion", id_inspeccion);
+                in.putExtra("tipoVeh", tipoVeh);
+                startActivity(in);
+                finish();
+            } else {
+                Intent in = new Intent(llanaNeuma_vp.this, documentos_vp.class);
+                in.putExtra("id_inspeccion", id_inspeccion);
+                in.putExtra("tipoVeh", tipoVeh);
+                startActivity(in);
+                finish();
+            }
         }else{
-            Intent in = new Intent(llanaNeuma_vp.this, documentos_vp.class);
-            in.putExtra("id_inspeccion",id_inspeccion);
-            in.putExtra("tipoVeh",tipoVeh);
-            startActivity(in);
-            finish();
+            Toast.makeText(llanaNeuma_vp.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @OnClick(R.id.btnVolverPvpMQ)//Volver a las secciones

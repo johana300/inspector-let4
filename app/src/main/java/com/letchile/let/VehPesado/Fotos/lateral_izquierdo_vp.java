@@ -340,11 +340,18 @@ public class lateral_izquierdo_vp extends AppCompatActivity {
 
     @OnClick(R.id.btnSiguientePvpMQ)//Seguir a la siguiente seccion de camara
     public void seguir(View view){
-        Intent in = new Intent(lateral_izquierdo_vp.this, llanaNeuma_vp.class);
-        in.putExtra("id_inspeccion",id_inspeccion);
-        in.putExtra("tipoVeh",tipoVeh);
-        startActivity(in);
-        finish();
+
+        String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"LateralIzquiero");
+
+        if(imagenPosterior.length()>=3) {
+            Intent in = new Intent(lateral_izquierdo_vp.this, llanaNeuma_vp.class);
+            in.putExtra("id_inspeccion", id_inspeccion);
+            in.putExtra("tipoVeh", tipoVeh);
+            startActivity(in);
+            finish();
+        }else{
+            Toast.makeText(lateral_izquierdo_vp.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.btnVolverPvpMQ)//Volver a las secciones
