@@ -164,8 +164,6 @@ public class SeccionActivity extends Activity {
 
                 //verificar nuevamente la conexión
                 connec = new ConexionInternet(SeccionActivity.this).isConnectingToInternet();
-
-
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SeccionActivity.this);
                 builder.setCancelable(false);
                 builder.setMessage(Html.fromHtml("¿Seguro que desea transmitir la inspeccion <b>N°OI: "+id_inspeccion+"</b>?."));
@@ -185,11 +183,8 @@ public class SeccionActivity extends Activity {
                                 if (!compruebaServicio(TransferirInspeccion.class)) {
                                     Intent servis = new Intent(SeccionActivity.this, TransferirInspeccion.class);
                                     startService(servis);
-                                    finish();
                                 }
                             }
-
-
                             Intent seccion = new Intent(SeccionActivity.this, InsPendientesActivity.class);
                             startActivity(seccion);
                             finish();

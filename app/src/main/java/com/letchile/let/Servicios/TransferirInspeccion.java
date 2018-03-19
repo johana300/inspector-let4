@@ -26,6 +26,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -268,12 +270,19 @@ try {
             //ingresa fecha inspeccion
             String[][] datosInspeccion=db.BuscaDatosInspeccion(strings[0]);
                 try{
-                    URL url = new URL("https://www.autoagenda.cl/movil/cargamovil/ingresoFechaInspeccion"); // here is your URL path
+                    URL url;
+                    if(datosInspeccion[0][7].toString().equals("vl1")) {
+                        url = new URL("https://www.autoagenda.cl/movil/cargamovil/ingresoFechaInspeccion"); // here is your URL path
+                    }else {
+                        url = new URL("https://www.autoagenda.cl/movil/cargamovil/ingresoFechaInspeccionVp"); // here is your URL path
+                    }
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+                    String fechaHoraFallida = sdf.format(new Date());
 
                     JSONObject postDataParams = new JSONObject();
-                    postDataParams.put("id_inspeccion","");
-                    postDataParams.put("fecha_inspeccion", "");
-                    postDataParams.put("usr", "");
+                    postDataParams.put("id_inspeccion",strings[0]);
+                    postDataParams.put("fecha_inspeccion", fechaHoraFallida);
+                    postDataParams.put("usr", db.obtenerUsuario());
                     Log.e("Parametos a pasar", postDataParams.toString());
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
