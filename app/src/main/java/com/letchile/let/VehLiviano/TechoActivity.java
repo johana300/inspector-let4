@@ -242,7 +242,7 @@ public class TechoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent( TechoActivity.this, SeccionActivity.class);
+                Intent intent = new Intent( TechoActivity.this, NeuActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

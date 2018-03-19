@@ -42,7 +42,7 @@
             android:textColor="@android:color/background_light"
             android:layout_alignTop="@+id/btnPenObsJg"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Secciones" />
+            android:text="Volver"/>
 
         <Button
             android:id="@+id/btnPenObsJg"
