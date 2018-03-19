@@ -261,6 +261,68 @@ try {
                     Log.e("Error",e.getMessage());
                 }
             }
+
+
+
+
+            //ingresa fecha inspeccion
+            String[][] datosInspeccion=db.BuscaDatosInspeccion(strings[0]);
+                try{
+                    URL url = new URL("https://www.autoagenda.cl/movil/cargamovil/ingresoFechaInspeccion"); // here is your URL path
+
+                    JSONObject postDataParams = new JSONObject();
+                    postDataParams.put("id_inspeccion","");
+                    postDataParams.put("fecha_inspeccion", "");
+                    postDataParams.put("usr", "");
+                    Log.e("Parametos a pasar", postDataParams.toString());
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+
+
+                    OutputStream os = conn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getPostDataString(postDataParams));
+
+                    writer.flush();
+                    writer.close();
+                    os.close();
+
+                    int responseCode = conn.getResponseCode();
+
+                    Log.e("Status servicio", String.valueOf(responseCode));
+
+                    if (responseCode == HttpsURLConnection.HTTP_OK) {
+                        BufferedReader in = new BufferedReader(new
+                                InputStreamReader(
+                                conn.getInputStream()));
+
+                        StringBuffer sb = new StringBuffer("");
+                        String line = "";
+
+                        while ((line = in.readLine()) != null) {
+
+                            sb.append(line);
+                            break;
+                        }
+
+                        in.close();
+
+
+
+                    }else{
+                        onDestroy(); // sin internet o otro error
+                    }
+
+                }catch (Exception e){
+                    Log.e("Error",e.getMessage());
+                }
+
+
+
+
+
             return strings[0];
         }
 
