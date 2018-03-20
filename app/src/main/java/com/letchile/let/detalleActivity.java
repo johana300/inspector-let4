@@ -218,29 +218,8 @@ public class detalleActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
 
 
-                        Call<oiRangoHorario> oirangoHorario = servicio.getRango(id_inspeccion,db.obtenerUsuario());
 
-                        oirangoHorario.enqueue(new Callback<oiRangoHorario>() {
-                            @Override
-                            public void onResponse(Call<oiRangoHorario> call, Response<oiRangoHorario> response) {
-                                int statusCode = response.code();
-                                oiRangoHorario oiRango = response.body();
-
-                                if (oiRango.getIdInspeccion().equals(id_inspeccion)) {
-
-                                    oiRango.getFechaR();
-                                    oiRango.getHoraIR();
-                                    oiRango.getHoraFR();
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<oiRangoHorario> call, Throwable t) {
-
-                            }
-                        });
-
+                        //new rangoHorario().execute(id_inspeccion,db.obtenerUsuario());
                         if(ramo.getText().toString().equals("Vehículo liviano")) {
                             Intent inn = new Intent(detalleActivity.this,SeccionActivity.class);
                             inn.putExtra("id_inspeccion",n_oi.getText().toString());
@@ -558,6 +537,86 @@ public class detalleActivity extends AppCompatActivity {
             in.putExtra("hora_cita",fecha_cita);
 
             startActivity(in);
+        }
+    }
+
+    public class rangoHorario extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            conexion1 = new ConexionInternet(detalleActivity.this).isConnectingToInternet();
+            try {
+                if (conexion1) {
+                    URL url = new URL("https://www.autoagenda.cl/movil/cargamovil/oiRangoHorario"); // here is your URL path
+
+                    JSONObject postDataParams = new JSONObject();
+                    postDataParams.put("id_inspeccion", strings[0]);
+                    postDataParams.put("usr", strings[1]);
+                    Log.e("params", postDataParams.toString());
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(15000 /* milliseconds */);
+                    conn.setConnectTimeout(15000 /* milliseconds */);
+                    conn.setRequestMethod("POST");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+
+                    OutputStream os = conn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getPostDataString(postDataParams));
+
+                    writer.flush();
+                    writer.close();
+                    os.close();
+
+                    int responseCode = conn.getResponseCode();
+
+                    if (responseCode == HttpsURLConnection.HTTP_OK) {
+
+                        BufferedReader in = new BufferedReader(new
+                                InputStreamReader(
+                                conn.getInputStream()));
+
+                        StringBuffer sb = new StringBuffer("");
+                        String line = "";
+
+                        while ((line = in.readLine()) != null) {
+
+                            sb.append(line);
+                            break;
+                        }
+
+                        in.close();
+
+                        //se llena la inspeccion fallida
+                        String json = sb.toString();
+                        JSONArray jsonar = new JSONArray(json);
+                        /*try{
+                            if(!jsonar.isNull(0)){
+                                String result = "";
+                                for (int i = 0; i < jsonar.length(); i++) {
+                                    jsonInspe = new JSONObject(jsonar.getString(i));
+
+                                    db.borrarInspeccionFallida(jsonInspe.getInt("id_inspeccion"));
+                                    result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fechaFallida"),jsonInspe.getString("comentarioFallida"),
+                                            jsonInspe.getInt("idFallida"),jsonInspe.getString("fechaCita"),jsonInspe.getString("horaCita"),jsonInspe.getInt("activo"));
+                                }
+                            }
+                        }catch (Exception e){
+                            Log.e("Error al convertir json", e.getMessage());
+                        }*/
+                        //String con el json de respuesta
+                        return sb.toString();
+
+                    } else {
+                        return new String("false : " + responseCode);
+                    }
+                } else {
+                    return "No hay conexión";
+                }
+            } catch (Exception e) {
+                return new String("Exception: " + e.getMessage());
+            }
         }
     }
 
