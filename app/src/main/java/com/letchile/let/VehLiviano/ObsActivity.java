@@ -41,7 +41,7 @@ public class ObsActivity extends AppCompatActivity {
 
         //OBSERVACION 1
         observacion1 = (EditText)findViewById(R.id.observacion1);
-        observacion1.setText(db.accesorio(Integer.parseInt(id_inspeccion),301).toString());
+        observacion1.setText(db.accesorio(Integer.parseInt(id_inspeccion),304).toString());
 
         //OBSERVACION 2
         observacion2 = (EditText)findViewById(R.id.observacion2);
@@ -53,7 +53,7 @@ public class ObsActivity extends AppCompatActivity {
 
         //OBSERVACION 4
         observacion4 = (EditText)findViewById(R.id.observacion4);
-        observacion4.setText(db.accesorio(Integer.parseInt(id_inspeccion),304).toString());
+        observacion4.setText("");
 
 
         //Botón volver de sección Observación

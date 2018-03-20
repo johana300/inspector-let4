@@ -24,13 +24,13 @@
         <TextView
             android:id="@+id/textDetalle"
             android:layout_width="500dp"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:background="@android:color/holo_orange_dark"
             android:gravity="center"
             android:text=""
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnVolverM"
@@ -38,12 +38,12 @@
             android:layout_width="115dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativeLayout3"
             android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
-            android:layout_alignTop="@+id/btnFallida"
             android:drawableLeft="@android:drawable/ic_menu_revert"
             android:text="Volver"
-            android:textSize="12sp"/>
+            android:textColor="@android:color/background_light"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btnFallida"
@@ -62,20 +62,32 @@
             style="@android:style/Widget.Button"
             android:layout_width="1100dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/btnFallida"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/relativeLayout3"
             android:layout_toEndOf="@+id/btnFallida"
             android:background="@drawable/boton_redondo"
-            android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Comenzar Inspección" />
+            android:text="Comenzar Inspección"
+            android:textColor="@android:color/background_light" />
 
 
+        <Button
+            android:id="@+id/eliminarOIMQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout3"
+            android:background="@drawable/boton_redondo"
+            android:textColor="@android:color/background_light"
+            android:layout_toEndOf="@+id/btnVolverM"
+            android:layout_toStartOf="@+id/btnInspeccionarM"
+            android:text="Eliminar OI" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/textDetalle"
-            android:layout_below="@+id/textDet">
+            android:layout_below="@+id/textDet"
+            android:id="@+id/relativeLayout3">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -421,10 +433,10 @@
                         style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
                         android:layout_gravity="center"
-
                         android:layout_marginTop="20dp"
+
+                        android:spinnerMode="dialog"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 

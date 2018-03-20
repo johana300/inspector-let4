@@ -63,6 +63,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
     String nombreimagenV = "";
     private final int PHOTO_COMPROBANTEV = 250;
     Context contextoV = this;
+    int correlativo;
     /*FALTA CARGAR COMBOS DE REGION Y COMUNA*/
 
     public DatosInspVpActivity(){db = new DBprovider(this);fotoV = new PropiedadesFoto(this);};
@@ -280,8 +281,8 @@ public class DatosInspVpActivity extends AppCompatActivity {
             rutaV = file.toString() + "/" + imageName;
             mPathV = rutaV;
 
-            Calendar c = Calendar.getInstance();
-            nombreimagenV = String.valueOf(id_inspeccion)+"_"+ String.valueOf(c.get(Calendar.SECOND))+"_Comprobante.jpg";
+            correlativo = db.correlativoFotos(id_inspeccion);
+            nombreimagenV = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Comprobante.jpg";
 
             File newFile = new File(mPathV);
 
@@ -319,14 +320,14 @@ public class DatosInspVpActivity extends AppCompatActivity {
                     imagenComproV.setVisibility(View.VISIBLE);
                     String imagen = fotoV.convertirImagenDano(bitmap);
 
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 72, nombreimagenV, "Foto Comprobante", 0, imagen);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), correlativo, nombreimagenV, "Foto Comprobante", 0, imagen);
                     break;
             }
 
             //TRANSFERIR FOTO
 
             Intent servis = new Intent(contextoV, TransferirFoto.class);
-            servis.putExtra("id_foto","72");
+            servis.putExtra("comentario","Foto Comprobante");
             servis.putExtra("id_inspeccion",id_inspeccion);
             startService(servis);
 

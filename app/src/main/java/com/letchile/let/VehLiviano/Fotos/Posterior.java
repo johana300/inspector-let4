@@ -35,12 +35,14 @@ import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
 import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.R;
+import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -510,6 +512,14 @@ public class Posterior extends AppCompatActivity {
         }
     }
     private void openCamerabtnPosteriorE(String id) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String fechaInspeccion = sdf.format(new Date());
+        db.insertarValor(Integer.parseInt(id),360, fechaInspeccion);
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+        String horaInspeccion = sdf2.format(new Date());
+        db.insertarValor(Integer.parseInt(id),361,horaInspeccion);
 
         String id_inspeccion = id;
         ruta_sd =Environment.getExternalStorageDirectory();

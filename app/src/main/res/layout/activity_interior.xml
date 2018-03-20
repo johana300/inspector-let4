@@ -181,10 +181,10 @@
                         android:layout_width="230dp"
                         android:layout_height="50dp"
                         android:background="@drawable/boton_redondo"
-                        android:textColor="@android:color/background_light"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="8dp"
-                        android:text="Foto Adiocional"
+                        android:text="Foto Adicional"
+                        android:textColor="@android:color/background_light"
                         android:textSize="14sp"
                         android:visibility="gone" />
 

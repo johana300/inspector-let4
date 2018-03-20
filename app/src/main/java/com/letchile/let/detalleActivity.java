@@ -303,6 +303,37 @@ public class detalleActivity extends AppCompatActivity {
         });
 
 
+
+        //Eliminar oi
+        Button btnEliminar = findViewById(R.id.eliminarOIMQ);
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(detalleActivity.this);
+                builder.setCancelable(false);
+                builder.setMessage(Html.fromHtml("¿Desea borrar la inspeccion <b>N°: "+id_inspeccion+"</b>?."));
+
+                builder.setPositiveButton("Borrar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        db.deleteInspeccion(Integer.parseInt(id_inspeccion));
+                        startActivity(new Intent(detalleActivity.this,InsPendientesActivity.class));
+                        finish();
+                    }
+                });
+
+                builder.setNegativeButton("Dejar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(detalleActivity.this, "Inspección no borrada del sistema", Toast.LENGTH_LONG).show();
+                    }
+                });
+                android.app.AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+
     }
 
     public void cambioRamo(View view)    {

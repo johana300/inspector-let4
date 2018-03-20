@@ -124,7 +124,7 @@ public class DatosInspActivity extends AppCompatActivity {
         String listaRegiones[][]=db.listaRegiones();
         region = (Spinner)findViewById(R.id.regionSpinnerMQ);
         String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]=regionInicial[0][0];
+        arraySpinner[0]="Seleccione";
         for(int i=0;i<listaRegiones.length;i++)        {
             arraySpinner[i+1]=listaRegiones[i][0];
         }
@@ -141,7 +141,7 @@ public class DatosInspActivity extends AppCompatActivity {
                 String regionSelected = region.getSelectedItem().toString();
                 String listaComuna[][] = db.listaComunas(regionSelected);
                 String[] spinnercomuna = new String[listaComuna.length+1];
-                spinnercomuna[0] = db.accesorio(Integer.parseInt(id_inspeccion),359).toString();
+                spinnercomuna[0] = "Seleccione";
                 for(int i=0;i<listaComuna.length;i++){
                     spinnercomuna[i+1] = listaComuna[i][0];
                 }
@@ -320,7 +320,7 @@ public class DatosInspActivity extends AppCompatActivity {
                     imagenCompro.setVisibility(View.VISIBLE);
                     String imagen = foto.convertirImagenDano(bitmap);
 
-                    db.insertaFoto(Integer.parseInt(id_inspeccion), 72, nombreimagen, "Foto Comprobante", 0, imagen);
+                    db.insertaFoto(Integer.parseInt(id_inspeccion), correlativo, nombreimagen, "Foto Comprobante", 0, imagen);
                     break;
             }
             //TRANSFERIR FOTO

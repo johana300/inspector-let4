@@ -80,6 +80,15 @@ public class posterior_vp extends AppCompatActivity {
         btnFotoPosterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String fechaInspeccion = sdf.format(new Date());
+                db.insertarValor(Integer.parseInt(id_inspeccion),737, fechaInspeccion);
+
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+                String horaInspeccion = sdf2.format(new Date());
+                db.insertarValor(Integer.parseInt(id_inspeccion),738,horaInspeccion);
+
                 ruta_sd = Environment.getExternalStorageDirectory();
                 File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
                 boolean isDirectoryCreated = file.exists();
