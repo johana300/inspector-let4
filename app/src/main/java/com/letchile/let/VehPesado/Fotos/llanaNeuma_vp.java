@@ -579,7 +579,7 @@ public class llanaNeuma_vp extends AppCompatActivity {
 
         if(imagenPosterior.length()>=3 && imagenPosterior2.length()>=3 && imagenPosterior3.length()>=3) {
 
-            if (tipoVeh.equals("4")) {
+            if (!tipoVeh.equals("4")) {
                 Intent in = new Intent(llanaNeuma_vp.this, interior_vp.class);
                 in.putExtra("id_inspeccion", id_inspeccion);
                 in.putExtra("tipoVeh", tipoVeh);

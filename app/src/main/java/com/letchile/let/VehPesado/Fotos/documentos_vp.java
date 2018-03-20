@@ -400,7 +400,7 @@ public class documentos_vp extends AppCompatActivity {
     @OnClick(R.id.btnVolverPvpMQ)//Volver a las secciones
     public void volver(View view){
 
-        if(tipoVeh.equals("4")) {
+        if(!tipoVeh.equals("4")) {
             Intent in = new Intent(documentos_vp.this, interior_vp.class);
             in.putExtra("id_inspeccion", id_inspeccion);
             in.putExtra("tipoVeh", tipoVeh);

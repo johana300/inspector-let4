@@ -274,9 +274,6 @@ public class detalleActivity extends AppCompatActivity {
                         if(perfil.equals("3"))
                         {
                             if(minutosDiferencia<=30 && minutosDiferencia>=-30){
-                        /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
-                        intent.putExtra("id_inspeccion",n_oi.getText().toString());
-                        startActivity(intent);*/
                                 new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
                             }else{
                                 Toast.makeText(detalleActivity.this, "Fuera de rango de horario" , Toast.LENGTH_LONG).show();
@@ -285,9 +282,9 @@ public class detalleActivity extends AppCompatActivity {
                         else
                         {
                             new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
-                    /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
-                    intent.putExtra("id_inspeccion",n_oi.getText().toString());
-                    new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());*/
+                            /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
+                            intent.putExtra("id_inspeccion",n_oi.getText().toString());
+                            new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());*/
 
                             //startActivity(intent);
                         }
@@ -591,6 +588,34 @@ public class detalleActivity extends AppCompatActivity {
                         //se llena la inspeccion fallida
                         String json = sb.toString();
                         JSONArray jsonar = new JSONArray(json);
+
+                        try {
+                            if (!jsonar.isNull(0)) {
+                                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+
+                                for(int i=0;i<jsonar.length();i++){
+                                    jsonInspe = new JSONObject(jsonar.getString(i));
+                                    if(jsonInspe.getInt("id_inspeccion")==Integer.parseInt(strings[0])){
+
+                                        Date fInicio = format.parse(jsonInspe.getString("fechaR")+' '+jsonInspe.getString("horaIR"));
+                                        Date fFinal = format.parse(jsonInspe.getString("fechaR")+' '+jsonInspe.getString("horaFR"));
+
+                                        Calendar DateFechaInicio = Calendar.getInstance();
+                                        DateFechaInicio.setTime(fInicio);
+
+                                        Calendar DateFechaFinal = Calendar.getInstance();
+                                        DateFechaFinal.setTime(fFinal);
+
+                                        long minutosAntes = Calendar.getInstance().getTimeInMillis()-DateFechaInicio.getTimeInMillis();
+                                        long minutosDespues = Calendar.getInstance().getTimeInMillis()-DateFechaInicio.getTimeInMillis();
+
+
+                                    }
+                                }
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                         /*try{
                             if(!jsonar.isNull(0)){
                                 String result = "";
