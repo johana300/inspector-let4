@@ -70,7 +70,7 @@ public class DatosInspActivity extends AppCompatActivity {
     Boolean connec = false;
     PropiedadesFoto foto;
     Context contexto = this;
-    String nombreimagen = "";
+    String nombreimagen = "", imagenComprobante;
     JSONObject llenado;
     int correlativo = 0;
 
@@ -165,7 +165,7 @@ public class DatosInspActivity extends AppCompatActivity {
         });
 
         //image view
-        String imagenComprobante = db.foto(Integer.parseInt(id_inspeccion),"Foto Comprobante");
+        imagenComprobante = db.foto(Integer.parseInt(id_inspeccion),"Foto Comprobante");
 
         if(imagenComprobante.length()>=3 )
         {
@@ -229,9 +229,13 @@ public class DatosInspActivity extends AppCompatActivity {
                     Toast.makeText(DatosInspActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
                 }
 
-                Intent intent = new Intent( DatosInspActivity.this, ObsActivity.class);
-                intent.putExtra("id_inspeccion",id_inspeccion);
-                startActivity(intent);
+                if(imagenComprobante.length()<=3) {
+                    Toast.makeText(DatosInspActivity.this,"Debe tomar la foto de comprobante para continuar",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(DatosInspActivity.this, ObsActivity.class);
+                    intent.putExtra("id_inspeccion", id_inspeccion);
+                    startActivity(intent);
+                }
             }
         });
 

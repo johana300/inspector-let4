@@ -60,7 +60,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
     Button btnFotocomprobanteV;
     EditText entrevistado;
     private String mPathV;
-    String nombreimagenV = "";
+    String nombreimagenV = "",imagenComprobanteV;
     private final int PHOTO_COMPROBANTEV = 250;
     Context contextoV = this;
     int correlativo;
@@ -157,7 +157,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
         });
 
         //image view
-        String imagenComprobanteV = db.foto(Integer.parseInt(id_inspeccion),"Foto Comprobante");
+        imagenComprobanteV = db.foto(Integer.parseInt(id_inspeccion),"Foto Comprobante");
 
         if(imagenComprobanteV.length()>=3 )
         {
@@ -222,6 +222,10 @@ public class DatosInspVpActivity extends AppCompatActivity {
                         }
                     }
 
+
+
+
+
                 }catch (Exception e)
                 {
 
@@ -236,9 +240,13 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
                 } else {
 
-                    Intent intent = new Intent( DatosInspVpActivity.this, ObsVpActivity.class);
-                    intent.putExtra("id_inspeccion",id_inspeccion);
-                    startActivity(intent);
+                    if(imagenComprobanteV.length()<=3){
+                        Toast.makeText(DatosInspVpActivity.this,"Debe tomar la foto de comprobante",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent intent = new Intent( DatosInspVpActivity.this, ObsVpActivity.class);
+                        intent.putExtra("id_inspeccion",id_inspeccion);
+                        startActivity(intent);
+                    }
                 }
 
 
