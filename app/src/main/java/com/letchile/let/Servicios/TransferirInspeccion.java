@@ -91,19 +91,10 @@ try {
             for (int i = 0; i < accesorios.length; i++) {
                 try {
 
-                    if(accesorios[i][1].equals("Seleccione...") || accesorios[i][1].equals("Seleccione... ")) {
-                        JSONObject valores = new JSONObject();
-                        valores.put("idcampo", accesorios[i][0]);
-                        valores.put("valor", "");
-                        jsonArray.put(valores);
-                    }else{
-                        JSONObject valores = new JSONObject();
-                        valores.put("idcampo", accesorios[i][0]);
-                        valores.put("valor", accesorios[i][1]);
-                        jsonArray.put(valores);
-                    }
-
-
+                    JSONObject valores = new JSONObject();
+                    valores.put("idcampo", accesorios[i][0]);
+                    valores.put("valor", accesorios[i][1]);
+                    jsonArray.put(valores);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

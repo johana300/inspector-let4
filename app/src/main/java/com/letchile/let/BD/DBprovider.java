@@ -956,7 +956,7 @@ public class DBprovider extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String[][] aData = null;
 
-        Cursor aRS = db.rawQuery("SELECT * FROM VALOR WHERE idInspeccion = "+id_inspeccion, null);
+        Cursor aRS = db.rawQuery("SELECT * FROM VALOR WHERE idInspeccion = "+id_inspeccion+" and valor not like '%seleccione%'", null);
 
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
