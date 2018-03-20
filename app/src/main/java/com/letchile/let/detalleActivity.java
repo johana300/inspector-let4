@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.Fallida.Fallida;
+import com.letchile.let.Remoto.Data.oiRangoHorario;
+import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.VehLiviano.SeccionActivity;
 import com.letchile.let.VehPesado.SeccionVpActivity;
@@ -54,10 +56,16 @@ import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class detalleActivity extends AppCompatActivity {
 
     DBprovider db;
-    TextView n_oi,pantete,asegurado,direccion,comentario,fono,ramo,pac,marca,modelo;
+    TextView n_oi,pantete,asegurado,direccion,comentario,fono,ramo,pac,marca,modelo,compañia,corredor;
     Button btnInspeccion, btnAddhito, btnVolver,btnFallida;
     Boolean conexion1 = false;
     ProgressDialog pDialog;
@@ -111,6 +119,12 @@ public class detalleActivity extends AppCompatActivity {
 
 
         String[][] datosInspeccion=db.BuscaDatosInspeccion(id_inspeccion);
+
+        compañia = (TextView)findViewById(R.id.compañiaMQ);
+        compañia.setText(datosInspeccion[0][15].toString());
+
+        corredor = (TextView)findViewById(R.id.corredorMQ);
+        corredor.setText(db.accesorio(Integer.parseInt(id_inspeccion),9).toString());
 
         n_oi = (TextView)findViewById(R.id.n_oim);
         n_oi.setText(id_inspeccion);
@@ -182,6 +196,13 @@ public class detalleActivity extends AppCompatActivity {
         comboRamo.setAdapter(spinner_adapter1);
 
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.URL_BASE))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final InterfacePost servicio = retrofit.create(InterfacePost.class);
+
         //Inspeccionar
         btnInspeccion = (Button)findViewById(R.id.btnInspeccionarM);
         btnInspeccion.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +216,30 @@ public class detalleActivity extends AppCompatActivity {
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                        Call<oiRangoHorario> oirangoHorario = servicio.getRango(id_inspeccion,db.obtenerUsuario());
+
+                        oirangoHorario.enqueue(new Callback<oiRangoHorario>() {
+                            @Override
+                            public void onResponse(Call<oiRangoHorario> call, Response<oiRangoHorario> response) {
+                                int statusCode = response.code();
+                                oiRangoHorario oiRango = response.body();
+
+                                if (oiRango.getIdInspeccion().equals(id_inspeccion)) {
+
+                                    oiRango.getFechaR();
+                                    oiRango.getHoraIR();
+                                    oiRango.getHoraFR();
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<oiRangoHorario> call, Throwable t) {
+
+                            }
+                        });
 
                         if(ramo.getText().toString().equals("Vehículo liviano")) {
                             Intent inn = new Intent(detalleActivity.this,SeccionActivity.class);
@@ -284,8 +329,6 @@ public class detalleActivity extends AppCompatActivity {
 
     }
 
-
-
     public void cambioRamo(View view)    {
         String cRamo = comboRamo.getSelectedItem().toString();
         String comboRamoo = "";
@@ -300,9 +343,6 @@ public class detalleActivity extends AppCompatActivity {
         }
         new envioRamo().execute(n_oi.getText().toString(),comboRamoo);
     }
-
-
-
 
     public class envioRamo extends AsyncTask<String, Void, String> {
 
@@ -414,9 +454,6 @@ public class detalleActivity extends AppCompatActivity {
             Toast.makeText(detalleActivity.this, "Se ha actualizado ramo", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 
     public class notificarFallida extends AsyncTask<String, Void, String> {
 

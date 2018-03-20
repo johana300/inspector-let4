@@ -1,9 +1,11 @@
 package com.letchile.let.VehLiviano.Fotos;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +17,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,6 +39,7 @@ import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -83,6 +88,7 @@ public class Posterior extends AppCompatActivity {
     Validaciones validaciones;
     int correlativo = 0;
     String dañosDedu[][];
+    ExifInterface exifObject;
 
 
     public Posterior(){db = new DBprovider(this);foto=new PropiedadesFoto(this);validaciones = new Validaciones(this);
@@ -1016,16 +1022,35 @@ public class Posterior extends AppCompatActivity {
                                     }
                                 });
 
+
+
+                        /*try {
+                            exifObject = new ExifInterface(mPath);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        int orientation = exifObject.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);*/
+
+                        Display display = ((WindowManager)
+                        Posterior.this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+                        int rotation = display.getRotation();
+
                         Bitmap bitmapPosterio = BitmapFactory.decodeFile(mPath);
+                        //bitmapPosterio = foto.rotateBitmap(bitmapPosterio,1);
                         bitmapPosterio = foto.redimensiomarImagen(bitmapPosterio);
                         imageViewFotoPoE.setImageBitmap(bitmapPosterio);
                         String imagenPosterio = foto.convertirImagenDano(bitmapPosterio);
+
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Posterior", 0, imagenPosterio);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Posterior");
                         servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
+
+
+
 
                         break;
                     case TAKE_LUNETA:

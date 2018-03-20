@@ -85,6 +85,63 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dip"
+                            android:padding="4dp"
+                            android:text="Compañia:"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/compañiaMQ"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/textView3"
+                            android:layout_toEndOf="@+id/textView3"
+                            android:padding="4dp"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dip"
+                            android:padding="4dp"
+                            android:text="Corredor:"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/corredorMQ"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/textView3"
+                            android:layout_toEndOf="@+id/textView3"
+                            android:padding="4dp"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -216,7 +273,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                    <TextView
+
+                        <TextView
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -237,6 +295,7 @@
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/textView8"
                         android:layout_toEndOf="@+id/textView8"/>
+
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -263,6 +322,7 @@
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/textView3"
                         android:layout_toEndOf="@+id/textView3"/>
+
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"

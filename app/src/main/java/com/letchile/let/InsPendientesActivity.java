@@ -37,6 +37,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.listeners.TableDataClickListener;
+import de.codecrafters.tableview.model.TableColumnDpWidthModel;
+import de.codecrafters.tableview.model.TableColumnPxWidthModel;
 import de.codecrafters.tableview.model.TableColumnWeightModel;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
@@ -662,11 +664,11 @@ public class InsPendientesActivity extends AppCompatActivity{
 
             pDialog.dismiss();
 
-            TableColumnWeightModel columnModel = new TableColumnWeightModel(4);
-            columnModel.setColumnWeight(1,2);
-            columnModel.setColumnWeight(2,3);
-            columnModel.setColumnWeight(3,2);
-            columnModel.setColumnWeight(4,1);
+            TableColumnWeightModel  columnModel = new TableColumnWeightModel (4);
+            columnModel.setColumnWeight(1,1);
+            columnModel.setColumnWeight(2,1);
+            columnModel.setColumnWeight(3,1);
+            columnModel.setColumnWeight(4,5);
 
             final TableView<String[]> tb = (TableView<String[]>)findViewById(R.id.tableView);
             tb.setColumnModel(columnModel);

@@ -1,6 +1,7 @@
 package com.letchile.let.Remoto;
 
 import com.letchile.let.Remoto.Data.LoginResp;
+import com.letchile.let.Remoto.Data.oiRangoHorario;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -18,7 +19,9 @@ public interface InterfacePost {
     Call<LoginResp> getAcceso(@Field("usr") String usr, @Field("pwd") String pwd);
 
 
-
+    @FormUrlEncoded
+    @POST("cargamovil/oiRangoHorario")
+    Call<oiRangoHorario> getRango(@Field("id_inspeccion")String id_inspeccion, @Field("usr") String usr);
 
 
 
