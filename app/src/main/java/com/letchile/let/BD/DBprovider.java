@@ -443,26 +443,7 @@ public class DBprovider extends SQLiteOpenHelper {
         return (aData);
     }
 
-    public String[][] obtenerRegion(String comuna) {
-        int count = 0;
-        SQLiteDatabase db = getReadableDatabase();
-        String[][] aData = null;
-        Cursor aRS = db.rawQuery("SELECT DISTINCT region FROM COMUNA WHERE comuna = '" + comuna + "'", null);
 
-        if (aRS.getCount() > 0) {
-            aData = new String[aRS.getCount()][];
-            while (aRS.moveToNext()) {
-                aData[count] = new String[3];
-                aData[count][0] = aRS.getString(aRS.getColumnIndex("region"));
-                count++;
-            }
-        } else {
-            aData = new String[0][];
-        }
-        aRS.close();
-        db.close();
-        return (aData);
-    }
 
 
     public void actualizarAsegInspeccion(Integer id_inspeccion, String asegurado, String apellidoP, String apellidoM, String rut, String direccion,
@@ -1249,6 +1230,20 @@ public class DBprovider extends SQLiteOpenHelper {
         if(ars.moveToFirst()){
             rsp = ars.getString(ars.getColumnIndex("valorDeducible"));
         }
+        return rsp;
+    }
+
+
+    public String obtenerRegion(String comuna) {
+
+        String rsp = "Seleccione";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor ars = db.rawQuery("SELECT DISTINCT region FROM COMUNA WHERE comuna = '" + comuna + "' LIMIT 1", null);
+
+        if(ars.moveToFirst()){
+            rsp = ars.getString(ars.getColumnIndex("region"));
+        }
+
         return rsp;
     }
 

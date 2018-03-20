@@ -67,11 +67,11 @@ public class DatosAsegActivity extends AppCompatActivity {
 
         //db.accesorio(Integer.parseInt(id_inspeccion),7);
         //llenar regiones
-        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
+        String regionInicial=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
         String listaRegiones[][]=db.listaRegiones();
         final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegJg);
         String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]=regionInicial[0][0];
+        arraySpinner[0]=regionInicial;
         for(int i=0;i<listaRegiones.length;i++)        {
             arraySpinner[i+1]=listaRegiones[i][0];
         }

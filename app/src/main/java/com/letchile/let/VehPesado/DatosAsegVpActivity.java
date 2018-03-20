@@ -82,11 +82,11 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         mailVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
 
 
-        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
+        String regionInicial=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
         String listaRegiones[][]=db.listaRegiones();
         final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVpJg);
         String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]=regionInicial[0][0];
+        arraySpinner[0]=regionInicial;
         for(int i=0;i<listaRegiones.length;i++)        {
             arraySpinner[i+1]=listaRegiones[i][0];
         }

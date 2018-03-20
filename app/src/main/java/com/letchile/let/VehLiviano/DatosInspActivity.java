@@ -93,10 +93,6 @@ public class DatosInspActivity extends AppCompatActivity {
         //FOTO
         imagenCompro = findViewById(R.id.imagenCompro);
 
-        //FORMULARIO
-        /*usrInspector = (EditText) findViewById(R.id.usrInspector);
-        usrInspector.setText(db.obtenerUsuario());*/
-
         direccionIns = (EditText) findViewById(R.id.direccionInspe);
         direccionIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),358));
 
@@ -121,11 +117,11 @@ public class DatosInspActivity extends AppCompatActivity {
 
         //region
 
-        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),359).toString());
+        String regionInicial=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),359).toString());
         String listaRegiones[][]=db.listaRegiones();
         region = (Spinner)findViewById(R.id.regionSpinnerMQ);
         String[] arraySpinner = new String[listaRegiones.length+1];
-        arraySpinner[0]="Seleccione";
+        arraySpinner[0]=regionInicial;
         for(int i=0;i<listaRegiones.length;i++)        {
             arraySpinner[i+1]=listaRegiones[i][0];
         }
@@ -142,7 +138,7 @@ public class DatosInspActivity extends AppCompatActivity {
                 String regionSelected = region.getSelectedItem().toString();
                 String listaComuna[][] = db.listaComunas(regionSelected);
                 String[] spinnercomuna = new String[listaComuna.length+1];
-                spinnercomuna[0] = "Seleccione";
+                spinnercomuna[0] = db.accesorio(Integer.parseInt(id_inspeccion),359).toString();
                 for(int i=0;i<listaComuna.length;i++){
                     spinnercomuna[i+1] = listaComuna[i][0];
                 }
