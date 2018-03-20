@@ -37,6 +37,7 @@ import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
+import com.letchile.let.VehPesado.DatosInspVpActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -229,13 +230,23 @@ public class DatosInspActivity extends AppCompatActivity {
                     Toast.makeText(DatosInspActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
                 }
 
-                if(imagenComprobante.length()<=3) {
+                if(imagenCompro.getVisibility()==View.GONE){
+                    Toast.makeText(DatosInspActivity.this,"Falta la foto de comprobante",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(DatosInspActivity.this, ObsActivity.class);
+                    intent.putExtra("id_inspeccion", id_inspeccion);
+                    startActivity(intent);
+                }
+
+
+
+                /*if(imagenComprobante.length()<=3) {
                     Toast.makeText(DatosInspActivity.this,"Debe tomar la foto de comprobante para continuar",Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent = new Intent(DatosInspActivity.this, ObsActivity.class);
                     intent.putExtra("id_inspeccion", id_inspeccion);
                     startActivity(intent);
-                }
+                }*/
             }
         });
 

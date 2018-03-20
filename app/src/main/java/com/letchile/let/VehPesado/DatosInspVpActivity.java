@@ -218,7 +218,6 @@ public class DatosInspVpActivity extends AppCompatActivity {
                             llenado = new JSONObject(jsonArray.getString(i));
                             db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
 
-
                         }
                     }
 
@@ -240,7 +239,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
                 } else {
 
-                    if(imagenComprobanteV.length()<=3){
+                    if(imagenComproV.getVisibility()==View.GONE){
                         Toast.makeText(DatosInspVpActivity.this,"Debe tomar la foto de comprobante",Toast.LENGTH_SHORT).show();
                     }else{
                         Intent intent = new Intent( DatosInspVpActivity.this, ObsVpActivity.class);
