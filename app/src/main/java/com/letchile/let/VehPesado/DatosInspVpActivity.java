@@ -109,7 +109,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
         tipoVehVp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),364).toString()));
 
         //region
-        String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),736).toString());
+        //String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),359).toString());
         String listaRegiones[][]=db.listaRegiones();
         final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVep);
         String[] arraySpinner = new String[listaRegiones.length+1];
@@ -134,7 +134,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
                 //Se crea una variable array para ser llenado
                 String[] spinnerComuna = new String[listaComunas.length+1];
-                spinnerComuna[0] = "Seleccione";
+                spinnerComuna[0] = db.accesorio(Integer.parseInt(id_inspeccion),736).toString();
                 for(int i=0;i<listaComunas.length;i++){
                     spinnerComuna[i+1] = listaComunas[i][0];
                 }
