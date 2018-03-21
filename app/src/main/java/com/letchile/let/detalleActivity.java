@@ -251,9 +251,9 @@ public class detalleActivity extends AppCompatActivity {
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Intent in = new Intent(detalleActivity.this,InsPendientesActivity.class);
-                //startActivity(in);
-                onBackPressed();
+               Intent in = new Intent(detalleActivity.this,InsPendientesActivity.class);
+               startActivity(in);
+               finish();
             }
         });
 

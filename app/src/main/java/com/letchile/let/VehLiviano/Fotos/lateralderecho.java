@@ -124,8 +124,11 @@ public class lateralderecho extends AppCompatActivity {
         btnVolverLdE = findViewById(R.id.btnVolverLdE);
         btnVolverLdE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {      onBackPressed();
-
+            public void onClick(View view) {
+                Intent inte = new Intent(lateralderecho.this,Posterior.class);
+                inte.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(inte);
+                finish();
             }
         });
 

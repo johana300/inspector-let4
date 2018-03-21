@@ -38,6 +38,7 @@ import com.letchile.let.R;
 import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
+import com.letchile.let.VehLiviano.SeccionActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -383,34 +384,10 @@ public class Posterior extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"Posterior");
-                String imagenLogoLuneta = db.foto(Integer.parseInt(id_inspeccion),"Logo Luneta Posterior");
-                if(imagenLogoLuneta.length()>4 || imagenPosterior.length()>4){
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
-                    builder.setCancelable(false);
-                    builder.setTitle("LET Chile");
-                    builder.setMessage(Html.fromHtml("<b>Debe continuar realizando la inspección</b>"));
-                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-
-
-                }
-                else{
-                    //Intent intent =  new Intent(prueba.this, seccion.class);
-                    //startActivity(intent);
-                    onBackPressed();
-
-                }
-
-                //Intent intent =  new Intent(prueba.this, seccion.class);
-                //startActivity(intent);
+                Intent intent   = new Intent(Posterior.this,SeccionActivity.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(intent);
+                finish();
             }
         });
 

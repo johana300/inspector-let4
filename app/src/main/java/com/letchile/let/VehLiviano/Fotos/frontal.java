@@ -229,7 +229,10 @@ public class frontal extends AppCompatActivity {
         btnVolverFrontalE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent inte = new Intent(frontal.this,lateralderecho.class);
+                inte.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(inte);
+                finish();
             }
         });
         btnSiguienteFrontalE = (Button)findViewById(R.id.btnSiguienteFrontalE);

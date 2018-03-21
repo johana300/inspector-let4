@@ -181,6 +181,11 @@ public class DatosInspActivity extends AppCompatActivity {
 
                 try {
                     //LLENO EL JSON
+
+                    JSONObject datosValorIns = new JSONObject();
+                    datosValorIns.put("valor_id",1);
+                    datosValorIns.put("texto",spinnerInsp.getSelectedItem().toString());
+
                     JSONObject datosValorA = new JSONObject();
                     datosValorA.put("valor_id",358);
                     datosValorA.put("texto",direccionIns.getText().toString());
@@ -203,6 +208,7 @@ public class DatosInspActivity extends AppCompatActivity {
 
                     JSONArray jsonArray = new JSONArray();
 
+                    jsonArray.put(datosValorIns);
                     jsonArray.put(datosValorA);
                     jsonArray.put(datosValorB);
                     jsonArray.put(datosValorC);

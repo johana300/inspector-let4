@@ -196,7 +196,10 @@ public class vl_techo extends AppCompatActivity {
         btnTechoVolverE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent   = new Intent(vl_techo.this,llantasneumaticos.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(intent);
+                finish();
             }
         });
 

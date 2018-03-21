@@ -107,7 +107,11 @@ public class motor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                onBackPressed();
+                Intent intent = new Intent(motor.this, interior.class);
+                intent.putExtra("id_inspeccion", id_inspeccion);
+                startActivity(intent);
+                finish();
+
             }
         });
 

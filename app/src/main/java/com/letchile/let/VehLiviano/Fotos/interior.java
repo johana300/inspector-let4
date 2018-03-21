@@ -453,9 +453,10 @@ public class interior extends AppCompatActivity {
         btnVolverInteriorE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent =  new Intent(interior.this, techo.class);
-                // startActivity(intent);
-                onBackPressed();
+                Intent intent = new Intent(interior.this, vl_techo.class);
+                intent.putExtra("id_inspeccion", id_inspeccion);
+                startActivity(intent);
+                finish();
             }
         });
         btnSiguienteInteriorE = (Button)findViewById(R.id.btnSiguienteInteriorE);

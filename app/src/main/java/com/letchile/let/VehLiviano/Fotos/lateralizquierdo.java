@@ -202,7 +202,12 @@ public class lateralizquierdo extends AppCompatActivity {
         btnVolverLaIzE = (Button)findViewById(R.id.btnVolverLaIzE);
         btnVolverLaIzE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { onBackPressed();  }
+            public void onClick(View v) {
+                Intent intent = new Intent(lateralizquierdo.this, frontal.class);
+                intent.putExtra("id_inspeccion", id_inspeccion);
+                startActivity(intent);
+                finish();
+            }
         });
         btnSiguienteLaIzE = (Button)findViewById(R.id.btnSiguienteLaIzE);
         btnSiguienteLaIzE.setOnClickListener(new View.OnClickListener() {

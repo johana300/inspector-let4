@@ -127,9 +127,10 @@ public class documento extends AppCompatActivity {
         btnVolverDocuE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent =  new Intent(documento.this, motor.class);
-                //startActivity(intent);
-                onBackPressed();
+                Intent intent = new Intent(documento.this,motor.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(intent);
+                finish();
             }
         });
         btnVolverSecDocuE = (Button)findViewById(R.id.btnVolverSecDocuE);

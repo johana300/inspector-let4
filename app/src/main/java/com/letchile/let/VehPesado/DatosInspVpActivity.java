@@ -177,6 +177,9 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
                 try{
 
+                    JSONObject valorNuevo = new JSONObject();
+                    valorNuevo.put("valor_id",364);
+                    valorNuevo.put("texto",tipoVehVp.getSelectedItem().toString());
 
                     JSONObject valor93 = new JSONObject();
                     valor93.put("valor_id",733);
@@ -204,6 +207,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
 
                     JSONArray jsonArray = new JSONArray();
+                    jsonArray.put(valorNuevo);
                     jsonArray.put(valor93);
                     jsonArray.put(valor94);
                     jsonArray.put(valor95);

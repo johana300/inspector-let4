@@ -100,9 +100,11 @@ public class llantasneumaticos extends AppCompatActivity {
         btnLlantasVolverE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent =  new Intent(llantasneumaticos.this, lateralizquierdo.class);
-                //startActivity(intent);
-                onBackPressed();}
+                Intent intent   = new Intent(llantasneumaticos.this,lateralizquierdo.class);
+                intent.putExtra("id_inspeccion",id_inspeccion);
+                startActivity(intent);
+                finish();
+            }
         });
 
         btnSiguienteLlantaE = (Button)findViewById(R.id.btnSiguienteLlantaE);
