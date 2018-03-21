@@ -53,7 +53,6 @@ public class SeccionActivity extends Activity {
                 Intent intent = new Intent(SeccionActivity.this, Posterior.class);
                 intent.putExtra("id_inspeccion", id_inspeccion);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -173,7 +172,7 @@ public class SeccionActivity extends Activity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-                        //if(fotosTomadas>=18){
+                        if(fotosTomadas>=18){
 
                             //cambiar inspeccion a estado para transmitir
                             db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
@@ -189,9 +188,9 @@ public class SeccionActivity extends Activity {
                             startActivity(seccion);
                             finish();
 
-                        /*}else{
+                        }else{
                             Toast.makeText(SeccionActivity.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
-                        }*/
+                        }
                     }
                 });
 
