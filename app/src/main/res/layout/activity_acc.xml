@@ -127,7 +127,7 @@
                          android:checked="false"
                          android:phoneNumber="false"
                          android:tag="25"
-                         android:text="GPS" />
+                         android:text="GPS" />-->
 
                      <CheckBox
                          android:id="@+id/checkAc"
@@ -141,17 +141,17 @@
                          android:layout_height="wrap_content"
                          android:text="Climatizador" />
 
-                     <CheckBox
-                         android:id="@+id/checkBlue"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Bluetooth" />
+                    <!--<CheckBox
+                        android:id="@+id/checkBlue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bluetooth" />-->
 
-                     <CheckBox
-                         android:id="@+id/checkAlr"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Alarma" />-->
+                    <CheckBox
+                        android:id="@+id/checkAlr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Alarma" />
 
                     <TextView
                         android:id="@+id/textView26"
@@ -167,23 +167,23 @@
                         android:ems="10"
                         android:inputType="text" />
 
-                    <!-- <CheckBox
-                         android:id="@+id/checkCierre"
+                    <CheckBox
+                         android:id="@+id/checkCierreC"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:text="Cierre Centralizado" />
 
-                     <CheckBox
+                      <CheckBox
                          android:id="@+id/checkCint"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:text="Cinturones de Seguridad Retráctiles" />
 
-                     <CheckBox
+                    <!-- <CheckBox
                          android:id="@+id/checkCorta"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Corta Corriente" />
+                         android:text="Corta Corriente" />-->
 
                      <CheckBox
                          android:id="@+id/checkFreno"
@@ -191,11 +191,11 @@
                          android:layout_height="wrap_content"
                          android:text="Frenos ABS" />
 
-                     <CheckBox
-                         android:id="@+id/checkAirg"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Airbags" />-->
+                    <CheckBox
+                        android:id="@+id/checkAirg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Airbags" />
 
                     <TextView
                         android:id="@+id/textView27"
@@ -251,7 +251,7 @@
                         android:id="@+id/checkAtra"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Trasero" />
+                        android:text="Trasero" /> -->
 
                     <CheckBox
                         android:id="@+id/checkCapota"
@@ -259,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:text="Capota Eléctrica" />
 
-                    <CheckBox
+                    <!--<CheckBox
                         android:id="@+id/checkActivado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -287,7 +287,7 @@
                         android:id="@+id/checkMotor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Motor no enciende" />
+                        android:text="Motor no enciende" />-->
 
                     <TextView
                         android:id="@+id/textView29"
@@ -301,7 +301,7 @@
                         android:layout_height="wrap_content"
                         android:text="Eléctricas" />
 
-                    <CheckBox
+                    <!--<CheckBox
                         android:id="@+id/checkBtapiz"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -321,7 +321,7 @@
                          android:id="@+id/checkSen"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Sensores retroceso" />
+                         android:text="Sensores retroceso" />-->
 
                      <CheckBox
                          android:id="@+id/checkSpo"
@@ -329,11 +329,12 @@
                          android:layout_height="wrap_content"
                          android:text="Spoiler" />
 
-                     <CheckBox
+
+                    <!-- <CheckBox
                          android:id="@+id/checkCam"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Cámara retroceso" />
+                         android:text="Cámara retroceso" />-->
 
                      <CheckBox
                          android:id="@+id/checkAleron"
@@ -347,35 +348,35 @@
                          android:layout_height="wrap_content"
                          android:text="Limpia luneta" />
 
-                     <CheckBox
-                         android:id="@+id/checkCubre"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Cubremaleta" />
+                    <CheckBox
+                        android:id="@+id/checkCubre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cubremaleta" />
 
-                     <CheckBox
-                         android:id="@+id/checkCpick"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Cubre pick up" />
+                    <!--<CheckBox
+                        android:id="@+id/checkCpick"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cubre pick up" />-->
 
-                     <CheckBox
-                         android:id="@+id/checkLogo1"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Logo" />
+                    <CheckBox
+                        android:id="@+id/checkLogo1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Logo" />
 
-                     <CheckBox
-                         android:id="@+id/checkRuresp"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Rueda repuesto" />
+                    <CheckBox
+                        android:id="@+id/checkRuresp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rueda repuesto" />
 
-                     <CheckBox
-                         android:id="@+id/checkFaltante"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Faltante" />-->
+                    <CheckBox
+                        android:id="@+id/checkFaltante"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Faltante" />
 
 
                     <Spinner
@@ -396,7 +397,7 @@
                         android:padding="12dp"
                         android:spinnerMode="dialog" />
 
-                    <!--<CheckBox
+                    <CheckBox
                         android:id="@+id/checkSHerr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -418,7 +419,7 @@
                         android:id="@+id/checkExt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Extintor" />-->
+                        android:text="Extintor" />
 
                     <TextView
                         android:id="@+id/textView"
@@ -435,7 +436,7 @@
                         android:layout_height="60dp"
                         android:spinnerMode="dialog" />
 
-                    <!--<CheckBox
+                    <CheckBox
                         android:id="@+id/checkBAnt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -453,7 +454,7 @@
                         android:layout_height="wrap_content"
                         android:text="Baliza" />
 
-                    <CheckBox
+                    <!--<CheckBox
                         android:id="@+id/checkCarrast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -481,13 +482,13 @@
                         android:id="@+id/checkCrefrig"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cámara refrigerada" />
+                        android:text="Cámara refrigerada" />-->
 
                     <CheckBox
                         android:id="@+id/checkCupula"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cúpula" />-->
+                        android:text="Cúpula" />
 
                     <TextView
                         android:id="@+id/textView32"
@@ -513,31 +514,31 @@
                         android:id="@+id/checkLcubre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lona cubre pick up" />
+                        android:text="Lona cubre pick up" />-->
 
                     <CheckBox
                         android:id="@+id/checkCajaH"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Caja de herramientas " />-->
+                        android:text="Caja de herramientas " />
 
                     <!--<TextView
                         android:id="@+id/textView33"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Varios" />
+                        android:text="Varios" />-->
 
                     <CheckBox
-                        android:id="@+id/checkMold"
+                        android:id="@+id/checkMoldu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Moldura paso rueda" />
 
-                    <CheckBox
+                    <!--<CheckBox
                         android:id="@+id/checkPis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Pisadera" />
+                        android:text="Pisadera" />-->
 
                     <CheckBox
                         android:id="@+id/checkFal"
@@ -545,7 +546,7 @@
                         android:layout_height="wrap_content"
                         android:text="Faldones" />
 
-                    <CheckBox
+                    <!--<CheckBox
                         android:id="@+id/checkGpa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

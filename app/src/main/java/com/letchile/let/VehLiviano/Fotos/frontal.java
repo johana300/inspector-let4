@@ -177,6 +177,7 @@ public class frontal extends AppCompatActivity {
             }
         });
 
+        //NO ES COCO ES SENSORES DE IMPACTO!
         CocoFoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),316));
         CocoFoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -549,14 +550,14 @@ public class frontal extends AppCompatActivity {
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Logo_Frontal.jpg";
+            String imageName = fecha + "_Foto_SensoresImpacto_Frontal.jpg";
             ruta = file.toString() + "/" + imageName;
             mPath = ruta;
 
             File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Logo_Frontal.jpg";
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_SensoresImpacto_Frontal.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -750,11 +751,11 @@ public class frontal extends AppCompatActivity {
                         bitmapCoco = foto.redimensiomarImagen(bitmapCoco);
                         imageCocoFrE.setImageBitmap(bitmapCoco);
                         String imagenCoco = foto.convertirImagenDano(bitmapCoco);
-                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Coco Frontal", 0, imagenCoco);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "sensoresImpacto Frontal", 0, imagenCoco);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 316, "Ok");
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("comentario", "Coco Frontal");
+                        servis.putExtra("comentario", "sensoresImpacto Frontal");
                         servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 

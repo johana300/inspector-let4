@@ -112,7 +112,7 @@ public class DatosInspActivity extends AppCompatActivity {
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.insp , android.R.layout.simple_spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerInsp.setAdapter(spinner_adapter);
-        spinnerInsp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),1).toString()));
+        spinnerInsp.setSelection(arraytipolist.lastIndexOf("Nueva"));
 
 
         //region
