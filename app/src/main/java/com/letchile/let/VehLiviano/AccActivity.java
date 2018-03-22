@@ -80,7 +80,7 @@ public class AccActivity extends AppCompatActivity {
 
         //check molduras
         checkMold = findViewById(R.id.checkMoldu);
-        if(db.accesorio(Integer.parseInt(id_inspeccion),c).toString().equals("Ok"))
+        if(db.accesorio(Integer.parseInt(id_inspeccion),283).toString().equals("Ok"))
         {
             checkMold.setChecked(true);
             checkMolds = "Ok";
@@ -609,7 +609,7 @@ public class AccActivity extends AppCompatActivity {
         });
 
         //check extintor
-        CheckExtint = findViewById(R.id.checkGata);
+        CheckExtint = findViewById(R.id.checkExt);
         if(db.accesorio(Integer.parseInt(id_inspeccion),483).toString().equals("Ok"))
         {
             CheckExtint.setChecked(true);

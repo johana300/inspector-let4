@@ -484,14 +484,14 @@ public class frontal extends AppCompatActivity {
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Coco_Frontal.jpg";
+            String imageName = fecha + "_Foto_SensoresImpacto_Frontal.jpg";
             ruta = file.toString() + "/" + imageName;
             mPath = ruta;
 
             File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Coco_Frontal.jpg";
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_SensoresImpacto_Frontal.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -550,14 +550,14 @@ public class frontal extends AppCompatActivity {
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_SensoresImpacto_Frontal.jpg";
+            String imageName = fecha + "_Foto_Logo_Frontal.jpg";
             ruta = file.toString() + "/" + imageName;
             mPath = ruta;
 
             File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_SensoresImpacto_Frontal.jpg";
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Logo_Frontal.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
