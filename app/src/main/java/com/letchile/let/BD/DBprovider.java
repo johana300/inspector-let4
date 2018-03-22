@@ -576,7 +576,7 @@ public class DBprovider extends SQLiteOpenHelper {
         valores.put("id_foto", id_foto);
         valores.put("foto", imageName);
         valores.put("comentario", comentario);
-        valores.put("enviado", 0);
+        valores.put("enviado", 1);
         valores.put("url", url);
 
         //PARA LEER Y SACAR EL NÚMERO DE COLUMNAS
