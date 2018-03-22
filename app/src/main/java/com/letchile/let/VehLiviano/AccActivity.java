@@ -99,7 +99,7 @@ public class AccActivity extends AppCompatActivity {
             }
         });
 
-        //check butaca electrica
+        /*check butaca electrica
         checkBel = findViewById(R.id.checkBel);
         if(db.accesorio(Integer.parseInt(id_inspeccion),336).toString().equals("Ok"))
         {
@@ -118,7 +118,7 @@ public class AccActivity extends AppCompatActivity {
                     checkBels = "";
                 }
             }
-        });
+        });*/
 
         //check capota electrica
         checkCapota = findViewById(R.id.checkCapota);
