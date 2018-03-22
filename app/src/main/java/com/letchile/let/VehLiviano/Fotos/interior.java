@@ -1927,6 +1927,9 @@ try {
             imageAlzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setImageBitmap(null);
             txtAlzavidrioE.setVisibility(View.GONE);
+            retroElectE.setVisibility(View.GONE);
+            imageRetroElectE.setImageBitmap(null);
+            imageRetroElectE.setVisibility(View.GONE);
 
         }
         else
@@ -2084,7 +2087,7 @@ try {
 
     }
     private void desplegarCamposSeccionTresMQ(String id){
-        if (imageRetroElectE.getVisibility() == View.VISIBLE) {
+        if (tweeterE.getVisibility() == View.VISIBLE) {
 
             imageRetroElectE.setImageBitmap(null);
             parlantesE.setVisibility(View.GONE);
