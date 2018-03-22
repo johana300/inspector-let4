@@ -1926,7 +1926,7 @@ try {
             alzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setImageBitmap(null);
-
+            txtAlzavidrioE.setVisibility(View.GONE);
 
         }
         else
@@ -1948,8 +1948,6 @@ try {
             imageAdicionalInteriorE.setVisibility(View.GONE);
             imageAdicionalInteriorE.setImageBitmap(null);
 
-            retroElectE.setVisibility(View.GONE);
-            imageRetroElectE.setVisibility(View.GONE);
             imageRetroElectE.setImageBitmap(null);
             parlantesE.setVisibility(View.GONE);
             imageParlantesE.setVisibility(View.GONE);
@@ -1972,9 +1970,9 @@ try {
             gpsE.setVisibility(View.GONE);
             imageGpsE.setVisibility(View.GONE);
             imageGpsE.setImageBitmap(null);
-            txtAlzavidrioE.setVisibility(View.GONE);
 
 
+            String imageRetroElect = db.foto(Integer.parseInt(id), "Foto Retrovisor Eléctrico Interior");
             String imageLuzCheckEngine = db.foto(Integer.parseInt(id),"Foto Check Engine Interior");
             String imageluzTestigoAir = db.foto(Integer.parseInt(id),"Foto Luz Testigo  Airbags Interior");
             String imageControlCruce = db.foto(Integer.parseInt(id),"Foto Control Crucero Interior");
@@ -1986,6 +1984,12 @@ try {
             String imageAlzavidrioTr = db.foto(Integer.parseInt(id),"Foto Alza Vidrio Trasero Interior");
 
 
+            if (imageRetroElect.length() > 3) {
+                byte[] decodedString = Base64.decode(imageRetroElect, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageRetroElectE.setImageBitmap(decodedByte);
+                retroElectE.setChecked(true);
+            }
 
             if(imageLuzCheckEngine.length()>3)
             {
@@ -2053,7 +2057,8 @@ try {
 
 
 
-
+            retroElectE.setVisibility(View.VISIBLE);
+            imageRetroElectE.setVisibility(View.VISIBLE);
             luzCheckEngineE.setVisibility(View.VISIBLE);
             imageLuzCheckEngineE.setVisibility(View.VISIBLE);
             luzTestigoAirE.setVisibility(View.VISIBLE);
@@ -2078,13 +2083,9 @@ try {
         }
 
     }
-
     private void desplegarCamposSeccionTresMQ(String id){
-        if (retroElectE.getVisibility() == View.VISIBLE) {
+        if (imageRetroElectE.getVisibility() == View.VISIBLE) {
 
-
-            retroElectE.setVisibility(View.GONE);
-            imageRetroElectE.setVisibility(View.GONE);
             imageRetroElectE.setImageBitmap(null);
             parlantesE.setVisibility(View.GONE);
             imageParlantesE.setVisibility(View.GONE);
@@ -2154,9 +2155,11 @@ try {
             alzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setImageBitmap(null);
+            retroElectE.setVisibility(View.GONE);
+            imageRetroElectE.setImageBitmap(null);
 
 
-            String imageRetroElect = db.foto(Integer.parseInt(id), "Foto Retrovisor Eléctrico Interior");
+
             String imageParlantes = db.foto(Integer.parseInt(id), "Foto Parlantes Interior");
             String imageTweeter = db.foto(Integer.parseInt(id), "Foto Tweeter Interior");
             String imageAmplifiUno = db.foto(Integer.parseInt(id), "Foto Amplificador Uno Interior");
@@ -2167,12 +2170,7 @@ try {
 
 
 
-            if (imageRetroElect.length() > 3) {
-                byte[] decodedString = Base64.decode(imageRetroElect, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageRetroElectE.setImageBitmap(decodedByte);
-                retroElectE.setChecked(true);
-            }
+
             if (imageParlantes.length() > 3) {
                 byte[] decodedString = Base64.decode(imageParlantes, Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -2218,8 +2216,6 @@ try {
 
 
 
-            retroElectE.setVisibility(View.VISIBLE);
-            imageRetroElectE.setVisibility(View.VISIBLE);
             parlantesE.setVisibility(View.VISIBLE);
             imageParlantesE.setVisibility(View.VISIBLE);
             tweeterE.setVisibility(View.VISIBLE);

@@ -201,69 +201,80 @@ try {
 
             //ENVIA FOTOS
            String fotos[][] = db.ListaDatosFotos(Integer.parseInt(strings[0]));
+            //cuenta el total de fotos
             for(int i = 0;i<fotos.length;){
-                try{
-                    URL url = new URL("https://www.autoagenda.cl/movil/cargamovil/descargafotos64"); // here is your URL path
+                conn = new ConexionInternet(TransferirInspeccion.this).isConnectingToInternet();
+                //pregunta si tienen internet por cada foto que pasa
+                if(conn) {
+                    try {
+                        URL url = new URL("https://www.autoagenda.cl/movil/cargamovil/descargafotos64"); // here is your URL path
 
-                    JSONObject postDataParams = new JSONObject();
-                    postDataParams.put("id_inspeccion", fotos[i][0]);
-                    postDataParams.put("nombre_foto", fotos[i][1]);
-                    postDataParams.put("archivo", fotos[i][3]);
-                    postDataParams.put("comentario", fotos[i][2]);
-                    Log.e("Parametos a pasar", postDataParams.toString());
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setDoInput(true);
-                    conn.setDoOutput(true);
-
-
-                    OutputStream os = conn.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(getPostDataString(postDataParams));
-
-                    writer.flush();
-                    writer.close();
-                    os.close();
-
-                    int responseCode = conn.getResponseCode();
-
-                    Log.e("Status servicio", String.valueOf(responseCode));
-
-                    if (responseCode == HttpsURLConnection.HTTP_OK) {
-                        BufferedReader in = new BufferedReader(new
-                                InputStreamReader(
-                                conn.getInputStream()));
-
-                        StringBuffer sb = new StringBuffer("");
-                        String line = "";
-
-                        while ((line = in.readLine()) != null) {
-
-                            sb.append(line);
-                            break;
-                        }
-
-                        in.close();
+                        JSONObject postDataParams = new JSONObject();
+                        postDataParams.put("id_inspeccion", fotos[i][0]);
+                        postDataParams.put("nombre_foto", fotos[i][1]);
+                        postDataParams.put("archivo", fotos[i][3]);
+                        postDataParams.put("comentario", fotos[i][2]);
+                        Log.e("Parametos a pasar", postDataParams.toString());
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setRequestMethod("POST");
+                        conn.setDoInput(true);
+                        conn.setDoOutput(true);
 
 
-                        try {
-                            if (sb.toString().equals("Ok")){
-                                i++;
-                                //eliminar
-                                db.cambiarEstadoFoto(Integer.parseInt(strings[0]),fotos[i][1].toString(),fotos[i][2].toString(),2);
+                        OutputStream os = conn.getOutputStream();
+                        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                        writer.write(getPostDataString(postDataParams));
+
+                        writer.flush();
+                        writer.close();
+                        os.close();
+
+                        int responseCode = conn.getResponseCode();
+
+                        Log.e("Status servicio", String.valueOf(responseCode));
+
+                        if (responseCode == HttpsURLConnection.HTTP_OK) {
+                            BufferedReader in = new BufferedReader(new
+                                    InputStreamReader(
+                                    conn.getInputStream()));
+
+                            StringBuffer sb = new StringBuffer("");
+                            String line = "";
+
+                            while ((line = in.readLine()) != null) {
+
+                                sb.append(line);
+                                break;
                             }
-                        }catch (Exception e){
-                            //sacar si esque se cae
-                            //i++;
-                            Log.e("Errror transmision",e.getMessage());
+
+                            in.close();
+
+
+                            try {
+                                if (sb.toString().equals("Ok")) {
+                                    i++;
+                                    //eliminar
+                                    db.cambiarEstadoFoto(Integer.parseInt(strings[0]), fotos[i][1].toString(), fotos[i][2].toString(), 2);
+                                }
+                            } catch (Exception e) {
+                                //sacar si esque se cae
+                                //i++;
+                                Log.e("Errror transmision", e.getMessage());
+                            }
+                        } else {
+                            onDestroy(); // sin internet o otro error
                         }
-                    }else{
-                        onDestroy(); // sin internet o otro error
+
+                    } catch (Exception e) {
+                        Log.e("Error", e.getMessage());
                     }
 
-                }catch (Exception e){
-                    Log.e("Error",e.getMessage());
+                }else{
+                    //SI ESQUE ESTA TRANSMITIENDO LA FOTO Y QUEDA SIN INTERNET SACAR DEL SERVICIO Y DEJAR EN ESTADO 2
+                    db.cambiarEstadoInspeccion(Integer.parseInt(fotos[i][0]), 2);
+                    onDestroy();
                 }
+
             }
 
 

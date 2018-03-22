@@ -85,7 +85,6 @@ public class InsPendientesActivity extends AppCompatActivity{
         refres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                finish();
                 startActivity(getIntent());
 
                 //comprobar nuevamente
@@ -642,56 +641,6 @@ public class InsPendientesActivity extends AppCompatActivity{
         @Override
         protected void onPostExecute(String result) {
 
-            connec = new ConexionInternet(InsPendientesActivity.this).isConnectingToInternet();
-            if(connec){
-                pDialog.dismiss();
-
-                TableColumnWeightModel  columnModel = new TableColumnWeightModel (4);
-                columnModel.setColumnWeight(1,1);
-                columnModel.setColumnWeight(2,1);
-                columnModel.setColumnWeight(3,1);
-                columnModel.setColumnWeight(4,5);
-
-                final TableView<String[]> tb = (TableView<String[]>)findViewById(R.id.tableView);
-                tb.setColumnModel(columnModel);
-                tb.setHeaderBackgroundColor(Color.parseColor("WHITE"));
-                tb.setHeaderElevation(10);
-                llenarTabla();
-
-                tb.setHeaderAdapter(new SimpleTableHeaderAdapter(InsPendientesActivity.this,head));
-
-                tb.setDataAdapter(new SimpleTableDataAdapter(InsPendientesActivity.this,insp));
-
-
-
-                tb.addDataClickListener(new TableDataClickListener<String[]>() {
-                    @Override
-                    public void onDataClicked(int rowIndex, String[] clickedData) {
-                        //Toast.makeText(InsPendientesActivity.this,((String[])clickedData)[0],Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(InsPendientesActivity.this,detalleActivity.class);
-                        i.putExtra("id_inspeccion",((String[])clickedData)[0]);
-                        i.putExtra("fecha_cita",((String[])clickedData)[2]);
-                        i.putExtra("hora_cita",((String[])clickedData)[3]);
-
-                        int inspeccionElegida = Integer.parseInt(((String[])clickedData)[0]);
-
-                        try {
-                            //VALIDAR QUE LA INSPECCION SELECCIONADA NO SE ESTÉ TRANSMITIENDO
-                            if (db.estadoInspeccion(inspeccionElegida) != 2 && db.estadoInspeccion(inspeccionElegida) != 3) {
-                                //VALIDAR QUE NO HAYA QUEDADO UNA INSPECCIÓN SIN TRANSMITIR
-                                int inspeccionPendiente = db.estadoInspecciones(1);
-                                if (inspeccionPendiente > 0 && inspeccionPendiente != inspeccionElegida) {
-                                    Toast.makeText(InsPendientesActivity.this, "Debe transmitir la Inspección n°" + String.valueOf(inspeccionPendiente), Toast.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(i);
-                                }
-                            }
-                        }catch (Exception e){
-                            Toast.makeText(InsPendientesActivity.this,"Inspección eliminada por termino de su transmisión",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }else { //SI NO TIENE CONEXIÓN IGUAL SE LLENA
 
                 pDialog.dismiss();
 
@@ -739,7 +688,6 @@ public class InsPendientesActivity extends AppCompatActivity{
                         }
                     }
                 });
-            }
         }
     }
 
