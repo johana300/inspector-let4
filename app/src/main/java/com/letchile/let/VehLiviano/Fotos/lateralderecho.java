@@ -183,7 +183,7 @@ public class lateralderecho extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -325,7 +325,6 @@ public class lateralderecho extends AppCompatActivity {
 
                         Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                         bitmap = foto.redimensiomarImagen(bitmap);
-                        imagenLateDerechoE.setImageBitmap(bitmap);
                         String imagen = foto.convertirImagenDano(bitmap);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lateral Derecho", 0, imagen);
                         imagen = "data:image/jpg;base64,"+imagen;
@@ -354,7 +353,6 @@ public class lateralderecho extends AppCompatActivity {
 
                         Bitmap bitmapAdcional = BitmapFactory.decodeFile(mPath);
                         bitmapAdcional = foto.redimensiomarImagen(bitmapAdcional);
-                        imageAdicionalUnoLateE.setImageBitmap(bitmapAdcional);
                         String imagenAdcional = foto.convertirImagenDano(bitmapAdcional);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Adicional Uno Lateral Derecho", 0, imagenAdcional);
                         imagenAdcional = "data:image/jpg;base64,"+imagenAdcional;
