@@ -289,8 +289,6 @@ public class DatosInspActivity extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-
-
             correlativo = db.correlativoFotos(id_inspeccion);
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Comprobante.jpg";
             ruta = file.toString() + "/" + nombreimagen;
