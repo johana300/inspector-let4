@@ -39,6 +39,7 @@ import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
 import com.letchile.let.VehLiviano.SeccionActivity;
+import com.letchile.let.VehLiviano.seccion2;
 
 import java.io.File;
 import java.io.IOException;
@@ -384,7 +385,7 @@ public class Posterior extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent   = new Intent(Posterior.this,SeccionActivity.class);
+                Intent intent   = new Intent(Posterior.this,seccion2.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
                 finish();
@@ -468,7 +469,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -508,7 +509,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -538,7 +539,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -569,7 +570,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -600,7 +601,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -632,7 +633,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -663,7 +664,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -695,7 +696,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -726,7 +727,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated){
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -761,7 +762,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -781,7 +782,6 @@ public class Posterior extends AppCompatActivity {
             startActivityForResult(intent, TAKE_EQFRIO);
         }
     }
-
     private void showOptionRefrigerado(String id_inspeccion){openCameraRefrigerada(id_inspeccion);}
     private void openCameraRefrigerada(String id){
         String id_inspeccion = id;
@@ -794,7 +794,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -814,7 +814,6 @@ public class Posterior extends AppCompatActivity {
             startActivityForResult(intent, TAKE_CREFRI);
         }
     }
-
     private void showOptionCubrePickup(String id_inspeccion){openCameraCubrePickup(id_inspeccion);}
     private void openCameraCubrePickup(String id){
         String id_inspeccion = id;
@@ -827,7 +826,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -847,7 +846,6 @@ public class Posterior extends AppCompatActivity {
             startActivityForResult(intent, TAKE_CUBREPICK);
         }
     }
-
     private void showOptionTapaRigida(String id_inspeccion){openCameraTapaRigida(id_inspeccion);}
     private void openCameraTapaRigida(String id){
         String id_inspeccion = id;
@@ -860,7 +858,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -893,7 +891,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -926,7 +924,7 @@ public class Posterior extends AppCompatActivity {
 
         if(isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -975,7 +973,7 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                         bitmap = foto.redimensiomarImagen(bitmap);
-                        mSetImage.setImageBitmap(bitmap);
+
                         String imagenDano = foto.convertirImagenDano(bitmap);
 
 
@@ -990,6 +988,12 @@ public class Posterior extends AppCompatActivity {
                         String comentarito = db.comentarioFoto(Integer.parseInt(id_inspeccion), "posterior");
 
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, comentarito, 0, imagenDano);
+
+                        imagenDano = "data:image/jpg;base64,"+imagenDano;
+                        String base64Image14 = imagenDano.split(",")[1];
+                        byte[] decodedString14 = Base64.decode(base64Image14, Base64.DEFAULT);
+                        Bitmap decodedByte14 = BitmapFactory.decodeByteArray(decodedString14, 0, decodedString14.length);
+                        mSetImage.setImageBitmap(decodedByte14);
 
                         Intent servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", comentarito);
@@ -1010,15 +1014,6 @@ public class Posterior extends AppCompatActivity {
                                 });
 
 
-
-                        /*try {
-                            exifObject = new ExifInterface(mPath);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        int orientation = exifObject.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);*/
-
                         Display display = ((WindowManager)
                         Posterior.this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
                         int rotation = display.getRotation();
@@ -1026,18 +1021,19 @@ public class Posterior extends AppCompatActivity {
                         Bitmap bitmapPosterio = BitmapFactory.decodeFile(mPath);
                         //bitmapPosterio = foto.rotateBitmap(bitmapPosterio,1);
                         bitmapPosterio = foto.redimensiomarImagen(bitmapPosterio);
-                        imageViewFotoPoE.setImageBitmap(bitmapPosterio);
                         String imagenPosterio = foto.convertirImagenDano(bitmapPosterio);
-
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Posterior", 0, imagenPosterio);
+                        imagenPosterio = "data:image/jpg;base64,"+imagenPosterio;
+                        String base64Image = imagenPosterio.split(",")[1];
+                        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+                        Bitmap decodedByte  = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        imageViewFotoPoE.setImageBitmap(decodedByte);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Posterior");
                         servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
-
-
-
 
                         break;
                     case TAKE_LUNETA:
@@ -1054,9 +1050,14 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapLuneta = BitmapFactory.decodeFile(mPath);
                         bitmapLuneta = foto.redimensiomarImagen(bitmapLuneta);
-                        imageLogoLunetaE.setImageBitmap(bitmapLuneta);
                         String imagenLuneta = foto.convertirImagenDano(bitmapLuneta);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Logo Luneta Posterior", 0, imagenLuneta);
+
+                        imagenLuneta = "data:image/jpg;base64,"+imagenLuneta;
+                        String base64Image1 = imagenLuneta.split(",")[1];
+                        byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                        Bitmap decodedByte1  = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                        imageLogoLunetaE.setImageBitmap(decodedByte1);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Logo Luneta Posterior");
@@ -1077,9 +1078,14 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapAdicional = BitmapFactory.decodeFile(mPath);
                         bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
-                        imageFotoAdicionalE.setImageBitmap(bitmapAdicional);
+
                         String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Adicional Posterior", 0, imagenAdicional);
+                        imagenAdicional   = "data:image/jpg;base64,"+imagenAdicional;
+                        String base64Image2 = imagenAdicional.split(",")[1];
+                        byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                        Bitmap decodedByte2  = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                        imageFotoAdicionalE.setImageBitmap(decodedByte2);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Adicional Posterior");
@@ -1100,10 +1106,14 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapSensores = BitmapFactory.decodeFile(mPath);
                         bitmapSensores = foto.redimensiomarImagen(bitmapSensores);
-                        imageSensores.setImageBitmap(bitmapSensores);
                         String imagenSensores = foto.convertirImagenDano(bitmapSensores);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Sensores Posteriores", 0, imagenSensores);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 317, "Ok");
+                        imagenSensores = "data:image/jpg;base64,"+imagenSensores;
+                        String base64Image3 = imagenSensores.split(",")[1];
+                        byte[] decodedString3 = Base64.decode(base64Image3, Base64.DEFAULT);
+                        Bitmap decodedByte3  = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+                        imageSensores.setImageBitmap(decodedByte3);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Sensores Posteriores");
@@ -1125,10 +1135,15 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapCamara = BitmapFactory.decodeFile(mPath);
                         bitmapCamara = foto.redimensiomarImagen(bitmapCamara);
-                        imageCameraPoE.setImageBitmap(bitmapCamara);
+
                         String imagenCamara = foto.convertirImagenDano(bitmapCamara);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Camara Posterior", 0, imagenCamara);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 314, "Ok");
+                        imagenCamara = "data:image/jpg;base64,"+imagenCamara;
+                        String base64Image4 = imagenCamara.split(",")[1];
+                        byte[] decodedString4 = Base64.decode(base64Image4, Base64.DEFAULT);
+                        Bitmap decodedByte4  = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+                        imageCameraPoE.setImageBitmap(decodedByte4);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Camara Posterior");
@@ -1150,10 +1165,16 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapCoco = BitmapFactory.decodeFile(mPath);
                         bitmapCoco = foto.redimensiomarImagen(bitmapCoco);
-                        imageCocoPoE.setImageBitmap(bitmapCoco);
+
                         String imagenCoco = foto.convertirImagenDano(bitmapCoco);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Coco Posterior", 0, imagenCoco);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 273, "Ok");
+                        imagenCoco = "data:image/jpg;base64,"+imagenCoco;
+                        String base64Image5 = imagenCoco.split(",")[1];
+                        byte[] decodedString5 = Base64.decode(base64Image5, Base64.DEFAULT);
+                        Bitmap decodedByte5  = BitmapFactory.decodeByteArray(decodedString5, 0, decodedString5.length);
+                        imageCocoPoE.setImageBitmap(decodedByte5);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Coco Posterior");
@@ -1175,10 +1196,16 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapMuela = BitmapFactory.decodeFile(mPath);
                         bitmapMuela = foto.redimensiomarImagen(bitmapMuela);
-                        imageMuelaE.setImageBitmap(bitmapMuela);
+
                         String imagenMuela = foto.convertirImagenDano(bitmapMuela);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Muela Posterior", 0, imagenMuela);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 275, "Ok");
+                        imagenMuela = "data:image/jpg;base64,"+imagenMuela;
+                        String base64Image6 = imagenMuela.split(",")[1];
+                        byte[] decodedString6 = Base64.decode(base64Image6, Base64.DEFAULT);
+                        Bitmap decodedByte6 = BitmapFactory.decodeByteArray(decodedString6, 0, decodedString6.length);
+                        imageMuelaE.setImageBitmap(decodedByte6);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Muela Posterior");
@@ -1199,10 +1226,15 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapRemolque = BitmapFactory.decodeFile(mPath);
                         bitmapRemolque = foto.redimensiomarImagen(bitmapRemolque);
-                        imageenChufeRemolque.setImageBitmap(bitmapRemolque);
+
                         String imagenRemolque = foto.convertirImagenDano(bitmapRemolque);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Enchufe Remolque Posterior", 0, imagenRemolque);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 274, "Ok");
+                        imagenRemolque = "data:image/jpg;base64,"+imagenRemolque;
+                        String base64Image7 = imagenRemolque.split(",")[1];
+                        byte[] decodedString7 = Base64.decode(base64Image7, Base64.DEFAULT);
+                        Bitmap decodedByte7 = BitmapFactory.decodeByteArray(decodedString7, 0, decodedString7.length);
+                        imageenChufeRemolque.setImageBitmap(decodedByte7);
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Enchufe Remolque Posterior");
@@ -1226,10 +1258,16 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapCrefrigerada = BitmapFactory.decodeFile(mPath);
                         bitmapCrefrigerada = foto.redimensiomarImagen(bitmapCrefrigerada);
-                        imageCamRePoE.setImageBitmap(bitmapCrefrigerada);
+
                         String imagenCrefrigerada = foto.convertirImagenDano(bitmapCrefrigerada);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Camara refrigerada", 0, imagenCrefrigerada);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 331, "Ok");
+                        imagenCrefrigerada = "data:image/jpg;base64,"+imagenCrefrigerada;
+                        String base64Image8 = imagenCrefrigerada.split(",")[1];
+                        byte[] decodedString8 = Base64.decode(base64Image8, Base64.DEFAULT);
+                        Bitmap decodedByte8 = BitmapFactory.decodeByteArray(decodedString8, 0, decodedString8.length);
+                        imageCamRePoE.setImageBitmap(decodedByte8);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Camara refrigerada");
@@ -1251,10 +1289,16 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapEquipoFrio = BitmapFactory.decodeFile(mPath);
                         bitmapEquipoFrio = foto.redimensiomarImagen(bitmapEquipoFrio);
-                        imageEquipoE.setImageBitmap(bitmapEquipoFrio);
+
                         String imagenEQuipoFrio = foto.convertirImagenDano(bitmapEquipoFrio);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Equipo frio", 0, imagenEQuipoFrio);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 346, "Ok");
+                        imagenEQuipoFrio = "data:image/jpg;base64,"+imagenEQuipoFrio;
+                        String base64Image9 = imagenEQuipoFrio.split(",")[1];
+                        byte[] decodedString9 = Base64.decode(base64Image9, Base64.DEFAULT);
+                        Bitmap decodedByte9 = BitmapFactory.decodeByteArray(decodedString9, 0, decodedString9.length);
+                        imageEquipoE.setImageBitmap(decodedByte9);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Equipo frio");
@@ -1277,10 +1321,15 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapCubrePick = BitmapFactory.decodeFile(mPath);
                         bitmapCubrePick = foto.redimensiomarImagen(bitmapCubrePick);
-                        imageCubrePickPoE.setImageBitmap(bitmapCubrePick);
                         String imagenCubrepic = foto.convertirImagenDano(bitmapCubrePick);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Cubre pick up", 0, imagenCubrepic);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 305, "Ok");
+                        imagenCubrepic = "data:image/jpg;base64,"+imagenCubrepic;
+                        String base64Image10 = imagenCubrepic.split(",")[1];
+                        byte[] decodedString10 = Base64.decode(base64Image10, Base64.DEFAULT);
+                        Bitmap decodedByte10 = BitmapFactory.decodeByteArray(decodedString10, 0, decodedString10.length);
+                        imageCubrePickPoE.setImageBitmap(decodedByte10);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Cubre pick up");
@@ -1304,10 +1353,16 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapTaparig = BitmapFactory.decodeFile(mPath);
                         bitmapTaparig = foto.redimensiomarImagen(bitmapTaparig);
-                        imageTapaRPoE.setImageBitmap(bitmapTaparig);
+
                         String imagenTaparig = foto.convertirImagenDano(bitmapTaparig);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Tapa rigida", 0, imagenTaparig);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 307, "Ok");
+                        imagenTaparig = "data:image/jpg;base64,"+imagenTaparig;
+                        String base64Image11 = imagenTaparig.split(",")[1];
+                        byte[] decodedString11 = Base64.decode(base64Image11, Base64.DEFAULT);
+                        Bitmap decodedByte11 = BitmapFactory.decodeByteArray(decodedString11, 0, decodedString11.length);
+                        imageTapaRPoE.setImageBitmap(decodedByte11);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Tapa rigida");
@@ -1330,10 +1385,16 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapLonacubre = BitmapFactory.decodeFile(mPath);
                         bitmapLonacubre = foto.redimensiomarImagen(bitmapLonacubre);
-                        imageLonaCPoE.setImageBitmap(bitmapLonacubre);
+
                         String imagenLonacubre = foto.convertirImagenDano(bitmapLonacubre);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Lona cubre", 0, imagenLonacubre);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 306, "Ok");
+                        imagenLonacubre = "data:image/jpg;base64,"+imagenLonacubre;
+                        String base64Image12 = imagenLonacubre.split(",")[1];
+                        byte[] decodedString12 = Base64.decode(base64Image12, Base64.DEFAULT);
+                        Bitmap decodedByte12 = BitmapFactory.decodeByteArray(decodedString12, 0, decodedString12.length);
+                        imageLonaCPoE.setImageBitmap(decodedByte12);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Lona cubre");
@@ -1356,10 +1417,16 @@ public class Posterior extends AppCompatActivity {
 
                         Bitmap bitmapHarramienta = BitmapFactory.decodeFile(mPath);
                         bitmapHarramienta = foto.redimensiomarImagen(bitmapHarramienta);
-                        imageCajaHerrPoE.setImageBitmap(bitmapHarramienta);
+
                         String imagenHerramienta = foto.convertirImagenDano(bitmapHarramienta);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "caja herramienta", 0, imagenHerramienta);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 310, "Ok");
+                        imagenHerramienta = "data:image/jpg;base64,"+imagenHerramienta;
+                        String base64Image13 = imagenHerramienta.split(",")[1];
+                        byte[] decodedString13 = Base64.decode(base64Image13, Base64.DEFAULT);
+                        Bitmap decodedByte13 = BitmapFactory.decodeByteArray(decodedString13, 0, decodedString13.length);
+                        imageCajaHerrPoE.setImageBitmap(decodedByte13);
+
 
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "caja herramienta");

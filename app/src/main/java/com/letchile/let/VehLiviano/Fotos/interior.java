@@ -972,7 +972,7 @@ public class interior extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -1245,9 +1245,15 @@ try {
 
                 Bitmap bitmapPanel = BitmapFactory.decodeFile(mPath);
                 bitmapPanel = foto.redimensiomarImagen(bitmapPanel);
-                imagePanelFueraInteE.setImageBitmap(bitmapPanel);
+
                 String imagenPanel = foto.convertirImagenDano(bitmapPanel);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Panel desde Afuera Interior", 0, imagenPanel);
+                imagenPanel = "data:image/jpg;base64,"+imagenPanel;
+                String base64Image1 = imagenPanel.split(",")[1];
+                byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                imagePanelFueraInteE.setImageBitmap(decodedByte1);
+
 
                 Intent servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Panel desde Afuera Interior");
@@ -1268,9 +1274,14 @@ try {
 
                 Bitmap bitmapPanelDentro = BitmapFactory.decodeFile(mPath);
                 bitmapPanelDentro = foto.redimensiomarImagen(bitmapPanelDentro);
-                imagePanelDentroInteE.setImageBitmap(bitmapPanelDentro);
+
                 String imagenPanelDentro = foto.convertirImagenDano(bitmapPanelDentro);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Panel desde Dentro Interior", 0, imagenPanelDentro);
+                imagenPanelDentro = "data:image/jpg;base64,"+imagenPanelDentro;
+                String base64Image2 = imagenPanelDentro.split(",")[1];
+                byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                Bitmap decodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                imagePanelDentroInteE.setImageBitmap(decodedByte2);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Panel desde Dentro Interior");
@@ -1291,9 +1302,14 @@ try {
 
                 Bitmap bitmapRadio = BitmapFactory.decodeFile(mPath);
                 bitmapRadio = foto.redimensiomarImagen(bitmapRadio);
-                imageRadioInteriorE.setImageBitmap(bitmapRadio);
+
                 String imagenRadio = foto.convertirImagenDano(bitmapRadio);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Radio Interior", 0, imagenRadio);
+                imagenRadio = "data:image/jpg;base64,"+imagenRadio;
+                String base64Image3 = imagenRadio.split(",")[1];
+                byte[] decodedString3 = Base64.decode(base64Image3, Base64.DEFAULT);
+                Bitmap decodedByte3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+                imageRadioInteriorE.setImageBitmap(decodedByte3);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Radio Interior");
@@ -1314,9 +1330,14 @@ try {
 
                 Bitmap bitmapKilometraje = BitmapFactory.decodeFile(mPath);
                 bitmapKilometraje = foto.redimensiomarImagen(bitmapKilometraje);
-                imageKilometrajeE.setImageBitmap(bitmapKilometraje);
+
                 String imagenKilometraje = foto.convertirImagenDano(bitmapKilometraje);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Kilometraje Interior", 0, imagenKilometraje);
+                imagenKilometraje = "data:image/jpg;base64,"+imagenKilometraje;
+                String base64Image4 = imagenKilometraje.split(",")[1];
+                byte[] decodedString4 = Base64.decode(base64Image4, Base64.DEFAULT);
+                Bitmap decodedByte4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+                imageKilometrajeE.setImageBitmap(decodedByte4);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Kilometraje Interior");
@@ -1337,9 +1358,15 @@ try {
 
                 Bitmap bitmapAdicional = BitmapFactory.decodeFile(mPath);
                 bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
-                imageAdicionalInteriorE.setImageBitmap(bitmapAdicional);
+
                 String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Interior", 0, imagenAdicional);
+                imagenAdicional = "data:image/jpg;base64,"+imagenAdicional;
+                String base64Image5 = imagenAdicional.split(",")[1];
+                byte[] decodedString5 = Base64.decode(base64Image5, Base64.DEFAULT);
+                Bitmap decodedByte5 = BitmapFactory.decodeByteArray(decodedString5, 0, decodedString5.length);
+                imageAdicionalInteriorE.setImageBitmap(decodedByte5);
+
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Adicional Interior");
@@ -1360,10 +1387,15 @@ try {
 
                 Bitmap bitmapCheck = BitmapFactory.decodeFile(mPath);
                 bitmapCheck = foto.redimensiomarImagen(bitmapCheck);
-                imageLuzCheckEngineE.setImageBitmap(bitmapCheck);
+
                 String imagenCheck = foto.convertirImagenDano(bitmapCheck);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Check Engine Interior", 0, imagenCheck);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 791, "Ok");
+                imagenCheck = "data:image/jpg;base64,"+imagenCheck;
+                String base64Image6 = imagenCheck.split(",")[1];
+                byte[] decodedString6 = Base64.decode(base64Image6, Base64.DEFAULT);
+                Bitmap decodedByte6 = BitmapFactory.decodeByteArray(decodedString6, 0, decodedString6.length);
+                imageLuzCheckEngineE.setImageBitmap(decodedByte6);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Check Engine Interior");
@@ -1384,10 +1416,15 @@ try {
 
                 Bitmap bitmapLuzTestigo = BitmapFactory.decodeFile(mPath);
                 bitmapLuzTestigo = foto.redimensiomarImagen(bitmapLuzTestigo);
-                imageluzTestigoAirE.setImageBitmap(bitmapLuzTestigo);
+
                 String imagenLuzTestigo = foto.convertirImagenDano(bitmapLuzTestigo);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Luz Testigo  Airbags Interior", 0, imagenLuzTestigo);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 792, "Ok");
+                imagenLuzTestigo = "data:image/jpg;base64,"+imagenLuzTestigo;
+                String base64Image7 = imagenLuzTestigo.split(",")[1];
+                byte[] decodedString7 = Base64.decode(base64Image7, Base64.DEFAULT);
+                Bitmap decodedByte7 = BitmapFactory.decodeByteArray(decodedString7, 0, decodedString7.length);
+                imageluzTestigoAirE.setImageBitmap(decodedByte7);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Luz Testigo  Airbags Interior");
@@ -1408,10 +1445,16 @@ try {
 
                 Bitmap bitmapControl = BitmapFactory.decodeFile(mPath);
                 bitmapControl = foto.redimensiomarImagen(bitmapControl);
-                imageControlCruceE.setImageBitmap(bitmapControl);
+
                 String imagenControl = foto.convertirImagenDano(bitmapControl);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Control Crucero Interior", 0, imagenControl);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 291, "Ok");
+
+                imagenControl = "data:image/jpg;base64,"+imagenControl;
+                String base64Image8 = imagenControl.split(",")[1];
+                byte[] decodedString8 = Base64.decode(base64Image8, Base64.DEFAULT);
+                Bitmap decodedByte8 = BitmapFactory.decodeByteArray(decodedString8, 0, decodedString8.length);
+                imageControlCruceE.setImageBitmap(decodedByte8);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Control Crucero Interior");
@@ -1432,10 +1475,15 @@ try {
 
                 Bitmap bitmapBluetooh = BitmapFactory.decodeFile(mPath);
                 bitmapBluetooh = foto.redimensiomarImagen(bitmapBluetooh);
-                imageBluetoothE.setImageBitmap(bitmapBluetooh);
+
                 String imagenBluetooh = foto.convertirImagenDano(bitmapBluetooh);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Bluetooh Interior", 0, imagenBluetooh);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 339, "Ok");
+                imagenBluetooh = "data:image/jpg;base64,"+imagenBluetooh;
+                String base64Image9 = imagenBluetooh.split(",")[1];
+                byte[] decodedString9 = Base64.decode(base64Image9, Base64.DEFAULT);
+                Bitmap decodedByte9 = BitmapFactory.decodeByteArray(decodedString9, 0, decodedString9.length);
+                imageBluetoothE.setImageBitmap(decodedByte9);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Bluetooh Interior");
@@ -1456,10 +1504,15 @@ try {
 
                 Bitmap bitmapTapiz = BitmapFactory.decodeFile(mPath);
                 bitmapTapiz = foto.redimensiomarImagen(bitmapTapiz);
-                imageTapizCueroE.setImageBitmap(bitmapTapiz);
+
                 String imagenTapiz = foto.convertirImagenDano(bitmapTapiz);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Tapiz de Cuero Interior", 0, imagenTapiz);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 333, "Ok");
+                imagenTapiz = "data:image/jpg;base64,"+imagenTapiz;
+                String base64Image10 = imagenTapiz.split(",")[1];
+                byte[] decodedString10 = Base64.decode(base64Image10, Base64.DEFAULT);
+                Bitmap decodedByte10 = BitmapFactory.decodeByteArray(decodedString10, 0, decodedString10.length);
+                imageTapizCueroE.setImageBitmap(decodedByte10);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Tapiz de Cuero Interior");
@@ -1480,10 +1533,15 @@ try {
 
                 Bitmap bitmapButaca = BitmapFactory.decodeFile(mPath);
                 bitmapButaca = foto.redimensiomarImagen(bitmapButaca);
-                imageButacaElectE.setImageBitmap(bitmapButaca);
+
                 String imagenButaca = foto.convertirImagenDano(bitmapButaca);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Butaca Eléctrica Interior", 0, imagenButaca);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 336, "Ok");
+                imagenButaca = "data:image/jpg;base64,"+imagenButaca;
+                String base64Image11 = imagenButaca.split(",")[1];
+                byte[] decodedString11 = Base64.decode(base64Image11, Base64.DEFAULT);
+                Bitmap decodedByte11 = BitmapFactory.decodeByteArray(decodedString11, 0, decodedString11.length);
+                imageButacaElectE.setImageBitmap(decodedByte11);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Butaca Eléctrica Interior");
@@ -1504,10 +1562,15 @@ try {
 
                 Bitmap bitmapCorta = BitmapFactory.decodeFile(mPath);
                 bitmapCorta = foto.redimensiomarImagen(bitmapCorta);
-                imageCortaCorriE.setImageBitmap(bitmapCorta);
+
                 String imagenCorta = foto.convertirImagenDano(bitmapCorta);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Corta Corriente Interior", 0, imagenCorta);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 344, "Ok");
+                imagenCorta = "data:image/jpg;base64,"+imagenCorta;
+                String base64Image12 = imagenCorta.split(",")[1];
+                byte[] decodedString12 = Base64.decode(base64Image12, Base64.DEFAULT);
+                Bitmap decodedByte12 = BitmapFactory.decodeByteArray(decodedString12, 0, decodedString12.length);
+                imageCortaCorriE.setImageBitmap(decodedByte12);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Corta Corriente Interior");
@@ -1528,10 +1591,16 @@ try {
 
                 Bitmap bitmapAlzaVidrioDe = BitmapFactory.decodeFile(mPath);
                 bitmapAlzaVidrioDe = foto.redimensiomarImagen(bitmapAlzaVidrioDe);
-                imageAlzavidrioDeE.setImageBitmap(bitmapAlzaVidrioDe);
+
                 String imagenAlzaVidrioDe = foto.convertirImagenDano(bitmapAlzaVidrioDe);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Alza Vidrio Delantero Interior", 0, imagenAlzaVidrioDe);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 266, "Ok");
+
+                imagenAlzaVidrioDe = "data:image/jpg;base64,"+imagenAlzaVidrioDe;
+                String base64Image13 = imagenAlzaVidrioDe.split(",")[1];
+                byte[] decodedString13 = Base64.decode(base64Image13, Base64.DEFAULT);
+                Bitmap decodedByte13 = BitmapFactory.decodeByteArray(decodedString13, 0, decodedString13.length);
+                imageAlzavidrioDeE.setImageBitmap(decodedByte13);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Alza Vidrio Delantero Interior");
@@ -1552,10 +1621,16 @@ try {
 
                 Bitmap bitmapAlzaVidrioTr = BitmapFactory.decodeFile(mPath);
                 bitmapAlzaVidrioTr = foto.redimensiomarImagen(bitmapAlzaVidrioTr);
-                imageAlzavidrioTrE.setImageBitmap(bitmapAlzaVidrioTr);
+
                 String imagenAlzaVidrioTr = foto.convertirImagenDano(bitmapAlzaVidrioTr);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Alza Vidrio Trasero Interior", 0, imagenAlzaVidrioTr);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 267, "Ok");
+
+                imagenAlzaVidrioTr = "data:image/jpg;base64,"+imagenAlzaVidrioTr;
+                String base64Image14 = imagenAlzaVidrioTr.split(",")[1];
+                byte[] decodedString14 = Base64.decode(base64Image14, Base64.DEFAULT);
+                Bitmap decodedByte14 = BitmapFactory.decodeByteArray(decodedString14, 0, decodedString14.length);
+                imageAlzavidrioTrE.setImageBitmap(decodedByte14);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Alza Vidrio Trasero Interior");
@@ -1576,10 +1651,16 @@ try {
 
                 Bitmap bitmapRetrovisor = BitmapFactory.decodeFile(mPath);
                 bitmapRetrovisor = foto.redimensiomarImagen(bitmapRetrovisor);
-                imageRetroElectE.setImageBitmap(bitmapRetrovisor);
+
                 String imagenRetrovisor = foto.convertirImagenDano(bitmapRetrovisor);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Retrovisor Eléctrico Interior", 0, imagenRetrovisor);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 256, "Ok");
+
+                imagenRetrovisor = "data:image/jpg;base64,"+imagenRetrovisor;
+                String base64Image15 = imagenRetrovisor.split(",")[1];
+                byte[] decodedString15 = Base64.decode(base64Image15, Base64.DEFAULT);
+                Bitmap decodedByte15 = BitmapFactory.decodeByteArray(decodedString15, 0, decodedString15.length);
+                imageRetroElectE.setImageBitmap(decodedByte15);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Retrovisor Eléctrico Interior");
@@ -1600,10 +1681,16 @@ try {
 
                 Bitmap bitmapParlantes = BitmapFactory.decodeFile(mPath);
                 bitmapParlantes = foto.redimensiomarImagen(bitmapParlantes);
-                imageParlantesE.setImageBitmap(bitmapParlantes);
+
                 String imagenParlantes = foto.convertirImagenDano(bitmapParlantes);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Parlantes Interior", 0, imagenParlantes);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 271, "Ok");
+
+                imagenParlantes = "data:image/jpg;base64,"+imagenParlantes;
+                String base64Image16 = imagenParlantes.split(",")[1];
+                byte[] decodedString16 = Base64.decode(base64Image16, Base64.DEFAULT);
+                Bitmap decodedByte16 = BitmapFactory.decodeByteArray(decodedString16, 0, decodedString16.length);
+                imageParlantesE.setImageBitmap(decodedByte16);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Parlantes Interior");
@@ -1624,10 +1711,17 @@ try {
 
                 Bitmap bitmapTweeter = BitmapFactory.decodeFile(mPath);
                 bitmapTweeter = foto.redimensiomarImagen(bitmapTweeter);
-                imageTweeterE.setImageBitmap(bitmapTweeter);
+
                 String ImagenTweeter = foto.convertirImagenDano(bitmapTweeter);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Tweeter Interior", 0, ImagenTweeter);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 239, "Ok");
+
+                ImagenTweeter = "data:image/jpg;base64,"+ImagenTweeter;
+                String base64Image17 = ImagenTweeter.split(",")[1];
+                byte[] decodedString17 = Base64.decode(base64Image17, Base64.DEFAULT);
+                Bitmap decodedByte17 = BitmapFactory.decodeByteArray(decodedString17, 0, decodedString17.length);
+                imageTweeterE.setImageBitmap(decodedByte17);
+
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Tweeter Interior");
@@ -1648,10 +1742,16 @@ try {
 
                 Bitmap bitmapAmp1 = BitmapFactory.decodeFile(mPath);
                 bitmapAmp1 = foto.redimensiomarImagen(bitmapAmp1);
-                imageAmplifiUnoE.setImageBitmap(bitmapAmp1);
+
                 String ImagenAmp1 = foto.convertirImagenDano(bitmapAmp1);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Amplificador Uno Interior", 0, ImagenAmp1);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 221, "Ok");
+
+                ImagenAmp1 = "data:image/jpg;base64,"+ImagenAmp1;
+                String base64Image18 = ImagenAmp1.split(",")[1];
+                byte[] decodedString18 = Base64.decode(base64Image18, Base64.DEFAULT);
+                Bitmap decodedByte18 = BitmapFactory.decodeByteArray(decodedString18, 0, decodedString18.length);
+                imageAmplifiUnoE.setImageBitmap(decodedByte18);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Amplificador Uno Interior");
@@ -1672,10 +1772,16 @@ try {
 
                 Bitmap bitmapAmp2 = BitmapFactory.decodeFile(mPath);
                 bitmapAmp2 = foto.redimensiomarImagen(bitmapAmp2);
-                imageAmplifiDosE.setImageBitmap(bitmapAmp2);
+
                 String ImagenAmp2 = foto.convertirImagenDano(bitmapAmp2);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Amplificador Dos Interior", 0, ImagenAmp2);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 227, "Ok");
+
+                ImagenAmp2 = "data:image/jpg;base64,"+ImagenAmp2;
+                String base64Image19 = ImagenAmp2.split(",")[1];
+                byte[] decodedString19 = Base64.decode(base64Image19, Base64.DEFAULT);
+                Bitmap decodedByte19 = BitmapFactory.decodeByteArray(decodedString19, 0, decodedString19.length);
+                imageAmplifiDosE.setImageBitmap(decodedByte19);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Amplificador Dos Interior");
@@ -1696,10 +1802,16 @@ try {
 
                 Bitmap bitmapWoofer = BitmapFactory.decodeFile(mPath);
                 bitmapWoofer = foto.redimensiomarImagen(bitmapWoofer);
-                imageWooferE.setImageBitmap(bitmapWoofer);
+
                 String ImagenWoofer = foto.convertirImagenDano(bitmapWoofer);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Woofer Interior", 0, ImagenWoofer);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 245, "Ok");
+
+                ImagenWoofer = "data:image/jpg;base64,"+ImagenWoofer;
+                String base64Image20 = ImagenWoofer.split(",")[1];
+                byte[] decodedString20 = Base64.decode(base64Image20, Base64.DEFAULT);
+                Bitmap decodedByte20 = BitmapFactory.decodeByteArray(decodedString20, 0, decodedString20.length);
+                imageWooferE.setImageBitmap(decodedByte20);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Woofer Interior");
@@ -1720,10 +1832,16 @@ try {
 
                 Bitmap bitmapPantalla = BitmapFactory.decodeFile(mPath);
                 bitmapPantalla = foto.redimensiomarImagen(bitmapPantalla);
-                imagePantallaDvdE.setImageBitmap(bitmapPantalla);
+
                 String ImagenPantalla = foto.convertirImagenDano(bitmapPantalla);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Pantalla DVD Interior", 0, ImagenPantalla);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 251, "Ok");
+
+                ImagenPantalla = "data:image/jpg;base64,"+ImagenPantalla;
+                String base64Image21 = ImagenPantalla.split(",")[1];
+                byte[] decodedString21 = Base64.decode(base64Image21, Base64.DEFAULT);
+                Bitmap decodedByte21 = BitmapFactory.decodeByteArray(decodedString21, 0, decodedString21.length);
+                imagePantallaDvdE.setImageBitmap(decodedByte21);
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto Pantalla DVD Interior");
@@ -1744,10 +1862,17 @@ try {
 
                 Bitmap bitmapGps = BitmapFactory.decodeFile(mPath);
                 bitmapGps = foto.redimensiomarImagen(bitmapGps);
-                imageGpsE.setImageBitmap(bitmapGps);
+
                 String ImagenGps = foto.convertirImagenDano(bitmapGps);
                 db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto GPS Interior", 0, ImagenGps);
                 db.insertarValor(Integer.parseInt(id_inspeccion), 299, "Ok");
+
+                ImagenGps = "data:image/jpg;base64,"+ImagenGps;
+                String base64Image22 = ImagenGps.split(",")[1];
+                byte[] decodedString22 = Base64.decode(base64Image22, Base64.DEFAULT);
+                Bitmap decodedByte22 = BitmapFactory.decodeByteArray(decodedString22, 0, decodedString22.length);
+                imageGpsE.setImageBitmap(decodedByte22);
+
 
                 servis = new Intent(interior.this, TransferirFoto.class);
                 servis.putExtra("comentario", "Foto GPS Interior");
@@ -1926,7 +2051,10 @@ try {
             alzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setImageBitmap(null);
-
+            txtAlzavidrioE.setVisibility(View.GONE);
+            retroElectE.setVisibility(View.GONE);
+            imageRetroElectE.setImageBitmap(null);
+            imageRetroElectE.setVisibility(View.GONE);
 
         }
         else
@@ -1948,8 +2076,6 @@ try {
             imageAdicionalInteriorE.setVisibility(View.GONE);
             imageAdicionalInteriorE.setImageBitmap(null);
 
-            retroElectE.setVisibility(View.GONE);
-            imageRetroElectE.setVisibility(View.GONE);
             imageRetroElectE.setImageBitmap(null);
             parlantesE.setVisibility(View.GONE);
             imageParlantesE.setVisibility(View.GONE);
@@ -1972,9 +2098,9 @@ try {
             gpsE.setVisibility(View.GONE);
             imageGpsE.setVisibility(View.GONE);
             imageGpsE.setImageBitmap(null);
-            txtAlzavidrioE.setVisibility(View.GONE);
 
 
+            String imageRetroElect = db.foto(Integer.parseInt(id), "Foto Retrovisor Eléctrico Interior");
             String imageLuzCheckEngine = db.foto(Integer.parseInt(id),"Foto Check Engine Interior");
             String imageluzTestigoAir = db.foto(Integer.parseInt(id),"Foto Luz Testigo  Airbags Interior");
             String imageControlCruce = db.foto(Integer.parseInt(id),"Foto Control Crucero Interior");
@@ -1986,6 +2112,12 @@ try {
             String imageAlzavidrioTr = db.foto(Integer.parseInt(id),"Foto Alza Vidrio Trasero Interior");
 
 
+            if (imageRetroElect.length() > 3) {
+                byte[] decodedString = Base64.decode(imageRetroElect, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageRetroElectE.setImageBitmap(decodedByte);
+                retroElectE.setChecked(true);
+            }
 
             if(imageLuzCheckEngine.length()>3)
             {
@@ -2053,7 +2185,8 @@ try {
 
 
 
-
+            retroElectE.setVisibility(View.VISIBLE);
+            imageRetroElectE.setVisibility(View.VISIBLE);
             luzCheckEngineE.setVisibility(View.VISIBLE);
             imageLuzCheckEngineE.setVisibility(View.VISIBLE);
             luzTestigoAirE.setVisibility(View.VISIBLE);
@@ -2078,13 +2211,9 @@ try {
         }
 
     }
-
     private void desplegarCamposSeccionTresMQ(String id){
-        if (retroElectE.getVisibility() == View.VISIBLE) {
+        if (tweeterE.getVisibility() == View.VISIBLE) {
 
-
-            retroElectE.setVisibility(View.GONE);
-            imageRetroElectE.setVisibility(View.GONE);
             imageRetroElectE.setImageBitmap(null);
             parlantesE.setVisibility(View.GONE);
             imageParlantesE.setVisibility(View.GONE);
@@ -2127,6 +2256,36 @@ try {
             imageAdicionalInteriorE.setVisibility(View.GONE);
             imageAdicionalInteriorE.setImageBitmap(null);
 
+            /*luzCheckEngineE.setVisibility(View.GONE);
+            imageLuzCheckEngineE.setVisibility(View.GONE);
+            imageLuzCheckEngineE.setImageBitmap(null);
+            luzTestigoAirE.setVisibility(View.GONE);
+            imageluzTestigoAirE.setVisibility(View.GONE);
+            imageluzTestigoAirE.setImageBitmap(null);
+            controlCruceE.setVisibility(View.GONE);
+            imageControlCruceE.setVisibility(View.GONE);
+            imageControlCruceE.setImageBitmap(null);
+            bluetoothE.setVisibility(View.GONE);
+            imageBluetoothE.setVisibility(View.GONE);
+            imageBluetoothE.setImageBitmap(null);
+            tapizCueroE.setVisibility(View.GONE);
+            imageTapizCueroE.setVisibility(View.GONE);
+            imageTapizCueroE.setImageBitmap(null);
+            butacaElectE.setVisibility(View.GONE);
+            imageButacaElectE.setVisibility(View.GONE);
+            imageButacaElectE.setImageBitmap(null);
+            cortaCorriE.setVisibility(View.GONE);
+            imageCortaCorriE.setVisibility(View.GONE);
+            imageCortaCorriE.setImageBitmap(null);
+            alzavidrioDeE.setVisibility(View.GONE);
+            imageAlzavidrioDeE.setVisibility(View.GONE);
+            imageAlzavidrioDeE.setImageBitmap(null);
+            alzavidrioTrE.setVisibility(View.GONE);
+            imageAlzavidrioTrE.setVisibility(View.GONE);
+            imageAlzavidrioTrE.setImageBitmap(null);
+            retroElectE.setVisibility(View.GONE);
+            imageRetroElectE.setImageBitmap(null);
+            txtAlzavidrioE.setVisibility(View.GONE);*/
             luzCheckEngineE.setVisibility(View.GONE);
             imageLuzCheckEngineE.setVisibility(View.GONE);
             imageLuzCheckEngineE.setImageBitmap(null);
@@ -2154,9 +2313,12 @@ try {
             alzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setVisibility(View.GONE);
             imageAlzavidrioTrE.setImageBitmap(null);
+            txtAlzavidrioE.setVisibility(View.GONE);
+            retroElectE.setVisibility(View.GONE);
+            imageRetroElectE.setImageBitmap(null);
+            imageRetroElectE.setVisibility(View.GONE);
 
 
-            String imageRetroElect = db.foto(Integer.parseInt(id), "Foto Retrovisor Eléctrico Interior");
             String imageParlantes = db.foto(Integer.parseInt(id), "Foto Parlantes Interior");
             String imageTweeter = db.foto(Integer.parseInt(id), "Foto Tweeter Interior");
             String imageAmplifiUno = db.foto(Integer.parseInt(id), "Foto Amplificador Uno Interior");
@@ -2167,12 +2329,7 @@ try {
 
 
 
-            if (imageRetroElect.length() > 3) {
-                byte[] decodedString = Base64.decode(imageRetroElect, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageRetroElectE.setImageBitmap(decodedByte);
-                retroElectE.setChecked(true);
-            }
+
             if (imageParlantes.length() > 3) {
                 byte[] decodedString = Base64.decode(imageParlantes, Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -2218,8 +2375,6 @@ try {
 
 
 
-            retroElectE.setVisibility(View.VISIBLE);
-            imageRetroElectE.setVisibility(View.VISIBLE);
             parlantesE.setVisibility(View.VISIBLE);
             imageParlantesE.setVisibility(View.VISIBLE);
             tweeterE.setVisibility(View.VISIBLE);

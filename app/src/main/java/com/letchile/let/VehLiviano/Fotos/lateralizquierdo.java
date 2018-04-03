@@ -254,7 +254,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -287,7 +287,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -320,7 +320,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -353,7 +353,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -386,7 +386,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -419,7 +419,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -452,7 +452,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -485,7 +485,7 @@ public class lateralizquierdo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -527,9 +527,15 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                         bitmap = foto.redimensiomarImagen(bitmap);
-                        imageLateIzE.setImageBitmap(bitmap);
+
                         String imagen = foto.convertirImagenDano(bitmap);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lateral Izquierdo", 0, imagen);
+
+                        imagen = "data:image/jpg;base64,"+imagen;
+                        String base64Image = imagen.split(",")[1];
+                        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        imageLateIzE.setImageBitmap(decodedByte);
 
                         Intent servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Lateral Izquierdo");
@@ -550,9 +556,15 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmapAdicional1 = BitmapFactory.decodeFile(mPath);
                         bitmapAdicional1 = foto.redimensiomarImagen(bitmapAdicional1);
-                        imageAdicionalIzE.setImageBitmap(bitmapAdicional1);
+
                         String imagenAdicional1 = foto.convertirImagenDano(bitmapAdicional1);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 1 Lateral Izquierdo", 0, imagenAdicional1);
+                        imagenAdicional1 = "data:image/jpg;base64,"+imagenAdicional1;
+                        String base64Image1 = imagenAdicional1.split(",")[1];
+                        byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                        Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                        imageAdicionalIzE.setImageBitmap(decodedByte1);
+
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Adicional 1 Lateral Izquierdo");
@@ -573,9 +585,14 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmapAdicional2 = BitmapFactory.decodeFile(mPath);
                         bitmapAdicional2 = foto.redimensiomarImagen(bitmapAdicional2);
-                        imageAdicionalIz2E.setImageBitmap(bitmapAdicional2);
+
                         String imagenAdicional2 = foto.convertirImagenDano(bitmapAdicional2);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional 2 Lateral Izquierdo", 0, imagenAdicional2);
+                        imagenAdicional2 = "data:image/jpg;base64,"+imagenAdicional2;
+                        String base64Image2 = imagenAdicional2.split(",")[1];
+                        byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                        Bitmap decodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                        imageAdicionalIz2E.setImageBitmap(decodedByte2);
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Adicional 2 Lateral Izquierdo");
@@ -596,8 +613,9 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmapDano = BitmapFactory.decodeFile(mPath);
                         bitmapDano = foto.redimensiomarImagen(bitmapDano);
-                        imagenIzDanoE.setImageBitmap(bitmapDano);
+
                         String imagenDano = foto.convertirImagenDano(bitmapDano);
+
 
                         comentarioDañoImg = spinnerPiezaIzE.getSelectedItem().toString() + ' ' + spinnerDanoIzE.getSelectedItem().toString() + ' ' + spinnerDeducibleIzE.getSelectedItem().toString() + ' ';
                         db.insertarComentarioFoto(Integer.parseInt(id_inspeccion), comentarioDañoImg, "lateral_izquierdo");
@@ -610,7 +628,11 @@ public class lateralizquierdo extends AppCompatActivity {
                         db.insertarValor(Integer.parseInt(id_inspeccion), Integer.parseInt(dañosDedu[0][0]), String.valueOf(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString())));
                         //deducible
                         db.insertarValor(Integer.parseInt(id_inspeccion), Integer.parseInt(dañosDedu[0][1]), db.obtenerDeducible(db.obtenerDanio(spinnerDanoIzE.getSelectedItem().toString()), spinnerDeducibleIzE.getSelectedItem().toString()));
-
+                        imagenDano = "data:image/jpg;base64,"+imagenDano;
+                        String base64Image3 = imagenDano.split(",")[1];
+                        byte[] decodedString3 = Base64.decode(base64Image3, Base64.DEFAULT);
+                        Bitmap decodedByte3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+                        imagenIzDanoE.setImageBitmap(decodedByte3);
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", comentarito);
@@ -632,10 +654,16 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmapGraba = BitmapFactory.decodeFile(mPath);
                         bitmapGraba = foto.redimensiomarImagen(bitmapGraba);
-                        imageGabradoPatenteE.setImageBitmap(bitmapGraba);
+
                         String imagenGraba = foto.convertirImagenDano(bitmapGraba);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Grabado Patente Lateral Izquierdo", 0, imagenGraba);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 298, "Ok");
+                        imagenGraba = "data:image/jpg;base64,"+imagenGraba;
+                        String base64Image4 = imagenGraba.split(",")[1];
+                        byte[] decodedString4 = Base64.decode(base64Image4, Base64.DEFAULT);
+                        Bitmap decodedByte4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+                        imageGabradoPatenteE.setImageBitmap(decodedByte4);
+
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Grabado Patente Lateral Izquierdo");
@@ -656,10 +684,17 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmapLamina = BitmapFactory.decodeFile(mPath);
                         bitmapLamina = foto.redimensiomarImagen(bitmapLamina);
-                        imagelaminasSeguridadLaIzE.setImageBitmap(bitmapLamina);
+
                         String imagenLamina = foto.convertirImagenDano(bitmapLamina);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Lamina de Seguridad Lateral Izquierdo", 0, imagenLamina);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 342, "Ok");
+                        imagenLamina = "data:image/jpg;base64,"+imagenLamina;
+                        String base64Image5 = imagenLamina.split(",")[1];
+                        byte[] decodedString5 = Base64.decode(base64Image5, Base64.DEFAULT);
+                        Bitmap decodedByte5 = BitmapFactory.decodeByteArray(decodedString5, 0, decodedString5.length);
+
+                        imagelaminasSeguridadLaIzE.setImageBitmap(decodedByte5);
+
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Lamina de Seguridad Lateral Izquierdo");
@@ -680,10 +715,15 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmapPisadera = BitmapFactory.decodeFile(mPath);
                         bitmapPisadera = foto.redimensiomarImagen(bitmapPisadera);
-                        imagePisaderasLaIzE.setImageBitmap(bitmapPisadera);
+
                         String imagenPisadera = foto.convertirImagenDano(bitmapPisadera);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Pisadera Lateral Izquierdo", 0, imagenPisadera);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 276, "Ok");
+                        imagenPisadera = "data:image/jpg;base64,"+imagenPisadera;
+                        String base64Image6 = imagenPisadera.split(",")[1];
+                        byte[] decodedString6 = Base64.decode(base64Image6, Base64.DEFAULT);
+                        Bitmap decodedByte6 = BitmapFactory.decodeByteArray(decodedString6, 0, decodedString6.length);
+                        imagePisaderasLaIzE.setImageBitmap(decodedByte6);
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Pisadera Lateral Izquierdo");
@@ -704,10 +744,16 @@ public class lateralizquierdo extends AppCompatActivity {
 
                         Bitmap bitmapPolarizado = BitmapFactory.decodeFile(mPath);
                         bitmapPolarizado = foto.redimensiomarImagen(bitmapPolarizado);
-                        imagePolarizadoLaIzE.setImageBitmap(bitmapPolarizado);
+
                         String imagenPolarizado = foto.convertirImagenDano(bitmapPolarizado);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Polarizado Lateral Izquierdo", 0, imagenPolarizado);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 341, "Ok");
+                        imagenPolarizado = "data:image/jpg;base64,"+imagenPolarizado;
+                        String base64Image7 = imagenPolarizado.split(",")[1];
+                        byte[] decodedString7 = Base64.decode(base64Image7, Base64.DEFAULT);
+                        Bitmap decodedByte7 = BitmapFactory.decodeByteArray(decodedString7, 0, decodedString7.length);
+
+                        imagePolarizadoLaIzE.setImageBitmap(decodedByte7);
 
                         servis = new Intent(lateralizquierdo.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Polarizado Lateral Izquierdo");

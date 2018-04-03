@@ -151,7 +151,7 @@ public class llantasneumaticos extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -184,7 +184,7 @@ public class llantasneumaticos extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -217,7 +217,7 @@ public class llantasneumaticos extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -261,9 +261,14 @@ public class llantasneumaticos extends AppCompatActivity {
 
                         Bitmap bitmapLlanatas = BitmapFactory.decodeFile(mPath);
                         bitmapLlanatas = foto.redimensiomarImagen(bitmapLlanatas);
-                        imageLlantasNE.setImageBitmap(bitmapLlanatas);
+
                         String imagenLlantas = foto.convertirImagenDano(bitmapLlanatas);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Llantas y Neumaticos", 0, imagenLlantas);
+                        imagenLlantas = "data:image/jpg;base64,"+imagenLlantas;
+                        String base64Image1 = imagenLlantas.split(",")[1];
+                        byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                        Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                        imageLlantasNE.setImageBitmap(decodedByte1);
 
                         Intent servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Llantas y Neumaticos");
@@ -284,9 +289,15 @@ public class llantasneumaticos extends AppCompatActivity {
 
                         Bitmap bitmapRueda = BitmapFactory.decodeFile(mPath);
                         bitmapRueda = foto.redimensiomarImagen(bitmapRueda);
-                        imageRuedaRespuestoLlantasE.setImageBitmap(bitmapRueda);
+
                         String imagenRueda = foto.convertirImagenDano(bitmapRueda);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Rueda de Respuesto Llantas y Neumaticos", 0, imagenRueda);
+                        db.insertarValor(Integer.parseInt(id_inspeccion), 289, "Ok");
+                        imagenRueda = "data:image/jpg;base64,"+imagenRueda;
+                        String base64Image2 = imagenRueda.split(",")[1];
+                        byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                        Bitmap decodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                        imageRuedaRespuestoLlantasE.setImageBitmap(decodedByte2);
 
                         servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Rueda de Respuesto Llantas y Neumaticos");
@@ -310,6 +321,12 @@ public class llantasneumaticos extends AppCompatActivity {
                         imageAdicionalLlantasE.setImageBitmap(bitmapAdicionalLlantas);
                         String imagenAdicionalLlantas = foto.convertirImagenDano(bitmapAdicionalLlantas);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Llantas y Neumaticos", 0, imagenAdicionalLlantas);
+
+                        imagenAdicionalLlantas = "data:image/jpg;base64,"+imagenAdicionalLlantas;
+                        String base64Image3 = imagenAdicionalLlantas.split(",")[1];
+                        byte[] decodedString3 = Base64.decode(base64Image3, Base64.DEFAULT);
+                        Bitmap decodedByte3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+
 
                         servis = new Intent(llantasneumaticos.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Adicional Llantas y Neumaticos");

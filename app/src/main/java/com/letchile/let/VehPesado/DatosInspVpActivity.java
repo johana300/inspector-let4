@@ -107,7 +107,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.insp , android.R.layout.simple_spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoVehVp.setAdapter(spinner_adapter);
-        tipoVehVp.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),364).toString()));
+        tipoVehVp.setSelection(arraytipolist.lastIndexOf("Nueva"));
 
         //region
         //String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),359).toString());

@@ -74,51 +74,31 @@ public class InsPendientesActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspecciones_pendientes);
 
-
+        //Comprobar la conexión a internet para cargar las inspecciones
         connec = new ConexionInternet(this).isConnectingToInternet();
-        //Comprobar la conexión a internet para cargar las fotos
-            usr = db.obtenerUsuario();
-            new SendPostRequest().execute(usr.toString());
 
+        usr = db.obtenerUsuario();
+        new SendPostRequest().execute(usr.toString());
 
         //refresca el layout
         refres = (SwipeRefreshLayout)findViewById(R.id.swipeM);
         refres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                finish();
                 startActivity(getIntent());
 
+                //comprobar nuevamente
+                connec = new ConexionInternet(InsPendientesActivity.this).isConnectingToInternet();
+                if(connec) {
+                    usr = db.obtenerUsuario();
+                    new SendPostRequest().execute(usr.toString());
+                }else{
+                    Toast.makeText(InsPendientesActivity.this,"No hay conexión a internet",Toast.LENGTH_SHORT).show();
+                }
                 refres.setRefreshing(false);
             }
         });
     }
-
-    @Override
-    public void onBackPressed(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setMessage("¿Desea volver al inicio de sesión?");
-        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent in = new Intent(InsPendientesActivity.this,LoginActivity.class);
-                startActivity(in);
-            }
-        });
-
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-
 
 
     public class SendPostRequest extends AsyncTask<String, Integer, String> {
@@ -134,6 +114,7 @@ public class InsPendientesActivity extends AppCompatActivity{
 
         protected String doInBackground(String... parametros) {
             publishProgress(0);
+            connec = new ConexionInternet(InsPendientesActivity.this).isConnectingToInternet();
             try{
                 if(connec)
                 {
@@ -661,55 +642,52 @@ public class InsPendientesActivity extends AppCompatActivity{
         protected void onPostExecute(String result) {
 
 
+                pDialog.dismiss();
 
-            pDialog.dismiss();
+                TableColumnWeightModel columnModel = new TableColumnWeightModel(4);
+                columnModel.setColumnWeight(1, 1);
+                columnModel.setColumnWeight(2, 1);
+                columnModel.setColumnWeight(3, 1);
+                columnModel.setColumnWeight(4, 5);
 
-            TableColumnWeightModel  columnModel = new TableColumnWeightModel (4);
-            columnModel.setColumnWeight(1,1);
-            columnModel.setColumnWeight(2,1);
-            columnModel.setColumnWeight(3,1);
-            columnModel.setColumnWeight(4,5);
+                final TableView<String[]> tb = (TableView<String[]>) findViewById(R.id.tableView);
+                tb.setColumnModel(columnModel);
+                tb.setHeaderBackgroundColor(Color.parseColor("WHITE"));
+                tb.setHeaderElevation(10);
+                llenarTabla();
 
-            final TableView<String[]> tb = (TableView<String[]>)findViewById(R.id.tableView);
-            tb.setColumnModel(columnModel);
-            tb.setHeaderBackgroundColor(Color.parseColor("WHITE"));
-            tb.setHeaderElevation(10);
-            llenarTabla();
+                tb.setHeaderAdapter(new SimpleTableHeaderAdapter(InsPendientesActivity.this, head));
 
-            tb.setHeaderAdapter(new SimpleTableHeaderAdapter(InsPendientesActivity.this,head));
-
-            tb.setDataAdapter(new SimpleTableDataAdapter(InsPendientesActivity.this,insp));
-
+                tb.setDataAdapter(new SimpleTableDataAdapter(InsPendientesActivity.this, insp));
 
 
-            tb.addDataClickListener(new TableDataClickListener<String[]>() {
-                @Override
-                public void onDataClicked(int rowIndex, String[] clickedData) {
-                    //Toast.makeText(InsPendientesActivity.this,((String[])clickedData)[0],Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(InsPendientesActivity.this,detalleActivity.class);
-                    i.putExtra("id_inspeccion",((String[])clickedData)[0]);
-                    i.putExtra("fecha_cita",((String[])clickedData)[2]);
-                    i.putExtra("hora_cita",((String[])clickedData)[3]);
+                tb.addDataClickListener(new TableDataClickListener<String[]>() {
+                    @Override
+                    public void onDataClicked(int rowIndex, String[] clickedData) {
+                        //Toast.makeText(InsPendientesActivity.this,((String[])clickedData)[0],Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(InsPendientesActivity.this, detalleActivity.class);
+                        i.putExtra("id_inspeccion", ((String[]) clickedData)[0]);
+                        i.putExtra("fecha_cita", ((String[]) clickedData)[2]);
+                        i.putExtra("hora_cita", ((String[]) clickedData)[3]);
 
-                    int inspeccionElegida = Integer.parseInt(((String[])clickedData)[0]);
+                        int inspeccionElegida = Integer.parseInt(((String[]) clickedData)[0]);
 
-                    try {
-                        //VALIDAR QUE LA INSPECCION SELECCIONADA NO SE ESTÉ TRANSMITIENDO
-                        if (db.estadoInspeccion(inspeccionElegida) != 2 && db.estadoInspeccion(inspeccionElegida) != 3) {
-                            //VALIDAR QUE NO HAYA QUEDADO UNA INSPECCIÓN SIN TRANSMITIR
-                            int inspeccionPendiente = db.estadoInspecciones(1);
-                            if (inspeccionPendiente > 0 && inspeccionPendiente != inspeccionElegida) {
-                                Toast.makeText(InsPendientesActivity.this, "Debe transmitir la Inspección n°" + String.valueOf(inspeccionPendiente), Toast.LENGTH_SHORT).show();
-                            } else {
-                                startActivity(i);
-                                finish();
+                        try {
+                            //VALIDAR QUE LA INSPECCION SELECCIONADA NO SE ESTÉ TRANSMITIENDO
+                            if (db.estadoInspeccion(inspeccionElegida) != 2 && db.estadoInspeccion(inspeccionElegida) != 3) {
+                                //VALIDAR QUE NO HAYA QUEDADO UNA INSPECCIÓN SIN TRANSMITIR
+                                int inspeccionPendiente = db.estadoInspecciones(1);
+                                if (inspeccionPendiente > 0 && inspeccionPendiente != inspeccionElegida) {
+                                    Toast.makeText(InsPendientesActivity.this, "Debe transmitir la Inspección n°" + String.valueOf(inspeccionPendiente), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    startActivity(i);
+                                }
                             }
+                        } catch (Exception e) {
+                            Toast.makeText(InsPendientesActivity.this, "Inspección eliminada por termino de su transmisión", Toast.LENGTH_SHORT).show();
                         }
-                    }catch (Exception e){
-                        Toast.makeText(InsPendientesActivity.this,"Inspección eliminada por termino de su transmisión",Toast.LENGTH_SHORT).show();
                     }
-                }
-            });
+                });
         }
     }
 

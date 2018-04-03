@@ -163,7 +163,7 @@ public class motor extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -196,7 +196,7 @@ public class motor extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -229,7 +229,7 @@ public class motor extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -262,7 +262,7 @@ public class motor extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -305,9 +305,15 @@ public class motor extends AppCompatActivity {
 
                         Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                         bitmap = foto.redimensiomarImagen(bitmap);
-                        imageCunaMotorE.setImageBitmap(bitmap);
+
                         String imagen = foto.convertirImagenDano(bitmap);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Cuna Motor", 0, imagen);
+
+                        imagen = "data:image/jpg;base64,"+imagen;
+                        String base64Image1 = imagen.split(",")[1];
+                        byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                        Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                        imageCunaMotorE.setImageBitmap(decodedByte1);
 
                         Intent servis = new Intent(motor.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Cuna Motor");
@@ -328,9 +334,15 @@ public class motor extends AppCompatActivity {
 
                         Bitmap bitmapMotor = BitmapFactory.decodeFile(mPath);
                         bitmapMotor = foto.redimensiomarImagen(bitmapMotor);
-                        imageMotorE.setImageBitmap(bitmapMotor);
+
                         String imagenMotor = foto.convertirImagenDano(bitmapMotor);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Motor", 0, imagenMotor);
+
+                        imagenMotor = "data:image/jpg;base64,"+imagenMotor;
+                        String base64Image2 = imagenMotor.split(",")[1];
+                        byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                        Bitmap decodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                        imageMotorE.setImageBitmap(decodedByte2);
 
                         servis = new Intent(motor.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Motor");
@@ -351,9 +363,15 @@ public class motor extends AppCompatActivity {
 
                         Bitmap bitmapChasis = BitmapFactory.decodeFile(mPath);
                         bitmapChasis = foto.redimensiomarImagen(bitmapChasis);
-                        imageChasisVinE.setImageBitmap(bitmapChasis);
+
                         String imagenChasis = foto.convertirImagenDano(bitmapChasis);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Chasis(VIN)", 0, imagenChasis);
+
+                        imagenChasis = "data:image/jpg;base64,"+imagenChasis;
+                        String base64Image3 = imagenChasis.split(",")[1];
+                        byte[] decodedString3 = Base64.decode(base64Image3, Base64.DEFAULT);
+                        Bitmap decodedByte3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+                        imageChasisVinE.setImageBitmap(decodedByte3);
 
                         servis = new Intent(motor.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Chasis(VIN)");
@@ -374,9 +392,15 @@ public class motor extends AppCompatActivity {
 
                         Bitmap bitmapAdicional = BitmapFactory.decodeFile(mPath);
                         bitmapAdicional = foto.redimensiomarImagen(bitmapAdicional);
-                        imageAdicionalE.setImageBitmap(bitmapAdicional);
+
                         String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Motor", 0, imagenAdicional);
+
+                        imagenAdicional = "data:image/jpg;base64,"+imagenAdicional;
+                        String base64Image4 = imagenAdicional.split(",")[1];
+                        byte[] decodedString4 = Base64.decode(base64Image4, Base64.DEFAULT);
+                        Bitmap decodedByte4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+                        imageAdicionalE.setImageBitmap(decodedByte4);
 
                         servis = new Intent(motor.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Adicional Motor");

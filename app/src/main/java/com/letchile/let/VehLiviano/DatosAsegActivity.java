@@ -24,7 +24,7 @@ public class DatosAsegActivity extends AppCompatActivity {
 
     DBprovider db;
     ProgressDialog pDialog;
-    EditText asegurado, paternoAsegurado, maternoAsegurado,rut,direccion,fono,email;
+    EditText asegurado, paternoAsegurado, maternoAsegurado,rut,direccion,fono,email,celular;
     String [][] datosInspeccion;
     JSONObject llenado;
     JSONArray arrayValor;
@@ -55,11 +55,16 @@ public class DatosAsegActivity extends AppCompatActivity {
         rut = (EditText)findViewById(R.id.rutJg);
         rut.setText(db.accesorio(Integer.parseInt(id_inspeccion),5).toString());
 
+        direccion = (EditText)findViewById(R.id.direccionM);
+        direccion.setText(db.accesorio(Integer.parseInt(id_inspeccion),8).toString());
+
+
         fono = (EditText)findViewById(R.id.fonoJg);
         fono.setText(db.accesorio(Integer.parseInt(id_inspeccion),6).toString());
 
-        direccion = (EditText)findViewById(R.id.direccionM);
-        direccion.setText(db.accesorio(Integer.parseInt(id_inspeccion),8).toString());
+        celular = (EditText)findViewById(R.id.celuJg);
+        celular.setText(db.accesorio(Integer.parseInt(id_inspeccion),533).toString());
+
 
         email = (EditText)findViewById(R.id.mailJg);
         email.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
@@ -126,7 +131,6 @@ public class DatosAsegActivity extends AppCompatActivity {
                     datosValor3.put("valor_id",4);
                     datosValor3.put("texto",maternoAsegurado.getText().toString());
 
-
                     JSONObject datosValor4 = new JSONObject();
                     datosValor4.put("valor_id",5);
                     datosValor4.put("texto",rut.getText().toString());
@@ -138,6 +142,10 @@ public class DatosAsegActivity extends AppCompatActivity {
                     JSONObject datosValor6 = new JSONObject();
                     datosValor6.put("valor_id",6);
                     datosValor6.put("texto",fono.getText().toString());
+
+                    JSONObject datosValorx = new JSONObject();
+                    datosValorx.put("valor_id",533);
+                    datosValorx.put("texto",celular.getText().toString());
 
                     JSONObject datosValor7 = new JSONObject();
                     datosValor7.put("valor_id",532);
@@ -155,8 +163,10 @@ public class DatosAsegActivity extends AppCompatActivity {
                     jsonArray.put(datosValor4);
                     jsonArray.put(datosValor5);
                     jsonArray.put(datosValor6);
+                    jsonArray.put(datosValorx);
                     jsonArray.put(datosValor7);
                     jsonArray.put(datosValor8);
+
 
 
                     //PREGUNTO SI ES NULO PARA INSERTAR LOS DATOS
@@ -175,9 +185,9 @@ public class DatosAsegActivity extends AppCompatActivity {
                 }
 
 
-                db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),asegurado.getText().toString(),paternoAsegurado.getText().toString(),
+              /*  db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),asegurado.getText().toString(),paternoAsegurado.getText().toString(),
                         maternoAsegurado.getText().toString(),rut.getText().toString(),direccion.getText().toString(),Integer.parseInt(fono.getText().toString()),
-                        email.getText().toString(),comboComuna.getSelectedItem().toString());
+                        email.getText().toString(),comboComuna.getSelectedItem().toString());*/
                 Intent intent = new Intent(DatosAsegActivity.this, DatosVehActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -190,7 +200,7 @@ public class DatosAsegActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(DatosAsegActivity.this, SeccionActivity.class);//cambiar por volver a fotos
+                Intent intent = new Intent(DatosAsegActivity.this, seccion2.class);//cambiar por volver a fotos
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
                 finish();

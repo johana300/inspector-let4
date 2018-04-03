@@ -98,7 +98,7 @@ public class ObsActivity extends AppCompatActivity {
                     Toast.makeText(ObsActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
                 }
 
-                Intent intent = new Intent( ObsActivity.this, SeccionActivity.class);//VOLVER A SECCIONES
+                Intent intent = new Intent( ObsActivity.this, seccion2.class);//VOLVER A SECCIONES
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

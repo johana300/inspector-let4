@@ -177,6 +177,7 @@ public class frontal extends AppCompatActivity {
             }
         });
 
+        //NO ES COCO ES SENSORES DE IMPACTO!
         CocoFoE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),316));
         CocoFoE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -483,14 +484,14 @@ public class frontal extends AppCompatActivity {
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Coco_Frontal.jpg";
+            String imageName = fecha + "_Foto_SensoresImpacto_Frontal.jpg";
             ruta = file.toString() + "/" + imageName;
             mPath = ruta;
 
             File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Coco_Frontal.jpg";
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_SensoresImpacto_Frontal.jpg";
 
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -589,10 +590,14 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                         bitmap = foto.redimensiomarImagen(bitmap);
-                        imageFrontalE.setImageBitmap(bitmap);
+
                         String imagen = foto.convertirImagenDano(bitmap);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Frontal", 0, imagen);
-
+                        imagen = "data:image/jpg;base64,"+imagen;
+                        String base64Image22 = imagen.split(",")[1];
+                        byte[] decodedString22 = Base64.decode(base64Image22, Base64.DEFAULT);
+                        Bitmap decodedByte22 = BitmapFactory.decodeByteArray(decodedString22, 0, decodedString22.length);
+                        imageFrontalE.setImageBitmap(decodedByte22);
 
                         Intent servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Foto Frontal");
@@ -614,9 +619,14 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmapParabrisas = BitmapFactory.decodeFile(mPath);
                         bitmapParabrisas = foto.redimensiomarImagen(bitmapParabrisas);
-                        imageLogoParaE.setImageBitmap(bitmapParabrisas);
+
                         String imagenParabrisas = foto.convertirImagenDano(bitmapParabrisas);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Logo Parabrisas Frontal", 0, imagenParabrisas);
+                        imagenParabrisas = "data:image/jpg;base64,"+imagenParabrisas;
+                        String base64Image1 = imagenParabrisas.split(",")[1];
+                        byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                        Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                        imageLogoParaE.setImageBitmap(decodedByte1);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Logo Parabrisas Frontal");
@@ -638,9 +648,14 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmapAdcional = BitmapFactory.decodeFile(mPath);
                         bitmapAdcional = foto.redimensiomarImagen(bitmapAdcional);
-                        imageAdicionalFrontalE.setImageBitmap(bitmapAdcional);
+
                         String imagenAdicional = foto.convertirImagenDano(bitmapAdcional);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Adicional Frontal", 0, imagenAdicional);
+                        imagenAdicional = "data:image/jpg;base64,"+imagenAdicional;
+                        String base64Image2 = imagenAdicional.split(",")[1];
+                        byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                        Bitmap decodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                        imageAdicionalFrontalE.setImageBitmap(decodedByte2);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Adicional Frontal");
@@ -661,7 +676,7 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmapDano = BitmapFactory.decodeFile(mPath);
                         bitmapDano = foto.redimensiomarImagen(bitmapDano);
-                        imagenFrontalDanoE.setImageBitmap(bitmapDano);
+
                         String imagendano = foto.convertirImagenDano(bitmapDano);
 
 
@@ -680,6 +695,11 @@ public class frontal extends AppCompatActivity {
 
                         //deducible
                         db.insertarValor(Integer.parseInt(id_inspeccion), Integer.parseInt(dañosDedu[0][1]), db.obtenerDeducible(db.obtenerDanio(spinnerDanoFrontalE.getSelectedItem().toString()), spinnerDeducibleFrontalE.getSelectedItem().toString()));
+                        imagendano = "data:image/jpg;base64,"+imagendano;
+                        String base64Image33 = imagendano.split(",")[1];
+                        byte[] decodedString33 = Base64.decode(base64Image33, Base64.DEFAULT);
+                        Bitmap decodedByte33 = BitmapFactory.decodeByteArray(decodedString33, 0, decodedString33.length);
+                        imagenFrontalDanoE.setImageBitmap(decodedByte33);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", comentarito);
@@ -700,10 +720,15 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmaoTurbo = BitmapFactory.decodeFile(mPath);
                         bitmaoTurbo = foto.redimensiomarImagen(bitmaoTurbo);
-                        imageTurboFrontalE.setImageBitmap(bitmaoTurbo);
+
                         String imagenTurbo = foto.convertirImagenDano(bitmaoTurbo);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Turbo Frontal", 0, imagenTurbo);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 354, "Ok");
+                        imagenTurbo = "data:image/jpg;base64,"+imagenTurbo;
+                        String base64Image4 = imagenTurbo.split(",")[1];
+                        byte[] decodedString4 = Base64.decode(base64Image4, Base64.DEFAULT);
+                        Bitmap decodedByte4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+                        imageTurboFrontalE.setImageBitmap(decodedByte4);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Turbo Frontal");
@@ -724,10 +749,15 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmapHuenche = BitmapFactory.decodeFile(mPath);
                         bitmapHuenche = foto.redimensiomarImagen(bitmapHuenche);
-                        imageHuencheFrontalE.setImageBitmap(bitmapHuenche);
+
                         String imagenHuenche = foto.convertirImagenDano(bitmapHuenche);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Huenche Frontal", 0, imagenHuenche);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 288, "Ok");
+                        imagenHuenche = "data:image/jpg;base64,"+imagenHuenche;
+                        String base64Image5 = imagenHuenche.split(",")[1];
+                        byte[] decodedString5 = Base64.decode(base64Image5, Base64.DEFAULT);
+                        Bitmap decodedByte5 = BitmapFactory.decodeByteArray(decodedString5, 0, decodedString5.length);
+                        imageHuencheFrontalE.setImageBitmap(decodedByte5);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Huenche Frontal");
@@ -748,13 +778,18 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmapCoco = BitmapFactory.decodeFile(mPath);
                         bitmapCoco = foto.redimensiomarImagen(bitmapCoco);
-                        imageCocoFrE.setImageBitmap(bitmapCoco);
+
                         String imagenCoco = foto.convertirImagenDano(bitmapCoco);
-                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Coco Frontal", 0, imagenCoco);
+                        db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "sensoresImpacto Frontal", 0, imagenCoco);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 316, "Ok");
+                        imagenCoco = "data:image/jpg;base64,"+imagenCoco;
+                        String base64Image6 = imagenCoco.split(",")[1];
+                        byte[] decodedString6 = Base64.decode(base64Image6, Base64.DEFAULT);
+                        Bitmap decodedByte6 = BitmapFactory.decodeByteArray(decodedString6, 0, decodedString6.length);
+                        imageCocoFrE.setImageBitmap(decodedByte6);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
-                        servis.putExtra("comentario", "Coco Frontal");
+                        servis.putExtra("comentario", "sensoresImpacto Frontal");
                         servis.putExtra("id_inspeccion", id_inspeccion);
                         startService(servis);
 
@@ -773,10 +808,16 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmapNeblinero = BitmapFactory.decodeFile(mPath);
                         bitmapNeblinero = foto.redimensiomarImagen(bitmapNeblinero);
-                        imageNeblineroE.setImageBitmap(bitmapNeblinero);
+
                         String imagenNeblinero = foto.convertirImagenDano(bitmapNeblinero);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Neblinero Frontal", 0, imagenNeblinero);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 286, "Ok");
+                        imagenNeblinero = "data:image/jpg;base64,"+imagenNeblinero;
+                        String base64Image7 = imagenNeblinero.split(",")[1];
+                        byte[] decodedString7 = Base64.decode(base64Image7, Base64.DEFAULT);
+                        Bitmap decodedByte7 = BitmapFactory.decodeByteArray(decodedString7, 0, decodedString7.length);
+
+                        imageNeblineroE.setImageBitmap(decodedByte7);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Neblinero Frontal");
@@ -797,10 +838,15 @@ public class frontal extends AppCompatActivity {
 
                         Bitmap bitmapLogo = BitmapFactory.decodeFile(mPath);
                         bitmapLogo = foto.redimensiomarImagen(bitmapLogo);
-                        imageLogoE.setImageBitmap(bitmapLogo);
+
                         String imagenLogo = foto.convertirImagenDano(bitmapLogo);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Logo Frontal", 0, imagenLogo);
                         db.insertarValor(Integer.parseInt(id_inspeccion), 260, "Ok");
+                        imagenLogo = "data:image/jpg;base64,"+imagenLogo;
+                        String base64Image8 = imagenLogo.split(",")[1];
+                        byte[] decodedString8 = Base64.decode(base64Image8, Base64.DEFAULT);
+                        Bitmap decodedByte8 = BitmapFactory.decodeByteArray(decodedString8, 0, decodedString8.length);
+                        imageLogoE.setImageBitmap(decodedByte8);
 
                         servis = new Intent(frontal.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Logo Frontal");
@@ -1085,7 +1131,7 @@ public class frontal extends AppCompatActivity {
 
             String imageTurboFrontal = db.foto(Integer.parseInt(id),"Turbo Frontal");
             String imageHuencheFrontal = db.foto(Integer.parseInt(id),"Huenche Frontal");
-            String imageCocoFr = db.foto(Integer.parseInt(id),"Coco Frontal");
+            String imageCocoFr = db.foto(Integer.parseInt(id),"sensoresImpacto Frontal");
             String imageNeblinero = db.foto(Integer.parseInt(id),"Neblinero Frontal");
             String imageLogo = db.foto(Integer.parseInt(id),"Logo Frontal");
 

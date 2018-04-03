@@ -21,7 +21,7 @@ public class PropiedadesFoto {
     public String convertirImagenDano(Bitmap bitmap) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos);
         byte[] byteArrayImageMuela = baos.toByteArray();
         String encodedImage = Base64.encodeToString(byteArrayImageMuela, Base64.DEFAULT);
 
