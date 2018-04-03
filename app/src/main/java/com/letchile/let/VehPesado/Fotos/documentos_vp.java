@@ -81,19 +81,13 @@ public class documentos_vp extends AppCompatActivity {
                     isDirectoryCreated = file.mkdirs();
 
                 if(isDirectoryCreated){
-                    //Long timestamp = System.currentTimeMillis() / 1000;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                    Date date = new Date();
-
-                    String fecha = dateFormat.format(date);
-                    String imageName = fecha + "_Foto_Documento_VP.jpg";
-                    ruta = file.toString() +"/" +imageName;
-                    mPath =  ruta ;
-
-                    File newFile = new File(mPath);
 
                     correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
                     nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Documento_VP.jpg";
+
+                    ruta = file.toString() +"/" +nombreimagen;
+                    mPath =  ruta ;
+                    File newFile = new File(mPath);
 
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(documentos_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
@@ -115,19 +109,13 @@ public class documentos_vp extends AppCompatActivity {
                     isDirectoryCreated = file.mkdirs();
 
                 if(isDirectoryCreated){
-                    //Long timestamp = System.currentTimeMillis() / 1000;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                    Date date = new Date();
-
-                    String fecha = dateFormat.format(date);
-                    String imageName = fecha + "_Foto_Informe_Anverso_VP.jpg";
-                    ruta = file.toString() +"/" +imageName;
-                    mPath =  ruta ;
-
-                    File newFile = new File(mPath);
 
                     correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
                     nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Informe_Anverso_VP.jpg";
+
+                    ruta = file.toString() +"/" +nombreimagen;
+                    mPath =  ruta ;
+                    File newFile = new File(mPath);
 
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(documentos_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
@@ -149,19 +137,14 @@ public class documentos_vp extends AppCompatActivity {
                     isDirectoryCreated = file.mkdirs();
 
                 if(isDirectoryCreated){
-                    //Long timestamp = System.currentTimeMillis() / 1000;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                    Date date = new Date();
 
-                    String fecha = dateFormat.format(date);
-                    String imageName = fecha + "_Foto_Informe_Reverso_VP.jpg";
-                    ruta = file.toString() +"/" +imageName;
-                    mPath =  ruta ;
-
-                    File newFile = new File(mPath);
 
                     correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
                     nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Informe_Reverso_VP.jpg";
+
+                    ruta = file.toString() +"/" +nombreimagen;
+                    mPath =  ruta ;
+                    File newFile = new File(mPath);
 
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(documentos_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
@@ -183,19 +166,13 @@ public class documentos_vp extends AppCompatActivity {
                     isDirectoryCreated = file.mkdirs();
 
                 if(isDirectoryCreated){
-                    //Long timestamp = System.currentTimeMillis() / 1000;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                    Date date = new Date();
-
-                    String fecha = dateFormat.format(date);
-                    String imageName = fecha + "_Foto_Documento_Adicional_VP.jpg";
-                    ruta = file.toString() +"/" +imageName;
-                    mPath =  ruta ;
-
-                    File newFile = new File(mPath);
 
                     correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
                     nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Documento_Adicional_VP.jpg";
+
+                    ruta = file.toString() +"/" +nombreimagen;
+                    mPath =  ruta ;
+                    File newFile = new File(mPath);
 
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(documentos_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));

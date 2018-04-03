@@ -283,22 +283,17 @@ public class DatosInspVpActivity extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "Comprobante.jpg";
-            rutaV = file.toString() + "/" + imageName;
-            mPathV = rutaV;
 
             correlativo = db.correlativoFotos(id_inspeccion);
             nombreimagenV = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Comprobante.jpg";
 
+            rutaV = file.toString() + "/" + nombreimagenV;
+            mPathV = rutaV;
+
             File newFile = new File(mPathV);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra("nombreImg",imageName);
+            intent.putExtra("nombreImg",nombreimagenV);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(DatosInspVpActivity.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
             startActivityForResult(intent, PHOTO_COMPROBANTEV);

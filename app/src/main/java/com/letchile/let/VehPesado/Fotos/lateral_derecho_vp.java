@@ -82,19 +82,13 @@ public class lateral_derecho_vp extends AppCompatActivity {
                     isDirectoryCreated = file.mkdirs();
 
                 if(isDirectoryCreated){
-                    //Long timestamp = System.currentTimeMillis() / 1000;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                    Date date = new Date();
-
-                    String fecha = dateFormat.format(date);
-                    String imageName = fecha + "_Foto_Dano_LateralDerecho_VP.jpg";
-                    ruta = file.toString() +"/" +imageName;
-                    mPath =  ruta ;
-
-                    File newFile = new File(mPath);
 
                     correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
                     nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Dano_LateralDerecho_VP.jpg";
+
+                    ruta = file.toString() +"/" +nombreimagen;
+                    mPath =  ruta ;
+                    File newFile = new File(mPath);
 
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateral_derecho_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
@@ -116,19 +110,13 @@ public class lateral_derecho_vp extends AppCompatActivity {
                     isDirectoryCreated = file.mkdirs();
 
                 if(isDirectoryCreated){
-                    //Long timestamp = System.currentTimeMillis() / 1000;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                    Date date = new Date();
-
-                    String fecha = dateFormat.format(date);
-                    String imageName = fecha + "_Foto_Adicional_LateralDerecho_VP.jpg";
-                    ruta = file.toString() +"/" +imageName;
-                    mPath =  ruta ;
-
-                    File newFile = new File(mPath);
 
                     correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
                     nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_LateralDerecho_VP.jpg";
+
+                    ruta = file.toString() +"/" +nombreimagen;
+                    mPath =  ruta ;
+                    File newFile = new File(mPath);
 
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateral_derecho_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
@@ -153,19 +141,13 @@ public class lateral_derecho_vp extends AppCompatActivity {
                         isDirectoryCreated = file.mkdirs();
 
                     if (isDirectoryCreated) {
-                        //Long timestamp = System.currentTimeMillis() / 1000;
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                        Date date = new Date();
-
-                        String fecha = dateFormat.format(date);
-                        String imageName = fecha + "_Foto_Ddano_LateralDerecho_VP.jpg";
-                        ruta = file.toString() + "/" + imageName;
-                        mPath = ruta;
-
-                        File newFile = new File(mPath);
 
                         correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
                         nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Ddano_LateralDerecho_VP.jpg";
+
+                        ruta = file.toString() +"/" +nombreimagen;
+                        mPath =  ruta ;
+                        File newFile = new File(mPath);
 
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateral_derecho_vp.this, BuildConfig.APPLICATION_ID + ".provider", newFile));
