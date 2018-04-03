@@ -255,11 +255,20 @@ try {
                                     i++;
                                     //eliminar
                                     db.cambiarEstadoFoto(Integer.parseInt(strings[0]), fotos[i][1].toString(), fotos[i][2].toString(), 2);
+                                }else{
+                                    db.cambiarEstadoInspeccion(Integer.parseInt(fotos[i][0]), 2);
+                                    Log.e("Errror transmision", "Error en la transmisión");
+                                    Toast.makeText(TransferirInspeccion.this,"Error en la transmisión intente nuevamente",Toast.LENGTH_SHORT);
+                                    onDestroy();
                                 }
                             } catch (Exception e) {
                                 //sacar si esque se cae
                                 //i++;
+                                db.cambiarEstadoInspeccion(Integer.parseInt(fotos[i][0]), 2);
                                 Log.e("Errror transmision", e.getMessage());
+                                Toast.makeText(TransferirInspeccion.this,"Error en la transmisión intente nuevamente",Toast.LENGTH_SHORT);
+                                onDestroy();
+
                             }
                         } else {
                             onDestroy(); // sin internet o otro error
