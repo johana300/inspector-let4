@@ -423,14 +423,18 @@ public class documento extends AppCompatActivity {
                             });
 
 
-
-
-
                     Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                     bitmap = foto.redimensiomarImagen(bitmap);
-                    imageDocumentoE.setImageBitmap(bitmap);
+
                     String imagen = foto.convertirImagenDano(bitmap);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Documento", 0, imagen);
+
+                    imagen = "data:image/jpg;base64,"+imagen;
+                    String base64Image1 = imagen.split(",")[1];
+                    byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                    Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                    imageDocumentoE.setImageBitmap(decodedByte1);
+
 
                         Intent servis1 = new Intent(documento.this, TransferirFoto.class);
                     servis1.putExtra("comentario","Foto Documento");
@@ -451,9 +455,16 @@ public class documento extends AppCompatActivity {
 
                     Bitmap bitmapPAC = BitmapFactory.decodeFile(mPath);
                     bitmapPAC = foto.redimensiomarImagen(bitmapPAC);
-                    imagePACE.setImageBitmap(bitmapPAC);
+
                     String imagenPAC = foto.convertirImagenDano(bitmapPAC);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto PAC", 0, imagenPAC);
+
+                    imagenPAC = "data:image/jpg;base64,"+imagenPAC;
+                    String base64Image2 = imagenPAC.split(",")[1];
+                    byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                    Bitmap decodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                    imagePACE.setImageBitmap(decodedByte2);
+
 
                         Intent servis2 = new Intent(documento.this, TransferirFoto.class);
                         servis2.putExtra("comentario","Foto PAC");
@@ -474,9 +485,15 @@ public class documento extends AppCompatActivity {
 
                     Bitmap bitmapCarnetAn = BitmapFactory.decodeFile(mPath);
                     bitmapCarnetAn = foto.redimensiomarImagen(bitmapCarnetAn);
-                    imageCarnetAnversoE.setImageBitmap(bitmapCarnetAn);
+
                     String imagenCarnetAn = foto.convertirImagenDano(bitmapCarnetAn);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Carnet Anverso", 0, imagenCarnetAn);
+
+                    imagenCarnetAn = "data:image/jpg;base64,"+imagenCarnetAn;
+                    String base64Image3 = imagenCarnetAn.split(",")[1];
+                    byte[] decodedString3 = Base64.decode(base64Image3, Base64.DEFAULT);
+                    Bitmap decodedByte3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+                    imageCarnetAnversoE.setImageBitmap(decodedByte3);
 
                         Intent servis3 = new Intent(documento.this, TransferirFoto.class);
                         servis3.putExtra("comentario","Foto Carnet Anverso");
@@ -497,9 +514,15 @@ public class documento extends AppCompatActivity {
 
                     Bitmap bitmapCarnetRe = BitmapFactory.decodeFile(mPath);
                     bitmapCarnetRe = foto.redimensiomarImagen(bitmapCarnetRe);
-                    imageCarnetReversoE.setImageBitmap(bitmapCarnetRe);
+
                     String imagenCarnetRe = foto.convertirImagenDano(bitmapCarnetRe);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Carnet Reversa", 0, imagenCarnetRe);
+
+                    imagenCarnetRe = "data:image/jpg;base64,"+imagenCarnetRe;
+                    String base64Image4 = imagenCarnetRe.split(",")[1];
+                    byte[] decodedString4 = Base64.decode(base64Image4, Base64.DEFAULT);
+                    Bitmap decodedByte4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+                    imageCarnetReversoE.setImageBitmap(decodedByte4);
 
                         Intent servis4 = new Intent(documento.this, TransferirFoto.class);
                         servis4.putExtra("comentario","Foto Carnet Reversa");
@@ -520,9 +543,15 @@ public class documento extends AppCompatActivity {
 
                     Bitmap bitmapConvertible = BitmapFactory.decodeFile(mPath);
                     bitmapConvertible = foto.redimensiomarImagen(bitmapConvertible);
-                    imageConvertibleE.setImageBitmap(bitmapConvertible);
+
                     String imagenConvetible = foto.convertirImagenDano(bitmapConvertible);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Convertible", 0, imagenConvetible);
+
+                    imagenConvetible = "data:image/jpg;base64,"+imagenConvetible;
+                    String base64Image5 = imagenConvetible.split(",")[1];
+                    byte[] decodedString5 = Base64.decode(base64Image5, Base64.DEFAULT);
+                    Bitmap decodedByte5 = BitmapFactory.decodeByteArray(decodedString5, 0, decodedString5.length);
+                    imageConvertibleE.setImageBitmap(decodedByte5);
 
                         Intent servis5 = new Intent(documento.this, TransferirFoto.class);
                         servis5.putExtra("comentario","Foto Convertible");
@@ -546,6 +575,13 @@ public class documento extends AppCompatActivity {
                     imageAdicionalDocumentoE.setImageBitmap(bitmapAdicional);
                     String imagenAdicional = foto.convertirImagenDano(bitmapAdicional);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Adicional Documento", 0, imagenAdicional);
+
+                    imagenAdicional = "data:image/jpg;base64,"+imagenAdicional;
+                    String base64Image6 = imagenAdicional.split(",")[1];
+                    byte[] decodedString6 = Base64.decode(base64Image6, Base64.DEFAULT);
+                    Bitmap decodedByte6 = BitmapFactory.decodeByteArray(decodedString6, 0, decodedString6.length);
+
+
 
                         Intent servis6 = new Intent(documento.this, TransferirFoto.class);
                         servis6.putExtra("comentario","Foto Adicional Documento");

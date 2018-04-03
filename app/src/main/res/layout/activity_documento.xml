@@ -42,7 +42,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/btnInvisibleDocuE"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Volver" />
+            android:text="Volver"
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/btnInvisibleDocuE"
@@ -65,7 +66,8 @@
             android:background="@drawable/boton_redondo"
             android:text="Siguiente"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp" />
+            android:drawableRight="@android:drawable/ic_media_play"
+            android:textSize="18sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"

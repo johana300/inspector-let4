@@ -416,7 +416,7 @@ public class DatosVehActivity extends AppCompatActivity {
         btnVolverSecc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent( DatosVehActivity.this, DatosAsegActivity.class);
+                Intent intent = new Intent( DatosVehActivity.this, seccion2.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }

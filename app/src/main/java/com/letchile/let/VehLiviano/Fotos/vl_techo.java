@@ -228,7 +228,7 @@ public class vl_techo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -262,7 +262,7 @@ public class vl_techo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -295,7 +295,7 @@ public class vl_techo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -328,7 +328,7 @@ public class vl_techo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -361,7 +361,7 @@ public class vl_techo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -393,7 +393,7 @@ public class vl_techo extends AppCompatActivity {
 
         if (isDirectoryCreated) {
             //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
             Date date = new Date();
 
             String fecha = dateFormat.format(date);
@@ -434,7 +434,7 @@ public class vl_techo extends AppCompatActivity {
 
                     Bitmap bitmapTecho = BitmapFactory.decodeFile(mPath);
                     bitmapTecho = foto.redimensiomarImagen(bitmapTecho);
-                    imagenTechoDanoE.setImageBitmap(bitmapTecho);
+
                     String imagenTechoDano = foto.convertirImagenDano(bitmapTecho);
 
                     comentarioDañoImg = spinnerPiezaTechoE.getSelectedItem().toString()+' '+spinnerDanoTechoE.getSelectedItem().toString()+' '+spinnerDeducibleTechoE.getSelectedItem().toString()+' ';
@@ -452,8 +452,11 @@ public class vl_techo extends AppCompatActivity {
 
                     //deducible
                     db.insertarValor(Integer.parseInt(id_inspeccion),Integer.parseInt(dañosDedu[0][1]),db.obtenerDeducible(db.obtenerDanio(spinnerDanoTechoE.getSelectedItem().toString()),spinnerDeducibleTechoE.getSelectedItem().toString()));
-
-
+                    imagenTechoDano = "data:image/jpg;base64,"+imagenTechoDano;
+                    String base64Image1 = imagenTechoDano.split(",")[1];
+                    byte[] decodedString1 = Base64.decode(base64Image1, Base64.DEFAULT);
+                    Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+                    imagenTechoDanoE.setImageBitmap(decodedByte1);
 
                         Intent servis = new Intent(vl_techo.this, TransferirFoto.class);
                     servis.putExtra("comentario",comentarito);
@@ -474,10 +477,15 @@ public class vl_techo extends AppCompatActivity {
 
                     Bitmap bitmapBarra = BitmapFactory.decodeFile(mPath);
                     bitmapBarra = foto.redimensiomarImagen(bitmapBarra);
-                    imageBarraPortaEquipajeE.setImageBitmap(bitmapBarra);
+
                     String imagenBarra = foto.convertirImagenDano(bitmapBarra);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Barra Equipaje Techo", 0, imagenBarra);
                     db.insertarValor(Integer.parseInt(id_inspeccion),325,"Ok");
+                    imagenBarra = "data:image/jpg;base64,"+imagenBarra;
+                    String base64Image2 = imagenBarra.split(",")[1];
+                    byte[] decodedString2 = Base64.decode(base64Image2, Base64.DEFAULT);
+                    Bitmap decodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+                    imageBarraPortaEquipajeE.setImageBitmap(decodedByte2);
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
                     servis.putExtra("comentario","Foto Barra Equipaje Techo");
@@ -498,10 +506,15 @@ public class vl_techo extends AppCompatActivity {
 
                     Bitmap bitmapParrilla = BitmapFactory.decodeFile(mPath);
                     bitmapParrilla = foto.redimensiomarImagen(bitmapParrilla);
-                    imageParrillaTechoE.setImageBitmap(bitmapParrilla);
+
                     String imagenParrilla = foto.convertirImagenDano(bitmapParrilla);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Parrilla Techo", 0, imagenParrilla);
                     db.insertarValor(Integer.parseInt(id_inspeccion),293,"Ok");
+                    imagenParrilla = "data:image/jpg;base64,"+imagenParrilla;
+                    String base64Image3 = imagenParrilla.split(",")[1];
+                    byte[] decodedString3 = Base64.decode(base64Image3, Base64.DEFAULT);
+                    Bitmap decodedByte3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+                    imageParrillaTechoE.setImageBitmap(decodedByte3);
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
                     servis.putExtra("comentario","Foto Parrilla Techo");
@@ -522,10 +535,15 @@ public class vl_techo extends AppCompatActivity {
 
                     Bitmap bitmapPorta = BitmapFactory.decodeFile(mPath);
                     bitmapPorta = foto.redimensiomarImagen(bitmapPorta);
-                    imagePortaEquipajeE.setImageBitmap(bitmapPorta);
+
                     String imagenPorta = foto.convertirImagenDano(bitmapPorta);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Porta Equipaje Techo", 0, imagenPorta);
                     db.insertarValor(Integer.parseInt(id_inspeccion),355,"Ok");
+                    imagenPorta = "data:image/jpg;base64,"+imagenPorta;
+                    String base64Image4 = imagenPorta.split(",")[1];
+                    byte[] decodedString4 = Base64.decode(base64Image4, Base64.DEFAULT);
+                    Bitmap decodedByte4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+                    imagePortaEquipajeE.setImageBitmap(decodedByte4);
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
                     servis.putExtra("comentario","Foto Porta Equipaje Techo");
@@ -546,10 +564,15 @@ public class vl_techo extends AppCompatActivity {
 
                     Bitmap bitmapPortaSky = BitmapFactory.decodeFile(mPath);
                     bitmapPortaSky = foto.redimensiomarImagen(bitmapPortaSky);
-                    imagePortaSkyE.setImageBitmap(bitmapPortaSky);
+
                     String imagenPortaSky = foto.convertirImagenDano(bitmapPortaSky);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Porta Sky Techo", 0, imagenPortaSky);
                     db.insertarValor(Integer.parseInt(id_inspeccion),327,"Ok");
+                    imagenPortaSky = "data:image/jpg;base64,"+imagenPortaSky;
+                    String base64Image5 = imagenPortaSky.split(",")[1];
+                    byte[] decodedString5 = Base64.decode(base64Image5, Base64.DEFAULT);
+                    Bitmap decodedByte5 = BitmapFactory.decodeByteArray(decodedString5, 0, decodedString5.length);
+                    imagePortaSkyE.setImageBitmap(decodedByte5);
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
                     servis.putExtra("comentario","Foto Porta Sky Techo");
@@ -571,23 +594,23 @@ public class vl_techo extends AppCompatActivity {
 
                     Bitmap bitmapSunroof = BitmapFactory.decodeFile(mPath);
                     bitmapSunroof = foto.redimensiomarImagen(bitmapSunroof);
-                    imageSunroofE.setImageBitmap(bitmapSunroof);
+
                     String imagenSunroof = foto.convertirImagenDano(bitmapSunroof);
                     db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Foto Sunroof Techo", 0, imagenSunroof);
                     db.insertarValor(Integer.parseInt(id_inspeccion),262,"Ok");
+
+                    imagenSunroof = "data:image/jpg;base64,"+imagenSunroof;
+                    String base64Image6 = imagenSunroof.split(",")[1];
+                    byte[] decodedString6 = Base64.decode(base64Image6, Base64.DEFAULT);
+                    Bitmap decodedByte6 = BitmapFactory.decodeByteArray(decodedString6, 0, decodedString6.length);
+                    imageSunroofE.setImageBitmap(decodedByte6);
 
                         servis = new Intent(vl_techo.this, TransferirFoto.class);
                     servis.putExtra("comentario","Foto Sunroof Techo");
                         servis.putExtra("id_inspeccion",id_inspeccion);
                         startService(servis);
 
-                        //PROBANDING
 
-                    //probando denuevo
-
-                    //prueba
-
-                    //prueba joha
 
 
                     break;

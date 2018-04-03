@@ -129,12 +129,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".VehPesado.Fotos.posterior_vp" />
         <activity android:name=".VehPesado.Fotos.lateral_derecho_vp" />
-        <activity
-            android:name=".VehPesado.Fotos.frontal_vp" />
+        <activity android:name=".VehPesado.Fotos.frontal_vp" />
         <activity android:name=".VehPesado.Fotos.lateral_izquierdo_vp" />
         <activity android:name=".VehPesado.Fotos.llanaNeuma_vp" />
         <activity android:name=".VehPesado.Fotos.interior_vp" />
-        <activity android:name=".VehPesado.Fotos.documentos_vp"></activity>
+        <activity android:name=".VehPesado.Fotos.documentos_vp" />
+        <activity android:name=".VehLiviano.seccion2"></activity>
     </application>
 
 </manifest>

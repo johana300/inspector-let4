@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,10 +33,10 @@ public class AccActivity extends AppCompatActivity {
     EditText kilometraje,alarma,cAirb,cupula;
     CheckBox ChekcSetHerr,CheckLlaveRueda,CheckGata,CheckExtint,checkSpo,checkAleron,checkLimLu,checkLogo1,checkCubre,
             checkRuresp,checkFaltante,checkBAnt,checkPert,checkBaliza,checkCupula,checkCajaH,checkAc,checkClim,checkAlr,checkCierreC,
-            checkCint,checkFreno,checkAirg,checkCapota,checkBel,checkMold,checkFal;
+            checkCint,checkFreno,cAirbag,checkCapota,checkBel,checkMold,checkFal;
     String ChekcSetHerrs,CheckLlaveRuedas,CheckGatas,CheckExtints,checkSpoS,checkAlerons,checkLimLus,checkLogo1s,checkCubres,
             checkRuresps,checkFaltantes,checkBAnts,checkPerts,checkBalizas,checkCupulas,checkCajaHs,checkAcs,checkClims,checkAlrs,checkCierreCs,
-            checkCints,checkFrenos,checkAirgs,checkCapotas,checkBels,checkMolds,checkFals;
+            checkCints,checkFrenos,checkAirgs="",checkCapotas,checkBels,checkMolds,checkFals;
     Spinner tipoRueda,ubiRueda,ubicAnti;
 
 
@@ -48,7 +49,7 @@ public class AccActivity extends AppCompatActivity {
         validaciones = new Validaciones(this);
     }
 
-     JSONObject obj = new JSONObject();
+    JSONObject obj = new JSONObject();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,25 +143,28 @@ public class AccActivity extends AppCompatActivity {
         });
 
         //check airbags
-        checkAirg = findViewById(R.id.checkAirg);
+        cAirbag = findViewById(R.id.checkAirg);
         if(db.accesorio(Integer.parseInt(id_inspeccion),281).toString().equals("Ok"))
         {
-            checkAirg.setChecked(true);
+            cAirbag.setChecked(true);
             checkAirgs = "Ok";
+
         }else{
-            checkAirg.setChecked(false);
+            cAirbag.setChecked(false);
             checkAirgs = "";
         }
-        checkAirg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cAirbag.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
                     checkAirgs = "Ok";
+                    Log.e("pase por ab", checkAirgs);
                 }else{
                     checkAirgs = "";
                 }
             }
         });
+
 
         //check frenos abs
         checkFreno = findViewById(R.id.checkFreno);
@@ -629,13 +633,6 @@ public class AccActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
         //kilometraje
         kilometraje = (EditText)findViewById(R.id.Ekilometraje);
         kilometraje.setText(db.accesorio(Integer.parseInt(id_inspeccion),296).toString());
@@ -819,13 +816,16 @@ public class AccActivity extends AppCompatActivity {
                     valor100.put(getString(R.string.valor_id),281);
                     valor100.put(getString(R.string.texto),checkAirgs);
 
+                    Log.e("pase json ", getString(R.string.valor_id));
+
+
                     JSONObject valor101 = new JSONObject();
                     valor101.put(getString(R.string.valor_id),343);
                     valor101.put(getString(R.string.texto),checkCapotas);
 
-                    JSONObject valor102 = new JSONObject();
+                   /* JSONObject valor102 = new JSONObject();
                     valor102.put(getString(R.string.valor_id),336);
-                    valor102.put(getString(R.string.texto),checkBels);
+                    valor102.put(getString(R.string.texto),checkBels);*/
 
                     JSONObject valor103 = new JSONObject();
                     valor103.put(getString(R.string.valor_id),283);
@@ -839,8 +839,9 @@ public class AccActivity extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray();
                     jsonArray.put(valor104);
                     jsonArray.put(valor103);
-                    jsonArray.put(valor102);
                     jsonArray.put(valor101);
+                    // jsonArray.put(valor102);
+
                     jsonArray.put(valor100);
                     jsonArray.put(valor99);
                     jsonArray.put(valor98);
@@ -873,11 +874,21 @@ public class AccActivity extends AppCompatActivity {
                     jsonArray.put(valor77);
 
 
+                    Log.e("largo json ", Integer.toString(jsonArray.length()));
                     if (!jsonArray.isNull(0)) {
                         for(int i=0;i<jsonArray.length();i++){
+
+                            Log.e("valor ii ", Integer.toString(i));
                             llenado = new JSONObject(jsonArray.getString(i));
+                            Log.e("valor json ", jsonArray.getString(i));
+
+                            Log.e("INSERTA EN  CODIGO ", llenado.getString("valor_id"));
+
+
                             db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
                             //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+
+
                         }
                     }
 

@@ -19,7 +19,8 @@
             android:background="@android:color/holo_orange_dark"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Datos de Inspección" />
+            android:text="Datos de Inspección"
+            android:textColor="@android:color/background_dark"/>
 
         <TextView
             android:id="@+id/textInsp1"
@@ -30,24 +31,26 @@
             android:gravity="center"
             android:text=""
             android:background="@android:color/holo_orange_dark"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/btnVolverInspJg"
             style="@android:style/Widget.Button"
-            android:layout_width="115dp"
+            android:layout_width="133dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:background="@drawable/boton_redondo"
             android:drawableLeft="@android:drawable/ic_menu_revert"
             android:text="Volver"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/btnPenInspJg"
             style="@android:style/Widget.Button"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/boton_redondo"
@@ -67,7 +70,8 @@
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Siguiente"/>
+            android:text="Siguiente"
+            android:textSize="18sp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -78,10 +82,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="36dp">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,19 +92,31 @@
                     <TextView
                         android:id="@+id/textView113"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Inspección por:" />
+                        android:text="Inspección por:"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="10dp"/>
 
                     <Spinner
                         android:id="@+id/spinnerInsp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        style="@android:style/Widget.Spinner.DropDown"
+                        android:layout_marginTop="10dp" />
 
                     <TextView
                         android:id="@+id/textView107"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Dirección" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Dirección"
+                        />
 
                     <EditText
                         android:id="@+id/direccionInspe"
@@ -115,29 +128,47 @@
                     <TextView
                         android:id="@+id/textView109"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="10dp"
                         android:text="Región" />
 
                     <Spinner
                         android:id="@+id/regionSpinnerMQ"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        style="@android:style/Widget.Spinner.DropDown"
+                        android:layout_marginTop="10dp" />
 
                     <TextView
                         android:id="@+id/textView108"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="10dp"
                         android:text="Comunas" />
 
                     <Spinner
                         android:id="@+id/comunaSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        style="@android:style/Widget.Spinner.DropDown"
+                        android:layout_marginTop="10dp" />
 
                     <TextView
                         android:id="@+id/textView110"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="10dp"
                         android:text="Fecha" />
 
                     <EditText
@@ -150,7 +181,11 @@
                     <TextView
                         android:id="@+id/textView111"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="10dp"
                         android:text="Hora" />
 
                     <EditText
@@ -163,7 +198,11 @@
                     <TextView
                         android:id="@+id/textView112"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="10dp"
                         android:text="Entrevistado" />
 
                     <EditText
@@ -175,9 +214,17 @@
 
                     <Button
                         android:id="@+id/fotoComprobante"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Foto Comprobante" />
+                        style="@android:style/Widget.Button"
+                        android:layout_width="230dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/boton_redondo"
+                        android:drawableLeft="@android:drawable/ic_menu_camera"
+                        android:drawablePadding="9dp"
+                        android:text="Foto Comprobante"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="18sp"
+                         />
 
                     <ImageView
                         android:id="@+id/imagenCompro"

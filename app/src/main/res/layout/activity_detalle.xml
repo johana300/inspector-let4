@@ -30,7 +30,9 @@
             android:background="@android:color/holo_orange_dark"
             android:gravity="center"
             android:text=""
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"
+            />
 
         <Button
             android:id="@+id/btnVolverM"
@@ -43,7 +45,9 @@
             android:drawableLeft="@android:drawable/ic_menu_revert"
             android:text="Volver"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            />
 
         <Button
             android:id="@+id/btnFallida"
@@ -68,7 +72,8 @@
             android:background="@drawable/boton_redondo"
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Comenzar Inspección"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:layout_marginTop="10dp"/>
 
 
         <Button
@@ -80,7 +85,9 @@
             android:textColor="@android:color/background_light"
             android:layout_toEndOf="@+id/btnVolverM"
             android:layout_toStartOf="@+id/btnInspeccionarM"
-            android:text="Eliminar OI" />
+            android:text="Eliminar OI"
+            android:layout_marginTop="10dp"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -111,7 +118,8 @@
                             android:text="Compañia:"
                             android:textColor="@android:color/background_dark"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
 
 
                         <TextView
@@ -123,7 +131,8 @@
                             android:padding="4dp"
                             android:textColor="@android:color/background_dark"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -139,7 +148,8 @@
                             android:text="Corredor:"
                             android:textColor="@android:color/background_dark"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
 
 
                         <TextView
@@ -151,7 +161,8 @@
                             android:padding="4dp"
                             android:textColor="@android:color/background_dark"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -165,7 +176,8 @@
                         android:padding="4dp"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/n_oim"
@@ -176,7 +188,8 @@
                         android:padding="4dp"
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/textView1"
-                        android:layout_toEndOf="@+id/textView1"/>
+                        android:layout_toEndOf="@+id/textView1"
+                        />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -191,7 +204,8 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@android:color/background_dark"
-                            android:text="Pac :" />
+                            android:text="Pac :"
+                            android:layout_marginTop="10dp"/>
 
                         <TextView
                             android:id="@+id/pac"
@@ -202,7 +216,8 @@
                             android:padding="4dp"
                             android:textColor="@android:color/background_dark"
                             android:layout_alignTop="@+id/oi_pac"
-                            android:layout_toEndOf="@+id/oi_pac"/>
+                            android:layout_toEndOf="@+id/oi_pac"
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -216,7 +231,8 @@
                         android:text="Patente :"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@android:color/background_dark"/>
+                        android:textColor="@android:color/background_dark"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/patenteM"
@@ -227,7 +243,8 @@
                         android:padding="4dp"
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/textView2"
-                        android:layout_toEndOf="@+id/textView2"/>
+                        android:layout_toEndOf="@+id/textView2"
+                        />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -241,7 +258,8 @@
                             android:text="Marca   :"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="@android:color/background_dark"/>
+                            android:textColor="@android:color/background_dark"
+                            android:layout_marginTop="10dp"/>
 
                         <TextView
                             android:id="@+id/MarcaMQ"
@@ -253,6 +271,7 @@
                             android:textColor="@android:color/background_dark"
                             android:layout_alignTop="@+id/txtMarca"
                             android:layout_toEndOf="@+id/txtMarca"
+
                             />
                     </RelativeLayout>
 
@@ -267,7 +286,8 @@
                             android:text="Modelo   :"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="@android:color/background_dark"/>
+                            android:textColor="@android:color/background_dark"
+                            android:layout_marginTop="10dp"/>
 
                         <TextView
                             android:id="@+id/modeloMQ"
@@ -279,6 +299,7 @@
                             android:textColor="@android:color/background_dark"
                             android:layout_alignTop="@+id/txtModelo"
                             android:layout_toEndOf="@+id/txtModelo"
+
                             />
                     </RelativeLayout>
 
@@ -295,7 +316,8 @@
                         android:text="Ramo :"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@android:color/background_dark"/>
+                        android:textColor="@android:color/background_dark"
+                            android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/tipoVehiculoM"
@@ -306,7 +328,8 @@
                         android:textStyle="bold"
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/textView8"
-                        android:layout_toEndOf="@+id/textView8"/>
+                        android:layout_toEndOf="@+id/textView8"
+                        />
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -321,7 +344,7 @@
                         android:text="Asegurado :"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@android:color/background_dark" />
+                        android:textColor="@android:color/background_dark" android:layout_marginTop="10dp"/>
 
 
                     <TextView
@@ -333,7 +356,8 @@
                         android:padding="4dp"
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/textView3"
-                        android:layout_toEndOf="@+id/textView3"/>
+                        android:layout_toEndOf="@+id/textView3"
+                        />
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -348,7 +372,8 @@
                         android:text="Direccion :"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@android:color/background_dark"/>
+                        android:textColor="@android:color/background_dark"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/direccionM"
@@ -359,7 +384,8 @@
                         android:padding="4dp"
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/textView4"
-                        android:layout_toEndOf="@+id/textView4"/>
+                        android:layout_toEndOf="@+id/textView4"
+                        />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -375,7 +401,8 @@
                             android:text="Comentario :"
                             android:textColor="@android:color/background_dark"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/comentarioM"
@@ -386,7 +413,9 @@
                         android:padding="4dp"
                         android:textColor="@android:color/background_dark"
                         android:layout_alignTop="@+id/coment"
-                        android:layout_toEndOf="@+id/coment"/>
+                        android:layout_toEndOf="@+id/coment"
+
+                        />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -403,7 +432,8 @@
                             android:textColor="@android:color/background_dark"
                             android:textSize="18sp"
 
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
 
                         <TextView
                             android:id="@+id/telefonoM"
@@ -414,7 +444,8 @@
                             android:padding="4dp"
                             android:textColor="@android:color/background_dark"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
 
                         <Button
                             android:id="@+id/llamarContacto"
@@ -423,7 +454,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentTop="true"
                             android:text="Llamar contacto"
-                            android:textColor="@android:color/background_light" />
+                            android:textColor="@android:color/background_light"
+                            android:layout_marginTop="10dp"/>
 
 
                     </RelativeLayout>
@@ -437,7 +469,8 @@
                         android:layout_marginTop="20dp"
 
                         android:spinnerMode="dialog"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
 
 
                     <Button
@@ -448,7 +481,8 @@
                         android:background="@drawable/boton_redondo"
                         android:textColor="@android:color/background_light"
                         android:onClick="cambioRamo"
-                        android:text="Modificar Ramo" />
+                        android:text="Modificar Ramo"
+                        android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
             </ScrollView>

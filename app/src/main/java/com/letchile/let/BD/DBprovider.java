@@ -95,8 +95,8 @@ public class DBprovider extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (2, 'Rayadura')");
         db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (3, 'Rotura')");
         db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (4, 'Trizadura')");
-        db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (5, 'Corrosion')");
-        db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (6, 'Oxidacion')");
+        db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (5, 'Corrosión')");
+        db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (6, 'Oxidación')");
         db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (7, 'Faltante')");
         db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (8, 'Desabolladura defectuosa')");
         db.execSQL("INSERT INTO DANIOS (idDano, dano) VALUES (9, 'Pintura deteriorada')");
@@ -153,14 +153,14 @@ public class DBprovider extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (98,97,'Pilar Lateral TD','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (24,23,'Puerta Lateral DD','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (94,93,'Puerta Lateral TD', 'lateral_derecho')");
-        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (51,52,'Espejo','lateral_derecho')");
+        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (51,50,'Espejo','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (465,464,'Vidrio Aleta Lateral DD','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (45,44,'Vidrio Puerta Lateral DD','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (108,107,'Vidrio Puerta Lateral TD','lateral_derecho')");
-        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (63,62,'Manillas Exteriores Latereal DD','lateral_derecho')");
-        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (114,113,'Manillas Exteriores Latereal TD','lateral_derecho')");
-        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (66,65,'Manillas Interiores Latereal DD','lateral_derecho')");
-        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (116,115,'Manillas Interiores Latereal TD','lateral_derecho')");
+        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (63,62,'Manillas Exteriores Lateral DD','lateral_derecho')");
+        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (114,113,'Manillas Exteriores Lateral TD','lateral_derecho')");
+        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (66,65,'Manillas Interiores Lateral DD','lateral_derecho')");
+        db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (116,115,'Manillas Interiores Lateral TD','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (36,35,'Molduras Lateral DD','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (102,101,'Molduras Lateral TD','lateral_derecho')");
         db.execSQL("INSERT INTO PIEZA (idDdeducible,idCampo, pieza, ubicacion) VALUES (39,38,'Zocalo Lateral DD','lateral_derecho')");
@@ -1109,7 +1109,7 @@ public class DBprovider extends SQLiteOpenHelper {
         Cursor ars = db.rawQuery("SELECT count(*) as cantidad FROM FOTO WHERE id_inspeccion="+id_inspeccion+"", null);
 
         if (ars.moveToFirst()) {
-            rsp = ars.getInt(ars.getColumnIndex("cantidad"));
+            rsp = ars.getInt(ars.getColumnIndex("cantidad")) + 1;
         }
         return rsp;
     }

@@ -121,7 +121,7 @@ public class TransferirFoto extends Service {
                 conn.setRequestMethod("POST");
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
-
+                Log.e("paseeeee", postDataParams.toString());
                 OutputStream os = conn.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
                 writer.write(getPostDataString(postDataParams));

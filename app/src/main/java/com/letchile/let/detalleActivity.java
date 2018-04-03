@@ -29,6 +29,7 @@ import com.letchile.let.Remoto.Data.oiRangoHorario;
 import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.VehLiviano.SeccionActivity;
+import com.letchile.let.VehLiviano.seccion2;
 import com.letchile.let.VehPesado.SeccionVpActivity;
 
 import org.json.JSONArray;
@@ -221,12 +222,12 @@ public class detalleActivity extends AppCompatActivity {
 
                         //new rangoHorario().execute(id_inspeccion,db.obtenerUsuario());
                         if(ramo.getText().toString().equals("Vehículo liviano")) {
-                            Intent inn = new Intent(detalleActivity.this,SeccionActivity.class);
+                            Intent inn = new Intent(detalleActivity.this,seccion2.class);
                             inn.putExtra("id_inspeccion",n_oi.getText().toString());
                             startActivity(inn);
                         }else if(ramo.getText().toString().equals("Vehículo pesado")){
                            // Toast.makeText(detalleActivity.this, "Pantalla vehículo pesado", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent( detalleActivity.this, SeccionVpActivity.class);
+                            Intent intent = new Intent( detalleActivity.this, seccion2.class);
                             intent.putExtra("id_inspeccion",n_oi.getText().toString());
                             startActivity(intent);
                         }

@@ -9,8 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="92dp">
+        >
 
         <TextView
             android:id="@+id/textAcc"
@@ -19,9 +18,11 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@android:color/holo_orange_dark"
+            android:textColor="@android:color/background_dark"
             android:gravity="center"
             android:text="Accesorios"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            />
 
         <TextView
             android:id="@+id/textAcc1"
@@ -32,24 +33,26 @@
             android:background="@android:color/holo_orange_dark"
             android:gravity="center"
             android:text=""
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/btnVolverAccJg"
             style="@android:style/Widget.Button"
-            android:layout_width="115dp"
+            android:layout_width="133dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:layout_alignTop="@+id/btnPenAccJg"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Volver"  />
+            android:text="Volver"
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/btnPenAccJg"
             style="@android:style/Widget.Button"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/btnVolverAccJg"
@@ -69,7 +72,8 @@
             android:background="@drawable/boton_redondo"
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Siguiente"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -81,9 +85,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="36dp">
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -95,24 +97,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/holo_orange_dark"
+                        android:textColor="@android:color/background_dark"
                         android:text="Interior"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
 
                     <TextView
                         android:id="@+id/textView25"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Kilometraje" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:text="Kilometraje"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/Ekilometraje"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:layout_marginTop="10dp"/>
 
                     <!-- <CheckBox
                          android:id="@+id/checkCruc"
@@ -133,13 +141,15 @@
                          android:id="@+id/checkAc"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="A/C" />
+                         android:text="A/C"
+                         android:layout_marginTop="10dp"/>
 
                      <CheckBox
                          android:id="@+id/checkClim"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Climatizador" />
+                         android:text="Climatizador"
+                         android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkBlue"
@@ -151,33 +161,40 @@
                         android:id="@+id/checkAlr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Alarma" />
+                        android:text="Alarma"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView26"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingMultiplier="4"
-                        android:text="Marca Alarma" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:text="Marca Alarma"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/EAlarma"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                          android:id="@+id/checkCierreC"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Cierre Centralizado" />
+                         android:text="Cierre Centralizado"
+                        android:layout_marginTop="10dp"/>
 
                       <CheckBox
                          android:id="@+id/checkCint"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Cinturones de Seguridad Retráctiles" />
+                         android:text="Cinturones de Seguridad Retráctiles"
+                          android:layout_marginTop="10dp"/>
 
                     <!-- <CheckBox
                          android:id="@+id/checkCorta"
@@ -189,26 +206,33 @@
                          android:id="@+id/checkFreno"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Frenos ABS" />
+                         android:text="Frenos ABS"
+                         android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkAirg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Airbags" />
+                        android:text="Airbags"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView27"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cantidad Airbags" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:text="Cantidad Airbags"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/cantAirb"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkSun"
@@ -257,7 +281,8 @@
                         android:id="@+id/checkCapota"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Capota Eléctrica" />
+                        android:text="Capota Eléctrica"
+                        android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkActivado"
@@ -314,9 +339,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:background="@android:color/holo_orange_dark"
+                        android:textColor="@android:color/background_dark"
                         android:text="Posterior"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        />
 
                     <!-- <CheckBox
                          android:id="@+id/checkSen"
@@ -328,7 +356,8 @@
                          android:id="@+id/checkSpo"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Spoiler" />
+                         android:text="Spoiler"
+                         android:layout_marginTop="10dp"/>
 
 
                     <!-- <CheckBox
@@ -341,19 +370,22 @@
                          android:id="@+id/checkAleron"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Alerón" />
+                         android:text="Alerón"
+                         android:layout_marginTop="10dp"/>
 
                      <CheckBox
                          android:id="@+id/checkLimLu"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:text="Limpia luneta" />
+                         android:text="Limpia luneta"
+                         android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkCubre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cubremaleta" />
+                        android:text="Cubremaleta"
+                        android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkCpick"
@@ -365,95 +397,107 @@
                         android:id="@+id/checkLogo1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Logo" />
+                        android:text="Logo"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkRuresp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rueda repuesto" />
+                        android:text="Rueda repuesto"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkFaltante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Faltante" />
+                        android:text="Faltante"
+                        android:layout_marginTop="10dp"/>
 
 
                     <Spinner
                         android:id="@+id/tipoRueda"
-                        style="@android:style/Widget.Spinner.DropDown"
+
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="10dp"
-                        android:padding="12dp"
-                        android:spinnerMode="dialog" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        style="@android:style/Widget.Spinner.DropDown"
+                        android:layout_marginTop="10dp"/>
 
                     <Spinner
                         android:id="@+id/ubiRueda"
                         style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="10dp"
-                        android:padding="12dp"
-                        android:spinnerMode="dialog" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkSHerr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Set de herramientas" />
+                        android:text="Set de herramientas"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkLRueda"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Llave rueda" />
+                        android:text="Llave rueda"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkGata"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Gata" />
+                        android:text="Gata"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkExt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Extintor" />
+                        android:text="Extintor"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="30dp"
-                        android:text="Barra de antivuelco" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:text="Barra de antivuelco"
+                        android:layout_marginTop="10dp"/>
 
                     <Spinner
                         android:id="@+id/ubicAnti"
                         style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:spinnerMode="dialog" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkBAnt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Barra Antivuelco" />
+                        android:text="Barra Antivuelco"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkPert"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Pértiga" />
+                        android:text="Pértiga"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkBaliza"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Baliza" />
+                        android:text="Baliza"
+                        android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkCarrast"
@@ -489,21 +533,26 @@
                         android:id="@+id/checkCupula"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cúpula" />
+                        android:text="Cúpula"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView32"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Marca Cúpula" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_height="36dp"
+                        android:text="Marca Cúpula"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/mCupula"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkTrig"
@@ -521,7 +570,8 @@
                         android:id="@+id/checkCajaH"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Caja de herramientas " />
+                        android:text="Caja de herramientas "
+                        android:layout_marginTop="10dp"/>
 
                     <!--<TextView
                         android:id="@+id/textView33"
@@ -533,7 +583,8 @@
                         android:id="@+id/checkMoldu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Moldura paso rueda" />
+                        android:text="Moldura paso rueda"
+                        android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkPis"
@@ -545,7 +596,8 @@
                         android:id="@+id/checkFal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Faldones" />
+                        android:text="Faldones"
+                        android:layout_marginTop="10dp"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkGpa"

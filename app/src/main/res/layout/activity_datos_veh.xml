@@ -19,6 +19,7 @@
             android:background="@android:color/holo_orange_dark"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:textColor="@android:color/background_dark"
             android:text="Datos de Vehículo" />
 
         <TextView
@@ -30,25 +31,27 @@
             android:gravity="center"
             android:text=""
             android:background="@android:color/holo_orange_dark"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/btnVolverVehJg"
             style="@android:style/Widget.Button"
-            android:layout_width="115dp"
+            android:layout_width="133dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:layout_alignTop="@+id/btnPenVehJg"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Volver" />
+            android:text="Volver"
+            android:textSize="18sp"/>
 
 
         <Button
             android:id="@+id/btnPenVehJg"
             style="@android:style/Widget.Button"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/boton_redondo"
@@ -69,7 +72,8 @@
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Siguiente" />
+            android:text="Siguiente"
+            android:textSize="18sp"/>
 
 
         <RelativeLayout
@@ -82,9 +86,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="36dp">
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -94,201 +96,271 @@
                     <TextView
                         android:id="@+id/textView17"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Patente" />
+                        android:layout_height="36dp"
+                        android:text="Patente"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        />
 
                     <EditText
                         android:id="@+id/patenteM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView13"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tipo Vehículo" />
+                        android:layout_height="36dp"
+                        android:text="Tipo Vehículo"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <Spinner
                         android:id="@+id/spinner_tipo_veh"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        style="@android:style/Widget.Spinner.DropDown"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView14"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Uso Vehículo" />
+                        android:layout_height="36dp"
+                        android:text="Uso Vehículo"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <Spinner
                         android:id="@+id/spinner_uso_veh"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        style="@android:style/Widget.Spinner.DropDown"
+                        android:layout_marginTop="10dp"
+                        />
 
                     <TextView
                         android:id="@+id/textView15"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Combustión:" />
+                        android:layout_height="36dp"
+                        android:text="Combustión:"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkBencina"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bencina" />
+                        android:text="Bencina"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkDiesel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Diesel" />
+                        android:text="Diesel" android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkGasL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Gas Licuado" />
+                        android:text="Gas Licuado" android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkEl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Eléctrico" />
+                        android:text="Eléctrico" android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView16"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Transmisión" />
+                        android:layout_height="36dp"
+                        android:text="Transmisión"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" android:layout_marginTop="10dp"/>
 
                     <Spinner
                         android:id="@+id/spinner_trans"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp"
+                        android:spinnerMode="dialog"
+                        style="@android:style/Widget.Spinner.DropDown" android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView19"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Marca" />
+                        android:layout_height="36dp"
+                        android:text="Marca"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/marcaM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView18"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Modelo" />
+                        android:layout_height="36dp"
+                        android:text="Modelo"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/modeloM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView20"
                         android:layout_width="match_parent"
                         android:layout_height="36dp"
-                        android:text="Submodelo" />
+                        android:text="Submodelo"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/subModelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text" android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView21"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Color" />
+                        android:layout_height="36dp"
+                        android:text="Color"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/colorM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text" android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView22"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Año" />
+                        android:layout_height="36dp"
+                        android:text="Año"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/AnioM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="36dp"
                         android:text="N° Puertas"
-                        android:textSize="14sp" />
+                        android:layout_marginTop="10dp"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        />
 
                     <EditText
                         android:id="@+id/nPuertasM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="N° Motor" />
+                        android:layout_height="36dp"
+                        android:text="N° Motor"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/nMotorM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:layout_marginTop="10dp"/>
 
                     <TextView
                         android:id="@+id/textView11"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="N° Chasis" />
+                        android:layout_height="36dp"
+                        android:text="N° Chasis"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/nChasisM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkPlaca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Placa adulterada" />
+                        android:text="Placa adulterada"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/check4x4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="4X4" />
+                        android:text="4X4"
+                        android:layout_marginTop="10dp"/>
 
                     <CheckBox
                         android:id="@+id/checkImpDir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Importación Directa" />
+                        android:text="Importación Directa"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>

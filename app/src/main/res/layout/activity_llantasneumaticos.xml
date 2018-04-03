@@ -42,7 +42,8 @@
             android:textColor="@android:color/background_light"
             android:layout_alignTop="@+id/btnVolverSecLlaE"
             android:drawableLeft="@android:drawable/ic_menu_revert"
-            android:text="Volver" />
+            android:text="Volver"
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/btnVolverSecLlaE"
@@ -65,7 +66,8 @@
             android:background="@drawable/boton_redondo"
             android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Siguiente" />
+            android:text="Siguiente"
+            android:textSize="18sp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
