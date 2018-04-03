@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         db = new DBprovider(this);
     }
 
-
+       //asd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

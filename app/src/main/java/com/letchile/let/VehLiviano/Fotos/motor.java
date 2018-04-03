@@ -162,20 +162,13 @@ public class motor extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Cuna_Motor.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Cuna_Motor.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,
@@ -195,20 +188,13 @@ public class motor extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Motor.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Motor.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,
@@ -228,20 +214,13 @@ public class motor extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Chasis_Motor.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Chasis_Motor.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,
@@ -261,20 +240,14 @@ public class motor extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Adicional_Motor.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Motor.jpg";
 
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,

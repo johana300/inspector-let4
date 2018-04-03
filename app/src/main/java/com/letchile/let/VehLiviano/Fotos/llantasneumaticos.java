@@ -150,20 +150,13 @@ public class llantasneumaticos extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_LLANTAS.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_LLANTAS.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(llantasneumaticos.this,
@@ -183,20 +176,12 @@ public class llantasneumaticos extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Rueda_Respuesto.jpg";
-            ruta = file.toString() + "/" + imageName;
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Rueda_Respuesto.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
             mPath = ruta;
 
             File newFile = new File(mPath);
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Rueda_Respuesto.jpg";
-
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(llantasneumaticos.this,
@@ -216,20 +201,13 @@ public class llantasneumaticos extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Adicional_Llantas.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Llantas.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(llantasneumaticos.this,
