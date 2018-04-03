@@ -363,6 +363,9 @@ public class documento extends AppCompatActivity {
             File newFile = new File(mPath);
 
 
+
+
+
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(documento.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
