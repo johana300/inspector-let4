@@ -253,20 +253,15 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Lateral_Izquierdo.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
 
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lateral_Izquierdo.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
@@ -286,20 +281,13 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Adicional1_Lateral_Izquierdo.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional1_Lateral_Izquierdo.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
@@ -319,20 +307,14 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Adicional2_LateraL_Izquierdo.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional2_LateraL_Izquierdo.jpg";
 
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
@@ -352,26 +334,19 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Dano_LateraL_Izquierdo.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Dano_LateraL_Izquierdo.jpg";
 
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_DANO);
+             startActivityForResult(intent, PHOTO_DANO);
         }
     }
     private void openCamaraGrabaPatente(String id) {
@@ -385,20 +360,15 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
 
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Graba_Patente.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
 
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Graba_Patente.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
@@ -418,20 +388,13 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Lamina_Seguridad.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Lamina_Seguridad.jpg";
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
@@ -451,20 +414,14 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Pisadera_Lateral_Izquierdo.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Pisadera_Lateral_Izquierdo.jpg";
 
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
@@ -484,19 +441,14 @@ public class lateralizquierdo extends AppCompatActivity {
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Foto_Polarizado_Lateral_Izquierdo.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Polarizado_Lateral_Izquierdo.jpg";
+
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(lateralizquierdo.this,
