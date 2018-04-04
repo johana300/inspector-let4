@@ -197,7 +197,7 @@ public class detalleActivity extends AppCompatActivity {
         spinner_adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         comboRamo.setAdapter(spinner_adapter1);
 
-
+        //instanciar retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.URL_BASE))
                 .addConverterFactory(GsonConverterFactory.create())
