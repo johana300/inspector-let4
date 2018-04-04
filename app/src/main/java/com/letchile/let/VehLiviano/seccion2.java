@@ -19,12 +19,16 @@ import com.letchile.let.Servicios.TransferirInspeccion;
 import com.letchile.let.VehLiviano.Fotos.Posterior;
 import com.letchile.let.detalleActivity;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class seccion2 extends AppCompatActivity {
 
     DBprovider db;
     Boolean connec = false;
+    String id_inspeccion;
 
-    public seccion2(){
+    public seccion2() {
         db = new DBprovider(this);
     }
 
@@ -32,126 +36,14 @@ public class seccion2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seccion2);
-
+        ButterKnife.bind(this);
         connec = new ConexionInternet(this).isConnectingToInternet();
 
-
-        //Traspaso de datos
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion = bundle.getString("id_inspeccion");
+        id_inspeccion = bundle.getString("id_inspeccion");
 
 
-        //Botón Sección fotos
-        Button btnFotos = (Button) findViewById(R.id.btnFotoJg);
-        btnFotos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, Posterior.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-
-        //Botón Sección datos inspeccion
-        Button btnDatosInspeccion = (Button) findViewById(R.id.btnInspJg);
-        btnDatosInspeccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, DatosInspActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección datos asegurado
-        Button btnAsegJG = (Button) findViewById(R.id.btnAsegJg);
-        btnAsegJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, DatosAsegActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección datos vehículo
-        Button btnVehJG = (Button) findViewById(R.id.btnVehJg);
-        btnVehJG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, DatosVehActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección accesorio vehículo
-        Button btnaccesorios = (Button) findViewById(R.id.btnAcc);
-        btnaccesorios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, AccActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-        //Botón Sección audio vehículo
-        Button btnAudio = (Button) findViewById(R.id.btnAudioJg);
-        btnAudio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, AudioActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-        Button btnNeumaticos = (Button) findViewById(R.id.btnNeumJg);
-        btnNeumaticos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, NeuActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-        Button btnTecho = (Button) findViewById(R.id.btnTechoJg);
-        btnTecho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, TechoActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-
-        Button btnObs = (Button) findViewById(R.id.btnObsJg);
-        btnObs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, ObsActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-        //Botón volver a Detalle
-        Button btnVolverSecJg = (Button) findViewById(R.id.btnVolverSecJg);
-        btnVolverSecJg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(seccion2.this, detalleActivity.class);
-                intent.putExtra("id_inspeccion", id_inspeccion);
-                startActivity(intent);
-            }
-        });
-
-
-        //VALIDAR QUE TODO LO OBLIGATORIO ESTÉ LISTO
+        //VALIDAR QUETODO LO OBLIGATORIO ESTÉ LISTO
         Button btnTransmitir = findViewById(R.id.btnTranJg);
         btnTransmitir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,19 +53,19 @@ public class seccion2 extends AppCompatActivity {
                 connec = new ConexionInternet(seccion2.this).isConnectingToInternet();
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(seccion2.this);
                 builder.setCancelable(false);
-                builder.setMessage(Html.fromHtml("¿Seguro que desea transmitir la inspeccion <b>N°OI: "+id_inspeccion+"</b>?."));
+                builder.setMessage(Html.fromHtml("¿Seguro que desea transmitir la inspeccion <b>N°OI: " + id_inspeccion + "</b>?."));
 
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-                        if(fotosTomadas>=18){
+                        if (fotosTomadas >= 18) {
 
                             //cambiar inspeccion a estado para transmitir
-                            db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
+                            db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion), 2);
 
-                            if(connec) {
+                            if (connec) {
                                 //comprobar que el servicio esté activo
                                 if (!compruebaServicio(TransferirInspeccion.class)) {
                                     Intent servis = new Intent(seccion2.this, TransferirInspeccion.class);
@@ -184,8 +76,8 @@ public class seccion2 extends AppCompatActivity {
                             startActivity(seccion);
                             finish();
 
-                        }else{
-                            Toast.makeText(seccion2.this,"Faltan fotos obligatorias por tomar",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(seccion2.this, "Faltan fotos obligatorias por tomar", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -203,6 +95,87 @@ public class seccion2 extends AppCompatActivity {
 
 
     }
+
+    @OnClick(R.id.btnFotoJg)
+    public void FotosVehLiv(View view)
+    {
+       Intent intent = new Intent(seccion2.this, Posterior.class);
+       intent.putExtra("id_inspeccion",id_inspeccion);
+       startActivity(intent);
+    }
+
+    @OnClick(R.id.btnInspJg)
+    public void DatosInspeccion(View view)
+    {
+        Intent intent = new Intent(seccion2.this, DatosInspActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btnAsegJg)
+    public void DatosAsegurados(View view)
+    {
+        Intent intent = new Intent(seccion2.this, DatosAsegActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btnVehJg)
+    public void DatosVehiculo(View view)
+    {
+        Intent intent = new Intent(seccion2.this, DatosVehActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+    @OnClick(R.id.btnAcc)
+    public void DatosAccesorios(View view)
+    {
+        Intent intent = new Intent(seccion2.this, AccActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+    @OnClick(R.id.btnAudioJg)
+    public void DatosAudio(View view)
+    {
+        Intent intent = new Intent(seccion2.this, AudioActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btnNeumJg)
+    public void DatosNeumatico(View view)
+    {
+        Intent intent = new Intent(seccion2.this, NeuActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+    @OnClick(R.id.btnTechoJg)
+    public void DatosTecho(View view)
+    {
+        Intent intent = new Intent(seccion2.this, TechoActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btnObsJg)
+    public void DatosObservacion(View view)
+    {
+        Intent intent = new Intent(seccion2.this, ObsActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+
+
+    @OnClick(R.id.btnVolverSecJg)
+    public void DatosVolver(View view)
+    {
+        Intent intent = new Intent(seccion2.this, detalleActivity.class);
+        intent.putExtra("id_inspeccion", id_inspeccion);
+        startActivity(intent);
+    }
+
+
+
 
     private boolean compruebaServicio(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);

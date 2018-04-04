@@ -46,7 +46,7 @@
             android:drawableLeft="@android:drawable/ic_menu_revert"
             android:text="Volver "
             android:textColor="@android:color/background_light"
-            android:textSize="18sp" />
+            android:textSize="18sp"  />
 
         <Button
             android:id="@+id/btnVolerSecPvpMQ"
@@ -68,10 +68,10 @@
             android:layout_alignTop="@+id/btnVolerSecPvpMQ"
             android:layout_toEndOf="@+id/btnVolerSecPvpMQ"
             android:background="@drawable/boton_redondo"
+            android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Siguiente"
-            android:textColor="@android:color/background_light"
-            android:textSize="18sp" />
+            android:textSize="18sp"  />
 
         <RelativeLayout
             android:id="@+id/relativeLayout2"
@@ -166,15 +166,16 @@
                     <Button
                         android:id="@+id/btnFotoDanoPvp"
                         style="@android:style/Widget.Button"
-                        android:layout_width="match_parent"
+                        android:layout_width="230dp"
                         android:layout_height="45dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="9dp"
                         android:text="Fotografiar"
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"  />
 
                     <ImageView
                         android:id="@+id/imgFotoDanoPvp"

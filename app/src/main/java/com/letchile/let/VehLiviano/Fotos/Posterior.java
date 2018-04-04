@@ -402,7 +402,7 @@ public class Posterior extends AppCompatActivity {
                 String imagenLogoLuneta = db.foto(Integer.parseInt(id_inspeccion),"Logo Luneta Posterior");
 
 
-                if(imagenLogoLuneta.length()<=3){
+                if(imagenLogoLuneta.length()<=3 && imagenPosterior.length()<=3){
                     //Toast toast =  Toast.makeText(prueba.this, "Debe Tomar Fotos Obligatorias", Toast.LENGTH_SHORT);
                     //toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     //toast.show();
