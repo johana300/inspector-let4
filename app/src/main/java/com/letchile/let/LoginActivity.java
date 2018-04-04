@@ -66,15 +66,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnLogin = (Button) findViewById(R.id.btnlogin);
+        btnLogin = findViewById(R.id.btnlogin);
 
         if(mayRequestStoragePermission())
             btnLogin.setEnabled(true);
         else
             btnLogin.setEnabled(false);
 
-        final EditText usuario = (EditText) findViewById(R.id.usuarioM);
-        final EditText password = (EditText) findViewById(R.id.contrasenaM);
+        final EditText usuario = findViewById(R.id.usuarioM);
+        final EditText password = findViewById(R.id.contrasenaM);
 
 
             Retrofit retrofit = new Retrofit.Builder()

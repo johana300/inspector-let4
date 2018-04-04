@@ -300,7 +300,6 @@ public class DatosInspActivity extends AppCompatActivity {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(DatosInspActivity.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
             startActivityForResult(intent, PHOTO_COMPROBANTE);
-
         }
     }
 

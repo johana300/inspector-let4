@@ -38,6 +38,7 @@ import com.letchile.let.R;
 import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirFoto;
+import com.letchile.let.Servicios.TransferirFotoV2;
 import com.letchile.let.VehLiviano.SeccionActivity;
 import com.letchile.let.VehLiviano.seccion2;
 
@@ -931,6 +932,7 @@ public class Posterior extends AppCompatActivity {
                         imageViewFotoPoE.setImageBitmap(decodedByte);
 
 
+                        //servis = new Intent(Posterior.this, TransferirFotoV2.class);
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Posterior");
                         servis.putExtra("id_inspeccion", id_inspeccion);
