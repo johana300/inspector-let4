@@ -478,11 +478,10 @@
                         android:layout_width="160dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/boton_redondo"
-                        android:textColor="@android:color/background_light"
-                        android:onClick="cambioRamo"
                         android:text="Modificar Ramo"
-                        android:layout_marginTop="10dp"/>
+                        android:textColor="@android:color/background_light" />
 
                 </LinearLayout>
             </ScrollView>

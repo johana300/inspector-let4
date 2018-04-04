@@ -1,6 +1,7 @@
 package com.letchile.let.Remoto;
 
 import com.letchile.let.Remoto.Data.LoginResp;
+import com.letchile.let.Remoto.Data.Resp_CambioRamo;
 import com.letchile.let.Remoto.Data.oiRangoHorario;
 
 import retrofit2.Call;
@@ -17,6 +18,11 @@ public interface InterfacePost {
     @FormUrlEncoded
     @POST("login/verificaLogeo")
     Call<LoginResp> getAcceso(@Field("usr") String usr, @Field("pwd") String pwd);
+
+
+    @FormUrlEncoded
+    @POST("cargamovil/cambiaRamo")
+    Call<Resp_CambioRamo> getRamo(@Field("id_inspeccion") String id_inspeccion, @Field("comboRamo") String ramo);
 
 
     @FormUrlEncoded

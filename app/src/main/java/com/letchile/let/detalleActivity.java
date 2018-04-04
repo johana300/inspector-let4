@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.Fallida.Fallida;
+import com.letchile.let.Remoto.Data.Resp_CambioRamo;
 import com.letchile.let.Remoto.Data.oiRangoHorario;
 import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
@@ -67,12 +68,12 @@ public class detalleActivity extends AppCompatActivity {
 
     DBprovider db;
     TextView n_oi,pantete,asegurado,direccion,comentario,fono,ramo,pac,marca,modelo,compañia,corredor;
-    Button btnInspeccion, btnAddhito, btnVolver,btnFallida;
+    Button btnInspeccion, btnAddhito, btnVolver,btnFallida,btnCambiarRamo;
     Boolean conexion1 = false;
     ProgressDialog pDialog;
     long minutosDiferencia;
     JSONObject jsonInspe;
-    String fecha_cita,hora_cita;
+    String fecha_cita,hora_cita,comboRamoo;
     Spinner comboRamo;
 
     public detalleActivity(){
@@ -139,22 +140,22 @@ public class detalleActivity extends AppCompatActivity {
             pac.setText("");
         }
 
-        asegurado = (TextView)findViewById(R.id.aseguradoM);
+        asegurado = findViewById(R.id.aseguradoM);
         asegurado.setText(datosInspeccion[0][1]);
 
-        pantete = (TextView)findViewById(R.id.patenteM);
+        pantete = findViewById(R.id.patenteM);
         pantete.setText(db.accesorio(Integer.parseInt(id_inspeccion),363).toString());
 
-        direccion = (TextView)findViewById(R.id.direccionM);
+        direccion = findViewById(R.id.direccionM);
         direccion.setText(datosInspeccion[0][4]);
 
-        comentario = (TextView)findViewById(R.id.comentarioM);
+        comentario = findViewById(R.id.comentarioM);
         comentario.setText(datosInspeccion[0][3]);
 
-        fono = (TextView)findViewById(R.id.telefonoM);
+        fono = findViewById(R.id.telefonoM);
         fono.setText(datosInspeccion[0][2]);
 
-        Button btnLlamar = (Button)findViewById(R.id.llamarContacto);
+        Button btnLlamar = findViewById(R.id.llamarContacto);
         btnLlamar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,13 +174,13 @@ public class detalleActivity extends AppCompatActivity {
         });
 
 
-        marca = (TextView)findViewById(R.id.MarcaMQ);
+        marca = findViewById(R.id.MarcaMQ);
         marca.setText(datosInspeccion[0][13]);
 
-        modelo = (TextView)findViewById(R.id.modeloMQ);
+        modelo = findViewById(R.id.modeloMQ);
         modelo.setText(datosInspeccion[0][14]);
 
-        ramo = (TextView)findViewById(R.id.tipoVehiculoM);
+        ramo = findViewById(R.id.tipoVehiculoM);
         if(datosInspeccion[0][7].toString().equals("vl1")) {
             ramo.setText("Vehículo liviano");
         }else if(datosInspeccion[0][7].toString().equals("vp1")){
@@ -189,7 +190,7 @@ public class detalleActivity extends AppCompatActivity {
         }
 
         // cargar ramo
-        comboRamo = (Spinner)findViewById(R.id.comboRamo);
+        comboRamo = findViewById(R.id.comboRamo);
         String[] arraytipo = getResources().getStringArray(R.array.tipo_ramo);
         final List<String> arraytipolist = Arrays.asList(arraytipo);
         ArrayAdapter<String> spinner_adapter1 = new ArrayAdapter<String>(detalleActivity.this,android.R.layout.simple_list_item_1,arraytipolist);
@@ -204,8 +205,59 @@ public class detalleActivity extends AppCompatActivity {
 
         final InterfacePost servicio = retrofit.create(InterfacePost.class);
 
+        //cambiar ramo
+        pDialog= new ProgressDialog(detalleActivity.this);
+        pDialog.setMessage("Cambiando de ramo...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        btnCambiarRamo = findViewById(R.id.ramo);
+        btnCambiarRamo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pDialog.show();
+                String cRamo = comboRamo.getSelectedItem().toString();
+                comboRamoo = "";
+                if(cRamo.equals("Vehículo liviano"))
+                {
+                    comboRamoo = "vl1";
+                }
+                else{
+                    comboRamoo = "vp1";
+                }
+
+                Call<Resp_CambioRamo> respuestaRamo = servicio.getRamo(id_inspeccion,comboRamoo);
+
+                respuestaRamo.enqueue(new Callback<Resp_CambioRamo>() {
+                    @Override
+                    public void onResponse(Call<Resp_CambioRamo> call, Response<Resp_CambioRamo> response) {
+                        int statusCode = response.code();
+                        Resp_CambioRamo rcr = response.body();
+                        Log.d("Cambio ramo", "onResponse " + statusCode);
+
+                        if(rcr.getMSJ().equals("Ok")){
+                            db.actualizaRamo(Integer.parseInt(id_inspeccion),comboRamoo);
+                            if (comboRamoo.equals("vl1")) {
+                                ramo.setText("Vehículo liviano");
+                                Toast.makeText(detalleActivity.this,"El vehículo es liviano",Toast.LENGTH_SHORT).show();
+                            } else if (comboRamoo.toString().equals("vp1")) {
+                                ramo.setText("Vehículo pesado");
+                                Toast.makeText(detalleActivity.this,"El vehículo es pesado",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        pDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Resp_CambioRamo> call, Throwable t) {
+                        Toast.makeText(detalleActivity.this,"Operación fallida",Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
+                    }
+                });
+            }
+        });
+
         //Inspeccionar
-        btnInspeccion = (Button)findViewById(R.id.btnInspeccionarM);
+        btnInspeccion = findViewById(R.id.btnInspeccionarM);
         btnInspeccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -217,8 +269,6 @@ public class detalleActivity extends AppCompatActivity {
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
-
 
                         //new rangoHorario().execute(id_inspeccion,db.obtenerUsuario());
                         if(ramo.getText().toString().equals("Vehículo liviano")) {
@@ -248,7 +298,7 @@ public class detalleActivity extends AppCompatActivity {
         //Agregar hito
 
         //Volver al layout anterior
-        btnVolver = (Button)findViewById(R.id.btnVolverM);
+        btnVolver = findViewById(R.id.btnVolverM);
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -259,7 +309,7 @@ public class detalleActivity extends AppCompatActivity {
         });
 
         //Botón declarar Fallida  btnFallida
-        btnFallida = (Button)findViewById(R.id.btnFallida);
+        btnFallida = findViewById(R.id.btnFallida);
         btnFallida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -335,132 +385,6 @@ public class detalleActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void cambioRamo(View view)    {
-        String cRamo = comboRamo.getSelectedItem().toString();
-        String comboRamoo = "";
-        if(cRamo.equals("Vehículo liviano"))
-        {
-            comboRamoo = "vl1";
-            //Toast.makeText(detalleActivity.this, "Ha cambiado a vehículo liviano", Toast.LENGTH_LONG).show();
-        }
-        else{
-            comboRamoo = "vp1";
-            // Toast.makeText(detalleActivity.this, "Ha cambiado a vehículo pesado", Toast.LENGTH_LONG).show();
-        }
-        new envioRamo().execute(n_oi.getText().toString(),comboRamoo);
-    }
-
-    public class envioRamo extends AsyncTask<String, Void, String> {
-
-        protected void onPreExecute(){
-            pDialog= new ProgressDialog(detalleActivity.this);
-            //pDialog.setMessage("Autenticando...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        protected String doInBackground(String... param) {
-
-            //*********************************************ramo*****************************************//
-            try {
-                if (conexion1) {
-                    URL url = new URL("https://www.autoagenda.cl/movil/cargamovil/cambiaRamo"); // here is your URL path
-
-                    JSONObject postDataParams = new JSONObject();
-                    postDataParams.put("id_inspeccion", param[0]);
-                    postDataParams.put("comboRamo", param[1]);
-                    Log.e("params", postDataParams.toString());
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(15000 /* milliseconds */);
-                    conn.setConnectTimeout(15000 /* milliseconds */);
-                    conn.setRequestMethod("POST");
-                    conn.setDoInput(true);
-                    conn.setDoOutput(true);
-
-                    OutputStream os = conn.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(getPostDataString(postDataParams));
-
-                    writer.flush();
-                    writer.close();
-                    os.close();
-
-                    int responseCode = conn.getResponseCode();
-
-                    if (responseCode == HttpsURLConnection.HTTP_OK) {
-
-                        BufferedReader in = new BufferedReader(new
-                                InputStreamReader(
-                                conn.getInputStream()));
-
-                        StringBuffer sb = new StringBuffer("");
-                        String line = "";
-
-                        while ((line = in.readLine()) != null) {
-
-                            sb.append(line);
-                            break;
-                        }
-
-                        in.close();
-
-                        String json = sb.toString();
-
-                        try {
-                            JSONObject obj = new JSONObject(json);
-
-                            obj.getString("MSJ");
-                            if (obj.getString("MSJ").equals("Ok") ) {
-                                db.actualizaRamo(Integer.parseInt(param[0]), param[1]);
-
-                                if( json.indexOf("Ok")>0) {
-                                    String[][] datosInspeccion = db.BuscaDatosInspeccion(param[0]);
-                                    if (datosInspeccion[0][7].toString().equals("vl1")) {
-                                        ramo.setText("Vehículo liviano");
-                                    } else if (datosInspeccion[0][7].toString().equals("vp1")) {
-                                        ramo.setText("Vehículo pesado");
-                                    } else {
-                                        ramo.setText("");
-                                    }
-                                }
-                            }
-                        } catch (Throwable t) {
-                            Log.e("LET", "Could not parse malformed JSON: \"" + json + "\"");
-                        }
-
-
-
-
-                        //String con el json de respuesta
-                        return sb.toString();
-
-                    } else {
-                        return new String("false : " + responseCode);
-                    }
-
-
-                } else {
-                    return "No hay conexión";
-                }
-
-
-            } catch (Exception e) {
-                return new String("Exception: " + e.getMessage());
-            }
-
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            pDialog.dismiss();
-            Toast.makeText(detalleActivity.this, "Se ha actualizado ramo", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public class notificarFallida extends AsyncTask<String, Void, String> {
