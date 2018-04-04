@@ -227,7 +227,7 @@ public class detalleActivity extends AppCompatActivity {
                             startActivity(inn);
                         }else if(ramo.getText().toString().equals("Vehículo pesado")){
                            // Toast.makeText(detalleActivity.this, "Pantalla vehículo pesado", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent( detalleActivity.this, seccion2.class);
+                            Intent intent = new Intent( detalleActivity.this, SeccionVpActivity.class);
                             intent.putExtra("id_inspeccion",n_oi.getText().toString());
                             startActivity(intent);
                         }
