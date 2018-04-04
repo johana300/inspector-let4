@@ -226,8 +226,9 @@
                     <Button
                         android:id="@+id/btnFotoDanoPvp"
                         style="@android:style/Widget.Button"
-                        android:layout_width="match_parent"
+                        android:layout_width="230dp"
                         android:layout_height="45dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="9dp"

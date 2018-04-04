@@ -45,7 +45,7 @@
             android:drawableLeft="@android:drawable/ic_menu_revert"
             android:text="Volver"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
             />
 
@@ -59,7 +59,7 @@
             android:background="@drawable/boton_redondo"
             android:text="Declarar Fallida"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp" />
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btnInspeccionarM"
@@ -73,6 +73,8 @@
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Comenzar Inspección"
             android:textColor="@android:color/background_light"
+
+            android:textSize="16sp"
             android:layout_marginTop="10dp"/>
 
 
