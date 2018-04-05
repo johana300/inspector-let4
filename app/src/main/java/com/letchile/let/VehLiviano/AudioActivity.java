@@ -36,6 +36,7 @@ public class AudioActivity extends AppCompatActivity {
     Button guardar,pendientes,secciones;
     JSONObject llenado;
     Validaciones validaciones;
+    String id_inspeccion;
 
     public AudioActivity(){
         db = new DBprovider(this);validaciones=new Validaciones(this);
@@ -47,11 +48,11 @@ public class AudioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_audio);
 
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion=bundle.getString("id_inspeccion");
+        id_inspeccion=bundle.getString("id_inspeccion");
 
         //Radio
         //panel
-        panel = (Spinner)findViewById(R.id.spinner_panelR);
+        panel = findViewById(R.id.spinner_panelR);
         String[] array = getResources().getStringArray(R.array.panel_radio);
         final List<String> arrayPanel = Arrays.asList(array);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
@@ -59,13 +60,13 @@ public class AudioActivity extends AppCompatActivity {
         panel.setAdapter(spinnerAdapter);
         panel.setSelection(arrayPanel.indexOf(db.accesorio(Integer.parseInt(id_inspeccion),211)));
         //marca
-        marcaPanel = (EditText)findViewById(R.id.marcaPanel);
+        marcaPanel = findViewById(R.id.marcaPanel);
         marcaPanel.setText(db.accesorio(Integer.parseInt(id_inspeccion),213));
         //modelo
-        modeloPanel = (EditText)findViewById(R.id.modeloPanel);
+        modeloPanel = findViewById(R.id.modeloPanel);
         modeloPanel.setText(db.accesorio(Integer.parseInt(id_inspeccion),214));
         //tipo de panel
-        tipoRadio = (Spinner)findViewById(R.id.spinner_tipoRadio);
+        tipoRadio = findViewById(R.id.spinner_tipoRadio);
         String[] array2 = getResources().getStringArray(R.array.tipo_radio);
         final List<String> arrayPanel2 = Arrays.asList(array2);
         ArrayAdapter<String> spinner_adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayPanel2);
@@ -77,20 +78,20 @@ public class AudioActivity extends AppCompatActivity {
 
         //Parlantes
         //cantidad
-        parlanteCantidad = (EditText)findViewById(R.id.cantidadParlante);
+        parlanteCantidad = findViewById(R.id.cantidadParlante);
         parlanteCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),216));
         //Marca
-        parlanteMarca = (EditText)findViewById(R.id.parlanteMarca);
+        parlanteMarca = findViewById(R.id.parlanteMarca);
         parlanteMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),217));
         //modelo
-        parlanteModelo = (EditText)findViewById(R.id.parlanteModelo);
+        parlanteModelo = findViewById(R.id.parlanteModelo);
         parlanteModelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),323));
 
 
 
         //ANTENA
         //electrico
-        eletricro = (CheckBox)findViewById(R.id.anteElectCheck);
+        eletricro = findViewById(R.id.anteElectCheck);
         if(db.accesorio(Integer.parseInt(id_inspeccion),219).equals("Ok"))
         {
             eletricro.setChecked(true);
@@ -110,7 +111,7 @@ public class AudioActivity extends AppCompatActivity {
         });
 
         //Radiotransmisor
-        radiotransmisor = (CheckBox)findViewById(R.id.radioTransCheck);
+        radiotransmisor = findViewById(R.id.radioTransCheck);
         if(db.accesorio(Integer.parseInt(id_inspeccion),797).equals("Ok")){
             radiotransmisor.setChecked(true);
             radiotransmisors="Ok";
@@ -130,7 +131,7 @@ public class AudioActivity extends AppCompatActivity {
         });
 
         //TWEETER
-        apernadoTeewter = (CheckBox)findViewById(R.id.tweeterApernado);
+        apernadoTeewter = findViewById(R.id.tweeterApernado);
         if(db.accesorio(Integer.parseInt(id_inspeccion),239).equals("Ok")) {
             apernadoTeewter.setChecked(true);
             apernadoTeewters = "Ok";
@@ -148,16 +149,16 @@ public class AudioActivity extends AppCompatActivity {
                 }
             }
         });
-        tweeterCantidad = (EditText)findViewById(R.id.cantidadTeewter);
+        tweeterCantidad = findViewById(R.id.cantidadTeewter);
         tweeterCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),240));
 
-        tweeterMarca = (EditText)findViewById(R.id.marcaTeewter);
+        tweeterMarca = findViewById(R.id.marcaTeewter);
         tweeterMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),241));
 
-        tweetermodelo = (EditText)findViewById(R.id.modeloTeewter);
+        tweetermodelo = findViewById(R.id.modeloTeewter);
         tweetermodelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),242));
 
-        tweeter = (Spinner)findViewById(R.id.spinner_tweeter);
+        tweeter = findViewById(R.id.spinner_tweeter);
         String[] ubitweeter = getResources().getStringArray(R.array.tweeter);
         final List<String> ubitweeterList = Arrays.asList(ubitweeter);
         ArrayAdapter<String>spinner_adapterTeewter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,ubitweeterList);
@@ -166,7 +167,7 @@ public class AudioActivity extends AppCompatActivity {
         tweeter.setSelection(ubitweeterList.indexOf((db.accesorio(Integer.parseInt(id_inspeccion),243).toString())));
 
         //WOOFER
-        apernadoWoofer = (CheckBox)findViewById(R.id.checkWoofer);
+        apernadoWoofer = findViewById(R.id.checkWoofer);
         if(db.accesorio(Integer.parseInt(id_inspeccion),245).equals("Ok")){
             apernadoWoofer.setChecked(true);
             apernadoWoofers="Ok";
@@ -185,16 +186,16 @@ public class AudioActivity extends AppCompatActivity {
             }
         });
 
-        woofercantidad = (EditText)findViewById(R.id.cantidadWoofer);
+        woofercantidad = findViewById(R.id.cantidadWoofer);
         woofercantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),246));
 
-        woofermarca = (EditText)findViewById(R.id.wooferMarca);
+        woofermarca = findViewById(R.id.wooferMarca);
         woofermarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),247));
 
-        woofermodelo = (EditText)findViewById(R.id.wooferModelo);
+        woofermodelo = findViewById(R.id.wooferModelo);
         woofermodelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),248));
 
-        ubicacion_w = (Spinner)findViewById(R.id.spinner_ubic_w);
+        ubicacion_w = findViewById(R.id.spinner_ubic_w);
         String[] wooferUbi = getResources().getStringArray(R.array.woofer);
         final List<String> arraywooferUbi = Arrays.asList(wooferUbi);
         ArrayAdapter<String> spinner_adapterWoofer = new ArrayAdapter<String>(this,
@@ -205,7 +206,7 @@ public class AudioActivity extends AppCompatActivity {
 
         //Amplificador 1
 
-        apernadoAmplifi1 = (CheckBox)findViewById(R.id.amplifi1check);
+        apernadoAmplifi1 = findViewById(R.id.amplifi1check);
         if(db.accesorio(Integer.parseInt(id_inspeccion),221).equals("Ok")){
             apernadoAmplifi1.setChecked(true);
             apernadoAmplifi1s = "Ok";
@@ -224,16 +225,16 @@ public class AudioActivity extends AppCompatActivity {
             }
         });
 
-        ampli1Cantidad = (EditText)findViewById(R.id.cantidadampli1);
+        ampli1Cantidad = findViewById(R.id.cantidadampli1);
         ampli1Cantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),222));
 
-        ampli1marca = (EditText)findViewById(R.id.ampli1marca);
+        ampli1marca = findViewById(R.id.ampli1marca);
         ampli1marca.setText(db.accesorio(Integer.parseInt(id_inspeccion),223));
 
-        ampli1modelo = (EditText)findViewById(R.id.ampli1Modelo);
+        ampli1modelo = findViewById(R.id.ampli1Modelo);
         ampli1modelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),224));
 
-        amplificador1 = (Spinner)findViewById(R.id.spinner_amplif1);
+        amplificador1 = findViewById(R.id.spinner_amplif1);
         String[] ubiampli1 = getResources().getStringArray(R.array.amplif1);
         final List<String> ubiampli1list = Arrays.asList(ubiampli1);
         ArrayAdapter<String> spinner_ubiampli1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,ubiampli1list);
@@ -243,7 +244,7 @@ public class AudioActivity extends AppCompatActivity {
 
 
         //amplificador 2
-        apernadoAmplifi2 = (CheckBox)findViewById(R.id.amplifi2check);
+        apernadoAmplifi2 = findViewById(R.id.amplifi2check);
         if(db.accesorio(Integer.parseInt(id_inspeccion),227).equals("Ok")){
             apernadoAmplifi2.setChecked(true);
             apernadoAmplifi2s = "Ok";
@@ -263,16 +264,16 @@ public class AudioActivity extends AppCompatActivity {
         });
 
 
-        ampli2cantidad = (EditText)findViewById(R.id.cantidadampli2);
+        ampli2cantidad = findViewById(R.id.cantidadampli2);
         ampli2cantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),228));
 
-        ampli2marca = (EditText)findViewById(R.id.amplimarca2);
+        ampli2marca = findViewById(R.id.amplimarca2);
         ampli2marca.setText(db.accesorio(Integer.parseInt(id_inspeccion),229));
 
-        ampli2modelo = (EditText)findViewById(R.id.amplimodelo2);
+        ampli2modelo = findViewById(R.id.amplimodelo2);
         ampli2modelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),230));
 
-        amplificador2 = (Spinner)findViewById(R.id.spinner_amplif2);
+        amplificador2 = findViewById(R.id.spinner_amplif2);
         String[] ubiampli2 = getResources().getStringArray(R.array.amplif2);
         final List<String> ubiampli2list = Arrays.asList(ubiampli2);
         ArrayAdapter<String> spinner_ubiampli2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,ubiampli2list);
@@ -282,7 +283,7 @@ public class AudioActivity extends AppCompatActivity {
 
 
         //DVD
-        apernadoDvd = (CheckBox)findViewById(R.id.apernadoDvd);
+        apernadoDvd = findViewById(R.id.apernadoDvd);
         if(db.accesorio(Integer.parseInt(id_inspeccion),233).equals("Ok")){
             apernadoDvd.setChecked(true);
             apernadoDvds = "Ok";
@@ -302,16 +303,16 @@ public class AudioActivity extends AppCompatActivity {
         });
 
 
-        dvdCantidad = (EditText)findViewById(R.id.dvdCantidad);
+        dvdCantidad = findViewById(R.id.dvdCantidad);
         dvdCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),237));
 
-        dvdMarca = (EditText)findViewById(R.id.dvdMarca);
+        dvdMarca = findViewById(R.id.dvdMarca);
         dvdMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),234));
 
-        dvdModelo = (EditText)findViewById(R.id.dvdModelo);
+        dvdModelo = findViewById(R.id.dvdModelo);
         dvdModelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),235));
 
-        lector = (Spinner)findViewById(R.id.spinner_lector);
+        lector = findViewById(R.id.spinner_lector);
         String[] dvd = getResources().getStringArray(R.array.dvd);
         final List<String> dvdlist = Arrays.asList(dvd);
         ArrayAdapter<String> spinner_dvd = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dvdlist);
@@ -320,7 +321,7 @@ public class AudioActivity extends AppCompatActivity {
         lector.setSelection(dvdlist.indexOf(db.accesorio(Integer.parseInt(id_inspeccion),236).toString()));
 
         //PANTALLA
-        apernadoPantalla = (CheckBox)findViewById(R.id.apernadoPantalla);
+        apernadoPantalla = findViewById(R.id.apernadoPantalla);
         if(db.accesorio(Integer.parseInt(id_inspeccion),251).equals("Ok")){
             apernadoPantalla.setChecked(true);
             apernadoPantallas = "Ok";
@@ -340,16 +341,16 @@ public class AudioActivity extends AppCompatActivity {
         });
 
 
-        pantallaCantidad = (EditText)findViewById(R.id.pantallaCantidad);
+        pantallaCantidad = findViewById(R.id.pantallaCantidad);
         pantallaCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),255));
 
-        pantallaMarca = (EditText)findViewById(R.id.pantallaMarca);
+        pantallaMarca = findViewById(R.id.pantallaMarca);
         pantallaMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),252));
 
-        pantallaModelo = (EditText)findViewById(R.id.pantallaModelo);
+        pantallaModelo = findViewById(R.id.pantallaModelo);
         pantallaModelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),253));
 
-        pantallaa = (Spinner)findViewById(R.id.spinner_pantalla);
+        pantallaa = findViewById(R.id.spinner_pantalla);
         String[] pantalla = getResources().getStringArray(R.array.pantalla);
         final List<String> pantallalist = Arrays.asList(pantalla);
         ArrayAdapter<String> spinner_pantalla = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,pantallalist);
@@ -358,7 +359,7 @@ public class AudioActivity extends AppCompatActivity {
         pantallaa.setSelection(pantallalist.indexOf(db.accesorio(Integer.parseInt(id_inspeccion),254).toString()));
 
         //dvd modular
-        apernadoDvdModular = (CheckBox)findViewById(R.id.apernadoDvdModular);
+        apernadoDvdModular = findViewById(R.id.apernadoDvdModular);
         if(db.accesorio(Integer.parseInt(id_inspeccion),757).equals("Ok")){
             apernadoDvdModular.setChecked(true);
             apernadoDvdModulars = "Ok";
@@ -378,16 +379,16 @@ public class AudioActivity extends AppCompatActivity {
         });
 
 
-        dvdModularCantidad = (EditText)findViewById(R.id.dvdModularCantidad);
+        dvdModularCantidad = findViewById(R.id.dvdModularCantidad);
         dvdModularCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),758));
 
-        dvdModularmarca = (EditText)findViewById(R.id.dvdModularmarca);
+        dvdModularmarca = findViewById(R.id.dvdModularmarca);
         dvdModularmarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),759));
 
-        dvdModularmodelo = (EditText)findViewById(R.id.dvdModularmodelo);
+        dvdModularmodelo = findViewById(R.id.dvdModularmodelo);
         dvdModularmodelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),760));
 
-        dvde = (Spinner)findViewById(R.id.spinner_dvd);
+        dvde = findViewById(R.id.spinner_dvd);
         String[] dvdmodular = getResources().getStringArray(R.array.dvd);
         final List<String> dvdmodulolist = Arrays.asList(dvdmodular);
         ArrayAdapter<String> spinner_dvdmodulo = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dvdmodulolist);
@@ -398,214 +399,11 @@ public class AudioActivity extends AppCompatActivity {
 
 
         //Botón guardar
-        guardar = (Button)findViewById(R.id.btnSigAuJg);
+        guardar = findViewById(R.id.btnSigAuJg);
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try{
-                    //DVD MODULAR
-                    JSONObject valor44 = new JSONObject();
-                    valor44.put("valor_id",761);
-                    valor44.put("texto",dvde.getSelectedItem().toString());
-                    JSONObject valor43 = new JSONObject();
-                    valor43.put("valor_id",760);
-                    valor43.put("texto",dvdModularmodelo.getText().toString());
-                    JSONObject valor42 = new JSONObject();
-                    valor42.put("valor_id",759);
-                    valor42.put("texto",dvdModularmarca.getText().toString());
-                    JSONObject valor41 = new JSONObject();
-                    valor41.put("valor_id",758);
-                    valor41.put("texto",dvdModularCantidad.getText().toString());
-                    JSONObject valor40 = new JSONObject();
-                    valor40.put("valor_id",757);
-                    valor40.put("texto",apernadoDvdModulars);
-                    //PANTALLA
-                    JSONObject valor39 = new JSONObject();
-                    valor39.put("valor_id",254);
-                    valor39.put("texto",pantallaa.getSelectedItem().toString());
-                    JSONObject valor38 = new JSONObject();
-                    valor38.put("valor_id",253);
-                    valor38.put("texto",pantallaModelo.getText().toString());
-                    JSONObject valor37 = new JSONObject();
-                    valor37.put("valor_id",252);
-                    valor37.put("texto",pantallaMarca.getText().toString());
-                    JSONObject valor36 = new JSONObject();
-                    valor36.put("valor_id",255);
-                    valor36.put("texto",pantallaCantidad.getText().toString());
-                    JSONObject valor35 = new JSONObject();
-                    valor35.put("valor_id",251);
-                    valor35.put("texto",apernadoPantallas);
-                    //DVD
-                    JSONObject valor34 = new JSONObject();
-                    valor34.put("valor_id",236);
-                    valor34.put("texto",lector.getSelectedItem().toString());
-                    JSONObject valor33 = new JSONObject();
-                    valor33.put("valor_id",235);
-                    valor33.put("texto",dvdModelo.getText().toString());
-                    JSONObject valor32 = new JSONObject();
-                    valor32.put("valor_id",234);
-                    valor32.put("texto",dvdMarca.getText().toString());
-                    JSONObject valor31 = new JSONObject();
-                    valor31.put("valor_id",237);
-                    valor31.put("texto",dvdCantidad.getText().toString());
-                    JSONObject valor30 = new JSONObject();
-                    valor30.put("valor_id",233);
-                    valor30.put("texto",apernadoDvds);
-                    //amplificador 2
-                    JSONObject valor29 = new JSONObject();
-                    valor29.put("valor_id",231);
-                    valor29.put("texto",amplificador2.getSelectedItem().toString());
-                    JSONObject valor28 = new JSONObject();
-                    valor28.put("valor_id",230);
-                    valor28.put("texto",ampli2modelo.getText());
-                    JSONObject valor27 = new JSONObject();
-                    valor27.put("valor_id",229);
-                    valor27.put("texto",ampli2marca.getText().toString());
-                    JSONObject valor26 = new JSONObject();
-                    valor26.put("valor_id",228);
-                    valor26.put("texto",ampli2cantidad.getText().toString());
-                    JSONObject valor25 = new JSONObject();
-                    valor25.put("valor_id",227);
-                    valor25.put("texto",apernadoAmplifi2s);
-                    //Amplificador 1
-                    JSONObject valor24 = new JSONObject();
-                    valor24.put("valor_id",225);
-                    valor24.put("texto",amplificador1.getSelectedItem().toString());
-                    JSONObject valor23 = new JSONObject();
-                    valor23.put("valor_id",224);
-                    valor23.put("texto",ampli1modelo.getText().toString());
-                    JSONObject valor22 = new JSONObject();
-                    valor22.put("valor_id",223);
-                    valor22.put("texto",ampli1marca.getText().toString());
-                    JSONObject valor21 = new JSONObject();
-                    valor21.put("valor_id",222);
-                    valor21.put("texto",ampli1Cantidad.getText().toString());
-                    JSONObject valor20 = new JSONObject();
-                    valor20.put("valor_id",221);
-                    valor20.put("texto",apernadoAmplifi1s);
-                    //WOOFER
-                    JSONObject valor19 = new JSONObject();
-                    valor19.put("valor_id",249);
-                    valor19.put("texto",ubicacion_w.getSelectedItem().toString());
-                    JSONObject valor18 = new JSONObject();
-                    valor18.put("valor_id",248);
-                    valor18.put("texto",woofermodelo.getText().toString());
-                    JSONObject valor17 = new JSONObject();
-                    valor17.put("valor_id",247);
-                    valor17.put("texto",woofermarca.getText().toString());
-                    JSONObject valor16 = new JSONObject();
-                    valor16.put("valor_id",246);
-                    valor16.put("texto",woofercantidad.getText().toString());
-                    JSONObject valor15 = new JSONObject();
-                    valor15.put("valor_id",245);
-                    valor15.put("texto",apernadoWoofers);
-                    //TWEETER
-                    JSONObject valor14 = new JSONObject();
-                    valor14.put("valor_id",243);
-                    valor14.put("texto",tweeter.getSelectedItem().toString());
-                    JSONObject valor13 = new JSONObject();
-                    valor13.put("valor_id",242);
-                    valor13.put("texto",tweetermodelo.getText().toString());
-                    JSONObject valor12 = new JSONObject();
-                    valor12.put("valor_id",241);
-                    valor12.put("texto",tweeterMarca.getText().toString());
-                    JSONObject valor11 = new JSONObject();
-                    valor11.put("valor_id",240);
-                    valor11.put("texto",tweeterCantidad.getText().toString());
-                    JSONObject valor10 = new JSONObject();
-                    valor10.put("valor_id",239);
-                    valor10.put("texto",apernadoTeewters);
-
-                    //ANTENA
-                    JSONObject valor9 = new JSONObject();
-                    valor9.put("valor_id",797);
-                    valor9.put("texto",radiotransmisors);
-                    JSONObject valor8 = new JSONObject();
-                    valor8.put("valor_id",219);
-                    valor8.put("texto",eletricros);
-                    //PANEL
-                    JSONObject valor1 = new JSONObject();
-                    valor1.put("valor_id",211);
-                    valor1.put("texto",panel.getSelectedItem().toString());
-                    JSONObject valor2 = new JSONObject();
-                    valor2.put("valor_id",213);
-                    valor2.put("texto",marcaPanel.getText().toString());
-                    JSONObject valor3 = new JSONObject();
-                    valor3.put("valor_id",214);
-                    valor3.put("texto",modeloPanel.getText().toString());
-                    JSONObject valor4 = new JSONObject();
-                    valor4.put("valor_id",212);
-                    valor4.put("texto",tipoRadio.getSelectedItem().toString());
-                    //Parlante
-                    JSONObject valor5 = new JSONObject();
-                    valor5.put("valor_id",216);
-                    valor5.put("texto",parlanteCantidad.getText().toString());
-                    JSONObject valor6 = new JSONObject();
-                    valor6.put("valor_id",217);
-                    valor6.put("texto",parlanteMarca.getText().toString());
-                    JSONObject valor7 = new JSONObject();
-                    valor7.put("valor_id",323);
-                    valor7.put("texto",parlanteModelo.getText().toString());
-
-                    JSONArray datosvalores = new JSONArray();
-                    datosvalores.put(valor1);
-                    datosvalores.put(valor2);
-                    datosvalores.put(valor3);
-                    datosvalores.put(valor4);
-                    datosvalores.put(valor5);
-                    datosvalores.put(valor6);
-                    datosvalores.put(valor7);
-                    datosvalores.put(valor8);
-                    datosvalores.put(valor9);
-                    datosvalores.put(valor10);
-                    datosvalores.put(valor11);
-                    datosvalores.put(valor12);
-                    datosvalores.put(valor13);
-                    datosvalores.put(valor14);
-                    datosvalores.put(valor15);
-                    datosvalores.put(valor16);
-                    datosvalores.put(valor17);
-                    datosvalores.put(valor18);
-                    datosvalores.put(valor19);
-                    datosvalores.put(valor20);
-                    datosvalores.put(valor21);
-                    datosvalores.put(valor22);
-                    datosvalores.put(valor23);
-                    datosvalores.put(valor24);
-                    datosvalores.put(valor25);
-                    datosvalores.put(valor26);
-                    datosvalores.put(valor27);
-                    datosvalores.put(valor28);
-                    datosvalores.put(valor29);
-                    datosvalores.put(valor30);
-                    datosvalores.put(valor31);
-                    datosvalores.put(valor32);
-                    datosvalores.put(valor33);
-                    datosvalores.put(valor34);
-                    datosvalores.put(valor35);
-                    datosvalores.put(valor36);
-                    datosvalores.put(valor37);
-                    datosvalores.put(valor38);
-                    datosvalores.put(valor39);
-                    datosvalores.put(valor40);
-                    datosvalores.put(valor41);
-                    datosvalores.put(valor42);
-                    datosvalores.put(valor43);
-                    datosvalores.put(valor44);
-
-
-                    if(!datosvalores.isNull(0)){
-                        for(int i=0;i<datosvalores.length();i++){
-                            llenado = new JSONObject(datosvalores.getString(i));
-                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                            //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                        }
-                    }
-                }catch (Exception e){
-                    Toast.makeText(AudioActivity.this,"Error conversión json",Toast.LENGTH_SHORT);
-                }
-
+                guardarDatos();
                 Intent i = new Intent(AudioActivity.this,NeuActivity.class);
                 i.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(i);
@@ -617,7 +415,7 @@ public class AudioActivity extends AppCompatActivity {
         btnVolverAuJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                guardarDatos();
                 Intent intent = new Intent( AudioActivity.this, AccActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -628,14 +426,217 @@ public class AudioActivity extends AppCompatActivity {
         btnPenAuJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                guardarDatos();
                 Intent intent = new Intent( AudioActivity.this, InsPendientesActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void guardarDatos(){
+        try{
+            //DVD MODULAR
+            JSONObject valor44 = new JSONObject();
+            valor44.put("valor_id",761);
+            valor44.put("texto",dvde.getSelectedItem().toString());
+            JSONObject valor43 = new JSONObject();
+            valor43.put("valor_id",760);
+            valor43.put("texto",dvdModularmodelo.getText().toString());
+            JSONObject valor42 = new JSONObject();
+            valor42.put("valor_id",759);
+            valor42.put("texto",dvdModularmarca.getText().toString());
+            JSONObject valor41 = new JSONObject();
+            valor41.put("valor_id",758);
+            valor41.put("texto",dvdModularCantidad.getText().toString());
+            JSONObject valor40 = new JSONObject();
+            valor40.put("valor_id",757);
+            valor40.put("texto",apernadoDvdModulars);
+            //PANTALLA
+            JSONObject valor39 = new JSONObject();
+            valor39.put("valor_id",254);
+            valor39.put("texto",pantallaa.getSelectedItem().toString());
+            JSONObject valor38 = new JSONObject();
+            valor38.put("valor_id",253);
+            valor38.put("texto",pantallaModelo.getText().toString());
+            JSONObject valor37 = new JSONObject();
+            valor37.put("valor_id",252);
+            valor37.put("texto",pantallaMarca.getText().toString());
+            JSONObject valor36 = new JSONObject();
+            valor36.put("valor_id",255);
+            valor36.put("texto",pantallaCantidad.getText().toString());
+            JSONObject valor35 = new JSONObject();
+            valor35.put("valor_id",251);
+            valor35.put("texto",apernadoPantallas);
+            //DVD
+            JSONObject valor34 = new JSONObject();
+            valor34.put("valor_id",236);
+            valor34.put("texto",lector.getSelectedItem().toString());
+            JSONObject valor33 = new JSONObject();
+            valor33.put("valor_id",235);
+            valor33.put("texto",dvdModelo.getText().toString());
+            JSONObject valor32 = new JSONObject();
+            valor32.put("valor_id",234);
+            valor32.put("texto",dvdMarca.getText().toString());
+            JSONObject valor31 = new JSONObject();
+            valor31.put("valor_id",237);
+            valor31.put("texto",dvdCantidad.getText().toString());
+            JSONObject valor30 = new JSONObject();
+            valor30.put("valor_id",233);
+            valor30.put("texto",apernadoDvds);
+            //amplificador 2
+            JSONObject valor29 = new JSONObject();
+            valor29.put("valor_id",231);
+            valor29.put("texto",amplificador2.getSelectedItem().toString());
+            JSONObject valor28 = new JSONObject();
+            valor28.put("valor_id",230);
+            valor28.put("texto",ampli2modelo.getText());
+            JSONObject valor27 = new JSONObject();
+            valor27.put("valor_id",229);
+            valor27.put("texto",ampli2marca.getText().toString());
+            JSONObject valor26 = new JSONObject();
+            valor26.put("valor_id",228);
+            valor26.put("texto",ampli2cantidad.getText().toString());
+            JSONObject valor25 = new JSONObject();
+            valor25.put("valor_id",227);
+            valor25.put("texto",apernadoAmplifi2s);
+            //Amplificador 1
+            JSONObject valor24 = new JSONObject();
+            valor24.put("valor_id",225);
+            valor24.put("texto",amplificador1.getSelectedItem().toString());
+            JSONObject valor23 = new JSONObject();
+            valor23.put("valor_id",224);
+            valor23.put("texto",ampli1modelo.getText().toString());
+            JSONObject valor22 = new JSONObject();
+            valor22.put("valor_id",223);
+            valor22.put("texto",ampli1marca.getText().toString());
+            JSONObject valor21 = new JSONObject();
+            valor21.put("valor_id",222);
+            valor21.put("texto",ampli1Cantidad.getText().toString());
+            JSONObject valor20 = new JSONObject();
+            valor20.put("valor_id",221);
+            valor20.put("texto",apernadoAmplifi1s);
+            //WOOFER
+            JSONObject valor19 = new JSONObject();
+            valor19.put("valor_id",249);
+            valor19.put("texto",ubicacion_w.getSelectedItem().toString());
+            JSONObject valor18 = new JSONObject();
+            valor18.put("valor_id",248);
+            valor18.put("texto",woofermodelo.getText().toString());
+            JSONObject valor17 = new JSONObject();
+            valor17.put("valor_id",247);
+            valor17.put("texto",woofermarca.getText().toString());
+            JSONObject valor16 = new JSONObject();
+            valor16.put("valor_id",246);
+            valor16.put("texto",woofercantidad.getText().toString());
+            JSONObject valor15 = new JSONObject();
+            valor15.put("valor_id",245);
+            valor15.put("texto",apernadoWoofers);
+            //TWEETER
+            JSONObject valor14 = new JSONObject();
+            valor14.put("valor_id",243);
+            valor14.put("texto",tweeter.getSelectedItem().toString());
+            JSONObject valor13 = new JSONObject();
+            valor13.put("valor_id",242);
+            valor13.put("texto",tweetermodelo.getText().toString());
+            JSONObject valor12 = new JSONObject();
+            valor12.put("valor_id",241);
+            valor12.put("texto",tweeterMarca.getText().toString());
+            JSONObject valor11 = new JSONObject();
+            valor11.put("valor_id",240);
+            valor11.put("texto",tweeterCantidad.getText().toString());
+            JSONObject valor10 = new JSONObject();
+            valor10.put("valor_id",239);
+            valor10.put("texto",apernadoTeewters);
+
+            //ANTENA
+            JSONObject valor9 = new JSONObject();
+            valor9.put("valor_id",797);
+            valor9.put("texto",radiotransmisors);
+            JSONObject valor8 = new JSONObject();
+            valor8.put("valor_id",219);
+            valor8.put("texto",eletricros);
+            //PANEL
+            JSONObject valor1 = new JSONObject();
+            valor1.put("valor_id",211);
+            valor1.put("texto",panel.getSelectedItem().toString());
+            JSONObject valor2 = new JSONObject();
+            valor2.put("valor_id",213);
+            valor2.put("texto",marcaPanel.getText().toString());
+            JSONObject valor3 = new JSONObject();
+            valor3.put("valor_id",214);
+            valor3.put("texto",modeloPanel.getText().toString());
+            JSONObject valor4 = new JSONObject();
+            valor4.put("valor_id",212);
+            valor4.put("texto",tipoRadio.getSelectedItem().toString());
+            //Parlante
+            JSONObject valor5 = new JSONObject();
+            valor5.put("valor_id",216);
+            valor5.put("texto",parlanteCantidad.getText().toString());
+            JSONObject valor6 = new JSONObject();
+            valor6.put("valor_id",217);
+            valor6.put("texto",parlanteMarca.getText().toString());
+            JSONObject valor7 = new JSONObject();
+            valor7.put("valor_id",323);
+            valor7.put("texto",parlanteModelo.getText().toString());
+
+            JSONArray datosvalores = new JSONArray();
+            datosvalores.put(valor1);
+            datosvalores.put(valor2);
+            datosvalores.put(valor3);
+            datosvalores.put(valor4);
+            datosvalores.put(valor5);
+            datosvalores.put(valor6);
+            datosvalores.put(valor7);
+            datosvalores.put(valor8);
+            datosvalores.put(valor9);
+            datosvalores.put(valor10);
+            datosvalores.put(valor11);
+            datosvalores.put(valor12);
+            datosvalores.put(valor13);
+            datosvalores.put(valor14);
+            datosvalores.put(valor15);
+            datosvalores.put(valor16);
+            datosvalores.put(valor17);
+            datosvalores.put(valor18);
+            datosvalores.put(valor19);
+            datosvalores.put(valor20);
+            datosvalores.put(valor21);
+            datosvalores.put(valor22);
+            datosvalores.put(valor23);
+            datosvalores.put(valor24);
+            datosvalores.put(valor25);
+            datosvalores.put(valor26);
+            datosvalores.put(valor27);
+            datosvalores.put(valor28);
+            datosvalores.put(valor29);
+            datosvalores.put(valor30);
+            datosvalores.put(valor31);
+            datosvalores.put(valor32);
+            datosvalores.put(valor33);
+            datosvalores.put(valor34);
+            datosvalores.put(valor35);
+            datosvalores.put(valor36);
+            datosvalores.put(valor37);
+            datosvalores.put(valor38);
+            datosvalores.put(valor39);
+            datosvalores.put(valor40);
+            datosvalores.put(valor41);
+            datosvalores.put(valor42);
+            datosvalores.put(valor43);
+            datosvalores.put(valor44);
 
 
+            if(!datosvalores.isNull(0)){
+                for(int i=0;i<datosvalores.length();i++){
+                    llenado = new JSONObject(datosvalores.getString(i));
+                    db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                    //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(AudioActivity.this,"Error conversión json",Toast.LENGTH_SHORT);
+        }
     }
 }

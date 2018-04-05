@@ -27,6 +27,7 @@ public class TechoActivity extends AppCompatActivity {
     String cParrilla="",cBarras="",cportaE="",cPortaSk="";
     CheckBox checkParrilla,checkBarras,checkPortaE,checkPortaSk;
     JSONObject llenado;
+    String id_inspeccion;
 
     public TechoActivity() {db = new DBprovider(this);}
 
@@ -39,26 +40,26 @@ public class TechoActivity extends AppCompatActivity {
 
 
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion=bundle.getString("id_inspeccion");
+        id_inspeccion=bundle.getString("id_inspeccion");
 
         //marca parrilla
-        maParrilla = (EditText)findViewById(R.id.maParrilla);
+        maParrilla = findViewById(R.id.maParrilla);
         maParrilla.setText(db.accesorio(Integer.parseInt(id_inspeccion),309).toString());
 
         //marca barras porta equipaje
-        maBarras = (EditText)findViewById(R.id.maBarras);
+        maBarras = findViewById(R.id.maBarras);
         maBarras.setText(db.accesorio(Integer.parseInt(id_inspeccion),773).toString());
 
         //marca porta equipaje
-        maPorta = (EditText)findViewById(R.id.maPorta);
+        maPorta = findViewById(R.id.maPorta);
         maPorta.setText(db.accesorio(Integer.parseInt(id_inspeccion),772).toString());
 
         //porta ski
-        maPortaSki = (EditText)findViewById(R.id.maPortaSki);
+        maPortaSki = findViewById(R.id.maPortaSki);
         maPortaSki.setText(db.accesorio(Integer.parseInt(id_inspeccion),771).toString());
 
        //check parrilla
-        checkParrilla = (CheckBox)findViewById(R.id.cParrilla);
+        checkParrilla = findViewById(R.id.cParrilla);
         if(db.accesorio(Integer.parseInt(id_inspeccion),293).toString().equals("Ok"))
         {
             checkParrilla.setChecked(true);
@@ -80,7 +81,7 @@ public class TechoActivity extends AppCompatActivity {
 
 
         //check Barras
-        checkBarras = (CheckBox)findViewById(R.id.cBarras);
+        checkBarras = findViewById(R.id.cBarras);
         if(db.accesorio(Integer.parseInt(id_inspeccion),325).toString().equals("Ok"))
         {
             checkBarras.setChecked(true);
@@ -102,7 +103,7 @@ public class TechoActivity extends AppCompatActivity {
         });
 
         //check porta equipaje
-        checkPortaE = (CheckBox)findViewById(R.id.cportaE);
+        checkPortaE = findViewById(R.id.cportaE);
         if(db.accesorio(Integer.parseInt(id_inspeccion),355).toString().equals("Ok"))
         {
             checkPortaE.setChecked(true);
@@ -124,7 +125,7 @@ public class TechoActivity extends AppCompatActivity {
         });
 
         //check porta ski
-        checkPortaSk = (CheckBox)findViewById(R.id.cPortaSk);
+        checkPortaSk = findViewById(R.id.cPortaSk);
         if(db.accesorio(Integer.parseInt(id_inspeccion),327).toString().equals("Ok"))
         {
             checkPortaSk.setChecked(true);
@@ -146,78 +147,13 @@ public class TechoActivity extends AppCompatActivity {
         });
 
 
-
-
-
         //Botón guardar siguiente de sección Techo
-        final Button btnSigTecJg = (Button)findViewById(R.id.btnSigTecJg);
+        final Button btnSigTecJg = findViewById(R.id.btnSigTecJg);
         btnSigTecJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-
-
-
-                try{
-
-
-                    JSONObject valor75 = new JSONObject();
-                    valor75.put("valor_id",309);
-                    valor75.put("texto",maParrilla.getText().toString());
-
-                    JSONObject valor76 = new JSONObject();
-                    valor76.put("valor_id",773);
-                    valor76.put("texto",maBarras.getText().toString());
-
-                    JSONObject valor77 = new JSONObject();
-                    valor77.put("valor_id",772);
-                    valor77.put("texto",maPorta.getText().toString());
-
-                    JSONObject valor78 = new JSONObject();
-                    valor78.put("valor_id",771);
-                    valor78.put("texto",maPortaSki.getText().toString());
-
-                    JSONObject valor81 = new JSONObject();
-                    valor81.put("valor_id",293);
-                    valor81.put("texto",cParrilla);
-
-                    JSONObject valor82 = new JSONObject();
-                    valor82.put("valor_id",325);
-                    valor82.put("texto",cBarras);
-
-                    JSONObject valor83 = new JSONObject();
-                    valor83.put("valor_id",355);
-                    valor83.put("texto",cportaE);
-
-                    JSONObject valor84 = new JSONObject();
-                    valor84.put("valor_id",327);
-                    valor84.put("texto",cPortaSk);
-
-                    JSONArray jsonArray = new JSONArray();
-                    jsonArray.put(valor75);
-                    jsonArray.put(valor76);
-                    jsonArray.put(valor77);
-                    jsonArray.put(valor78);
-                    jsonArray.put(valor81);
-                    jsonArray.put(valor82);
-                    jsonArray.put(valor83);
-                    jsonArray.put(valor84);
-
-
-                    if (!jsonArray.isNull(0)) {
-                        for(int i=0;i<jsonArray.length();i++){
-                            llenado = new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                        }
-                    }
-
-                }catch (Exception e)
-                {
-
-                    Toast.makeText(TechoActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
-                }
-
+                guardarDatos();
                 Intent intent = new Intent( TechoActivity.this, DatosInspActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -225,11 +161,12 @@ public class TechoActivity extends AppCompatActivity {
         });
 
         //Botón volver pendiente
-        final Button btnPenTecJg = (Button)findViewById(R.id.btnPenTecJg);
+        final Button btnPenTecJg = findViewById(R.id.btnPenTecJg);
         btnPenTecJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                guardarDatos();
                 Intent intent = new Intent( TechoActivity.this, InsPendientesActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -237,17 +174,77 @@ public class TechoActivity extends AppCompatActivity {
         });
 
         //Botón volver de sección
-        final Button btnVolverTecJg = (Button)findViewById(R.id.btnVolverTecJg);
+        final Button btnVolverTecJg = findViewById(R.id.btnVolverTecJg);
         btnVolverTecJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                guardarDatos();
                 Intent intent = new Intent( TechoActivity.this, NeuActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
+    }
+
+    public void guardarDatos(){
+        try{
 
 
+            JSONObject valor75 = new JSONObject();
+            valor75.put("valor_id",309);
+            valor75.put("texto",maParrilla.getText().toString());
+
+            JSONObject valor76 = new JSONObject();
+            valor76.put("valor_id",773);
+            valor76.put("texto",maBarras.getText().toString());
+
+            JSONObject valor77 = new JSONObject();
+            valor77.put("valor_id",772);
+            valor77.put("texto",maPorta.getText().toString());
+
+            JSONObject valor78 = new JSONObject();
+            valor78.put("valor_id",771);
+            valor78.put("texto",maPortaSki.getText().toString());
+
+            JSONObject valor81 = new JSONObject();
+            valor81.put("valor_id",293);
+            valor81.put("texto",cParrilla);
+
+            JSONObject valor82 = new JSONObject();
+            valor82.put("valor_id",325);
+            valor82.put("texto",cBarras);
+
+            JSONObject valor83 = new JSONObject();
+            valor83.put("valor_id",355);
+            valor83.put("texto",cportaE);
+
+            JSONObject valor84 = new JSONObject();
+            valor84.put("valor_id",327);
+            valor84.put("texto",cPortaSk);
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(valor75);
+            jsonArray.put(valor76);
+            jsonArray.put(valor77);
+            jsonArray.put(valor78);
+            jsonArray.put(valor81);
+            jsonArray.put(valor82);
+            jsonArray.put(valor83);
+            jsonArray.put(valor84);
+
+
+            if (!jsonArray.isNull(0)) {
+                for(int i=0;i<jsonArray.length();i++){
+                    llenado = new JSONObject(jsonArray.getString(i));
+                    db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                }
+            }
+
+        }catch (Exception e)
+        {
+
+            Toast.makeText(TechoActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+        }
     }
 }

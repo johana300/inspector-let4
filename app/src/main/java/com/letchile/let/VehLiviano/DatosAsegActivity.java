@@ -29,6 +29,8 @@ public class DatosAsegActivity extends AppCompatActivity {
     JSONObject llenado;
     JSONArray arrayValor;
     Validaciones validaciones;
+    String id_inspeccion;
+    Spinner comboComuna;
 
     public DatosAsegActivity() {
         db = new DBprovider(this);validaciones=new Validaciones(this);    }
@@ -39,34 +41,34 @@ public class DatosAsegActivity extends AppCompatActivity {
         setContentView(R.layout.activity_datos_aseg);
 
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion=bundle.getString("id_inspeccion");
+        id_inspeccion=bundle.getString("id_inspeccion");
 
 
         //Setear datos
-        asegurado = (EditText)findViewById(R.id.nomJg);
+        asegurado = findViewById(R.id.nomJg);
         asegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),2).toString());
 
-        paternoAsegurado = (EditText)findViewById(R.id.apellidoPaternoM);
+        paternoAsegurado = findViewById(R.id.apellidoPaternoM);
         paternoAsegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),3).toString());
 
-        maternoAsegurado = (EditText)findViewById(R.id.maternoAseguradoM);
+        maternoAsegurado = findViewById(R.id.maternoAseguradoM);
         maternoAsegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),4).toString());
 
-        rut = (EditText)findViewById(R.id.rutJg);
+        rut = findViewById(R.id.rutJg);
         rut.setText(db.accesorio(Integer.parseInt(id_inspeccion),5).toString());
 
-        direccion = (EditText)findViewById(R.id.direccionM);
+        direccion = findViewById(R.id.direccionM);
         direccion.setText(db.accesorio(Integer.parseInt(id_inspeccion),8).toString());
 
 
-        fono = (EditText)findViewById(R.id.fonoJg);
+        fono = findViewById(R.id.fonoJg);
         fono.setText(db.accesorio(Integer.parseInt(id_inspeccion),6).toString());
 
-        celular = (EditText)findViewById(R.id.celuJg);
+        celular = findViewById(R.id.celuJg);
         celular.setText(db.accesorio(Integer.parseInt(id_inspeccion),533).toString());
 
 
-        email = (EditText)findViewById(R.id.mailJg);
+        email = findViewById(R.id.mailJg);
         email.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
 
 
@@ -74,7 +76,7 @@ public class DatosAsegActivity extends AppCompatActivity {
         //llenar regiones
         String regionInicial=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),7).toString());
         String listaRegiones[][]=db.listaRegiones();
-        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegJg);
+        final Spinner comboRegion = findViewById(R.id.comboRegJg);
         String[] arraySpinner = new String[listaRegiones.length+1];
         arraySpinner[0]=regionInicial;
         for(int i=0;i<listaRegiones.length;i++)        {
@@ -85,7 +87,7 @@ public class DatosAsegActivity extends AppCompatActivity {
         comboRegion.setAdapter(adapterRegion);
 
 
-        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComJr);
+        comboComuna = findViewById(R.id.comboComJr);
         comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -112,82 +114,11 @@ public class DatosAsegActivity extends AppCompatActivity {
         });
 
 
-        Button btnSigAsegJG = (Button) findViewById(R.id.btnSigAsegJg);
+        Button btnSigAsegJG = findViewById(R.id.btnSigAsegJg);
         btnSigAsegJG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                try {
-                    //LLENO EL JSON
-                    JSONObject datosValor1 = new JSONObject();
-                    datosValor1.put("valor_id",2);
-                    datosValor1.put("texto",asegurado.getText().toString());
-
-                    JSONObject datosValor2 = new JSONObject();
-                    datosValor2.put("valor_id",3);
-                    datosValor2.put("texto",paternoAsegurado.getText().toString());
-
-                    JSONObject datosValor3 = new JSONObject();
-                    datosValor3.put("valor_id",4);
-                    datosValor3.put("texto",maternoAsegurado.getText().toString());
-
-                    JSONObject datosValor4 = new JSONObject();
-                    datosValor4.put("valor_id",5);
-                    datosValor4.put("texto",rut.getText().toString());
-
-                    JSONObject datosValor5 = new JSONObject();
-                    datosValor5.put("valor_id",8);
-                    datosValor5.put("texto",direccion.getText().toString());
-
-                    JSONObject datosValor6 = new JSONObject();
-                    datosValor6.put("valor_id",6);
-                    datosValor6.put("texto",fono.getText().toString());
-
-                    JSONObject datosValorx = new JSONObject();
-                    datosValorx.put("valor_id",533);
-                    datosValorx.put("texto",celular.getText().toString());
-
-                    JSONObject datosValor7 = new JSONObject();
-                    datosValor7.put("valor_id",532);
-                    datosValor7.put("texto",email.getText().toString());
-
-                    JSONObject datosValor8 = new JSONObject();
-                    datosValor8.put("valor_id",7);
-                    datosValor8.put("texto",comboComuna.getSelectedItem().toString());
-
-                    JSONArray jsonArray = new JSONArray();
-
-                    jsonArray.put(datosValor1);
-                    jsonArray.put(datosValor2);
-                    jsonArray.put(datosValor3);
-                    jsonArray.put(datosValor4);
-                    jsonArray.put(datosValor5);
-                    jsonArray.put(datosValor6);
-                    jsonArray.put(datosValorx);
-                    jsonArray.put(datosValor7);
-                    jsonArray.put(datosValor8);
-
-
-
-                    //PREGUNTO SI ES NULO PARA INSERTAR LOS DATOS
-                    if (!jsonArray.isNull(0)) {
-                        for(int i=0;i<jsonArray.length();i++){
-                            llenado = new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                            //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                        }
-                    }
-
-
-                }catch (Exception e)
-                {
-                    Toast.makeText(DatosAsegActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
-                }
-
-
-              /*  db.actualizarAsegInspeccion(Integer.parseInt(id_inspeccion),asegurado.getText().toString(),paternoAsegurado.getText().toString(),
-                        maternoAsegurado.getText().toString(),rut.getText().toString(),direccion.getText().toString(),Integer.parseInt(fono.getText().toString()),
-                        email.getText().toString(),comboComuna.getSelectedItem().toString());*/
+                guardarDatos();
                 Intent intent = new Intent(DatosAsegActivity.this, DatosVehActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -195,11 +126,11 @@ public class DatosAsegActivity extends AppCompatActivity {
             }
         });
 
-        final Button btnVolverAsegJg = (Button) findViewById(R.id.btnVolverAsegJg);
+        final Button btnVolverAsegJg = findViewById(R.id.btnVolverAsegJg);
         btnVolverAsegJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                guardarDatos();
                 Intent intent = new Intent(DatosAsegActivity.this, seccion2.class);//cambiar por volver a fotos
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -208,6 +139,75 @@ public class DatosAsegActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void guardarDatos(){
+        try {
+            //LLENO EL JSON
+            JSONObject datosValor1 = new JSONObject();
+            datosValor1.put("valor_id",2);
+            datosValor1.put("texto",asegurado.getText().toString());
+
+            JSONObject datosValor2 = new JSONObject();
+            datosValor2.put("valor_id",3);
+            datosValor2.put("texto",paternoAsegurado.getText().toString());
+
+            JSONObject datosValor3 = new JSONObject();
+            datosValor3.put("valor_id",4);
+            datosValor3.put("texto",maternoAsegurado.getText().toString());
+
+            JSONObject datosValor4 = new JSONObject();
+            datosValor4.put("valor_id",5);
+            datosValor4.put("texto",rut.getText().toString());
+
+            JSONObject datosValor5 = new JSONObject();
+            datosValor5.put("valor_id",8);
+            datosValor5.put("texto",direccion.getText().toString());
+
+            JSONObject datosValor6 = new JSONObject();
+            datosValor6.put("valor_id",6);
+            datosValor6.put("texto",fono.getText().toString());
+
+            JSONObject datosValorx = new JSONObject();
+            datosValorx.put("valor_id",533);
+            datosValorx.put("texto",celular.getText().toString());
+
+            JSONObject datosValor7 = new JSONObject();
+            datosValor7.put("valor_id",532);
+            datosValor7.put("texto",email.getText().toString());
+
+            JSONObject datosValor8 = new JSONObject();
+            datosValor8.put("valor_id",7);
+            datosValor8.put("texto",comboComuna.getSelectedItem().toString());
+
+            JSONArray jsonArray = new JSONArray();
+
+            jsonArray.put(datosValor1);
+            jsonArray.put(datosValor2);
+            jsonArray.put(datosValor3);
+            jsonArray.put(datosValor4);
+            jsonArray.put(datosValor5);
+            jsonArray.put(datosValor6);
+            jsonArray.put(datosValorx);
+            jsonArray.put(datosValor7);
+            jsonArray.put(datosValor8);
+
+
+
+            //PREGUNTO SI ES NULO PARA INSERTAR LOS DATOS
+            if (!jsonArray.isNull(0)) {
+                for(int i=0;i<jsonArray.length();i++){
+                    llenado = new JSONObject(jsonArray.getString(i));
+                    db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                    //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                }
+            }
+
+
+        }catch (Exception e)
+        {
+            Toast.makeText(DatosAsegActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
+        }
     }
 
 }
