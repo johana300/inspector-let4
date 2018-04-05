@@ -80,23 +80,22 @@ public class llantasneumaticos extends AppCompatActivity {
 
         btnLlantasNE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openCamaraLlantasNE(id_inspeccion);
+            public void onClick(View v) {funcionCamara(id_inspeccion,"_Foto_LLANTAS.jpg",PHOTO_LLANTAS);
             }
         });
         btnRuedaRespuestoLlantasE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCamaraRuedaRespuesto(id_inspeccion); }
+                funcionCamara(id_inspeccion,"_Foto_Rueda_Respuesto.jpg",PHOTO_RUEDA); }
         });
         btnAdicionalLlantasE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCamaraAdicionalLlantas(id_inspeccion);
+                funcionCamara(id_inspeccion,"_Foto_Adicional_Llantas.jpg",PHOTO_ADICIONAL);
             }
         });
 
-        btnLlantasVolverE = (Button)findViewById(R.id.btnLlantasVolverE);
+        btnLlantasVolverE = findViewById(R.id.btnLlantasVolverE);
         btnLlantasVolverE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +106,7 @@ public class llantasneumaticos extends AppCompatActivity {
             }
         });
 
-        btnSiguienteLlantaE = (Button)findViewById(R.id.btnSiguienteLlantaE);
+        btnSiguienteLlantaE = findViewById(R.id.btnSiguienteLlantaE);
         btnSiguienteLlantaE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,83 +138,34 @@ public class llantasneumaticos extends AppCompatActivity {
         });
 
     }
-    private void openCamaraLlantasNE(String id) {
 
+    ///FUNCIÓN ABRE LA CAMARA Y TOMA LAS FOTOGRAFIAS
+    public void funcionCamara(String id,String nombre_foto,int CodigoFoto){
         String id_inspeccion = id;
         ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
         boolean isDirectoryCreated = file.exists();
 
-        if (!isDirectoryCreated)
+        if(!isDirectoryCreated)
             isDirectoryCreated = file.mkdirs();
 
-        if (isDirectoryCreated) {
+        if(isDirectoryCreated){
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_LLANTAS.jpg";
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+nombre_foto;
+
             ruta = file.toString() + "/" + nombreimagen;
             mPath = ruta;
 
             File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(llantasneumaticos.this,
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(llantasneumaticos.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_LLANTAS);
+            startActivityForResult(intent, CodigoFoto);
         }
     }
-    private void openCamaraRuedaRespuesto(String id) {
 
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Rueda_Respuesto.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(llantasneumaticos.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_RUEDA);
-        }
-    }
-    private void openCamaraAdicionalLlantas(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Llantas.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(llantasneumaticos.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_ADICIONAL);
-        }
-    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

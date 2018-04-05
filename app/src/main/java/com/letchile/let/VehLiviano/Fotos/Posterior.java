@@ -186,13 +186,12 @@ public class Posterior extends AppCompatActivity {
         btnFotoDanoE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showOptions(id_inspeccion);
+                funcionCamara(id_inspeccion,"_Foto_Dano_Posterior.jpg",PHOTO_CODE);
             }
         });
         btnPosteriorE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //showOptionsbtnPosteriorE(id_inspeccion);
 
                 //SOLO EN LA PRIMERA FOTO DE POSTERIOR
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -208,7 +207,7 @@ public class Posterior extends AppCompatActivity {
         });
         btnLogoLunetaE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {showOptionsBtnLogoLunetaE(id_inspeccion);
+            public void onClick(View v) {funcionCamara(id_inspeccion,"_Logo_Luneta_Posterior.jpg",TAKE_LUNETA);
             }
         });
 
@@ -219,7 +218,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 317).toString().equals("Ok")) {
-                        showOptionsCheckSensores(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Sensores_Posterior.jpg",TAKE_SENSORES);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),317,"");
@@ -234,7 +233,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 314).toString().equals("Ok")) {
-                        showOptionsCheckCamara(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Camara_Posterior.jpg",TAKE_CAMARA);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),314,"");
@@ -249,7 +248,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 273).toString().equals("Ok")) {
-                        showOptionsCheckCocoE(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Coco_Posterior.jpg",TAKE_COCO);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),273,"");
@@ -264,7 +263,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 275).toString().equals("Ok")) {
-                        showOptionsCheckMuelaE(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_muela.jpg",TAKE_MUELA);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),275,"");
@@ -279,7 +278,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 274).toString().equals("Ok")) {
-                        showOptionsCheckEnchufeRemolque(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Enchufe_Remolque_Posterior.jpg",TAKE_REMOLQUE);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),274,"");
@@ -297,7 +296,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 331).toString().equals("Ok")) {
-                        showOptionRefrigerado(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Refrigerada.jpg",TAKE_CREFRI);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),331,"");
@@ -313,7 +312,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 346).toString().equals("Ok")) {
-                        showOptionsEquipoFrio(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Equipo_Frio.jpg",TAKE_EQFRIO);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),346,"");
@@ -328,7 +327,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 305).toString().equals("Ok")) {
-                        showOptionCubrePickup(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Cubre_Pick_up.jpg",TAKE_CUBREPICK);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),305,"");
@@ -343,7 +342,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 307).toString().equals("Ok")) {
-                        showOptionTapaRigida(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Tapa_Rigida.jpg",TAKE_TAPARIGIDA);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),307,"");
@@ -358,7 +357,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 306).toString().equals("Ok")) {
-                        showOptionLonaCubrePickup(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Lona_cubre.jpg",TAKE_LONACUBRE);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),306,"");
@@ -373,7 +372,7 @@ public class Posterior extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 310).toString().equals("Ok")) {
-                        showOptionCajaHerramientas(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_caja_herramientas.jpg",TAKE_HERRAMIENTA);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),310,"");
@@ -386,7 +385,7 @@ public class Posterior extends AppCompatActivity {
         btnFotoAdiocionalE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showOptionsBtnAdicional(id_inspeccion);
+                funcionCamara(id_inspeccion,"_Foto_Adicional_Posterior.jpg",TAKE_ADICIONAL);
             }
         });
 
@@ -460,400 +459,8 @@ public class Posterior extends AppCompatActivity {
         });
     }
 
-    private void showOptions(String id_inspeccion){openCamera(id_inspeccion);}
-    private void showOptionsbtnPosteriorE(String id_inspeccion){openCamerabtnPosteriorE(id_inspeccion);}
-    private void showOptionsBtnLogoLunetaE(String id_inspeccion){openCameraBtnLogoLunetaE(id_inspeccion);}
-    private void showOptionsBtnAdicional(String id_inspeccion){openCameraBtnAdicional(id_inspeccion);}
-    private void showOptionsCheckSensores(String id_inspeccion){openCameraSensores(id_inspeccion);}
-    private void showOptionsCheckCamara(String id_inspeccion){openCameraCamaraPo(id_inspeccion);}
-    private void showOptionsCheckCocoE(String id_inspeccion){openCameraCocoE(id_inspeccion);}
-    private void showOptionsCheckMuelaE(String id_inspeccion){openCameraMuelaE(id_inspeccion);}
-    private void showOptionsCheckEnchufeRemolque(String id_inspeccion){openCameraEnchufeRemolque(id_inspeccion);}
-
-    private void openCamera(String id) {
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Dano_Posterior.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, PHOTO_CODE);
-        }
-    }
-    private void openCamerabtnPosteriorE(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Posterior.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_POSTERIOR);
-        }
-    }
-    private void openCameraBtnLogoLunetaE(String id) {
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Logo_Luneta_Posterior.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_LUNETA);
-        }
-    }
-    private void openCameraBtnAdicional(String id)  {
-
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Posterior.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_ADICIONAL);
-        }
-    }
-    private void openCameraSensores(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Sensores_Posterior.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_SENSORES);
-        }
-    }
-    private void openCameraCamaraPo(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Camara_Posterior.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_CAMARA);
-        }
-    }
-    private void openCameraCocoE(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Coco_Posterior.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_COCO);
-        }
-    }
-    private void openCameraMuelaE(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_muela.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_MUELA);
-        }
-    }
-    private void openCameraEnchufeRemolque(String  id)    {
-        String id_inspeccion = id;
-        ruta_sd =Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated){
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Enchufe_Remolque_Posterior.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_REMOLQUE);
-        }
-    }
-
-
-    //accesorios faltantes
-    private void showOptionsEquipoFrio(String id_inspeccion){openCameraEquipoFrio(id_inspeccion);}
-    private void openCameraEquipoFrio(String id){
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Equipo_Frio.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_EQFRIO);
-        }
-    }
-    private void showOptionRefrigerado(String id_inspeccion){openCameraRefrigerada(id_inspeccion);}
-    private void openCameraRefrigerada(String id){
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Refrigerada.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_CREFRI);
-        }
-    }
-    private void showOptionCubrePickup(String id_inspeccion){openCameraCubrePickup(id_inspeccion);}
-    private void openCameraCubrePickup(String id){
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Cubre_Pick_up.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_CUBREPICK);
-        }
-    }
-    private void showOptionTapaRigida(String id_inspeccion){openCameraTapaRigida(id_inspeccion);}
-    private void openCameraTapaRigida(String id){
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Tapa_Rigida.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_TAPARIGIDA);
-        }
-    }
-
-    private void showOptionLonaCubrePickup(String id_inspeccion){openCameraLonaCubrepickup(id_inspeccion);}
-    private void openCameraLonaCubrepickup(String id){
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Lona_cubre.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_LONACUBRE);
-        }
-    }
-
-    private void showOptionCajaHerramientas(String id_inspeccion){openCameraCajaHerramientas(id_inspeccion);}
-    private void openCameraCajaHerramientas(String id){
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if(!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if(isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_caja_herramientas.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Posterior.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            startActivityForResult(intent, TAKE_HERRAMIENTA);
-        }
-    }
-
-
-
-    public void funcionCamara(String id,String nombre_foto,int CodigoFoto){
+   ///FUNCIÓN ABRE LA CAMARA Y TOMA LAS FOTOGRAFIAS
+   public void funcionCamara(String id,String nombre_foto,int CodigoFoto){
         String id_inspeccion = id;
         ruta_sd = Environment.getExternalStorageDirectory();
         File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
