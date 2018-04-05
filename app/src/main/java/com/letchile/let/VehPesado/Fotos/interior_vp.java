@@ -82,26 +82,9 @@ public class interior_vp extends AppCompatActivity {
         btnFotoPosterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ruta_sd = Environment.getExternalStorageDirectory();
-                File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-                boolean isDirectoryCreated = file.exists();
 
-                if(!isDirectoryCreated)
-                    isDirectoryCreated = file.mkdirs();
+                funcionCamara(id_inspeccion,"_Foto_Panel_ext_VP.jpg",TAKE_POSTERIOR);
 
-                if(isDirectoryCreated){
-
-                    correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-                    nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Panel_ext_VP.jpg";
-
-                    ruta = file.toString() +"/" +nombreimagen;
-                    mPath =  ruta ;
-                    File newFile = new File(mPath);
-
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(interior_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
-                    startActivityForResult(intent,TAKE_POSTERIOR);
-                }
             }
         });
         //endregion
@@ -110,26 +93,9 @@ public class interior_vp extends AppCompatActivity {
         btnFotoPosterior2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ruta_sd = Environment.getExternalStorageDirectory();
-                File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-                boolean isDirectoryCreated = file.exists();
 
-                if(!isDirectoryCreated)
-                    isDirectoryCreated = file.mkdirs();
+                funcionCamara(id_inspeccion,"_Foto_panel_int_VP.jpg",TAKE_POSTERIOR2);
 
-                if(isDirectoryCreated){
-
-                    correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-                    nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_panel_int_VP.jpg";
-
-                    ruta = file.toString() +"/" +nombreimagen;
-                    mPath =  ruta ;
-                    File newFile = new File(mPath);
-
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(interior_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
-                    startActivityForResult(intent,TAKE_POSTERIOR2);
-                }
             }
         });
         //endregion
@@ -138,26 +104,9 @@ public class interior_vp extends AppCompatActivity {
         btnFotoPosterior3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ruta_sd = Environment.getExternalStorageDirectory();
-                File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-                boolean isDirectoryCreated = file.exists();
 
-                if(!isDirectoryCreated)
-                    isDirectoryCreated = file.mkdirs();
+                funcionCamara(id_inspeccion,"_Foto_Radio_VP.jpg",TAKE_POSTERIOR3);
 
-                if(isDirectoryCreated){
-
-                    correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-                    nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Radio_VP.jpg";
-
-                    ruta = file.toString() +"/" +nombreimagen;
-                    mPath =  ruta ;
-                    File newFile = new File(mPath);
-
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(interior_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
-                    startActivityForResult(intent,TAKE_POSTERIOR3);
-                }
             }
         });
         //endregion
@@ -166,26 +115,9 @@ public class interior_vp extends AppCompatActivity {
         btnFotoAdicionalPosterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ruta_sd = Environment.getExternalStorageDirectory();
-                File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-                boolean isDirectoryCreated = file.exists();
 
-                if(!isDirectoryCreated)
-                    isDirectoryCreated = file.mkdirs();
+                funcionCamara(id_inspeccion,"_Foto_Kilometraje_VP.jpg",TAKE_ADDPOVP);
 
-                if(isDirectoryCreated){
-
-                    correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-                    nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Kilometraje_VP.jpg";
-
-                    ruta = file.toString() +"/" +nombreimagen;
-                    mPath =  ruta ;
-                    File newFile = new File(mPath);
-
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(interior_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
-                    startActivityForResult(intent,TAKE_ADDPOVP);
-                }
             }
         });
         //endregion
@@ -194,26 +126,9 @@ public class interior_vp extends AppCompatActivity {
         btnFotoAdicionalPosterior2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ruta_sd = Environment.getExternalStorageDirectory();
-                File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-                boolean isDirectoryCreated = file.exists();
 
-                if(!isDirectoryCreated)
-                    isDirectoryCreated = file.mkdirs();
+                funcionCamara(id_inspeccion,"_Foto_Adicional_Interior_VP.jpg",TAKE_ADDPOVP2);
 
-                if(isDirectoryCreated){
-
-                    correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-                    nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Interior_VP.jpg";
-
-                    ruta = file.toString() +"/" +nombreimagen;
-                    mPath =  ruta ;
-                    File newFile = new File(mPath);
-
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(interior_vp.this, BuildConfig.APPLICATION_ID+".provider",newFile));
-                    startActivityForResult(intent,TAKE_ADDPOVP2);
-                }
             }
         });
         //endregion
@@ -225,31 +140,40 @@ public class interior_vp extends AppCompatActivity {
                 if(edtDescripcionDañoPvp.length()<=0){
                     Toast.makeText(interior_vp.this,"Debe ingresar la descripción del daño",Toast.LENGTH_SHORT).show();
                 }else {
-                    ruta_sd = Environment.getExternalStorageDirectory();
-                    File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-                    boolean isDirectoryCreated = file.exists();
 
-                    if (!isDirectoryCreated)
-                        isDirectoryCreated = file.mkdirs();
+                    funcionCamara(id_inspeccion,"_Foto_Ddano_Interior_VP.jpg",TAKE_DANOPVP);
 
-                    if (isDirectoryCreated) {
-
-                        correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-                        nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + "_Foto_Ddano_Interior_VP.jpg";
-
-                        ruta = file.toString() +"/" +nombreimagen;
-                        mPath =  ruta ;
-                        File newFile = new File(mPath);
-
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(interior_vp.this, BuildConfig.APPLICATION_ID + ".provider", newFile));
-                        startActivityForResult(intent, TAKE_DANOPVP);
-                    }
                 }
             }
         });
         //endregion
 
+    }
+
+    public void funcionCamara(String id,String nombre_foto,int CodigoFoto) {
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if (!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if (isDirectoryCreated) {
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + nombre_foto;
+
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(interior_vp.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, CodigoFoto);
+        }
     }
 
     @Override

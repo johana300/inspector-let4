@@ -53,14 +53,14 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
     private File ruta_sdV;
     private String rutaV = "";
-    Spinner tipoVehVp,region,comuna;;
+    Spinner tipoVehVp,region,comuna, comboRegion,comboComuna;
     PropiedadesFoto fotoV;
     Boolean connec = false;
     ImageView imagenComproV;
     Button btnFotocomprobanteV;
     EditText entrevistado;
     private String mPathV;
-    String nombreimagenV = "",imagenComprobanteV;
+    String nombreimagenV = "",imagenComprobanteV,id_inspeccion;
     private final int PHOTO_COMPROBANTEV = 250;
     Context contextoV = this;
     int correlativo;
@@ -80,28 +80,28 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
         //Traspaso de datos
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion=bundle.getString("id_inspeccion");
+        id_inspeccion=bundle.getString("id_inspeccion");
 
         imagenComproV = findViewById(R.id.imagenComproV);
 
         //direccion inspeccion
-        dirIns = (EditText)findViewById(R.id.dirIns);
+        dirIns = findViewById(R.id.dirIns);
         dirIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),733));
 
         //fecha inspeccion
-        fechaInsp = (EditText)findViewById(R.id.fechaInsp);
+        fechaInsp = findViewById(R.id.fechaInsp);
         fechaInsp.setText(db.accesorio(Integer.parseInt(id_inspeccion),737));
 
         //hora inspeccion
-        horaInsp = (EditText)findViewById(R.id.horaInsp);
+        horaInsp = findViewById(R.id.horaInsp);
         horaInsp.setText(db.accesorio(Integer.parseInt(id_inspeccion),738));
 
         //entrevistado
-        entrevistado = (EditText)findViewById(R.id.entrevistado);
+        entrevistado = findViewById(R.id.entrevistado);
         entrevistado.setText(db.accesorio(Integer.parseInt(id_inspeccion),755));
 
         // cargar un combo inspeccion por
-        tipoVehVp = (Spinner)findViewById(R.id.tipo_veh_vp);
+        tipoVehVp = findViewById(R.id.tipo_veh_vp);
         String[] arraytipo = getResources().getStringArray(R.array.insp);
         final List<String> arraytipolist = Arrays.asList(arraytipo);
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.insp , android.R.layout.simple_spinner_item);
@@ -112,7 +112,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
         //region
         //String regionInicial[][]=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),359).toString());
         String listaRegiones[][]=db.listaRegiones();
-        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVep);
+        comboRegion = findViewById(R.id.comboRegVep);
         String[] arraySpinner = new String[listaRegiones.length+1];
         arraySpinner[0]="Seleccione";
         for(int i=0;i<listaRegiones.length;i++)        {
@@ -123,7 +123,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
         comboRegion.setAdapter(adapterRegion);
 
 
-        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComVpJg);
+        comboComuna = findViewById(R.id.comboComVpJg);
         comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -150,7 +150,7 @@ public class DatosInspVpActivity extends AppCompatActivity {
         });
 
         //FOOTER
-        btnFotocomprobanteV = (Button)findViewById(R.id.fotoComprobanteV);
+        btnFotocomprobanteV = findViewById(R.id.fotoComprobanteV);
         btnFotocomprobanteV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {openCamaraComprobanteV(Integer.parseInt(id_inspeccion));}
@@ -170,72 +170,10 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
 
         //Botón volver de sección
-        final Button btnSigInspJg = (Button)findViewById(R.id.btnSigInspJg);
+        final Button btnSigInspJg = findViewById(R.id.btnSigInspJg);
         btnSigInspJg.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-                try{
-
-                    JSONObject valorNuevo = new JSONObject();
-                    valorNuevo.put("valor_id",364);
-                    valorNuevo.put("texto",tipoVehVp.getSelectedItem().toString());
-
-                    JSONObject valor93 = new JSONObject();
-                    valor93.put("valor_id",733);
-                    valor93.put("texto",dirIns.getText().toString());
-
-                    JSONObject valor94 = new JSONObject();
-                    valor94.put("valor_id",737);
-                    valor94.put("texto",fechaInsp.getText().toString());
-
-                    JSONObject valor95 = new JSONObject();
-                    valor95.put("valor_id",738);
-                    valor95.put("texto",horaInsp.getText().toString());
-
-                    JSONObject valor96 = new JSONObject();
-                    valor96.put("valor_id",755);
-                    valor96.put("texto",entrevistado.getText().toString());
-
-                    JSONObject valor97 = new JSONObject();
-                    valor97.put("valor_id",364);
-                    valor97.put("texto",tipoVehVp.getSelectedItem().toString());
-
-                    JSONObject datosValorVpCo = new JSONObject();
-                    datosValorVpCo.put("valor_id",736);
-                    datosValorVpCo.put("texto",comboComuna.getSelectedItem().toString());
-
-
-                    JSONArray jsonArray = new JSONArray();
-                    jsonArray.put(valorNuevo);
-                    jsonArray.put(valor93);
-                    jsonArray.put(valor94);
-                    jsonArray.put(valor95);
-                    jsonArray.put(valor96);
-                    jsonArray.put(valor97);
-                    jsonArray.put(datosValorVpCo);
-
-
-                    JSONObject llenado;
-                    if (!jsonArray.isNull(0)) {
-                        for(int i=0;i<jsonArray.length();i++){
-                            llenado = new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-
-                        }
-                    }
-
-
-
-
-
-                }catch (Exception e)
-                {
-
-                    Toast.makeText(DatosInspVpActivity.this, "", Toast.LENGTH_SHORT);
-                }
-
-
 
                 if (comboComuna.getSelectedItem().toString().equals("Seleccione...")) {
 
@@ -246,24 +184,23 @@ public class DatosInspVpActivity extends AppCompatActivity {
                     if(imagenComproV.getVisibility()==View.GONE){
                         Toast.makeText(DatosInspVpActivity.this,"Debe tomar la foto de comprobante",Toast.LENGTH_SHORT).show();
                     }else{
+                        guardarDatos();
                         Intent intent = new Intent( DatosInspVpActivity.this, ObsVpActivity.class);
                         intent.putExtra("id_inspeccion",id_inspeccion);
                         startActivity(intent);
                     }
                 }
-
-
             }
         });
 
 
 
         //Botón volver de secciones
-        final Button btnVolverInspVpJg = (Button)findViewById(R.id.btnVolverInspVpJg);
+        final Button btnVolverInspVpJg = findViewById(R.id.btnVolverInspVpJg);
         btnVolverInspVpJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                guardarDatos();
                 Intent intent = new Intent( DatosInspVpActivity.this, DatosAsegVpActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -272,6 +209,67 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
 
     }
+
+
+
+    public void guardarDatos(){
+        try{
+
+            JSONObject valorNuevo = new JSONObject();
+            valorNuevo.put("valor_id",364);
+            valorNuevo.put("texto",tipoVehVp.getSelectedItem().toString());
+
+            JSONObject valor93 = new JSONObject();
+            valor93.put("valor_id",733);
+            valor93.put("texto",dirIns.getText().toString());
+
+            JSONObject valor94 = new JSONObject();
+            valor94.put("valor_id",737);
+            valor94.put("texto",fechaInsp.getText().toString());
+
+            JSONObject valor95 = new JSONObject();
+            valor95.put("valor_id",738);
+            valor95.put("texto",horaInsp.getText().toString());
+
+            JSONObject valor96 = new JSONObject();
+            valor96.put("valor_id",755);
+            valor96.put("texto",entrevistado.getText().toString());
+
+            JSONObject valor97 = new JSONObject();
+            valor97.put("valor_id",364);
+            valor97.put("texto",tipoVehVp.getSelectedItem().toString());
+
+            JSONObject datosValorVpCo = new JSONObject();
+            datosValorVpCo.put("valor_id",736);
+            datosValorVpCo.put("texto",comboComuna.getSelectedItem().toString());
+
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(valorNuevo);
+            jsonArray.put(valor93);
+            jsonArray.put(valor94);
+            jsonArray.put(valor95);
+            jsonArray.put(valor96);
+            jsonArray.put(valor97);
+            jsonArray.put(datosValorVpCo);
+
+
+            JSONObject llenado;
+            if (!jsonArray.isNull(0)) {
+                for(int i=0;i<jsonArray.length();i++){
+                    llenado = new JSONObject(jsonArray.getString(i));
+                    db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+
+                }
+            }
+        }catch (Exception e)
+        {
+
+            Toast.makeText(DatosInspVpActivity.this, "", Toast.LENGTH_SHORT);
+        }
+    }
+
+
 
 
     private void openCamaraComprobanteV(int id_inspeccion){

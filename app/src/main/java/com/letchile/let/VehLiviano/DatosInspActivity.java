@@ -74,6 +74,7 @@ public class DatosInspActivity extends AppCompatActivity {
     String nombreimagen = "", imagenComprobante;
     JSONObject llenado;
     int correlativo = 0;
+    String id_inspeccion;
 
 
     public DatosInspActivity(){db = new DBprovider(this);foto = new PropiedadesFoto(this);};
@@ -87,7 +88,7 @@ public class DatosInspActivity extends AppCompatActivity {
 
         //Traspaso de datos
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion=bundle.getString("id_inspeccion");
+        id_inspeccion=bundle.getString("id_inspeccion");
 
 
         //FOTO
@@ -179,76 +180,16 @@ public class DatosInspActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                try {
-                    //LLENO EL JSON
-
-                    JSONObject datosValorIns = new JSONObject();
-                    datosValorIns.put("valor_id",1);
-                    datosValorIns.put("texto",spinnerInsp.getSelectedItem().toString());
-
-                    JSONObject datosValorA = new JSONObject();
-                    datosValorA.put("valor_id",358);
-                    datosValorA.put("texto",direccionIns.getText().toString());
-
-                    JSONObject datosValorB = new JSONObject();
-                    datosValorB.put("valor_id",360);
-                    datosValorB.put("texto",fechaIns.getText().toString());
-
-                    JSONObject datosValorC = new JSONObject();
-                    datosValorC.put("valor_id",361);
-                    datosValorC.put("texto",horaIns.getText().toString());
-
-                    JSONObject datosValorD = new JSONObject();
-                    datosValorD.put("valor_id",755);
-                    datosValorD.put("texto",entrevistado.getText().toString());
-
-                    JSONObject datosValorCo = new JSONObject();
-                    datosValorCo.put("valor_id",359);
-                    datosValorCo.put("texto",comuna.getSelectedItem().toString());
-
-                    JSONArray jsonArray = new JSONArray();
-
-                    jsonArray.put(datosValorIns);
-                    jsonArray.put(datosValorA);
-                    jsonArray.put(datosValorB);
-                    jsonArray.put(datosValorC);
-                    jsonArray.put(datosValorD);
-                    jsonArray.put(datosValorCo);
-
-
-                    //PREGUNTO SI ES NULO PARA INSERTAR LOS DATOS
-
-                    if (!jsonArray.isNull(0)) {
-                        for(int i=0;i<jsonArray.length();i++){
-                            llenado= new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                            //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                        }
-                    }
-
-
-                }catch (Exception e)
-                {
-                    Toast.makeText(DatosInspActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
-                }
 
                 if(imagenCompro.getVisibility()==View.GONE){
                     Toast.makeText(DatosInspActivity.this,"Falta la foto de comprobante",Toast.LENGTH_SHORT).show();
                 }else{
+                    guardarDatos();
                     Intent intent = new Intent(DatosInspActivity.this, ObsActivity.class);
                     intent.putExtra("id_inspeccion", id_inspeccion);
                     startActivity(intent);
                 }
 
-
-
-                /*if(imagenComprobante.length()<=3) {
-                    Toast.makeText(DatosInspActivity.this,"Debe tomar la foto de comprobante para continuar",Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent = new Intent(DatosInspActivity.this, ObsActivity.class);
-                    intent.putExtra("id_inspeccion", id_inspeccion);
-                    startActivity(intent);
-                }*/
             }
         });
 
@@ -257,7 +198,7 @@ public class DatosInspActivity extends AppCompatActivity {
         btnPenInspJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                guardarDatos();
                 Intent intent = new Intent( DatosInspActivity.this, InsPendientesActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -269,7 +210,7 @@ public class DatosInspActivity extends AppCompatActivity {
         btnVolverInspJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                guardarDatos();
                 Intent intent = new Intent( DatosInspActivity.this, TechoActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -278,6 +219,60 @@ public class DatosInspActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void guardarDatos(){
+        try {
+            //LLENO EL JSON
+
+            JSONObject datosValorIns = new JSONObject();
+            datosValorIns.put("valor_id",1);
+            datosValorIns.put("texto",spinnerInsp.getSelectedItem().toString());
+
+            JSONObject datosValorA = new JSONObject();
+            datosValorA.put("valor_id",358);
+            datosValorA.put("texto",direccionIns.getText().toString());
+
+            JSONObject datosValorB = new JSONObject();
+            datosValorB.put("valor_id",360);
+            datosValorB.put("texto",fechaIns.getText().toString());
+
+            JSONObject datosValorC = new JSONObject();
+            datosValorC.put("valor_id",361);
+            datosValorC.put("texto",horaIns.getText().toString());
+
+            JSONObject datosValorD = new JSONObject();
+            datosValorD.put("valor_id",755);
+            datosValorD.put("texto",entrevistado.getText().toString());
+
+            JSONObject datosValorCo = new JSONObject();
+            datosValorCo.put("valor_id",359);
+            datosValorCo.put("texto",comuna.getSelectedItem().toString());
+
+            JSONArray jsonArray = new JSONArray();
+
+            jsonArray.put(datosValorIns);
+            jsonArray.put(datosValorA);
+            jsonArray.put(datosValorB);
+            jsonArray.put(datosValorC);
+            jsonArray.put(datosValorD);
+            jsonArray.put(datosValorCo);
+
+
+            //PREGUNTO SI ES NULO PARA INSERTAR LOS DATOS
+
+            if (!jsonArray.isNull(0)) {
+                for(int i=0;i<jsonArray.length();i++){
+                    llenado= new JSONObject(jsonArray.getString(i));
+                    db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                    //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                }
+            }
+
+        }catch (Exception e)
+        {
+            Toast.makeText(DatosInspActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
+        }
     }
 
     private void openCamaraComprobante(int id_inspeccion){
@@ -336,7 +331,6 @@ public class DatosInspActivity extends AppCompatActivity {
             servis.putExtra("comentario","Foto Comprobante");
             servis.putExtra("id_inspeccion",id_inspeccion);
             startService(servis);
-
         }
     }
 

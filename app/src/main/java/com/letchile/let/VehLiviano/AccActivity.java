@@ -39,6 +39,7 @@ public class AccActivity extends AppCompatActivity {
             checkCints,checkFrenos,checkAirgs="",checkCapotas,checkBels,checkMolds,checkFals;
     Spinner tipoRueda,ubiRueda,ubicAnti;
 
+    String id_inspeccion;
 
     JSONObject llenado;
     Validaciones validaciones;
@@ -56,7 +57,7 @@ public class AccActivity extends AppCompatActivity {
         setContentView(R.layout.activity_acc);
 
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion = bundle.getString("id_inspeccion");
+        id_inspeccion = bundle.getString("id_inspeccion");
 
         //check faldones
         checkFal = findViewById(R.id.checkFal);
@@ -634,24 +635,24 @@ public class AccActivity extends AppCompatActivity {
         });
 
         //kilometraje
-        kilometraje = (EditText)findViewById(R.id.Ekilometraje);
+        kilometraje = findViewById(R.id.Ekilometraje);
         kilometraje.setText(db.accesorio(Integer.parseInt(id_inspeccion),296).toString());
 
         //Marca Alarma
-        alarma = (EditText)findViewById(R.id.EAlarma);
+        alarma = findViewById(R.id.EAlarma);
         alarma.setText(db.accesorio(Integer.parseInt(id_inspeccion),552).toString());
 
         //Cantidad de airbag  282--cantAirb
-        cAirb = (EditText)findViewById(R.id.cantAirb);
+        cAirb = findViewById(R.id.cantAirb);
         cAirb.setText(db.accesorio(Integer.parseInt(id_inspeccion),282).toString());
 
         //marca cúpula
-        cupula = (EditText)findViewById(R.id.mCupula);
+        cupula = findViewById(R.id.mCupula);
         cupula.setText(db.accesorio(Integer.parseInt(id_inspeccion),762).toString());
 
 
         // cargar un combo tipo rueda repuesto
-        tipoRueda = (Spinner)findViewById(R.id.tipoRueda);
+        tipoRueda = findViewById(R.id.tipoRueda);
         String[] arraytipo = getResources().getStringArray(R.array.tipo_rueda);
         final List<String> arraytipolist = Arrays.asList(arraytipo);
         ArrayAdapter<String> spinner_adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arraytipolist);
@@ -660,7 +661,7 @@ public class AccActivity extends AppCompatActivity {
         tipoRueda.setSelection(arraytipolist.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),753).toString()));
 
         // cargar un combo ubicacion rueda repuesto
-        ubiRueda = (Spinner)findViewById(R.id.ubiRueda);
+        ubiRueda = findViewById(R.id.ubiRueda);
         String[] arraytipo2 = getResources().getStringArray(R.array.ubicacion_rueda);
         final List<String> arraytipolist2 = Arrays.asList(arraytipo2);
         ArrayAdapter<String> spinner_adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arraytipolist2);
@@ -669,7 +670,7 @@ public class AccActivity extends AppCompatActivity {
         ubiRueda.setSelection(arraytipolist2.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),290).toString()));
 
         // cargar un combo ubicacion barra antivuelco
-        ubicAnti = (Spinner)findViewById(R.id.ubicAnti);
+        ubicAnti = findViewById(R.id.ubicAnti);
         String[] arraytipo3 = getResources().getStringArray(R.array.ubic_anti);
         final List<String> arraytipolist3 = Arrays.asList(arraytipo3);
         ArrayAdapter<String> spinner_adapter3 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arraytipolist3);
@@ -678,226 +679,12 @@ public class AccActivity extends AppCompatActivity {
         ubicAnti.setSelection(arraytipolist3.lastIndexOf(db.accesorio(Integer.parseInt(id_inspeccion),312).toString()));
 
 
-
-
-
-
-
         //Botón guardar siguiente de sección accesorio
-        final Button btnSigAccJg = (Button)findViewById(R.id.btnSigAccJg);
+        final Button btnSigAccJg = findViewById(R.id.btnSigAccJg);
         btnSigAccJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                try{
-
-                    //edit text
-                    //kilometraje
-                    JSONObject valor63 = new JSONObject();
-                    valor63.put("valor_id",296);
-                    valor63.put("texto",kilometraje.getText().toString());
-
-                    //Marca alarma
-                    JSONObject valor64 = new JSONObject();
-                    valor64.put("valor_id",552);
-                    valor64.put("texto",alarma.getText().toString());
-
-                    //cantidad de airbag
-                    JSONObject valor65 = new JSONObject();
-                    valor65.put("valor_id",282);
-                    valor65.put("texto",cAirb.getText().toString());
-
-                    //marca cupula
-                    JSONObject valor66 = new JSONObject();
-                    valor66.put("valor_id",762);
-                    valor66.put("texto",cupula.getText().toString());
-
-                    JSONObject valor75 = new JSONObject();
-                    valor75.put("valor_id",753);
-                    valor75.put("texto",tipoRueda.getSelectedItem().toString());
-
-                    JSONObject valor76 = new JSONObject();
-                    valor76.put("valor_id",290);
-                    valor76.put("texto",ubiRueda.getSelectedItem().toString());
-
-                    JSONObject valor77 = new JSONObject();
-                    valor77.put("valor_id",312);
-                    valor77.put("texto",ubicAnti.getSelectedItem().toString());
-
-                    JSONObject valor78 = new JSONObject();
-                    valor78.put("valor_id",319);
-                    valor78.put("texto",ChekcSetHerrs);
-
-                    JSONObject valor79 = new JSONObject();
-                    valor79.put(getString(R.string.valor_id),320);
-                    valor79.put(getString(R.string.texto),CheckLlaveRuedas);
-
-                    JSONObject valor80 = new JSONObject();
-                    valor80.put(getString(R.string.valor_id),321);
-                    valor80.put(getString(R.string.texto),CheckGatas);
-
-                    JSONObject valor81 = new JSONObject();
-                    valor81.put(getString(R.string.valor_id),483);
-                    valor81.put(getString(R.string.texto),CheckExtints);
-
-                    JSONObject valor82 = new JSONObject();
-                    valor82.put(getString(R.string.valor_id),285);
-                    valor82.put(getString(R.string.texto),checkSpoS);
-
-                    JSONObject valor83 = new JSONObject();
-                    valor83.put(getString(R.string.valor_id),270);
-                    valor83.put(getString(R.string.texto),checkAlerons);
-
-                    JSONObject valor84 = new JSONObject();
-                    valor84.put(getString(R.string.valor_id),269);
-                    valor84.put(getString(R.string.texto),checkLimLus);
-
-                    JSONObject valor85 = new JSONObject();
-                    valor85.put(getString(R.string.valor_id),261);
-                    valor85.put(getString(R.string.texto),checkLogo1s);
-
-                    JSONObject valor86 = new JSONObject();
-                    valor86.put(getString(R.string.valor_id),322);
-                    valor86.put(getString(R.string.texto),checkCubres);
-
-                    JSONObject valor87 = new JSONObject();
-                    valor87.put(getString(R.string.valor_id),289);
-                    valor87.put(getString(R.string.texto),checkRuresps);
-
-                    JSONObject valor88 = new JSONObject();
-                    valor88.put(getString(R.string.valor_id),814);
-                    valor88.put(getString(R.string.texto),checkFaltantes);
-
-                    JSONObject valor89 = new JSONObject();
-                    valor89.put(getString(R.string.valor_id),311);
-                    valor89.put(getString(R.string.texto),checkBAnts);
-
-                    JSONObject valor90 = new JSONObject();
-                    valor90.put(getString(R.string.valor_id),308);
-                    valor90.put(getString(R.string.texto),checkBAnts);
-
-                    JSONObject valor91 = new JSONObject();
-                    valor91.put(getString(R.string.valor_id),801);
-                    valor91.put(getString(R.string.texto),checkBalizas);
-
-                    JSONObject valor92 = new JSONObject();
-                    valor92.put(getString(R.string.valor_id),329);
-                    valor92.put(getString(R.string.texto),checkCupulas);
-
-                    JSONObject valor93 = new JSONObject();
-                    valor93.put(getString(R.string.valor_id),310);
-                    valor93.put(getString(R.string.texto),checkCajaHs);
-
-                    JSONObject valor94 = new JSONObject();
-                    valor94.put(getString(R.string.valor_id),277);
-                    valor94.put(getString(R.string.texto),checkAcs);
-
-                    JSONObject valor95 = new JSONObject();
-                    valor95.put(getString(R.string.valor_id),340);
-                    valor95.put(getString(R.string.texto),checkClims);
-
-                    JSONObject valor96 = new JSONObject();
-                    valor96.put(getString(R.string.valor_id),279);
-                    valor96.put(getString(R.string.texto),checkAlrs);
-
-                    JSONObject valor97 = new JSONObject();
-                    valor97.put(getString(R.string.valor_id),292);
-                    valor97.put(getString(R.string.texto),checkCierreCs);
-
-                    JSONObject valor98 = new JSONObject();
-                    valor98.put(getString(R.string.valor_id),324);
-                    valor98.put(getString(R.string.texto),checkCints);
-
-                    JSONObject valor99 = new JSONObject();
-                    valor99.put(getString(R.string.valor_id),318);
-                    valor99.put(getString(R.string.texto),checkFrenos);
-
-                    JSONObject valor100 = new JSONObject();
-                    valor100.put(getString(R.string.valor_id),281);
-                    valor100.put(getString(R.string.texto),checkAirgs);
-
-                    Log.e("pase json ", getString(R.string.valor_id));
-
-
-                    JSONObject valor101 = new JSONObject();
-                    valor101.put(getString(R.string.valor_id),343);
-                    valor101.put(getString(R.string.texto),checkCapotas);
-
-                   /* JSONObject valor102 = new JSONObject();
-                    valor102.put(getString(R.string.valor_id),336);
-                    valor102.put(getString(R.string.texto),checkBels);*/
-
-                    JSONObject valor103 = new JSONObject();
-                    valor103.put(getString(R.string.valor_id),283);
-                    valor103.put(getString(R.string.texto),checkMolds);
-
-                    JSONObject valor104 = new JSONObject();
-                    valor104.put(getString(R.string.valor_id),259);
-                    valor104.put(getString(R.string.texto),checkFals);
-
-                    //UNIR TODOS LOS ACCESORIOS EN UN JSONARRAY
-                    JSONArray jsonArray = new JSONArray();
-                    jsonArray.put(valor104);
-                    jsonArray.put(valor103);
-                    jsonArray.put(valor101);
-                    // jsonArray.put(valor102);
-
-                    jsonArray.put(valor100);
-                    jsonArray.put(valor99);
-                    jsonArray.put(valor98);
-                    jsonArray.put(valor97);
-                    jsonArray.put(valor96);
-                    jsonArray.put(valor95);
-                    jsonArray.put(valor94);
-                    jsonArray.put(valor93);
-                    jsonArray.put(valor92);
-                    jsonArray.put(valor91);
-                    jsonArray.put(valor90);
-                    jsonArray.put(valor89);
-                    jsonArray.put(valor88);
-                    jsonArray.put(valor87);
-                    jsonArray.put(valor86);
-                    jsonArray.put(valor85);
-                    jsonArray.put(valor84);
-                    jsonArray.put(valor83);
-                    jsonArray.put(valor82);
-                    jsonArray.put(valor81);
-                    jsonArray.put(valor80);
-                    jsonArray.put(valor79);
-                    jsonArray.put(valor78);
-                    jsonArray.put(valor63);
-                    jsonArray.put(valor64);
-                    jsonArray.put(valor65);
-                    jsonArray.put(valor66);
-                    jsonArray.put(valor75);
-                    jsonArray.put(valor76);
-                    jsonArray.put(valor77);
-
-
-                    Log.e("largo json ", Integer.toString(jsonArray.length()));
-                    if (!jsonArray.isNull(0)) {
-                        for(int i=0;i<jsonArray.length();i++){
-
-                            Log.e("valor ii ", Integer.toString(i));
-                            llenado = new JSONObject(jsonArray.getString(i));
-                            Log.e("valor json ", jsonArray.getString(i));
-
-                            Log.e("INSERTA EN  CODIGO ", llenado.getString("valor_id"));
-
-
-                            db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-                            //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
-
-
-                        }
-                    }
-
-                }catch (Exception e)
-                {
-                    Toast.makeText(AccActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
-                }
-
-
+                guardarDatos();
                 Intent intent = new Intent( AccActivity.this, AudioActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -909,8 +696,7 @@ public class AccActivity extends AppCompatActivity {
         btnVolverAccJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                guardarDatos();
                 Intent intent = new Intent( AccActivity.this, DatosVehActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
@@ -922,14 +708,222 @@ public class AccActivity extends AppCompatActivity {
         btnPenAccJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                guardarDatos();
                 Intent intent = new Intent( AccActivity.this, InsPendientesActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void guardarDatos(){
+        try{
+
+            //edit text
+            //kilometraje
+            JSONObject valor63 = new JSONObject();
+            valor63.put("valor_id",296);
+            valor63.put("texto",kilometraje.getText().toString());
+
+            //Marca alarma
+            JSONObject valor64 = new JSONObject();
+            valor64.put("valor_id",552);
+            valor64.put("texto",alarma.getText().toString());
+
+            //cantidad de airbag
+            JSONObject valor65 = new JSONObject();
+            valor65.put("valor_id",282);
+            valor65.put("texto",cAirb.getText().toString());
+
+            //marca cupula
+            JSONObject valor66 = new JSONObject();
+            valor66.put("valor_id",762);
+            valor66.put("texto",cupula.getText().toString());
+
+            JSONObject valor75 = new JSONObject();
+            valor75.put("valor_id",753);
+            valor75.put("texto",tipoRueda.getSelectedItem().toString());
+
+            JSONObject valor76 = new JSONObject();
+            valor76.put("valor_id",290);
+            valor76.put("texto",ubiRueda.getSelectedItem().toString());
+
+            JSONObject valor77 = new JSONObject();
+            valor77.put("valor_id",312);
+            valor77.put("texto",ubicAnti.getSelectedItem().toString());
+
+            JSONObject valor78 = new JSONObject();
+            valor78.put("valor_id",319);
+            valor78.put("texto",ChekcSetHerrs);
+
+            JSONObject valor79 = new JSONObject();
+            valor79.put(getString(R.string.valor_id),320);
+            valor79.put(getString(R.string.texto),CheckLlaveRuedas);
+
+            JSONObject valor80 = new JSONObject();
+            valor80.put(getString(R.string.valor_id),321);
+            valor80.put(getString(R.string.texto),CheckGatas);
+
+            JSONObject valor81 = new JSONObject();
+            valor81.put(getString(R.string.valor_id),483);
+            valor81.put(getString(R.string.texto),CheckExtints);
+
+            JSONObject valor82 = new JSONObject();
+            valor82.put(getString(R.string.valor_id),285);
+            valor82.put(getString(R.string.texto),checkSpoS);
+
+            JSONObject valor83 = new JSONObject();
+            valor83.put(getString(R.string.valor_id),270);
+            valor83.put(getString(R.string.texto),checkAlerons);
+
+            JSONObject valor84 = new JSONObject();
+            valor84.put(getString(R.string.valor_id),269);
+            valor84.put(getString(R.string.texto),checkLimLus);
+
+            JSONObject valor85 = new JSONObject();
+            valor85.put(getString(R.string.valor_id),261);
+            valor85.put(getString(R.string.texto),checkLogo1s);
+
+            JSONObject valor86 = new JSONObject();
+            valor86.put(getString(R.string.valor_id),322);
+            valor86.put(getString(R.string.texto),checkCubres);
+
+            JSONObject valor87 = new JSONObject();
+            valor87.put(getString(R.string.valor_id),289);
+            valor87.put(getString(R.string.texto),checkRuresps);
+
+            JSONObject valor88 = new JSONObject();
+            valor88.put(getString(R.string.valor_id),814);
+            valor88.put(getString(R.string.texto),checkFaltantes);
+
+            JSONObject valor89 = new JSONObject();
+            valor89.put(getString(R.string.valor_id),311);
+            valor89.put(getString(R.string.texto),checkBAnts);
+
+            JSONObject valor90 = new JSONObject();
+            valor90.put(getString(R.string.valor_id),308);
+            valor90.put(getString(R.string.texto),checkBAnts);
+
+            JSONObject valor91 = new JSONObject();
+            valor91.put(getString(R.string.valor_id),801);
+            valor91.put(getString(R.string.texto),checkBalizas);
+
+            JSONObject valor92 = new JSONObject();
+            valor92.put(getString(R.string.valor_id),329);
+            valor92.put(getString(R.string.texto),checkCupulas);
+
+            JSONObject valor93 = new JSONObject();
+            valor93.put(getString(R.string.valor_id),310);
+            valor93.put(getString(R.string.texto),checkCajaHs);
+
+            JSONObject valor94 = new JSONObject();
+            valor94.put(getString(R.string.valor_id),277);
+            valor94.put(getString(R.string.texto),checkAcs);
+
+            JSONObject valor95 = new JSONObject();
+            valor95.put(getString(R.string.valor_id),340);
+            valor95.put(getString(R.string.texto),checkClims);
+
+            JSONObject valor96 = new JSONObject();
+            valor96.put(getString(R.string.valor_id),279);
+            valor96.put(getString(R.string.texto),checkAlrs);
+
+            JSONObject valor97 = new JSONObject();
+            valor97.put(getString(R.string.valor_id),292);
+            valor97.put(getString(R.string.texto),checkCierreCs);
+
+            JSONObject valor98 = new JSONObject();
+            valor98.put(getString(R.string.valor_id),324);
+            valor98.put(getString(R.string.texto),checkCints);
+
+            JSONObject valor99 = new JSONObject();
+            valor99.put(getString(R.string.valor_id),318);
+            valor99.put(getString(R.string.texto),checkFrenos);
+
+            JSONObject valor100 = new JSONObject();
+            valor100.put(getString(R.string.valor_id),281);
+            valor100.put(getString(R.string.texto),checkAirgs);
+
+            Log.e("pase json ", getString(R.string.valor_id));
 
 
+            JSONObject valor101 = new JSONObject();
+            valor101.put(getString(R.string.valor_id),343);
+            valor101.put(getString(R.string.texto),checkCapotas);
+
+                   /* JSONObject valor102 = new JSONObject();
+                    valor102.put(getString(R.string.valor_id),336);
+                    valor102.put(getString(R.string.texto),checkBels);*/
+
+            JSONObject valor103 = new JSONObject();
+            valor103.put(getString(R.string.valor_id),283);
+            valor103.put(getString(R.string.texto),checkMolds);
+
+            JSONObject valor104 = new JSONObject();
+            valor104.put(getString(R.string.valor_id),259);
+            valor104.put(getString(R.string.texto),checkFals);
+
+            //UNIR TODOS LOS ACCESORIOS EN UN JSONARRAY
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(valor104);
+            jsonArray.put(valor103);
+            jsonArray.put(valor101);
+            // jsonArray.put(valor102);
+
+            jsonArray.put(valor100);
+            jsonArray.put(valor99);
+            jsonArray.put(valor98);
+            jsonArray.put(valor97);
+            jsonArray.put(valor96);
+            jsonArray.put(valor95);
+            jsonArray.put(valor94);
+            jsonArray.put(valor93);
+            jsonArray.put(valor92);
+            jsonArray.put(valor91);
+            jsonArray.put(valor90);
+            jsonArray.put(valor89);
+            jsonArray.put(valor88);
+            jsonArray.put(valor87);
+            jsonArray.put(valor86);
+            jsonArray.put(valor85);
+            jsonArray.put(valor84);
+            jsonArray.put(valor83);
+            jsonArray.put(valor82);
+            jsonArray.put(valor81);
+            jsonArray.put(valor80);
+            jsonArray.put(valor79);
+            jsonArray.put(valor78);
+            jsonArray.put(valor63);
+            jsonArray.put(valor64);
+            jsonArray.put(valor65);
+            jsonArray.put(valor66);
+            jsonArray.put(valor75);
+            jsonArray.put(valor76);
+            jsonArray.put(valor77);
+
+
+            Log.e("largo json ", Integer.toString(jsonArray.length()));
+            if (!jsonArray.isNull(0)) {
+                for(int i=0;i<jsonArray.length();i++){
+
+                    Log.e("valor ii ", Integer.toString(i));
+                    llenado = new JSONObject(jsonArray.getString(i));
+                    Log.e("valor json ", jsonArray.getString(i));
+
+                    Log.e("INSERTA EN  CODIGO ", llenado.getString("valor_id"));
+
+
+                    db.insertarValor(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+                    //validaciones.insertarDatos(Integer.parseInt(id_inspeccion),llenado.getInt("valor_id"),llenado.getString("texto"));
+
+
+                }
+            }
+
+        }catch (Exception e)
+        {
+            Toast.makeText(AccActivity.this,e.getMessage(),Toast.LENGTH_SHORT);
+        }
     }
 }

@@ -126,24 +126,31 @@ public class frontal extends AppCompatActivity {
 
         btnFrontalE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openCamaraFrontal(id_inspeccion);   }
+            public void onClick(View v) {
+                funcionCamara(id_inspeccion,"_Foto_Frontal.jpg",PHOTO_FRONTAL);
+            }
         });
         btnLogoParaFrontalE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openCamaraParabrisas(id_inspeccion);
+            public void onClick(View v) {
+                funcionCamara(id_inspeccion,"_Foto_Parabrisas.jpg",PHOTO_PARABRISAS);
             }
         });
         btnAdicionalFrontalE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {  openCamaraAdioionalFrontal(id_inspeccion);}
-        });
+            public void onClick(View v) {
+
+                funcionCamara(id_inspeccion,"_Foto_Adicional_Frontal.jpg",PHOTO_ADICIONAL);
+
+            }
+        }
+        );
         btnFrontalDanoE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openCamaraDanoFrontal(id_inspeccion);
+            public void onClick(View v) {
+                funcionCamara(id_inspeccion,"_Foto_Dano_Frontal.jpg",PHOTO_DANO);
             }
         });
-
-
 
 
         sistemaTurboFrontalE.setChecked(validaciones.estadoCheck(Integer.parseInt(id_inspeccion),354));
@@ -152,7 +159,8 @@ public class frontal extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 354).toString().equals("Ok")) {
-                        openCamaraSistemaTurbo(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Sistema_Turbo.jpg",PHOTO_TURBO);
+                        //openCamaraSistemaTurbo(id_inspeccion);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),354,"");
@@ -168,7 +176,7 @@ public class frontal extends AppCompatActivity {
 
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 288).toString().equals("Ok")) {
-                        openCamaraHuenche(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Huenche_Frontal.jpg",PHOTO_HUENCHE);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),288,"");
@@ -184,7 +192,7 @@ public class frontal extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 316).toString().equals("Ok")) {
-                        openCamaraCoco(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_SensoresImpacto_Frontal.jpg",PHOTO_COCO);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),316,"");
@@ -200,7 +208,7 @@ public class frontal extends AppCompatActivity {
 
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 286).toString().equals("Ok")) {
-                        openCamaraNeblinero(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Neblinero_Frontal.jpg",PHOTO_NEBLINERO);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),286,"");
@@ -216,7 +224,7 @@ public class frontal extends AppCompatActivity {
 
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 260).toString().equals("Ok")) {
-                        openCamaraLogo(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Logo_Frontal.jpg",PHOTO_LOGO);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),260,"");
@@ -270,8 +278,8 @@ public class frontal extends AppCompatActivity {
 
     }
 
-    private void openCamaraFrontal(String id) {
 
+    public void funcionCamara(String id,String nombre_foto,int CodigoFoto) {
         String id_inspeccion = id;
         ruta_sd = Environment.getExternalStorageDirectory();
         File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
@@ -283,241 +291,17 @@ public class frontal extends AppCompatActivity {
         if (isDirectoryCreated) {
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Frontal.jpg";
+            nombreimagen = String.valueOf(id_inspeccion) + "_" + String.valueOf(correlativo) + nombre_foto;
 
             ruta = file.toString() + "/" + nombreimagen;
             mPath = ruta;
-            File newFile = new File(mPath);
 
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-
-            startActivityForResult(intent, PHOTO_FRONTAL);
-        }
-    }
-    private void openCamaraParabrisas(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Parabrisas.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_PARABRISAS);
-        }
-    }
-    private void openCamaraAdioionalFrontal(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Frontal.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_ADICIONAL);
-        }
-    }
-    private void openCamaraDanoFrontal(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Dano_Frontal.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_DANO);
-        }
-    }
-    private void openCamaraSistemaTurbo(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Sistema_Turbo.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_TURBO);
-        }
-    }
-    private void openCamaraHuenche(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Huenche_Frontal.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_HUENCHE);
-        }
-    }
-    private void openCamaraCoco(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_SensoresImpacto_Frontal.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_COCO);
-        }
-    }
-    private void openCamaraNeblinero(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Neblinero_Frontal.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_NEBLINERO);
-        }
-    }
-    private void openCamaraLogo(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Logo_Frontal.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-            File newFile = new File(mPath);
-
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(frontal.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_LOGO);
+            startActivityForResult(intent, CodigoFoto);
         }
     }
 
