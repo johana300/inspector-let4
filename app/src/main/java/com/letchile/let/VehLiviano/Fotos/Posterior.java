@@ -932,7 +932,6 @@ public class Posterior extends AppCompatActivity {
                         imageViewFotoPoE.setImageBitmap(decodedByte);
 
 
-                        //servis = new Intent(Posterior.this, TransferirFotoV2.class);
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Posterior");
                         servis.putExtra("id_inspeccion", id_inspeccion);
