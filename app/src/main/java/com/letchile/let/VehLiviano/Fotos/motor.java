@@ -77,23 +77,23 @@ public class motor extends AppCompatActivity {
 
         cunaMotorE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openCamaraCunaMotor(id_inspeccion);
+            public void onClick(View v) {funcionCamara(id_inspeccion,"_Foto_Cuna_Motor.jpg",PHOTO_CUNA);
             }
         });
         motorE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCamaraMotor(id_inspeccion);
+                funcionCamara(id_inspeccion,"_Foto_Motor.jpg",PHOTO_MOTOR);
             }
         });
         chasisVinE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openCamaraChasisVin(id_inspeccion);
+            public void onClick(View v) {funcionCamara(id_inspeccion,"_Foto_Chasis_Motor.jpg",PHOTO_CHASIS);
             }
         });
         adicionalE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openCamaraAdicional(id_inspeccion);
+            public void onClick(View v) {funcionCamara(id_inspeccion,"_Foto_Adicional_Motor.jpg",PHOTO_ADICIONAL);
             }
         });
         btnSeccionUnoMotor.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class motor extends AppCompatActivity {
             }
         });
 
-        btnVolverMotorE = (Button)findViewById(R.id.btnVolverMotorE);
+        btnVolverMotorE = findViewById(R.id.btnVolverMotorE);
         btnVolverMotorE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +115,7 @@ public class motor extends AppCompatActivity {
             }
         });
 
-        btnSiguienteMotorE = (Button)findViewById(R.id.btnSiguienteMotorE);
+        btnSiguienteMotorE = findViewById(R.id.btnSiguienteMotorE);
         btnSiguienteMotorE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,98 +151,20 @@ public class motor extends AppCompatActivity {
 
     }
 
-    private void openCamaraCunaMotor(String id) {
-
+    ///FUNCIÓN ABRE LA CAMARA Y TOMA LAS FOTOGRAFIAS
+    public void funcionCamara(String id,String nombre_foto,int CodigoFoto){
         String id_inspeccion = id;
         ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
         boolean isDirectoryCreated = file.exists();
 
-        if (!isDirectoryCreated)
+        if(!isDirectoryCreated)
             isDirectoryCreated = file.mkdirs();
 
-        if (isDirectoryCreated) {
+        if(isDirectoryCreated){
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Cuna_Motor.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_CUNA);
-        }
-    }
-    private void openCamaraMotor(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Motor.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_MOTOR);
-        }
-    }
-    private void openCamaraChasisVin(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Chasis_Motor.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_CHASIS);
-        }
-    }
-    private void openCamaraAdicional(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Adicional_Motor.jpg";
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+nombre_foto;
 
             ruta = file.toString() + "/" + nombreimagen;
             mPath = ruta;
@@ -250,12 +172,12 @@ public class motor extends AppCompatActivity {
             File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(motor.this,
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(motor.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_ADICIONAL);
+            startActivityForResult(intent, CodigoFoto);
         }
     }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

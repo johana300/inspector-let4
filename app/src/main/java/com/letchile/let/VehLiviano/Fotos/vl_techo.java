@@ -99,7 +99,7 @@ public class vl_techo extends AppCompatActivity {
 
         btnFotoDanoTechoE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openCamaraDanoTecho(id_inspeccion);
+            public void onClick(View v) {funcionCamara(id_inspeccion,"_Foto_Techo_Dano.jpg",PHOTO_DANO);
             }
         });
 
@@ -109,7 +109,7 @@ public class vl_techo extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 325).toString().equals("Ok")) {
-                        openCamaraBarraEquipaje(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Techo_Barra_Equipaje.jpg",PHOTO_BARRA);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),325,"");
@@ -124,7 +124,7 @@ public class vl_techo extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 293).toString().equals("Ok")) {
-                        openCamaraParrillaTecho(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Techo_Parrilla.jpg",PHOTO_PARRILLA);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),293,"");
@@ -140,7 +140,7 @@ public class vl_techo extends AppCompatActivity {
 
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 355).toString().equals("Ok")) {
-                        openCamaraPortaEquipaje(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Techo_Porta_Equipaje.jpg",PHOTO_PORTA_EQUIPAJE);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),355,"");
@@ -156,7 +156,7 @@ public class vl_techo extends AppCompatActivity {
 
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 327).toString().equals("Ok")) {
-                        openCamaraPortaSky(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Techo_Porta_Sky.jpg",PHOTO_PORTA_SKY);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),327,"");
@@ -171,7 +171,7 @@ public class vl_techo extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!db.accesorio(Integer.parseInt(id_inspeccion), 262).toString().equals("Ok")) {
-                        openCamaraSunroof(id_inspeccion);
+                        funcionCamara(id_inspeccion,"_Foto_Techo_Sunroof.jpg",PHOTO_SUNROOF);
                     }
                 }else{
                     db.insertarValor(Integer.parseInt(id_inspeccion),262,"");
@@ -216,124 +216,20 @@ public class vl_techo extends AppCompatActivity {
 
     }
 
-    private void openCamaraDanoTecho(String id) {
-
+    ///FUNCIÓN ABRE LA CAMARA Y TOMA LAS FOTOGRAFIAS
+    public void funcionCamara(String id,String nombre_foto,int CodigoFoto){
         String id_inspeccion = id;
         ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
         boolean isDirectoryCreated = file.exists();
 
-        if (!isDirectoryCreated)
+        if(!isDirectoryCreated)
             isDirectoryCreated = file.mkdirs();
 
-        if (isDirectoryCreated) {
+        if(isDirectoryCreated){
 
             correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Dano.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_DANO);
-        }
-    }
-    private void openCamaraBarraEquipaje(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Barra_Equipaje.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_BARRA);
-        }
-    }
-    private void openCamaraParrillaTecho(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Parrilla.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_PARRILLA);
-        }
-    }
-    private void openCamaraPortaEquipaje(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Porta_Equipaje.jpg";
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_PORTA_EQUIPAJE);
-        }
-    }
-    private void openCamaraPortaSky(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Porta_Sky.jpg";
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+nombre_foto;
 
             ruta = file.toString() + "/" + nombreimagen;
             mPath = ruta;
@@ -341,37 +237,9 @@ public class vl_techo extends AppCompatActivity {
             File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(vl_techo.this,
                     BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_PORTA_SKY);
-        }
-    }
-    private void openCamaraSunroof(String id) {
-
-        String id_inspeccion = id;
-        ruta_sd = Environment.getExternalStorageDirectory();
-        File file = new File(ruta_sd.toString() + '/' + id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated)
-            isDirectoryCreated = file.mkdirs();
-
-        if (isDirectoryCreated) {
-
-            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
-            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Foto_Techo_Sunroof.jpg";
-
-            ruta = file.toString() + "/" + nombreimagen;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(vl_techo.this,
-                    BuildConfig.APPLICATION_ID + ".provider", newFile));
-            //db.insertaFoto(Integer.parseInt(id_inspeccion),1,imageName, "Daño Posterior",0,newFile);
-            startActivityForResult(intent, PHOTO_SUNROOF);
+            startActivityForResult(intent, CodigoFoto);
         }
     }
 
