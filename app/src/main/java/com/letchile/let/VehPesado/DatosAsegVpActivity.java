@@ -34,6 +34,8 @@ public class DatosAsegVpActivity extends AppCompatActivity {
     JSONObject llenadoV;
     JSONArray arrayValor;
     Validaciones validaciones;
+    Spinner comboRegion,comboComuna;
+    String id_inspeccion;
 
 
     public DatosAsegVpActivity() {
@@ -47,44 +49,44 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_datos_aseg_vp);
 
         Bundle bundle = getIntent().getExtras();
-        final String id_inspeccion=bundle.getString("id_inspeccion");
+        id_inspeccion=bundle.getString("id_inspeccion");
 
         //nombre
-        nomVpJg = (EditText)findViewById(R.id.nomVpJg);
+        nomVpJg = findViewById(R.id.nomVpJg);
         nomVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),365).toString());
 
         //Apellido paterno
-        patVpJg = (EditText)findViewById(R.id.patVpJg);
+        patVpJg = findViewById(R.id.patVpJg);
         patVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),366).toString());
 
         //Apellido materno
-        matVpJg = (EditText)findViewById(R.id.matVpJg);
+        matVpJg = findViewById(R.id.matVpJg);
         matVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),367).toString());
 
         //rut
-        rutVpJg = (EditText)findViewById(R.id.rutVpJg);
+        rutVpJg = findViewById(R.id.rutVpJg);
         rutVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),368).toString());
 
         //direccion
-        dirJg = (EditText)findViewById(R.id.dirJg);
+        dirJg = findViewById(R.id.dirJg);
         dirJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),371).toString());
 
         //fono
-        fonoJg = (EditText)findViewById(R.id.fonoJg);
+        fonoJg = findViewById(R.id.fonoJg);
         fonoJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),369).toString());
 
         //celular
-        celular = (EditText)findViewById(R.id.celular);
+        celular = findViewById(R.id.celular);
         celular.setText(db.accesorio(Integer.parseInt(id_inspeccion),533).toString());
 
         //mail
-        mailVpJg = (EditText)findViewById(R.id.mailVpJg);
+        mailVpJg = findViewById(R.id.mailVpJg);
         mailVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
 
 
         String regionInicial=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),370).toString());
         String listaRegiones[][]=db.listaRegiones();
-        final Spinner comboRegion = (Spinner)findViewById(R.id.comboRegVpJg);
+        comboRegion = findViewById(R.id.comboRegVpJg);
         String[] arraySpinner = new String[listaRegiones.length+1];
         arraySpinner[0]=regionInicial;
         for(int i=0;i<listaRegiones.length;i++)        {
@@ -95,7 +97,7 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         comboRegion.setAdapter(adapterRegion);
 
 
-        final Spinner comboComuna = (Spinner)findViewById(R.id.comboComVpJg);
+        comboComuna = findViewById(R.id.comboComVpJg);
         comboRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -122,103 +124,23 @@ public class DatosAsegVpActivity extends AppCompatActivity {
         });
 
         //boton siguiente
-        final Button btnSigAsegVpJg = (Button)findViewById(R.id.btnSigAsegVpJg);
+        final Button btnSigAsegVpJg = findViewById(R.id.btnSigAsegVpJg);
         btnSigAsegVpJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                try{
-
-
-                    JSONObject valor85 = new JSONObject();
-                    valor85.put("valor_id",365);
-                    valor85.put("texto",nomVpJg.getText().toString());
-
-                    JSONObject valor86 = new JSONObject();
-                    valor86.put("valor_id",366);
-                    valor86.put("texto",patVpJg.getText().toString());
-
-                    JSONObject valor87 = new JSONObject();
-                    valor87.put("valor_id",367);
-                    valor87.put("texto",matVpJg.getText().toString());
-
-                    JSONObject valor88 = new JSONObject();
-                    valor88.put("valor_id",368);
-                    valor88.put("texto",rutVpJg.getText().toString());
-
-                    JSONObject valor89 = new JSONObject();
-                    valor89.put("valor_id",371);
-                    valor89.put("texto",dirJg.getText().toString());
-
-                    JSONObject valor90 = new JSONObject();
-                    valor90.put("valor_id",369);
-                    valor90.put("texto",fonoJg.getText().toString());
-
-                    JSONObject valor91 = new JSONObject();
-                    valor91.put("valor_id",533);
-                    valor91.put("texto",celular.getText().toString());
-
-
-                    JSONObject valor92 = new JSONObject();
-                    valor92.put("valor_id",532);
-                    valor92.put("texto",mailVpJg.getText().toString());
-
-                    JSONObject datosValorVpCo = new JSONObject();
-                    datosValorVpCo.put("valor_id",370);
-                    datosValorVpCo.put("texto",comboComuna.getSelectedItem().toString());
-
-
-
-
-                    JSONArray jsonArray = new JSONArray();
-                    jsonArray.put(valor85);
-                    jsonArray.put(valor86);
-                    jsonArray.put(valor87);
-                    jsonArray.put(valor88);
-                    jsonArray.put(valor89);
-                    jsonArray.put(valor90);
-                    jsonArray.put(valor91);
-                    jsonArray.put(valor92);
-                    jsonArray.put(datosValorVpCo);
-
-
-
-
-                    JSONObject llenadoV;
-                    if (!jsonArray.isNull(0)) {
-                        for(int i=0;i<jsonArray.length();i++){
-                            llenadoV = new JSONObject(jsonArray.getString(i));
-                            db.insertarValor(Integer.parseInt(id_inspeccion),llenadoV.getInt("valor_id"),llenadoV.getString("texto"));
-
-
-                        }
-                    }
-
-                }catch (Exception e)
-                {
-
-                    Toast.makeText(DatosAsegVpActivity.this, "", Toast.LENGTH_SHORT).show();
-                }
-
-
                 if(comboComuna.getSelectedItem().toString().equals("Seleccione...")){
 
                     Toast.makeText(DatosAsegVpActivity.this, "Debe seleccionar región y comuna.",Toast.LENGTH_SHORT).show();
-
                 }
                 else
                 {
-
+                    guardarDatos();
                     Intent intent = new Intent( DatosAsegVpActivity.this, DatosInspVpActivity.class);
                     intent.putExtra("id_inspeccion",id_inspeccion);
                     startActivity(intent);
                 }
-
-
             }
         });
-
 
         //Botón volver de sección pesado
         final Button btnVolverAsegVpJg = (Button)findViewById(R.id.btnVolverAsegVpJg);
@@ -226,15 +148,75 @@ public class DatosAsegVpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                guardarDatos();
                 Intent intent = new Intent( DatosAsegVpActivity.this, SeccionVpActivity.class);
                 intent.putExtra("id_inspeccion",id_inspeccion);
                 startActivity(intent);
             }
         });
+    }
+
+    public void guardarDatos(){
+        try{
+            JSONObject valor85 = new JSONObject();
+            valor85.put("valor_id",365);
+            valor85.put("texto",nomVpJg.getText().toString());
+
+            JSONObject valor86 = new JSONObject();
+            valor86.put("valor_id",366);
+            valor86.put("texto",patVpJg.getText().toString());
+
+            JSONObject valor87 = new JSONObject();
+            valor87.put("valor_id",367);
+            valor87.put("texto",matVpJg.getText().toString());
+
+            JSONObject valor88 = new JSONObject();
+            valor88.put("valor_id",368);
+            valor88.put("texto",rutVpJg.getText().toString());
+
+            JSONObject valor89 = new JSONObject();
+            valor89.put("valor_id",371);
+            valor89.put("texto",dirJg.getText().toString());
+
+            JSONObject valor90 = new JSONObject();
+            valor90.put("valor_id",369);
+            valor90.put("texto",fonoJg.getText().toString());
+
+            JSONObject valor91 = new JSONObject();
+            valor91.put("valor_id",533);
+            valor91.put("texto",celular.getText().toString());
 
 
+            JSONObject valor92 = new JSONObject();
+            valor92.put("valor_id",532);
+            valor92.put("texto",mailVpJg.getText().toString());
 
+            JSONObject datosValorVpCo = new JSONObject();
+            datosValorVpCo.put("valor_id",370);
+            datosValorVpCo.put("texto",comboComuna.getSelectedItem().toString());
 
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(valor85);
+            jsonArray.put(valor86);
+            jsonArray.put(valor87);
+            jsonArray.put(valor88);
+            jsonArray.put(valor89);
+            jsonArray.put(valor90);
+            jsonArray.put(valor91);
+            jsonArray.put(valor92);
+            jsonArray.put(datosValorVpCo);
+
+            JSONObject llenadoV;
+            if (!jsonArray.isNull(0)) {
+                for(int i=0;i<jsonArray.length();i++){
+                    llenadoV = new JSONObject(jsonArray.getString(i));
+                    db.insertarValor(Integer.parseInt(id_inspeccion),llenadoV.getInt("valor_id"),llenadoV.getString("texto"));
+                }
+            }
+        }catch (Exception e)
+        {
+            Toast.makeText(DatosAsegVpActivity.this, "", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

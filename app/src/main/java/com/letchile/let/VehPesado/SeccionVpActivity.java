@@ -127,7 +127,6 @@ public class SeccionVpActivity extends AppCompatActivity {
                 }
             }
 
-
             Intent seccion = new Intent(SeccionVpActivity.this, InsPendientesActivity.class);
             startActivity(seccion);
 
