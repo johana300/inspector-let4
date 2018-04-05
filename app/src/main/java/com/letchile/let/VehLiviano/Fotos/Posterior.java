@@ -191,7 +191,19 @@ public class Posterior extends AppCompatActivity {
         });
         btnPosteriorE.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { showOptionsbtnPosteriorE(id_inspeccion);
+            public void onClick(View v) {
+                //showOptionsbtnPosteriorE(id_inspeccion);
+
+                //SOLO EN LA PRIMERA FOTO DE POSTERIOR
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String fechaInspeccion = sdf.format(new Date());
+                db.insertarValor(Integer.parseInt(id_inspeccion),360, fechaInspeccion);
+
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+                String horaInspeccion = sdf2.format(new Date());
+                db.insertarValor(Integer.parseInt(id_inspeccion),361,horaInspeccion);
+
+                funcionCamara(id_inspeccion,"_Foto_Posterior.jpg",TAKE_POSTERIOR);
             }
         });
         btnLogoLunetaE.setOnClickListener(new View.OnClickListener() {
@@ -484,14 +496,6 @@ public class Posterior extends AppCompatActivity {
         }
     }
     private void openCamerabtnPosteriorE(String id) {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String fechaInspeccion = sdf.format(new Date());
-        db.insertarValor(Integer.parseInt(id),360, fechaInspeccion);
-
-        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
-        String horaInspeccion = sdf2.format(new Date());
-        db.insertarValor(Integer.parseInt(id),361,horaInspeccion);
 
         String id_inspeccion = id;
         ruta_sd =Environment.getExternalStorageDirectory();
@@ -848,6 +852,34 @@ public class Posterior extends AppCompatActivity {
     }
 
 
+
+    public void funcionCamara(String id,String nombre_foto,int CodigoFoto){
+        String id_inspeccion = id;
+        ruta_sd = Environment.getExternalStorageDirectory();
+        File file = new File(ruta_sd.toString()+'/'+id_inspeccion);//(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        boolean isDirectoryCreated = file.exists();
+
+        if(!isDirectoryCreated)
+            isDirectoryCreated = file.mkdirs();
+
+        if(isDirectoryCreated){
+
+            correlativo = db.correlativoFotos(Integer.parseInt(id_inspeccion));
+            nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+nombre_foto;
+
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,  FileProvider.getUriForFile(Posterior.this,
+                    BuildConfig.APPLICATION_ID + ".provider", newFile));
+            startActivityForResult(intent, CodigoFoto);
+        }
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -932,6 +964,7 @@ public class Posterior extends AppCompatActivity {
                         imageViewFotoPoE.setImageBitmap(decodedByte);
 
 
+                        //servis = new Intent(Posterior.this, TransferirFotoV2.class);
                         servis = new Intent(Posterior.this, TransferirFoto.class);
                         servis.putExtra("comentario", "Posterior");
                         servis.putExtra("id_inspeccion", id_inspeccion);
