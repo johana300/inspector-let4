@@ -120,11 +120,8 @@ public class SeccionVpActivity extends AppCompatActivity {
             db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion),2);
 
             if(connec) {
-                //comprobar que el servicio esté activo
-                if (!compruebaServicio(TransferirInspeccion.class)) {
-                    Intent servis = new Intent(SeccionVpActivity.this, TransferirInspeccion.class);
-                    startService(servis);
-                }
+                Intent servis = new Intent(SeccionVpActivity.this, TransferirInspeccion.class);
+                startService(servis);
             }
 
             Intent seccion = new Intent(SeccionVpActivity.this, InsPendientesActivity.class);

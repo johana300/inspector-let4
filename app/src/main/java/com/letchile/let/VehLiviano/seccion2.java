@@ -60,7 +60,7 @@ public class seccion2 extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-                        if (fotosTomadas >= 0) {
+                        if (fotosTomadas >= 18) {
 
                             //cambiar inspeccion a estado para transmitir
                             db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion), 2);
