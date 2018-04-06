@@ -60,17 +60,14 @@ public class seccion2 extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
 
-                        if (fotosTomadas >= 18) {
+                        if (fotosTomadas >= 0) {
 
                             //cambiar inspeccion a estado para transmitir
                             db.cambiarEstadoInspeccion(Integer.parseInt(id_inspeccion), 2);
 
                             if (connec) {
-                                //comprobar que el servicio esté activo
-                                if (!compruebaServicio(TransferirInspeccion.class)) {
-                                    Intent servis = new Intent(seccion2.this, TransferirInspeccion.class);
-                                    startService(servis);
-                                }
+                                Intent servis = new Intent(seccion2.this, TransferirInspeccion.class);
+                                startService(servis);
                             }
                             Intent seccion = new Intent(seccion2.this, InsPendientesActivity.class);
                             startActivity(seccion);
@@ -175,15 +172,4 @@ public class seccion2 extends AppCompatActivity {
     }
 
 
-
-
-    private boolean compruebaServicio(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

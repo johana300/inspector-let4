@@ -205,29 +205,6 @@ public class DBprovider extends SQLiteOpenHelper {
         db.close();
     }
 
-    //asd
-    public String existeUsuario(String usr, String pwd) {
-        String resp = "";
-        //prueba
-        SQLiteDatabase db = getWritableDatabase();
-
-        if (db != null) {
-            Cursor cur = db.rawQuery("SELECT usr FROM USUARIO WHERE usr = '" + usr + "' and pwd ='" + pwd + "';", null);
-
-            cur.moveToFirst();
-
-            if (cur != null) {
-                resp = cur.getString(0);
-            } else {
-                resp = "";
-            }
-            cur.close();
-        }
-        db.close();
-        return resp;
-    }
-
-
     //verifica usuario
     public String obtenerUsuario() {
         String respuesta = "";
@@ -275,7 +252,7 @@ public class DBprovider extends SQLiteOpenHelper {
         int count = 0;
         SQLiteDatabase db = getReadableDatabase();
         String[][] aData = null;
-        Cursor aRS = db.rawQuery("SELECT * FROM INSPECCION WHERE enviado<>2 ORDER BY fecha_cita desc", null);
+        Cursor aRS = db.rawQuery("SELECT * FROM INSPECCION WHERE estado in (0,1) ORDER BY fecha_cita desc", null);
 
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
