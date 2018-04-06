@@ -350,10 +350,6 @@ try {
                     Log.e("Error",e.getMessage());
                 }
 
-
-
-
-
             return strings[0];
         }
 
