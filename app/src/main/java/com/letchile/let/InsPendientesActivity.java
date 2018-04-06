@@ -81,7 +81,7 @@ public class InsPendientesActivity extends AppCompatActivity{
         new SendPostRequest().execute(usr.toString());
 
         //refresca el layout
-        refres = (SwipeRefreshLayout)findViewById(R.id.swipeM);
+        refres = findViewById(R.id.swipeM);
         refres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

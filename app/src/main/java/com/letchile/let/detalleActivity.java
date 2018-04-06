@@ -122,16 +122,16 @@ public class detalleActivity extends AppCompatActivity {
 
         String[][] datosInspeccion=db.BuscaDatosInspeccion(id_inspeccion);
 
-        compañia = (TextView)findViewById(R.id.compañiaMQ);
+        compañia = findViewById(R.id.compañiaMQ);
         compañia.setText(datosInspeccion[0][15].toString());
 
-        corredor = (TextView)findViewById(R.id.corredorMQ);
+        corredor = findViewById(R.id.corredorMQ);
         corredor.setText(db.accesorio(Integer.parseInt(id_inspeccion),9).toString());
 
-        n_oi = (TextView)findViewById(R.id.n_oim);
+        n_oi = findViewById(R.id.n_oim);
         n_oi.setText(id_inspeccion);
 
-        pac = (TextView)findViewById(R.id.pac);
+        pac = findViewById(R.id.pac);
         if(datosInspeccion[0][12].toString().equals("S")) {
             pac.setText("Si");
         }else if(datosInspeccion[0][12].toString().equals("") || datosInspeccion[0][12].isEmpty()){
@@ -333,11 +333,6 @@ public class detalleActivity extends AppCompatActivity {
                         else
                         {
                             new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
-                            /*Intent intent = new Intent(detalleActivity.this,Fallida.class);
-                            intent.putExtra("id_inspeccion",n_oi.getText().toString());
-                            new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());*/
-
-                            //startActivity(intent);
                         }
                     }
                 });
