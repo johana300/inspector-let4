@@ -78,7 +78,7 @@ public class Posterior extends AppCompatActivity {
     private final int TAKE_TAPARIGIDA = 1400;
     private final int TAKE_LONACUBRE = 1500;
     private final int TAKE_HERRAMIENTA = 1600;
-    PhotoViewAttacher photoViewAttacher;
+
 
     private ImageView mSetImage,imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
     private RelativeLayout mRlView;
@@ -572,8 +572,8 @@ public class Posterior extends AppCompatActivity {
                         byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
                         Bitmap decodedByte  = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                         imageViewFotoPoE.setImageBitmap(decodedByte);
-                        photoViewAttacher = new PhotoViewAttacher(imageViewFotoPoE);
-
+                        PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(imageViewFotoPoE);
+                        photoViewAttacher.update();
 
                         //servis = new Intent(Posterior.this, TransferirFotoV2.class);
                         servis = new Intent(Posterior.this, TransferirFoto.class);
