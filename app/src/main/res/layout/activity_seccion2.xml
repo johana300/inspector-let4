@@ -39,7 +39,7 @@
             android:layout_width="134dp"
             android:layout_height="45dp"
             android:layout_alignParentStart="true"
-            android:background="@drawable/boton_redondo"
+            android:background="@drawable/boto_redondoselect"
 
             android:layout_alignTop="@+id/btnPenJg"
             android:drawableLeft="@android:drawable/ic_menu_revert"
@@ -66,7 +66,7 @@
             android:layout_height="45dp"
             android:layout_alignTop="@+id/btnPenJg"
             android:layout_toEndOf="@+id/btnPenJg"
-            android:background="@drawable/boton_redondo"
+            android:background="@drawable/boto_redondoselect"
             android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Transmitir OI " />
