@@ -119,6 +119,14 @@
                         android:visibility="gone" />
 
 
+                    <ImageButton
+                        android:id="@+id/imagePruebaFoto"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+
+                        />
+
                     <Button
                         android:id="@+id/btnLogoLunetaE"
                         style="@android:style/Widget.Button"
@@ -419,6 +427,8 @@
                         android:layout_gravity="center"
                         app:srcCompat="@drawable/border"
                         android:visibility="gone" />
+
+
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>

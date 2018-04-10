@@ -1077,7 +1077,8 @@ public class Posterior extends AppCompatActivity {
 
             btnPosteriorE.setVisibility(View.VISIBLE);
             imageViewFotoPoE.setVisibility(View.VISIBLE);
-
+            PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(imageViewFotoPoE);
+            photoViewAttacher.update();
             btnLogoLunetaE.setVisibility(View.VISIBLE);
             imageLogoLunetaE.setVisibility(View.VISIBLE);
 
