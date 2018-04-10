@@ -111,21 +111,24 @@
                         android:textSize="18sp"
                         android:visibility="gone" />
 
-                    <ImageView
+                    <!--ImageView
                         android:id="@+id/imageViewFotoPoE"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        android:visibility="gone" />
+                        android:visibility="gone" /-->
 
 
                     <ImageButton
-                        android:id="@+id/imagePruebaFoto"
+                        android:id="@+id/imageViewFotoPoE"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
+                        android:visibility="gone"
 
                         />
+
+
 
                     <Button
                         android:id="@+id/btnLogoLunetaE"
@@ -429,11 +432,20 @@
                         android:visibility="gone" />
 
 
+
+
                 </LinearLayout>
+
             </ScrollView>
         </RelativeLayout>
 
     </RelativeLayout>
-
+    <ImageView
+        android:id="@+id/expanded_image"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        />
 
 </android.support.constraint.ConstraintLayout>
