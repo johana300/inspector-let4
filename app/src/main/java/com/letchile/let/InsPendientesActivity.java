@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
@@ -59,6 +60,7 @@ public class InsPendientesActivity extends AppCompatActivity{
     TableLayout tl;
     TableRow tr;
     Validaciones validaciones;
+    TextView versionApp;
 
 
 
@@ -74,6 +76,11 @@ public class InsPendientesActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspecciones_pendientes);
 
+        //VERSION DE LA APP
+        versionApp = findViewById(R.id.versionApp);
+        versionApp.setText(getString(R.string.version));
+
+
         //Comprobar la conexión a internet para cargar las inspecciones
         connec = new ConexionInternet(this).isConnectingToInternet();
 
@@ -81,7 +88,7 @@ public class InsPendientesActivity extends AppCompatActivity{
         new SendPostRequest().execute(usr.toString());
 
         //refresca el layout
-        refres = (SwipeRefreshLayout)findViewById(R.id.swipeM);
+        refres = findViewById(R.id.swipeM);
         refres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
