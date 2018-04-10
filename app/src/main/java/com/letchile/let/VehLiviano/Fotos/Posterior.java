@@ -392,7 +392,7 @@ public class Posterior extends AppCompatActivity {
 
 
 
-        btnVolverPoE = (Button)findViewById(R.id.btnVolverPvpMQ);
+        btnVolverPoE = findViewById(R.id.btnVolverPvpMQ);
         btnVolverPoE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -405,7 +405,7 @@ public class Posterior extends AppCompatActivity {
         });
 
 
-        btnSiguientePoE = (Button)findViewById(R.id.btnSiguientePoE);
+        btnSiguientePoE = findViewById(R.id.btnSiguientePoE);
         btnSiguientePoE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -555,12 +555,7 @@ public class Posterior extends AppCompatActivity {
                                 });
 
 
-                        Display display = ((WindowManager)
-                        Posterior.this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-                        int rotation = display.getRotation();
-
                         Bitmap bitmapPosterio = BitmapFactory.decodeFile(mPath);
-                        //bitmapPosterio = foto.rotateBitmap(bitmapPosterio,1);
                         bitmapPosterio = foto.redimensiomarImagen(bitmapPosterio);
                         String imagenPosterio = foto.convertirImagenDano(bitmapPosterio);
                         db.insertaFoto(Integer.parseInt(id_inspeccion), db.correlativoFotos(Integer.parseInt(id_inspeccion)), nombreimagen, "Posterior", 0, imagenPosterio);

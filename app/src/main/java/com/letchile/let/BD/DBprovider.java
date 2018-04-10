@@ -185,11 +185,17 @@ public class DBprovider extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldDb, int newDb) {
         db.execSQL("DROP TABLE IF EXISTS USUARIO");
         db.execSQL("DROP TABLE IF EXISTS INSPECCION");
+        db.execSQL("DROP TABLE IF EXISTS INSPECCION_FALLIDA");
         db.execSQL("DROP TABLE IF EXISTS FOTO");
+        db.execSQL("DROP TABLE IF EXISTS LOG_FDANO");
+        db.execSQL("DROP TABLE IF EXISTS FOTO_FALLIDA");
         db.execSQL("DROP TABLE IF EXISTS VALOR");
         db.execSQL("DROP TABLE IF EXISTS HITO");
         db.execSQL("DROP TABLE IF EXISTS BITACORA");
         db.execSQL("DROP TABLE IF EXISTS COMUNA");
+        db.execSQL("DROP TABLE IF EXISTS PIEZA");
+        db.execSQL("DROP TABLE IF EXISTS DANIOS");
+        db.execSQL("DROP TABLE IF EXISTS DEDUCIBLES");
         onCreate(db);
     }
 
