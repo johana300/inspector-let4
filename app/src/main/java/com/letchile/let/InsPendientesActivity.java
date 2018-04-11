@@ -5,12 +5,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.Clases.Inspeccion;
 import com.letchile.let.Clases.Validaciones;
+import com.letchile.let.Remoto.Data.Resp_versionapp;
+import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
 
 import org.json.JSONArray;
@@ -38,11 +40,14 @@ import javax.net.ssl.HttpsURLConnection;
 
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.listeners.TableDataClickListener;
-import de.codecrafters.tableview.model.TableColumnDpWidthModel;
-import de.codecrafters.tableview.model.TableColumnPxWidthModel;
 import de.codecrafters.tableview.model.TableColumnWeightModel;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Mauro on 08/01/2018.
@@ -53,11 +58,9 @@ public class InsPendientesActivity extends AppCompatActivity{
     DBprovider db;
     SwipeRefreshLayout refres;
     String usr = "";
-    ProgressDialog pDialog = null;
+    ProgressDialog pDialog = null, pAutentic = null;
     Boolean connec = false;
-    JSONArray jsonar;
     JSONObject jsonbb, jsonEstado,llenado;
-    TableLayout tl;
     TableRow tr;
     Validaciones validaciones;
     TextView versionApp;
@@ -85,7 +88,9 @@ public class InsPendientesActivity extends AppCompatActivity{
         connec = new ConexionInternet(this).isConnectingToInternet();
 
         usr = db.obtenerUsuario();
-        new SendPostRequest().execute(usr.toString());
+        new SendPostRequest().execute(usr);
+
+
 
         //refresca el layout
         refres = findViewById(R.id.swipeM);
@@ -98,13 +103,76 @@ public class InsPendientesActivity extends AppCompatActivity{
                 connec = new ConexionInternet(InsPendientesActivity.this).isConnectingToInternet();
                 if(connec) {
                     usr = db.obtenerUsuario();
-                    new SendPostRequest().execute(usr.toString());
+                    new SendPostRequest().execute(usr);
                 }else{
                     Toast.makeText(InsPendientesActivity.this,"No hay conexión a internet",Toast.LENGTH_SHORT).show();
                 }
                 refres.setRefreshing(false);
             }
         });
+
+        if(connec) {
+            //mandar la versión que se está ocupando
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(getString(R.string.URL_BASE))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            final InterfacePost servicio = retrofit.create(InterfacePost.class);
+
+            pAutentic = new ProgressDialog(InsPendientesActivity.this);
+            pAutentic.setMessage("Autenticando versión...");
+            pAutentic.setIndeterminate(false);
+            pAutentic.setCancelable(false);
+
+            pAutentic.show();
+
+            Call<Resp_versionapp> respVersionCall = servicio.getVersion(usr,getString(R.string.version));
+            respVersionCall.enqueue(new Callback<Resp_versionapp>() {
+                @Override
+                public void onResponse(Call<Resp_versionapp> call, Response<Resp_versionapp> response) {
+                    int statusCode = response.code();
+                    Resp_versionapp resp_versionapp = response.body();
+                    Log.d("Version","onResponse"+statusCode);
+
+                    pAutentic.dismiss();
+
+                    if(resp_versionapp.getMSJ().equals("Version desactualizada")){
+
+                        //Toast.makeText(InsPendientesActivity.this,"Desactualizada",Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder alertdialog = new AlertDialog.Builder(InsPendientesActivity.this);
+                        alertdialog.setMessage("Debe actualizar la aplicación en Play store!!, recuerda terminar las transmisiones antes de actualizar");
+
+                        alertdialog.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                final String appPackageName = getPackageName(); // obtiene el nombre de la app
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                                } catch (android.content.ActivityNotFoundException anfe) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                                }
+                            }
+                        });
+
+                        alertdialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(InsPendientesActivity.this,"Actualización cancelada",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertdialog.show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Resp_versionapp> call, Throwable t) {
+                    Log.e("Version", "onFailure" + t.getMessage());
+                    Toast.makeText(InsPendientesActivity.this,"Error en la verificación",Toast.LENGTH_SHORT).show();
+                    pAutentic.dismiss();
+                }
+            });
+        }
     }
 
 
