@@ -1,22 +1,15 @@
 package com.letchile.let.Remoto;
 
-import com.letchile.let.Remoto.Data.Env_FotoEnviada;
 import com.letchile.let.Remoto.Data.LoginResp;
 import com.letchile.let.Remoto.Data.Resp_CambioRamo;
 import com.letchile.let.Remoto.Data.Resp_FotoEnviada;
+import com.letchile.let.Remoto.Data.Resp_versionapp;
 import com.letchile.let.Remoto.Data.oiRangoHorario;
 
-import java.util.HashMap;
-
-import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 
 /**
  * Created by LET-CHILE on 14-03-2018.
@@ -54,5 +47,9 @@ public interface InterfacePost {
             @Part("comentario")RequestBody comentario,
             @Part("archivo")RequestBody archivo);*/
 
-    //prueba final
+    @FormUrlEncoded
+    @POST("cargamovil/verificaVersionApp")
+    Call<Resp_versionapp> getVersion(@Field("usr_inspector")String usr_inspector,@Field("version") String version);
+
+
 }
