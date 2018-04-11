@@ -140,7 +140,7 @@ public class InsPendientesActivity extends AppCompatActivity{
 
                         //Toast.makeText(InsPendientesActivity.this,"Desactualizada",Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder alertdialog = new AlertDialog.Builder(InsPendientesActivity.this);
-                        alertdialog.setMessage("Debe actualizar la aplicación en Play store!!, recuerde terminar las transmisiones antes de actualizar");
+                        alertdialog.setMessage("Debe actualizar la aplicación en Play store!!, recuerda terminar las transmisiones antes de actualizar");
 
                         alertdialog.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
                             @Override
