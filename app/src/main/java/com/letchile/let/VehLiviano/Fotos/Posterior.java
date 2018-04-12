@@ -596,11 +596,6 @@ public class Posterior extends AppCompatActivity {
                         byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
                         Bitmap decodedByte  = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                         imageViewFotoPoE.setImageBitmap(decodedByte);
-                        //PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(imageViewFotoPoE);
-                        //photoViewAttacher.update();
-
-
-
 
 
                         //servis = new Intent(Posterior.this, TransferirFotoV2.class);
