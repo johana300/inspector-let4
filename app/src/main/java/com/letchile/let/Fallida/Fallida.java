@@ -169,19 +169,14 @@ public class Fallida extends AppCompatActivity{
             isDirectoryCreated = file.mkdirs();
 
         if (isDirectoryCreated) {
-            //Long timestamp = System.currentTimeMillis() / 1000;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            Date date = new Date();
-
-            String fecha = dateFormat.format(date);
-            String imageName = fecha + "_Fallida.jpg";
-            ruta = file.toString() + "/" + imageName;
-            mPath = ruta;
-
-            File newFile = new File(mPath);
 
             correlativo = db.correlativoFotosFallida(id_inspeccion);
             nombreimagen = String.valueOf(id_inspeccion)+"_"+String.valueOf(correlativo)+"_Fallida.jpg";
+
+            ruta = file.toString() + "/" + nombreimagen;
+            mPath = ruta;
+
+            File newFile = new File(mPath);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(Fallida.this,
@@ -209,12 +204,6 @@ public class Fallida extends AppCompatActivity{
                                 }
                             });
 
-
-
-                    //DATIS DE LA INSPECCION FALLIDA
-
-
-
                     Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                     bitmap = foto.redimensiomarImagen(bitmap);
                     imagenFallida.setImageBitmap(bitmap);
@@ -222,18 +211,15 @@ public class Fallida extends AppCompatActivity{
                     String imagen = foto.convertirImagenDano(bitmap);
                     //el id se trae de la base de datos
                     //db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
-                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, 1, fechaHoraFallida, 0, imagen,"Foto Fallida");
+                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
+
+                    //TRANSFERIR FOTO
+                    Intent servis = new Intent(contexto, TransferirFotoFallida.class);
+                    servis.putExtra("nombreFoto",nombreimagen);
+                    servis.putExtra("id_inspeccion",id_inspeccion);
+                    startService(servis);
                     break;
             }
-
-            //TRANSFERIR FOTO
-            Intent servis = new Intent(contexto, TransferirFotoFallida.class);
-            servis.putExtra("nombreFoto",nombreimagen);
-            servis.putExtra("id_inspeccion",id_inspeccion);
-            startService(servis);
-
-
-
         }
     }
 
