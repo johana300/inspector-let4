@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -52,9 +52,9 @@
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
-            android:textColor="@android:color/background_light"
             android:layout_toEndOf="@+id/btnVolverPvpMQ"
             android:text="Volver a Secciones"
+            android:textColor="@android:color/background_light"
             android:textSize="12sp"
             android:visibility="invisible" />
 
@@ -66,9 +66,9 @@
             android:layout_alignTop="@+id/btnVolerSecPvpMQ"
             android:layout_toEndOf="@+id/btnVolerSecPvpMQ"
             android:background="@drawable/boto_redondoselect"
-            android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Siguiente"
+            android:textColor="@android:color/background_light"
             android:textSize="18sp" />
 
         <RelativeLayout
@@ -103,31 +103,20 @@
                         android:layout_width="230dp"
                         android:layout_height="45dp"
 
+                        android:background="@drawable/boton_redondo"
                         android:drawableLeft="@android:drawable/ic_menu_camera"
                         android:drawablePadding="8dp"
                         android:text="Foto Posterior"
-                        android:background="@drawable/boton_redondo"
                         android:textColor="@android:color/background_light"
                         android:textSize="18sp"
                         android:visibility="gone" />
 
-                    <!--ImageView
+                    <ImageView
                         android:id="@+id/imageViewFotoPoE"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        android:visibility="gone" /-->
-
-
-                    <ImageButton
-                        android:id="@+id/imageViewFotoPoE"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_gravity="center"
-                        android:visibility="gone"
-
-                        />
-
+                        android:visibility="gone" />
 
 
                     <Button
@@ -263,7 +252,6 @@
                         android:textSize="18sp" />
 
 
-
                     <CheckBox
                         android:id="@+id/sensoresPoE"
                         android:layout_width="match_parent"
@@ -319,6 +307,7 @@
                         android:layout_height="130dp"
                         android:layout_gravity="center"
                         android:visibility="gone" />
+
                     <CheckBox
                         android:id="@+id/enchufeRemolque"
                         android:layout_width="match_parent"
@@ -353,8 +342,8 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/border"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/border" />
 
                     <CheckBox
                         android:id="@+id/camaraRefriPoE"
@@ -368,8 +357,8 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/border"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/border" />
 
                     <CheckBox
                         android:id="@+id/cubrePickPoE"
@@ -383,8 +372,8 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/border"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/border" />
 
                     <CheckBox
                         android:id="@+id/tapaRiPoE"
@@ -398,8 +387,8 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/border"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/border" />
 
                     <CheckBox
                         android:id="@+id/LonaCubrePoE"
@@ -413,8 +402,8 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/border"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/border" />
 
                     <CheckBox
                         android:id="@+id/cajaHerrPoE"
@@ -428,24 +417,17 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/border"
-                        android:visibility="gone" />
-
-
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/border" />
 
 
                 </LinearLayout>
 
             </ScrollView>
+
         </RelativeLayout>
 
     </RelativeLayout>
-    <ImageView
-        android:id="@+id/expanded_image"
-        android:layout_width="100dp"
-        android:layout_height="75dp"
-        android:scaleType="centerCrop"
-        android:visibility="gone"
-        />
+
 
 </android.support.constraint.ConstraintLayout>

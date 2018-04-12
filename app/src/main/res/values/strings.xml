@@ -5,5 +5,11 @@
     <string name="valor_id">valor_id</string>
     <string name="texto">texto</string>
     <string name="version">versión 1.0</string>
+
+    <!-- Accessibility-only descriptions -->
+    <string name="description_image_1">Image 1</string>
+    <string name="description_image_2">Image 2</string>
+    <string name="description_zoom_touch_close">Expanded image (touch to close)</string>
+
 </resources>
 

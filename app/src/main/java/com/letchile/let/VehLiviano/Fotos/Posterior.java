@@ -17,16 +17,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,7 +42,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.ablanco.zoomy.TapListener;
+import com.ablanco.zoomy.Zoomy;
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
@@ -53,8 +61,11 @@ import com.letchile.let.VehLiviano.seccion2;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import retrofit2.http.Url;
@@ -88,11 +99,8 @@ public class Posterior extends AppCompatActivity {
     private final int TAKE_LONACUBRE = 1500;
     private final int TAKE_HERRAMIENTA = 1600;
 
-    private Animator mCurrentAnimator;
-    private int mShortAnimationDuration;
 
-
-    private ImageView mSetImage, expanded_image,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
+    private ImageView mSetImage, imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
     private RelativeLayout mRlView;
     private String mPath;
     private Button btnVolverPoE,btnVolerSecPoE,btnSiguientePoE,btnPosteriorE,btnLogoLunetaE,btnFotoAdiocionalE,btnFotoDanoE,btnSeccionPos1E,seccionPos2E,seccionPos3E,seccionPos3EMQ;
@@ -109,7 +117,7 @@ public class Posterior extends AppCompatActivity {
     int correlativo = 0;
     String dañosDedu[][];
     ExifInterface exifObject;
-    private ImageButton imageViewFotoPoE;
+
 
 
     public Posterior(){db = new DBprovider(this);foto=new PropiedadesFoto(this);validaciones = new Validaciones(this);
@@ -127,7 +135,7 @@ public class Posterior extends AppCompatActivity {
 
         mRlView = findViewById(R.id.relativeLayout2);
         btnPosteriorE = findViewById((R.id.btnPosteriorE));
-        imageViewFotoPoE = findViewById(R.id.imageViewFotoPoE);
+        imageViewFotoPoE= findViewById(R.id.imageViewFotoPoE);
         btnLogoLunetaE = findViewById(R.id.btnLogoLunetaE);
         imageLogoLunetaE = findViewById(R.id.imageLogoLunetaE);
         btnFotoAdiocionalE = findViewById(R.id.btnFotoAdiocionalE);
@@ -156,7 +164,7 @@ public class Posterior extends AppCompatActivity {
         imageenChufeRemolque = findViewById(R.id.imageenChufeRemolque);
         camaraRefriPoE = findViewById(R.id.camaraRefriPoE);
 
-        expanded_image = findViewById(R.id.expanded_image);
+
 
         //accesorios faltantes
         imageCamRePoE = findViewById(R.id.imageCamRePoE);
@@ -182,6 +190,7 @@ public class Posterior extends AppCompatActivity {
                 DesplegarCamposSeccionUno(id_inspeccion);
             }
         });
+
         seccionPos2E.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -590,16 +599,7 @@ public class Posterior extends AppCompatActivity {
                         //PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(imageViewFotoPoE);
                         //photoViewAttacher.update();
 
-                        imageViewFotoPoE.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                String imagenPosterior = db.foto(Integer.parseInt(id_inspeccion),"Posterior");
-                                byte[] decodedString = Base64.decode(imagenPosterior, Base64.DEFAULT);
-                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                                zoomFoto( decodedByte);
 
-                            }
-                        });
 
 
 
@@ -1018,7 +1018,7 @@ public class Posterior extends AppCompatActivity {
 
 
 
-    private  void DesplegarCamposSeccionUno(String id)    {
+    private  void DesplegarCamposSeccionUno(final String id)    {
 
         if (btnPosteriorE.getVisibility()==View.VISIBLE)
         {
@@ -1108,23 +1108,8 @@ public class Posterior extends AppCompatActivity {
 
             btnPosteriorE.setVisibility(View.VISIBLE);
             imageViewFotoPoE.setVisibility(View.VISIBLE);
-            imageViewFotoPoE.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
-                    builder.setCancelable(false);
-                    builder.setTitle("LET Chile");
-                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Posterior</li><p><li>- Foto Logo Luneta</li></p></ul></p>"));
-                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
-            });
+
 
             btnLogoLunetaE.setVisibility(View.VISIBLE);
             imageLogoLunetaE.setVisibility(View.VISIBLE);
@@ -1529,137 +1514,7 @@ public class Posterior extends AppCompatActivity {
         }
     }
 
-    private void zoomFoto( Bitmap imageViewFotoPoE)
-    {
-        expanded_image.setVisibility(View.VISIBLE);
 
-        expanded_image.setImageBitmap(imageViewFotoPoE);
 
-    }
-
-   /* private void zoomImageFromThumb(final View imageViewFotoPoE, int foto) {
-        // If there's an animation in progress, cancel it immediately and proceed with this one.
-        if (mCurrentAnimator != null) {
-            mCurrentAnimator.cancel();
-        }
-
-        // Load the high-resolution "zoomed-in" image.
-        final ImageView expandedImageView =  findViewById(R.id.expanded_image);
-        expandedImageView.setImageResource(foto);
-
-        // Calculate the starting and ending bounds for the zoomed-in image. This step
-        // involves lots of math. Yay, math.
-        final Rect startBounds = new Rect();
-        final Rect finalBounds = new Rect();
-        final Point globalOffset = new Point();
-
-        // The start bounds are the global visible rectangle of the thumbnail, and the
-        // final bounds are the global visible rectangle of the container view. Also
-        // set the container view's offset as the origin for the bounds, since that's
-        // the origin for the positioning animation properties (X, Y).
-        imageViewFotoPoE.getGlobalVisibleRect(startBounds);
-        findViewById(R.id.container).getGlobalVisibleRect(finalBounds, globalOffset);
-        startBounds.offset(-globalOffset.x, -globalOffset.y);
-        finalBounds.offset(-globalOffset.x, -globalOffset.y);
-
-        // Adjust the start bounds to be the same aspect ratio as the final bounds using the
-        // "center crop" technique. This prevents undesirable stretching during the animation.
-        // Also calculate the start scaling factor (the end scaling factor is always 1.0).
-        float startScale;
-        if ((float) finalBounds.width() / finalBounds.height()
-                > (float) startBounds.width() / startBounds.height()) {
-            // Extend start bounds horizontally
-            startScale = (float) startBounds.height() / finalBounds.height();
-            float startWidth = startScale * finalBounds.width();
-            float deltaWidth = (startWidth - startBounds.width()) / 2;
-            startBounds.left -= deltaWidth;
-            startBounds.right += deltaWidth;
-        } else {
-            // Extend start bounds vertically
-            startScale = (float) startBounds.width() / finalBounds.width();
-            float startHeight = startScale * finalBounds.height();
-            float deltaHeight = (startHeight - startBounds.height()) / 2;
-            startBounds.top -= deltaHeight;
-            startBounds.bottom += deltaHeight;
-        }
-
-        // Hide the thumbnail and show the zoomed-in view. When the animation begins,
-        // it will position the zoomed-in view in the place of the thumbnail.
-        imageViewFotoPoE.setAlpha(0f);
-        expandedImageView.setVisibility(View.VISIBLE);
-
-        // Set the pivot point for SCALE_X and SCALE_Y transformations to the top-left corner of
-        // the zoomed-in view (the default is the center of the view).
-        expandedImageView.setPivotX(0f);
-        expandedImageView.setPivotY(0f);
-
-        // Construct and run the parallel animation of the four translation and scale properties
-        // (X, Y, SCALE_X, and SCALE_Y).
-        AnimatorSet set = new AnimatorSet();
-        set
-                .play(ObjectAnimator.ofFloat(expandedImageView, View.X, startBounds.left,
-                        finalBounds.left))
-                .with(ObjectAnimator.ofFloat(expandedImageView, View.Y, startBounds.top,
-                        finalBounds.top))
-                .with(ObjectAnimator.ofFloat(expandedImageView, View.SCALE_X, startScale, 1f))
-                .with(ObjectAnimator.ofFloat(expandedImageView, View.SCALE_Y, startScale, 1f));
-        set.setDuration(mShortAnimationDuration);
-        set.setInterpolator(new DecelerateInterpolator());
-        set.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mCurrentAnimator = null;
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-                mCurrentAnimator = null;
-            }
-        });
-        set.start();
-        mCurrentAnimator = set;
-
-        // Upon clicking the zoomed-in image, it should zoom back down to the original bounds
-        // and show the thumbnail instead of the expanded image.
-        final float startScaleFinal = startScale;
-        expandedImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mCurrentAnimator != null) {
-                    mCurrentAnimator.cancel();
-                }
-
-                // Animate the four positioning/sizing properties in parallel, back to their
-                // original values.
-                AnimatorSet set = new AnimatorSet();
-                set
-                        .play(ObjectAnimator.ofFloat(expandedImageView, View.X, startBounds.left))
-                        .with(ObjectAnimator.ofFloat(expandedImageView, View.Y, startBounds.top))
-                        .with(ObjectAnimator
-                                .ofFloat(expandedImageView, View.SCALE_X, startScaleFinal))
-                        .with(ObjectAnimator
-                                .ofFloat(expandedImageView, View.SCALE_Y, startScaleFinal));
-                set.setDuration(mShortAnimationDuration);
-                set.setInterpolator(new DecelerateInterpolator());
-                set.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        imageViewFotoPoE.setAlpha(1f);
-                        expandedImageView.setVisibility(View.GONE);
-                        mCurrentAnimator = null;
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-                        imageViewFotoPoE.setAlpha(1f);
-                        expandedImageView.setVisibility(View.GONE);
-                        mCurrentAnimator = null;
-                    }
-                });
-                set.start();
-                mCurrentAnimator = set;
-            }
-        });
-    }*/
 
 }
