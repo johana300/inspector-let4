@@ -386,7 +386,6 @@ public class detalleActivity extends AppCompatActivity {
 
         protected void onPreExecute(){
             pDialog= new ProgressDialog(detalleActivity.this);
-            //pDialog.setMessage("Autenticando...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -394,7 +393,7 @@ public class detalleActivity extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
-            //fallida $.post("https://www.autoagenda.cl/movil/cargamovil/fotoFallida",{id_inspeccion:oi,usr:user},function(subefotofallida){
+
             conexion1 = new ConexionInternet(detalleActivity.this).isConnectingToInternet();
             try {
                 if (conexion1) {
@@ -444,16 +443,10 @@ public class detalleActivity extends AppCompatActivity {
                         JSONArray jsonar = new JSONArray(json);
                         try{
                             if(!jsonar.isNull(0)){
-                                String result = "";
                                 for (int i = 0; i < jsonar.length(); i++) {
                                     jsonInspe = new JSONObject(jsonar.getString(i));
-                                    //borrar inspeccion anterior
-                                    //db.borrarInspeccionFallida(Integer.parseInt(param[0]));
-                                    /*result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fecha"),jsonInspe.getString("comentario"),
-                                            jsonInspe.getInt("idFallida"),jsonInspe.getString("fecha_cita"),jsonInspe.getString("hora_cita"),jsonInspe.getInt("activo"));*/
-
                                     db.borrarInspeccionFallida(jsonInspe.getInt("id_inspeccion"));
-                                    result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fechaFallida"),jsonInspe.getString("comentarioFallida"),
+                                    db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fechaFallida"),jsonInspe.getString("comentarioFallida"),
                                             jsonInspe.getInt("idFallida"),jsonInspe.getString("fechaCita"),jsonInspe.getString("horaCita"),jsonInspe.getInt("activo"));
                                 }
                             }

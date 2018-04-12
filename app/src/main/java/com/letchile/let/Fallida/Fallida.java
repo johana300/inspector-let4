@@ -115,14 +115,14 @@ public class Fallida extends AppCompatActivity{
 
 
         //FOOTER
-        btnFotoFallida = (Button)findViewById(R.id.btnFotoFallida);
+        btnFotoFallida = findViewById(R.id.btnFotoFallida);
         btnFotoFallida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {openCamaraFallida(Integer.parseInt(id_inspeccion));}
         });
 
 
-        btnEnviarFallida = (Button)findViewById(R.id.btnSigObsJg);
+        btnEnviarFallida = findViewById(R.id.btnSigObsJg);
         btnEnviarFallida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
