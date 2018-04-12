@@ -112,12 +112,42 @@ public class llantasneumaticos extends AppCompatActivity {
             public void onClick(View view) {
                 String imageLlantasN = db.foto(Integer.parseInt(id_inspeccion),"Foto Llantas y Neumaticos");
                 String imageRuedaRespuestoLlantas = db.foto(Integer.parseInt(id_inspeccion),"Foto Rueda de Respuesto Llantas y Neumaticos");
-                if(imageLlantasN.length()<=3 || imageRuedaRespuestoLlantas.length()<=3)
+                if(imageLlantasN.length()<=3 && imageRuedaRespuestoLlantas.length()<=3)
                 {
                     AlertDialog.Builder builder = new AlertDialog.Builder(llantasneumaticos.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
                     builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Llantas y Neumáticos</li><p><li>- Foto Rueda de Respuesto</li></p></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if(imageLlantasN.length()<3 )
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(llantasneumaticos.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Llantas y Neumáticos</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if(imageRuedaRespuestoLlantas.length()<3 )
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(llantasneumaticos.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Rueda de Respuesto</li></ul></p>"));
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

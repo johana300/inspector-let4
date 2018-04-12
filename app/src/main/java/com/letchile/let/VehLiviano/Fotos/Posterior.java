@@ -465,7 +465,7 @@ public class Posterior extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
-                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Posterior</li><p><li>- Foto Logo Luneta</li></p></ul></p>"));
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Posterior</li></ul></p>"));
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -474,6 +474,24 @@ public class Posterior extends AppCompatActivity {
                     });
                     AlertDialog alert = builder.create();
                     alert.show();
+                }
+                else if(imagenLogoLuneta.length()<=3 ){
+                    //Toast toast =  Toast.makeText(prueba.this, "Debe Tomar Fotos Obligatorias", Toast.LENGTH_SHORT);
+                    //toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    //toast.show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Logo Luneta</li></p></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
                 }
                 else{
                     Intent intent   = new Intent(Posterior.this,lateralderecho.class);

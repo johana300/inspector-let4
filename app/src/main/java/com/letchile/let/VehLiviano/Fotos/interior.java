@@ -492,12 +492,68 @@ public class interior extends AppCompatActivity {
                 String imageRadioInterior = db.foto(Integer.parseInt(id_inspeccion), "Foto Radio Interior");
                 String imageKilometraje = db.foto(Integer.parseInt(id_inspeccion), "Foto Kilometraje Interior");
 
-                if (imagePanelFueraInte.length()<=3 || imagePanelDentroInte.length()<=3 || imageRadioInterior.length()<=3 || imageKilometraje.length()<=3  ) {
+                if (imagePanelFueraInte.length()<3 && imagePanelDentroInte.length()<3 && imageRadioInterior.length()<3 && imageKilometraje.length()<3  ) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(interior.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
                     builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Panel desde Afuera</li><p><li>- Foto Panel desde Adent.</li></p>" +
                             "<p><li>- Foto Radio</li></p><p><li>- Foto Kilomentraje</li></p></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else  if (imagePanelFueraInte.length()<3 ) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(interior.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Panel desde Afuera</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if ( imagePanelDentroInte.length()<3  ) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(interior.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Panel desde Adent</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else  if (imageRadioInterior.length()<3 ) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(interior.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Radio</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else  if (imageKilometraje.length()<3 ) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(interior.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Kilomentraje</li></ul></p>"));
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

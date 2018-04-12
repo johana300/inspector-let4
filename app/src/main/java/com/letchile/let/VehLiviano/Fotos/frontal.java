@@ -252,12 +252,42 @@ public class frontal extends AppCompatActivity {
                 String imageFrontal = db.foto(Integer.parseInt(id_inspeccion),"Foto Frontal");
                 String imageLogoPara = db.foto(Integer.parseInt(id_inspeccion),"Logo Parabrisas Frontal");
 
-                if(imageFrontal.length()<4 ||imageLogoPara.length()<4 )
+                if(imageFrontal.length()<4 && imageLogoPara.length()<4 )
                 {
                     AlertDialog.Builder builder = new AlertDialog.Builder(frontal.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
                     builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Frontal</li><p><li>- Foto Logo Parabrisas</li></p></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if(imageFrontal.length()<4 )
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(frontal.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Frontal</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else  if(imageLogoPara.length()<4 )
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(frontal.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Logo Parabrisas</li></ul></p>"));
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
