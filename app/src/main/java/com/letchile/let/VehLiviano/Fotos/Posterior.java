@@ -1,35 +1,51 @@
 package com.letchile.let.VehLiviano.Fotos;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.ablanco.zoomy.TapListener;
+import com.ablanco.zoomy.Zoomy;
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
@@ -45,9 +61,15 @@ import com.letchile.let.VehLiviano.seccion2;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.http.Url;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Created by LETCHILE on 20/02/2018.
@@ -77,7 +99,8 @@ public class Posterior extends AppCompatActivity {
     private final int TAKE_LONACUBRE = 1500;
     private final int TAKE_HERRAMIENTA = 1600;
 
-    private ImageView mSetImage,imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
+
+    private ImageView mSetImage, imageViewFotoPoE,imageLogoLunetaE,imageFotoAdicionalE,imageSensores,imageCameraPoE,imageCocoPoE,imageMuelaE,imageenChufeRemolque,imageCamRePoE,imageCubrePickPoE,imageEquipoE,imageTapaRPoE,imageLonaCPoE,imageCajaHerrPoE;
     private RelativeLayout mRlView;
     private String mPath;
     private Button btnVolverPoE,btnVolerSecPoE,btnSiguientePoE,btnPosteriorE,btnLogoLunetaE,btnFotoAdiocionalE,btnFotoDanoE,btnSeccionPos1E,seccionPos2E,seccionPos3E,seccionPos3EMQ;
@@ -96,6 +119,7 @@ public class Posterior extends AppCompatActivity {
     ExifInterface exifObject;
 
 
+
     public Posterior(){db = new DBprovider(this);foto=new PropiedadesFoto(this);validaciones = new Validaciones(this);
     }
 
@@ -111,7 +135,7 @@ public class Posterior extends AppCompatActivity {
 
         mRlView = findViewById(R.id.relativeLayout2);
         btnPosteriorE = findViewById((R.id.btnPosteriorE));
-        imageViewFotoPoE = findViewById(R.id.imageViewFotoPoE);
+        imageViewFotoPoE= findViewById(R.id.imageViewFotoPoE);
         btnLogoLunetaE = findViewById(R.id.btnLogoLunetaE);
         imageLogoLunetaE = findViewById(R.id.imageLogoLunetaE);
         btnFotoAdiocionalE = findViewById(R.id.btnFotoAdiocionalE);
@@ -140,6 +164,8 @@ public class Posterior extends AppCompatActivity {
         imageenChufeRemolque = findViewById(R.id.imageenChufeRemolque);
         camaraRefriPoE = findViewById(R.id.camaraRefriPoE);
 
+
+
         //accesorios faltantes
         imageCamRePoE = findViewById(R.id.imageCamRePoE);
         cubrePickPoE = findViewById(R.id.cubrePickPoE);
@@ -164,6 +190,7 @@ public class Posterior extends AppCompatActivity {
                 DesplegarCamposSeccionUno(id_inspeccion);
             }
         });
+
         seccionPos2E.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -438,7 +465,7 @@ public class Posterior extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
-                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Posterior</li><p><li>- Foto Logo Luneta</li></p></ul></p>"));
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Posterior</li></ul></p>"));
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -447,6 +474,24 @@ public class Posterior extends AppCompatActivity {
                     });
                     AlertDialog alert = builder.create();
                     alert.show();
+                }
+                else if(imagenLogoLuneta.length()<=3 ){
+                    //Toast toast =  Toast.makeText(prueba.this, "Debe Tomar Fotos Obligatorias", Toast.LENGTH_SHORT);
+                    //toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    //toast.show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Posterior.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Logo Luneta</li></p></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
                 }
                 else{
                     Intent intent   = new Intent(Posterior.this,lateralderecho.class);
@@ -976,10 +1021,12 @@ public class Posterior extends AppCompatActivity {
         }catch (Exception e){
             Log.e("Error",e.getMessage());
         }
+
     }
 
 
-    private  void DesplegarCamposSeccionUno(String id)    {
+
+    private  void DesplegarCamposSeccionUno(final String id)    {
 
         if (btnPosteriorE.getVisibility()==View.VISIBLE)
         {
@@ -1049,6 +1096,9 @@ public class Posterior extends AppCompatActivity {
                 byte[] decodedString = Base64.decode(imagenPosterior, Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 imageViewFotoPoE.setImageBitmap(decodedByte);
+
+
+
             }
             if(imagenLogoLuneta.length()>=3 ) {
 
@@ -1066,6 +1116,8 @@ public class Posterior extends AppCompatActivity {
 
             btnPosteriorE.setVisibility(View.VISIBLE);
             imageViewFotoPoE.setVisibility(View.VISIBLE);
+
+
 
             btnLogoLunetaE.setVisibility(View.VISIBLE);
             imageLogoLunetaE.setVisibility(View.VISIBLE);

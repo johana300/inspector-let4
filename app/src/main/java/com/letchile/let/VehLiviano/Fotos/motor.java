@@ -123,7 +123,7 @@ public class motor extends AppCompatActivity {
                 String imageChasisVin = db.foto(Integer.parseInt(id_inspeccion),"Foto Chasis(VIN)");
                 String imageCunaMotor = db.foto(Integer.parseInt(id_inspeccion),"Foto Cuna Motor");
 
-                if(imageCunaMotor.length()<=3 || imageChasisVin.length()<=3 || imageMotor.length()<=3 )  {
+                if(imageCunaMotor.length()<=3 && imageChasisVin.length()<=3 && imageMotor.length()<=3 )  {
                     AlertDialog.Builder builder = new AlertDialog.Builder(motor.this);
                     builder.setCancelable(false);
                     builder.setTitle("LET Chile");
@@ -139,6 +139,48 @@ public class motor extends AppCompatActivity {
                     alert.show();
                 }
 
+                else if(imageCunaMotor.length()<=3 )  {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(motor.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Cuna Motor</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else  if( imageChasisVin.length()<=3  )  {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(motor.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Motor</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if(imageMotor.length()<=3 )  {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(motor.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("LET Chile");
+                    builder.setMessage(Html.fromHtml("<b>Debe Tomar Fotos Obligatorias</b><p><ul><li>- Foto Chavis(VIN)</li></ul></p>"));
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
                 else
                 {
                     Intent intent = new Intent(motor.this, documento.class);
