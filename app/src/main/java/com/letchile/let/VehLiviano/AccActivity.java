@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -230,12 +231,17 @@ public class AccActivity extends AppCompatActivity {
             }
         });
 
+        //Marca Alarma
+        alarma = findViewById(R.id.EAlarma);
+        alarma.setText(db.accesorio(Integer.parseInt(id_inspeccion),552).toString());
+        alarma.setInputType(InputType.TYPE_NULL);
         //check alarma
         checkAlr = findViewById(R.id.checkAlr);
         if(db.accesorio(Integer.parseInt(id_inspeccion),279).toString().equals("Ok"))
         {
             checkAlr.setChecked(true);
             checkAlrs = "Ok";
+            alarma.setInputType(InputType.TYPE_CLASS_TEXT);
         }else{
             checkAlr.setChecked(false);
             checkAlrs = "";
@@ -245,8 +251,11 @@ public class AccActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
                     checkAlrs = "Ok";
+                    alarma.setInputType(InputType.TYPE_CLASS_TEXT);
                 }else{
                     checkAlrs = "";
+                    alarma.setText("");
+                    alarma.setInputType(InputType.TYPE_NULL);
                 }
             }
         });
@@ -637,10 +646,6 @@ public class AccActivity extends AppCompatActivity {
         //kilometraje
         kilometraje = findViewById(R.id.Ekilometraje);
         kilometraje.setText(db.accesorio(Integer.parseInt(id_inspeccion),296).toString());
-
-        //Marca Alarma
-        alarma = findViewById(R.id.EAlarma);
-        alarma.setText(db.accesorio(Integer.parseInt(id_inspeccion),552).toString());
 
         //Cantidad de airbag  282--cantAirb
         cAirb = findViewById(R.id.cantAirb);

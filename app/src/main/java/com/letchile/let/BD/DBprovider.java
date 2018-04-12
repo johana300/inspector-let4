@@ -258,7 +258,7 @@ public class DBprovider extends SQLiteOpenHelper {
         int count = 0;
         SQLiteDatabase db = getReadableDatabase();
         String[][] aData = null;
-        Cursor aRS = db.rawQuery("SELECT * FROM INSPECCION WHERE estado in (0,1) ORDER BY fecha_cita desc", null);
+        Cursor aRS = db.rawQuery("SELECT * FROM INSPECCION WHERE estado in (0,1) ORDER BY hora asc", null);
 
         if (aRS.getCount() > 0) {
             aData = new String[aRS.getCount()][];
