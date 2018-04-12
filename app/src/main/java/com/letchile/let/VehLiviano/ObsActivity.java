@@ -90,7 +90,7 @@ public class ObsActivity extends AppCompatActivity {
     public void guardarDatos(){
         try{
             JSONObject valor101 = new JSONObject();
-            valor101.put("valor_id",301);
+            valor101.put("valor_id",304);
             valor101.put("texto",observacion1.getText().toString());
 
             JSONObject valor102 = new JSONObject();
@@ -102,7 +102,7 @@ public class ObsActivity extends AppCompatActivity {
             valor103.put("texto",observacion3.getText().toString());
 
             JSONObject valor104 = new JSONObject();
-            valor104.put("valor_id",304);
+            valor104.put("valor_id",301);
             valor104.put("texto",observacion4.getText().toString());
 
             JSONArray jsonArray = new JSONArray();
