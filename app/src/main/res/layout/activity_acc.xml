@@ -107,20 +107,18 @@
                     <TextView
                         android:id="@+id/textView25"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Kilometraje"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Kilometraje"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/Ekilometraje"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <!-- <CheckBox
                          android:id="@+id/checkCruc"

@@ -115,47 +115,44 @@
 
                     <Spinner
                         android:id="@+id/spinner_panelR"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView38"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/marcaPanel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView39"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/modeloPanel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView42"
@@ -169,11 +166,10 @@
 
                     <Spinner
                         android:id="@+id/spinner_tipoRadio"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView43"
@@ -191,56 +187,53 @@
                     <TextView
                         android:id="@+id/textView44"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/cantidadParlante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <TextView
                         android:id="@+id/textView45"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/parlanteMarca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView46"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/parlanteModelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView47"
@@ -265,8 +258,7 @@
                         android:id="@+id/radioTransCheck"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Radiotransmisor"
-                        android:layout_marginTop="10dp"/>
+                        android:text="Radiotransmisor" />
 
                     <TextView
                         android:id="@+id/textView48"
@@ -290,74 +282,70 @@
                     <TextView
                         android:id="@+id/textView50"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/cantidadTeewter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <TextView
                         android:id="@+id/textView51"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/marcaTeewter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView52"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/modeloTeewter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView53"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Ubicación:"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Ubicación:"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_tweeter"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView49"
@@ -382,75 +370,70 @@
                     <TextView
                         android:id="@+id/textView54"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/cantidadWoofer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <TextView
                         android:id="@+id/textView55"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/wooferMarca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView56"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/wooferModelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView57"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Ubicación:"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Ubicación:"
-                        android:layout_marginTop="10dp"
-                        />
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_ubic_w"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView58"
@@ -475,74 +458,70 @@
                     <TextView
                         android:id="@+id/textView63"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/cantidadampli1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <TextView
                         android:id="@+id/textView64"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/ampli1marca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView65"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/ampli1Modelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView66"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Ubicación:"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Ubicación:"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_amplif1"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView59"
@@ -566,74 +545,70 @@
                     <TextView
                         android:id="@+id/textView67"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/cantidadampli2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <TextView
                         android:id="@+id/textView68"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/amplimarca2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView69"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/amplimodelo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView70"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Ubicación:"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Ubicación:"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_amplif2"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView60"
@@ -657,74 +632,70 @@
                     <TextView
                         android:id="@+id/textView71"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dvdCantidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <TextView
                         android:id="@+id/textView72"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dvdMarca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView73"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dvdModelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView74"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Ubicación:"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Ubicación:"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_lector"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView61"
@@ -748,74 +719,70 @@
                     <TextView
                         android:id="@+id/textView75"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/pantallaCantidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="number" />
 
                     <TextView
                         android:id="@+id/textView76"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/pantallaMarca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView77"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/pantallaModelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textView78"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Ubicación:"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Ubicación:"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_pantalla"
+                        style="@android:style/Widget.Spinner.DropDown"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:spinnerMode="dialog"
-                        style="@android:style/Widget.Spinner.DropDown"
-                        android:layout_marginTop="10dp"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/textView62"
@@ -839,12 +806,12 @@
                     <TextView
                         android:id="@+id/textView79"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Cantidad"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dvdModularCantidad"
@@ -858,12 +825,12 @@
                     <TextView
                         android:id="@+id/textView80"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Marca"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Marca"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dvdModularmarca"
@@ -876,11 +843,12 @@
                     <TextView
                         android:id="@+id/textView81"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Modelo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Modelo" android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dvdModularmodelo"
@@ -893,12 +861,12 @@
                     <TextView
                         android:id="@+id/textView82"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Ubicación:"
                         android:textColor="@android:color/background_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_height="36dp"
-                        android:text="Ubicación:"
-                        android:layout_marginTop="10dp"/>
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_dvd"
