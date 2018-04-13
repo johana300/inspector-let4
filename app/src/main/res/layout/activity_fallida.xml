@@ -120,7 +120,8 @@
                         android:id="@+id/textView87"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="*Recuerda que solo se mostrará la última foto tomada en la pantalla, pero al transmitir se enviarán todas las fotos tomadas." />
+                        android:text="*Recuerda que solo se mostrará la última foto tomada en la pantalla, pero al transmitir se enviarán todas las fotos tomadas."
+                        android:textColor="#000000"/>
 
                     <TextView
                         android:id="@+id/textView31"
@@ -156,36 +157,15 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:background="@drawable/boton_redondo"
-                        android:textColor="@android:color/background_light"
-                        android:text="Foto Fallida" />
+                        android:text="FOTO FALLIDA"
+                        android:textColor="@android:color/background_light" />
 
                     <ImageView
                         android:id="@+id/imagenFallida"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_gravity="center"
-                        android:visibility="gone"/>
-
-                    <ImageView
-                        android:id="@+id/imagenFallida1"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_gravity="center"
-                        android:visibility="gone"/>
-
-                    <ImageView
-                        android:id="@+id/imagenFallida2"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_gravity="center"
-                        android:visibility="gone"/>
-
-                    <ImageView
-                        android:id="@+id/imagenFallida3"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_gravity="center"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
             </ScrollView>
