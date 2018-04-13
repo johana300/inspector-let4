@@ -469,9 +469,9 @@ public class InsPendientesActivity extends AppCompatActivity{
                                         valor15.put("valor_id",359);
                                         valor15.put("texto",jsonbb.getString("comuna_cita"));
 
-                                        JSONObject valor16 = new JSONObject();
+                                        /*JSONObject valor16 = new JSONObject();
                                         valor16.put("valor_id",301);
-                                        valor16.put("texto",jsonbb.getString("comentario_cita"));
+                                        valor16.put("texto",jsonbb.getString("comentario_cita"));*/
 
                                     /*JSONObject valor8 = new JSONObject();
                                     valor7.put("valor_id",);
@@ -521,7 +521,7 @@ public class InsPendientesActivity extends AppCompatActivity{
                                         datosvalores.put(valor13);
                                         datosvalores.put(valor14);
                                         datosvalores.put(valor15);
-                                        datosvalores.put(valor16);
+                                        //datosvalores.put(valor16);
                                         datosvalores.put(valor17);
                                         //datosvalores.put(valor18);
                                         datosvalores.put(valor19);

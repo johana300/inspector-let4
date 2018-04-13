@@ -54,7 +54,7 @@ public class ObsActivity extends AppCompatActivity {
 
         //OBSERVACION 4
         observacion4 = findViewById(R.id.observacion4);
-        observacion4.setText("");
+        observacion4.setText(db.accesorio(Integer.parseInt(id_inspeccion),301).toString());
 
 
         //Botón volver de sección Observación
@@ -74,7 +74,7 @@ public class ObsActivity extends AppCompatActivity {
 
 
         //Botón volver a secciones
-        final Button btnVolverObsJg = (Button)findViewById(R.id.btnVolverObsJg);
+        final Button btnVolverObsJg = findViewById(R.id.btnVolverObsJg);
         btnVolverObsJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +109,7 @@ public class ObsActivity extends AppCompatActivity {
             jsonArray.put(valor101);
             jsonArray.put(valor102);
             jsonArray.put(valor103);
-            jsonArray.put(valor103);
+            jsonArray.put(valor104);
 
             if (!jsonArray.isNull(0)) {
                 for(int i=0;i<jsonArray.length();i++){

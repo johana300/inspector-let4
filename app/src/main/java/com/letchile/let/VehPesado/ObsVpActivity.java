@@ -67,7 +67,7 @@ public class ObsVpActivity extends AppCompatActivity {
         });
 
 
-        final Button btnVolverObsVpJg = (Button)findViewById(R.id.btnVolverObsVpJg);
+        final Button btnVolverObsVpJg = findViewById(R.id.btnVolverObsVpJg);
         btnVolverObsVpJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
