@@ -68,9 +68,9 @@
             android:layout_alignTop="@+id/btnPenObsJg"
             android:layout_toEndOf="@+id/btnPenObsJg"
             android:background="@drawable/boto_redondoselect"
-            android:textColor="@android:color/background_light"
             android:drawableRight="@android:drawable/ic_media_play"
-            android:text="Enviar Foto Fallida"
+            android:text="Transmitir inspección fallida"
+            android:textColor="@android:color/background_light"
             android:textSize="12sp" />
 
 
@@ -103,14 +103,51 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/editText13"
+                        android:id="@+id/textView28"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textMultiLine"
-                        android:paddingBottom="50dp"
-                        android:paddingTop="20dp"
-                        android:text='Tomar tantas fotografías como sea necesario para:                                                                                          1) Mostrar claramente el lugar de la inspección (se recomiendan  2 fotografías).                                                                                              2) Registrar motivo de fallida cuando se trata de:                                       a) vehículo desarmado, con partes o piezas fuera de su lugar, o en un taller mecánico.                                                b) vehículo sucio                                                                c) vehículo ubicado en un lugar con mala iluminación o con espacio insuficiente para la toma de fotografías".'
+                        android:text="Tomar tantas fotografías como sea necesario para:"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1) Mostrar claramente el lugar de la inspección (se recomiendan  2 fotografías)."
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textView87"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="*Recuerda que solo se mostrará la última foto tomada en la pantalla, pero al transmitir se enviarán todas las fotos tomadas." />
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2) Registrar motivo de fallida cuando se trata de:"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="a) vehículo desarmado, con partes o piezas fuera de su lugar, o en un taller mecánico."
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="b) vehículo sucio."
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='c) vehículo ubicado en un lugar con mala iluminación o con espacio insuficiente para la toma de fotografías".'
                         android:textSize="17sp" />
 
                     <Button

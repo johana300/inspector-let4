@@ -81,10 +81,6 @@ public class Fallida extends AppCompatActivity{
         fecha_cita=bundle.getString("fecha_cita");
         hora_cita=bundle.getString("hora_cita");
 
-
-
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-
         try {
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -99,7 +95,7 @@ public class Fallida extends AppCompatActivity{
         imagenFallida = findViewById(R.id.imagenFallida);
 
         //Botón volver al detalle de la OI
-        final Button btnVolverFaJg = (Button)findViewById(R.id.btnVolverFaJg);
+        final Button btnVolverFaJg = findViewById(R.id.btnVolverFaJg);
         btnVolverFaJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
