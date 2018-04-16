@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -72,9 +73,12 @@ public class detalleActivity extends AppCompatActivity {
     Boolean conexion1 = false;
     ProgressDialog pDialog;
     long minutosDiferencia;
+    long minutosAntes;
+    long minutosDespues;
     JSONObject jsonInspe;
     String fecha_cita,hora_cita,comboRamoo;
     Spinner comboRamo;
+    boolean rangoHorario = false;
 
     public detalleActivity(){
         db = new DBprovider(this);
@@ -101,6 +105,8 @@ public class detalleActivity extends AppCompatActivity {
         final Calendar c= Calendar.getInstance();
         //DateFormat df = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         //String date = df.format(Calendar.getInstance().getTime());
+
+        new rangoHorario().execute(id_inspeccion,db.obtenerUsuario());
 
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm");
@@ -172,6 +178,7 @@ public class detalleActivity extends AppCompatActivity {
                 }
             }
         });
+
 
 
         marca = findViewById(R.id.MarcaMQ);
@@ -322,18 +329,23 @@ public class detalleActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //pregunto perfil, si es 3 validar horario de fallida, 6 sin validaciones
-                        if(perfil.equals("3"))
-                        {
-                            if(minutosDiferencia<=30 && minutosDiferencia>=-30){
-                                new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
-                            }else{
-                                Toast.makeText(detalleActivity.this, "Fuera de rango de horario" , Toast.LENGTH_LONG).show();
+
+                        if(rangoHorario) {
+                            if(minutosAntes <=30 || minutosDespues >=-30){
+                                new notificarFallida().execute(n_oi.getText().toString(), db.obtenerUsuario());
+                            }
+                        }else {
+                            if (perfil.equals("3")) {
+                                if (minutosDiferencia <= 30 && minutosDiferencia >= -30) {
+                                    new notificarFallida().execute(n_oi.getText().toString(), db.obtenerUsuario());
+                                } else {
+                                    Toast.makeText(detalleActivity.this, "Fuera de rango de horario", Toast.LENGTH_LONG).show();
+                                }
+                            } else {
+                                new notificarFallida().execute(n_oi.getText().toString(), db.obtenerUsuario());
                             }
                         }
-                        else
-                        {
-                            new notificarFallida().execute(n_oi.getText().toString(),db.obtenerUsuario());
-                        }
+
                     }
                 });
 
@@ -541,40 +553,41 @@ public class detalleActivity extends AppCompatActivity {
                                     jsonInspe = new JSONObject(jsonar.getString(i));
                                     if(jsonInspe.getInt("id_inspeccion")==Integer.parseInt(strings[0])){
 
-                                        Date fInicio = format.parse(jsonInspe.getString("fechaR")+' '+jsonInspe.getString("horaIR"));
-                                        Date fFinal = format.parse(jsonInspe.getString("fechaR")+' '+jsonInspe.getString("horaFR"));
+
+                                        String fInicio = (jsonInspe.getString("fechaR"));
+                                        String HInicio = (jsonInspe.getString("horaIR"));
+                                        final String fecha_inicio_total = fInicio+'T'+HInicio;
+                                        SimpleDateFormat formatoInicio = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                                        Date fechaInicioTotal = formatoInicio.parse(fecha_inicio_total);
+
+                                        String fTermino = (jsonInspe.getString("fechaR"));
+                                        String HTermino = (jsonInspe.getString("horaFR"));
+                                        final String fecha_Termino_total = fTermino+'T'+HTermino;
+                                        SimpleDateFormat formatoTermino = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                                        Date fechaTerminoTotal = formatoTermino.parse(fecha_Termino_total);
 
                                         Calendar DateFechaInicio = Calendar.getInstance();
-                                        DateFechaInicio.setTime(fInicio);
+                                        DateFechaInicio.setTime(fechaInicioTotal);
 
                                         Calendar DateFechaFinal = Calendar.getInstance();
-                                        DateFechaFinal.setTime(fFinal);
+                                        DateFechaFinal.setTime(fechaTerminoTotal);
 
-                                        long minutosAntes = Calendar.getInstance().getTimeInMillis()-DateFechaInicio.getTimeInMillis();
-                                        long minutosDespues = Calendar.getInstance().getTimeInMillis()-DateFechaInicio.getTimeInMillis();
+                                        minutosAntes = Calendar.getInstance().getTimeInMillis()-DateFechaInicio.getTimeInMillis();
+                                        minutosDespues = DateFechaFinal.getTimeInMillis()-Calendar.getInstance().getTimeInMillis();
 
+                                        minutosAntes = TimeUnit.MILLISECONDS.toMinutes(minutosAntes);
+                                        minutosDespues =  TimeUnit.MILLISECONDS.toMinutes(minutosDespues);
 
+                                        System.out.println("Minutos antes: "+minutosAntes);
+                                        System.out.println("Minutos después: "+minutosDespues);
+
+                                        rangoHorario = true;
                                     }
                                 }
                             }
                         }catch (Exception e){
                             e.printStackTrace();
                         }
-                        /*try{
-                            if(!jsonar.isNull(0)){
-                                String result = "";
-                                for (int i = 0; i < jsonar.length(); i++) {
-                                    jsonInspe = new JSONObject(jsonar.getString(i));
-
-                                    db.borrarInspeccionFallida(jsonInspe.getInt("id_inspeccion"));
-                                    result = db.insertaInspeccionesFallida(jsonInspe.getInt("id_inspeccion"),jsonInspe.getString("fechaFallida"),jsonInspe.getString("comentarioFallida"),
-                                            jsonInspe.getInt("idFallida"),jsonInspe.getString("fechaCita"),jsonInspe.getString("horaCita"),jsonInspe.getInt("activo"));
-                                }
-                            }
-                        }catch (Exception e){
-                            Log.e("Error al convertir json", e.getMessage());
-                        }*/
-                        //String con el json de respuesta
                         return sb.toString();
 
                     } else {
