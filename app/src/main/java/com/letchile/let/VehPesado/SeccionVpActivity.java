@@ -149,7 +149,7 @@ public class SeccionVpActivity extends AppCompatActivity {
             }
         });
 
-
+        builder.show();
     }
 
     private boolean compruebaServicio(Class<?> serviceClass) {
