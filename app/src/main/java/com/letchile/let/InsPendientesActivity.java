@@ -1,5 +1,6 @@
 package com.letchile.let;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -21,6 +22,7 @@ import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.Remoto.Data.Resp_versionapp;
 import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
+import com.letchile.let.Servicios.TransferirInspeccion;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -90,6 +92,16 @@ public class InsPendientesActivity extends AppCompatActivity{
         usr = db.obtenerUsuario();
         new SendPostRequest().execute(usr);
 
+        //ejecutar el servicio si esque hay inspecciones pendientes
+        int insp_e2 = db.estadoInspecciones(2);
+        int insp_e3 = db.estadoInspecciones(3);
+
+        if (insp_e2 > 0 && insp_e3 == 0) {
+            if (connec) {
+                Intent servis = new Intent(this, TransferirInspeccion.class);
+                startService(servis);
+            }
+        }
 
 
         //refresca el layout

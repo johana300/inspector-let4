@@ -196,6 +196,8 @@ try {
 
             }catch (Exception e){
                 Log.e("Error",e.getMessage());
+                db.cambiarEstadoInspeccion(Integer.parseInt(strings[0]),2);
+                onDestroy();
             }
 
 
@@ -271,6 +273,7 @@ try {
 
                             }
                         } else {
+                            db.cambiarEstadoInspeccion(Integer.parseInt(fotos[i][0]), 2);
                             onDestroy(); // sin internet o otro error
                         }
 

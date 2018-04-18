@@ -59,6 +59,7 @@ import com.letchile.let.VehLiviano.SeccionActivity;
 import com.letchile.let.VehLiviano.seccion2;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
