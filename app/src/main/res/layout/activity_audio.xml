@@ -135,7 +135,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView39"
@@ -152,7 +153,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView42"
@@ -199,7 +201,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView45"
@@ -216,7 +219,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView46"
@@ -233,7 +237,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView47"
@@ -294,7 +299,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView51"
@@ -311,7 +317,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView52"
@@ -328,7 +335,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView53"
@@ -382,7 +390,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView55"
@@ -399,7 +408,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView56"
@@ -416,7 +426,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView57"
@@ -470,7 +481,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView64"
@@ -487,7 +499,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView65"
@@ -504,7 +517,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView66"
@@ -557,7 +571,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView68"
@@ -574,7 +589,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView69"
@@ -591,7 +607,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView70"
@@ -644,7 +661,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView72"
@@ -661,7 +679,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView73"
@@ -678,7 +697,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView74"
@@ -731,7 +751,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView76"
@@ -748,7 +769,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView77"
@@ -765,7 +787,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView78"
@@ -819,7 +842,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
 
                     <TextView
@@ -838,7 +862,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView81"
@@ -856,7 +881,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="text"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView82"

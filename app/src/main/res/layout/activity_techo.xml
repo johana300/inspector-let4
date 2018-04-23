@@ -115,7 +115,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textMultiLine"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <CheckBox
                         android:id="@+id/cBarras"
@@ -141,7 +142,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textMultiLine"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <CheckBox
                         android:id="@+id/cportaE"
@@ -167,7 +169,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textMultiLine"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <CheckBox
                         android:id="@+id/cPortaSk"
@@ -193,7 +196,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textMultiLine"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>

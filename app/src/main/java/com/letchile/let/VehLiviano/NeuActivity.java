@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 
@@ -45,50 +46,62 @@ public class NeuActivity extends AppCompatActivity {
 
         //cantidad de neumaticos
         cantNeu = findViewById(R.id.cantNeu);
+        cantNeu.setOnEditorActionListener(new PropiedadesTexto());
         cantNeu.setText(db.accesorio(Integer.parseInt(id_inspeccion),188).toString());
 
         //marca de neumaticos
         maNeu = findViewById(R.id.maNeu);
+        maNeu.setOnEditorActionListener(new PropiedadesTexto());
         maNeu.setText(db.accesorio(Integer.parseInt(id_inspeccion),189).toString());
 
         //modelo de neumaticos
         moNeu = findViewById(R.id.moNeu);
+        moNeu.setOnEditorActionListener(new PropiedadesTexto());
         moNeu.setText(db.accesorio(Integer.parseInt(id_inspeccion),190).toString());
 
         //medida de neumaticos
         meNeu = findViewById(R.id.meNeu);
+        meNeu.setOnEditorActionListener(new PropiedadesTexto());
         meNeu.setText(db.accesorio(Integer.parseInt(id_inspeccion),191).toString());
 
         //cantidad de neumaticos 2
         cantNeu2 = findViewById(R.id.cantNeu2);
+        cantNeu2.setOnEditorActionListener(new PropiedadesTexto());
         cantNeu2.setText(db.accesorio(Integer.parseInt(id_inspeccion),193).toString());
 
         //marca de neumaticos 2
         maNeu2 = findViewById(R.id.maNeu2);
+        maNeu2.setOnEditorActionListener(new PropiedadesTexto());
         maNeu2.setText(db.accesorio(Integer.parseInt(id_inspeccion),194).toString());
 
         //modelo de neumaticos 2
         moNeu2 = findViewById(R.id.moNeu2);
+        moNeu2.setOnEditorActionListener(new PropiedadesTexto());
         moNeu2.setText(db.accesorio(Integer.parseInt(id_inspeccion),195).toString());
 
         //medida de neumaticos 2
         meNeu2 = findViewById(R.id.meNeu2);
+        meNeu2.setOnEditorActionListener(new PropiedadesTexto());
         meNeu2.setText(db.accesorio(Integer.parseInt(id_inspeccion),196).toString());
 
         //cantidad fierro
         cantFierro = findViewById(R.id.cantFierro);
+        cantFierro.setOnEditorActionListener(new PropiedadesTexto());
         cantFierro.setText(db.accesorio(Integer.parseInt(id_inspeccion),207).toString());
 
         //cantidad cromada
         cantCromadas = findViewById(R.id.cantCromadas);
+        cantCromadas.setOnEditorActionListener(new PropiedadesTexto());
         cantCromadas.setText(db.accesorio(Integer.parseInt(id_inspeccion),774).toString());
 
         //cantidad aleacion
         cantAlea = findViewById(R.id.cantAlea);
+        cantAlea.setOnEditorActionListener(new PropiedadesTexto());
         cantAlea.setText(db.accesorio(Integer.parseInt(id_inspeccion),775).toString());
 
         //marca llanta
         maLlanta = findViewById(R.id.maLLanta);
+        maLlanta.setOnEditorActionListener(new PropiedadesTexto());
         maLlanta.setText(db.accesorio(Integer.parseInt(id_inspeccion),208).toString());
 
         // cargar un combo neumáticos

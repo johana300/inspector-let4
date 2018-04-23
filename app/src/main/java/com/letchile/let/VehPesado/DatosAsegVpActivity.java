@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.R;
 
@@ -53,34 +54,42 @@ public class DatosAsegVpActivity extends AppCompatActivity {
 
         //nombre
         nomVpJg = findViewById(R.id.nomVpJg);
+        nomVpJg.setOnEditorActionListener(new PropiedadesTexto());
         nomVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),365).toString());
 
         //Apellido paterno
         patVpJg = findViewById(R.id.patVpJg);
+        patVpJg.setOnEditorActionListener(new PropiedadesTexto());
         patVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),366).toString());
 
         //Apellido materno
         matVpJg = findViewById(R.id.matVpJg);
+        matVpJg.setOnEditorActionListener(new PropiedadesTexto());
         matVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),367).toString());
 
         //rut
         rutVpJg = findViewById(R.id.rutVpJg);
+        rutVpJg.setOnEditorActionListener(new PropiedadesTexto());
         rutVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),368).toString());
 
         //direccion
         dirJg = findViewById(R.id.dirJg);
+        dirJg.setOnEditorActionListener(new PropiedadesTexto());
         dirJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),371).toString());
 
         //fono
         fonoJg = findViewById(R.id.fonoJg);
+        fonoJg.setOnEditorActionListener(new PropiedadesTexto());
         fonoJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),369).toString());
 
         //celular
         celular = findViewById(R.id.celular);
+        celular.setOnEditorActionListener(new PropiedadesTexto());
         celular.setText(db.accesorio(Integer.parseInt(id_inspeccion),533).toString());
 
         //mail
         mailVpJg = findViewById(R.id.mailVpJg);
+        mailVpJg.setOnEditorActionListener(new PropiedadesTexto());
         mailVpJg.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
 
 

@@ -1,18 +1,24 @@
 package com.letchile.let.VehLiviano;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.R;
 
 import org.json.JSONArray;
@@ -83,22 +89,39 @@ public class DatosVehActivity extends AppCompatActivity {
 
         //Edit Text
         patente = findViewById(R.id.patenteM);
+        patente.setOnEditorActionListener(new PropiedadesTexto());
         patente.setText(db.accesorio(Integer.parseInt(id_inspeccion),363).toString());
+
         marca = findViewById(R.id.marcaM);
+        marca.setOnEditorActionListener(new PropiedadesTexto());
         marca.setText(db.accesorio(Integer.parseInt(id_inspeccion),10).toString());
+
         modelo =findViewById(R.id.modeloM);
+        modelo.setOnEditorActionListener(new PropiedadesTexto());
         modelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),11).toString());
+
         subModelo = findViewById(R.id.subModelo);
+        subModelo.setOnEditorActionListener(new PropiedadesTexto());
         subModelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),12).toString());
+
         color = findViewById(R.id.colorM);
+        color.setOnEditorActionListener(new PropiedadesTexto());
         color.setText(db.accesorio(Integer.parseInt(id_inspeccion),14).toString());
+
         anio = findViewById(R.id.AnioM);
+        anio.setOnEditorActionListener(new PropiedadesTexto());
         anio.setText(db.accesorio(Integer.parseInt(id_inspeccion),13).toString());
+
         nPuertas = findViewById(R.id.nPuertasM);
+        nPuertas.setOnEditorActionListener(new PropiedadesTexto());
         nPuertas.setText(db.accesorio(Integer.parseInt(id_inspeccion),15).toString());
+
         nMotor = findViewById(R.id.nMotorM);
+        nMotor.setOnEditorActionListener(new PropiedadesTexto());
         nMotor.setText(db.accesorio(Integer.parseInt(id_inspeccion),16).toString());
+
         nChasis = findViewById(R.id.nChasisM);
+        nChasis.setOnEditorActionListener(new PropiedadesTexto());
         nChasis.setText(db.accesorio(Integer.parseInt(id_inspeccion),17).toString());
 
 

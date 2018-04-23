@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
@@ -233,6 +234,7 @@ public class AccActivity extends AppCompatActivity {
 
         //Marca Alarma
         alarma = findViewById(R.id.EAlarma);
+        alarma.setOnEditorActionListener(new PropiedadesTexto());
         alarma.setText(db.accesorio(Integer.parseInt(id_inspeccion),552).toString());
         alarma.setInputType(InputType.TYPE_NULL);
         //check alarma
@@ -645,14 +647,17 @@ public class AccActivity extends AppCompatActivity {
 
         //kilometraje
         kilometraje = findViewById(R.id.Ekilometraje);
+        kilometraje.setOnEditorActionListener(new PropiedadesTexto());
         kilometraje.setText(db.accesorio(Integer.parseInt(id_inspeccion),296).toString());
 
         //Cantidad de airbag  282--cantAirb
         cAirb = findViewById(R.id.cantAirb);
+        cAirb.setOnEditorActionListener(new PropiedadesTexto());
         cAirb.setText(db.accesorio(Integer.parseInt(id_inspeccion),282).toString());
 
         //marca cúpula
         cupula = findViewById(R.id.mCupula);
+        cupula.setOnEditorActionListener(new PropiedadesTexto());
         cupula.setText(db.accesorio(Integer.parseInt(id_inspeccion),762).toString());
 
 

@@ -115,7 +115,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView109"
@@ -155,7 +156,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView111"
@@ -168,7 +170,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <TextView
                         android:id="@+id/textView112"
@@ -181,7 +184,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
 
                     <Button
                         android:id="@+id/fotoComprobanteV"

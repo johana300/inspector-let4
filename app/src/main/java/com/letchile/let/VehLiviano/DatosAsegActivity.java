@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
@@ -46,29 +47,37 @@ public class DatosAsegActivity extends AppCompatActivity {
 
         //Setear datos
         asegurado = findViewById(R.id.nomJg);
+        asegurado.setOnEditorActionListener(new PropiedadesTexto());
         asegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),2).toString());
 
         paternoAsegurado = findViewById(R.id.apellidoPaternoM);
+        paternoAsegurado.setOnEditorActionListener(new PropiedadesTexto());
         paternoAsegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),3).toString());
 
         maternoAsegurado = findViewById(R.id.maternoAseguradoM);
+        maternoAsegurado.setOnEditorActionListener(new PropiedadesTexto());
         maternoAsegurado.setText(db.accesorio(Integer.parseInt(id_inspeccion),4).toString());
 
         rut = findViewById(R.id.rutJg);
+        rut.setOnEditorActionListener(new PropiedadesTexto());
         rut.setText(db.accesorio(Integer.parseInt(id_inspeccion),5).toString());
 
         direccion = findViewById(R.id.direccionM);
+        direccion.setOnEditorActionListener(new PropiedadesTexto());
         direccion.setText(db.accesorio(Integer.parseInt(id_inspeccion),8).toString());
 
 
         fono = findViewById(R.id.fonoJg);
+        fono.setOnEditorActionListener(new PropiedadesTexto());
         fono.setText(db.accesorio(Integer.parseInt(id_inspeccion),6).toString());
 
         celular = findViewById(R.id.celuJg);
+        celular.setOnEditorActionListener(new PropiedadesTexto());
         celular.setText(db.accesorio(Integer.parseInt(id_inspeccion),533).toString());
 
 
         email = findViewById(R.id.mailJg);
+        email.setOnEditorActionListener(new PropiedadesTexto());
         email.setText(db.accesorio(Integer.parseInt(id_inspeccion),532).toString());
 
 

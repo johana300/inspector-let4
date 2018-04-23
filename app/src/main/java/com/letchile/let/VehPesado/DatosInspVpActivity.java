@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
@@ -86,18 +87,22 @@ public class DatosInspVpActivity extends AppCompatActivity {
 
         //direccion inspeccion
         dirIns = findViewById(R.id.dirIns);
+        dirIns.setOnEditorActionListener(new PropiedadesTexto());
         dirIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),733));
 
         //fecha inspeccion
         fechaInsp = findViewById(R.id.fechaInsp);
+        fechaInsp.setOnEditorActionListener(new PropiedadesTexto());
         fechaInsp.setText(db.accesorio(Integer.parseInt(id_inspeccion),737));
 
         //hora inspeccion
         horaInsp = findViewById(R.id.horaInsp);
+        horaInsp.setOnEditorActionListener(new PropiedadesTexto());
         horaInsp.setText(db.accesorio(Integer.parseInt(id_inspeccion),738));
 
         //entrevistado
         entrevistado = findViewById(R.id.entrevistado);
+        entrevistado.setOnEditorActionListener(new PropiedadesTexto());
         entrevistado.setText(db.accesorio(Integer.parseInt(id_inspeccion),755));
 
         // cargar un combo inspeccion por

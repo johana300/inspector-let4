@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
@@ -61,9 +62,11 @@ public class AudioActivity extends AppCompatActivity {
         panel.setSelection(arrayPanel.indexOf(db.accesorio(Integer.parseInt(id_inspeccion),211)));
         //marca
         marcaPanel = findViewById(R.id.marcaPanel);
+        marcaPanel.setOnEditorActionListener(new PropiedadesTexto());
         marcaPanel.setText(db.accesorio(Integer.parseInt(id_inspeccion),213));
         //modelo
         modeloPanel = findViewById(R.id.modeloPanel);
+        modeloPanel.setOnEditorActionListener(new PropiedadesTexto());
         modeloPanel.setText(db.accesorio(Integer.parseInt(id_inspeccion),214));
         //tipo de panel
         tipoRadio = findViewById(R.id.spinner_tipoRadio);
@@ -79,12 +82,15 @@ public class AudioActivity extends AppCompatActivity {
         //Parlantes
         //cantidad
         parlanteCantidad = findViewById(R.id.cantidadParlante);
+        parlanteCantidad.setOnEditorActionListener(new PropiedadesTexto());
         parlanteCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),216));
         //Marca
         parlanteMarca = findViewById(R.id.parlanteMarca);
+        parlanteMarca.setOnEditorActionListener(new PropiedadesTexto());
         parlanteMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),217));
         //modelo
         parlanteModelo = findViewById(R.id.parlanteModelo);
+        parlanteModelo.setOnEditorActionListener(new PropiedadesTexto());
         parlanteModelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),323));
 
 
@@ -150,12 +156,15 @@ public class AudioActivity extends AppCompatActivity {
             }
         });
         tweeterCantidad = findViewById(R.id.cantidadTeewter);
+        tweeterCantidad.setOnEditorActionListener(new PropiedadesTexto());
         tweeterCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),240));
 
         tweeterMarca = findViewById(R.id.marcaTeewter);
+        tweeterMarca.setOnEditorActionListener(new PropiedadesTexto());
         tweeterMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),241));
 
         tweetermodelo = findViewById(R.id.modeloTeewter);
+        tweetermodelo.setOnEditorActionListener(new PropiedadesTexto());
         tweetermodelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),242));
 
         tweeter = findViewById(R.id.spinner_tweeter);
@@ -187,12 +196,15 @@ public class AudioActivity extends AppCompatActivity {
         });
 
         woofercantidad = findViewById(R.id.cantidadWoofer);
+        woofercantidad.setOnEditorActionListener(new PropiedadesTexto());
         woofercantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),246));
 
         woofermarca = findViewById(R.id.wooferMarca);
+        woofermarca.setOnEditorActionListener(new PropiedadesTexto());
         woofermarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),247));
 
         woofermodelo = findViewById(R.id.wooferModelo);
+        woofermodelo.setOnEditorActionListener(new PropiedadesTexto());
         woofermodelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),248));
 
         ubicacion_w = findViewById(R.id.spinner_ubic_w);
@@ -226,12 +238,15 @@ public class AudioActivity extends AppCompatActivity {
         });
 
         ampli1Cantidad = findViewById(R.id.cantidadampli1);
+        ampli1Cantidad.setOnEditorActionListener(new PropiedadesTexto());
         ampli1Cantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),222));
 
         ampli1marca = findViewById(R.id.ampli1marca);
+        ampli1marca.setOnEditorActionListener(new PropiedadesTexto());
         ampli1marca.setText(db.accesorio(Integer.parseInt(id_inspeccion),223));
 
         ampli1modelo = findViewById(R.id.ampli1Modelo);
+        ampli1modelo.setOnEditorActionListener(new PropiedadesTexto());
         ampli1modelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),224));
 
         amplificador1 = findViewById(R.id.spinner_amplif1);
@@ -265,12 +280,15 @@ public class AudioActivity extends AppCompatActivity {
 
 
         ampli2cantidad = findViewById(R.id.cantidadampli2);
+        ampli2cantidad.setOnEditorActionListener(new PropiedadesTexto());
         ampli2cantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),228));
 
         ampli2marca = findViewById(R.id.amplimarca2);
+        ampli2marca.setOnEditorActionListener(new PropiedadesTexto());
         ampli2marca.setText(db.accesorio(Integer.parseInt(id_inspeccion),229));
 
         ampli2modelo = findViewById(R.id.amplimodelo2);
+        ampli2modelo.setOnEditorActionListener(new PropiedadesTexto());
         ampli2modelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),230));
 
         amplificador2 = findViewById(R.id.spinner_amplif2);
@@ -304,12 +322,15 @@ public class AudioActivity extends AppCompatActivity {
 
 
         dvdCantidad = findViewById(R.id.dvdCantidad);
+        dvdCantidad.setOnEditorActionListener(new PropiedadesTexto());
         dvdCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),237));
 
         dvdMarca = findViewById(R.id.dvdMarca);
+        dvdMarca.setOnEditorActionListener(new PropiedadesTexto());
         dvdMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),234));
 
         dvdModelo = findViewById(R.id.dvdModelo);
+        dvdModelo.setOnEditorActionListener(new PropiedadesTexto());
         dvdModelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),235));
 
         lector = findViewById(R.id.spinner_lector);
@@ -342,12 +363,15 @@ public class AudioActivity extends AppCompatActivity {
 
 
         pantallaCantidad = findViewById(R.id.pantallaCantidad);
+        pantallaCantidad.setOnEditorActionListener(new PropiedadesTexto());
         pantallaCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),255));
 
         pantallaMarca = findViewById(R.id.pantallaMarca);
+        pantallaMarca.setOnEditorActionListener(new PropiedadesTexto());
         pantallaMarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),252));
 
         pantallaModelo = findViewById(R.id.pantallaModelo);
+        pantallaModelo.setOnEditorActionListener(new PropiedadesTexto());
         pantallaModelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),253));
 
         pantallaa = findViewById(R.id.spinner_pantalla);
@@ -380,12 +404,15 @@ public class AudioActivity extends AppCompatActivity {
 
 
         dvdModularCantidad = findViewById(R.id.dvdModularCantidad);
+        dvdModularCantidad.setOnEditorActionListener(new PropiedadesTexto());
         dvdModularCantidad.setText(db.accesorio(Integer.parseInt(id_inspeccion),758));
 
         dvdModularmarca = findViewById(R.id.dvdModularmarca);
+        dvdModularmarca.setOnEditorActionListener(new PropiedadesTexto());
         dvdModularmarca.setText(db.accesorio(Integer.parseInt(id_inspeccion),759));
 
         dvdModularmodelo = findViewById(R.id.dvdModularmodelo);
+        dvdModularmodelo.setOnEditorActionListener(new PropiedadesTexto());
         dvdModularmodelo.setText(db.accesorio(Integer.parseInt(id_inspeccion),760));
 
         dvde = findViewById(R.id.spinner_dvd);

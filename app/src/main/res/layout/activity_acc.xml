@@ -118,7 +118,8 @@
                         android:id="@+id/Ekilometraje"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:imeOptions="actionDone"/>
 
                     <!-- <CheckBox
                          android:id="@+id/checkCruc"
@@ -178,7 +179,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <CheckBox
                          android:id="@+id/checkCierreC"
@@ -230,7 +232,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="number"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkSun"
@@ -550,7 +553,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="text"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:imeOptions="actionDone"/>
 
                     <!--<CheckBox
                         android:id="@+id/checkTrig"

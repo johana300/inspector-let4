@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.letchile.let.BD.DBprovider;
 import com.letchile.let.BuildConfig;
 import com.letchile.let.Clases.PropiedadesFoto;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.Clases.Validaciones;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
@@ -94,20 +95,24 @@ public class DatosInspActivity extends AppCompatActivity {
         //FOTO
         imagenCompro = findViewById(R.id.imagenCompro);
 
-        direccionIns = (EditText) findViewById(R.id.direccionInspe);
+        direccionIns =  findViewById(R.id.direccionInspe);
+        direccionIns.setOnEditorActionListener(new PropiedadesTexto());
         direccionIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),358));
 
-        fechaIns = (EditText) findViewById(R.id.fechaInsp);
+        fechaIns =  findViewById(R.id.fechaInsp);
+        fechaIns.setOnEditorActionListener(new PropiedadesTexto());
         fechaIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),360));
 
-        horaIns = (EditText) findViewById(R.id.horaInsp);
+        horaIns =  findViewById(R.id.horaInsp);
+        horaIns.setOnEditorActionListener(new PropiedadesTexto());
         horaIns.setText(db.accesorio(Integer.parseInt(id_inspeccion),361));
 
-        entrevistado = (EditText) findViewById(R.id.entrevistadoInsp);
+        entrevistado =  findViewById(R.id.entrevistadoInsp);
+        entrevistado.setOnEditorActionListener(new PropiedadesTexto());
         entrevistado.setText(db.accesorio(Integer.parseInt(id_inspeccion),755));
 
         // cargar un combo inspeccion por
-        spinnerInsp = (Spinner)findViewById(R.id.spinnerInsp);
+        spinnerInsp = findViewById(R.id.spinnerInsp);
         String[] arraytipo = getResources().getStringArray(R.array.insp);
         final List<String> arraytipolist = Arrays.asList(arraytipo);
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.insp , android.R.layout.simple_spinner_item);
@@ -120,7 +125,7 @@ public class DatosInspActivity extends AppCompatActivity {
 
         String regionInicial=db.obtenerRegion(db.accesorio(Integer.parseInt(id_inspeccion),359).toString());
         String listaRegiones[][]=db.listaRegiones();
-        region = (Spinner)findViewById(R.id.regionSpinnerMQ);
+        region = findViewById(R.id.regionSpinnerMQ);
         String[] arraySpinner = new String[listaRegiones.length+1];
         arraySpinner[0]=regionInicial;
         for(int i=0;i<listaRegiones.length;i++)        {
@@ -131,7 +136,7 @@ public class DatosInspActivity extends AppCompatActivity {
         region.setAdapter(adapterRegion);
 
 
-        comuna = (Spinner)findViewById(R.id.comunaSpinner);
+        comuna = findViewById(R.id.comunaSpinner);
         region.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -156,7 +161,7 @@ public class DatosInspActivity extends AppCompatActivity {
 
 
         //FOOTER
-        btnFotocomprobante = (Button)findViewById(R.id.fotoComprobante);
+        btnFotocomprobante = findViewById(R.id.fotoComprobante);
         btnFotocomprobante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {openCamaraComprobante(Integer.parseInt(id_inspeccion));}
@@ -175,7 +180,7 @@ public class DatosInspActivity extends AppCompatActivity {
 
 
         //Botón volver de sección datos de inspeccion
-        final Button btnSigInspJg = (Button)findViewById(R.id.btnSigInspJg);
+        final Button btnSigInspJg = findViewById(R.id.btnSigInspJg);
         btnSigInspJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,7 +199,7 @@ public class DatosInspActivity extends AppCompatActivity {
         });
 
         //Botón volver pendiente
-        final Button btnPenInspJg = (Button)findViewById(R.id.btnPenInspJg);
+        final Button btnPenInspJg = findViewById(R.id.btnPenInspJg);
         btnPenInspJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,7 +211,7 @@ public class DatosInspActivity extends AppCompatActivity {
         });
 
         //Botón volver de secciones
-        final Button btnVolverInspJg = (Button)findViewById(R.id.btnVolverInspJg);
+        final Button btnVolverInspJg = findViewById(R.id.btnVolverInspJg);
         btnVolverInspJg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 
@@ -42,18 +43,22 @@ public class ObsActivity extends AppCompatActivity {
 
         //OBSERVACION 1
         observacion1 = findViewById(R.id.observacion1);
+        observacion1.setOnEditorActionListener(new PropiedadesTexto());
         observacion1.setText(db.accesorio(Integer.parseInt(id_inspeccion),304).toString());
 
         //OBSERVACION 2
         observacion2 = findViewById(R.id.observacion2);
+        observacion2.setOnEditorActionListener(new PropiedadesTexto());
         observacion2.setText(db.accesorio(Integer.parseInt(id_inspeccion),302).toString());
 
         //OBSERVACION 3
         observacion3 = findViewById(R.id.observacion3);
+        observacion3.setOnEditorActionListener(new PropiedadesTexto());
         observacion3.setText(db.accesorio(Integer.parseInt(id_inspeccion),303).toString());
 
         //OBSERVACION 4
         observacion4 = findViewById(R.id.observacion4);
+        observacion4.setOnEditorActionListener(new PropiedadesTexto());
         observacion4.setText(db.accesorio(Integer.parseInt(id_inspeccion),301).toString());
 
 

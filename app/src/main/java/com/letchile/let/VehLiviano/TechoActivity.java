@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.InsPendientesActivity;
 import com.letchile.let.R;
 
@@ -44,18 +45,22 @@ public class TechoActivity extends AppCompatActivity {
 
         //marca parrilla
         maParrilla = findViewById(R.id.maParrilla);
+        maParrilla.setOnEditorActionListener(new PropiedadesTexto());
         maParrilla.setText(db.accesorio(Integer.parseInt(id_inspeccion),309).toString());
 
         //marca barras porta equipaje
         maBarras = findViewById(R.id.maBarras);
+        maBarras.setOnEditorActionListener(new PropiedadesTexto());
         maBarras.setText(db.accesorio(Integer.parseInt(id_inspeccion),773).toString());
 
         //marca porta equipaje
         maPorta = findViewById(R.id.maPorta);
+        maPorta.setOnEditorActionListener(new PropiedadesTexto());
         maPorta.setText(db.accesorio(Integer.parseInt(id_inspeccion),772).toString());
 
         //porta ski
         maPortaSki = findViewById(R.id.maPortaSki);
+        maPortaSki.setOnEditorActionListener(new PropiedadesTexto());
         maPortaSki.setText(db.accesorio(Integer.parseInt(id_inspeccion),771).toString());
 
        //check parrilla

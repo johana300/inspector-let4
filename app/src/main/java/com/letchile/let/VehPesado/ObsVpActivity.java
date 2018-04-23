@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.letchile.let.BD.DBprovider;
+import com.letchile.let.Clases.PropiedadesTexto;
 import com.letchile.let.R;
 import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.VehLiviano.DatosAsegActivity;
@@ -44,14 +45,17 @@ public class ObsVpActivity extends AppCompatActivity {
 
         //OBSERVACION 1
         obs1 = findViewById(R.id.obs1);
+        obs1.setOnEditorActionListener(new PropiedadesTexto());
         obs1.setText(db.accesorio(Integer.parseInt(id_inspeccion),730).toString());
 
         //OBSERVACION 2
         obs2 = findViewById(R.id.obs2);
+        obs2.setOnEditorActionListener(new PropiedadesTexto());
         obs2.setText(db.accesorio(Integer.parseInt(id_inspeccion),731).toString());
 
         //OBSERVACION 3
         obs3 = findViewById(R.id.obs3);
+        obs3.setOnEditorActionListener(new PropiedadesTexto());
         obs3.setText(db.accesorio(Integer.parseInt(id_inspeccion),732).toString());
 
         //BOTON GUARDAR Y SIGUIENTE
