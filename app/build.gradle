@@ -6,8 +6,8 @@ android {
         applicationId "com.letchile.let"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 9
-        versionName "1.0.9"
+        versionCode 11
+        versionName "1.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

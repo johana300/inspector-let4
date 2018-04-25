@@ -151,6 +151,13 @@
                         android:text='c) vehículo ubicado en un lugar con mala iluminación o con espacio insuficiente para la toma de fotografías".'
                         android:textSize="17sp" />
 
+                    <TextView
+                        android:id="@+id/textView88"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="*En caso de ser inspector de región, escriba primero el comentario de la fotografía ya que al tomarla, se enviará y se borrará el comentario actual, para poder tomar una nueva fotografía."
+                        android:textColor="#000000"/>
+
                     <Button
                         android:id="@+id/btnFotoFallida"
                         android:layout_width="160dp"
@@ -159,6 +166,15 @@
                         android:background="@drawable/boton_redondo"
                         android:text="FOTO FALLIDA"
                         android:textColor="@android:color/background_light" />
+
+                    <EditText
+                        android:id="@+id/edtComentarioFallida"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Comentario..."
+                        android:inputType="textPersonName"
+                        android:visibility="gone"/>
 
                     <ImageView
                         android:id="@+id/imagenFallida"

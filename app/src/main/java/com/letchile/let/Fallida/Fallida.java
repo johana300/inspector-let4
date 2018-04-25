@@ -21,6 +21,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -65,7 +66,8 @@ public class Fallida extends AppCompatActivity{
     Button btnFotoFallida,btnEnviarFallida;
     Context contexto = this;
     int correlativo = 0;
-    String nombreimagen = "",fecha_cita,hora_cita,fechaHoraFallida;
+    String nombreimagen = "",fecha_cita,hora_cita,fechaHoraFallida,perfil;
+    EditText edtComentarioRegiones;
 
     public Fallida(){db = new DBprovider(this);foto = new PropiedadesFoto(this);}
 
@@ -75,6 +77,14 @@ public class Fallida extends AppCompatActivity{
         setContentView(R.layout.activity_fallida);
 
         connec = new ConexionInternet(this).isConnectingToInternet();
+
+        perfil = db.obtenerPerfil();
+
+        edtComentarioRegiones = findViewById(R.id.edtComentarioFallida);
+        if(perfil.equals("6")) {
+            edtComentarioRegiones.setVisibility(View.VISIBLE);
+        }
+
         //Traspaso de datos
         Bundle bundle = getIntent().getExtras();
         final String id_inspeccion=bundle.getString("id_inspeccion");
@@ -206,13 +216,21 @@ public class Fallida extends AppCompatActivity{
                     imagenFallida.setVisibility(View.VISIBLE);
                     String imagen = foto.convertirImagenDano(bitmap);
                     //el id se trae de la base de datos
-                    db.insertartFotoFallida(Integer.parseInt(id_inspeccion),nombreimagen,fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen,"Foto Fallida");
-
-                    //TRANSFERIR FOTO
-                    Intent servis = new Intent(contexto, TransferirFotoFallida.class);
-                    servis.putExtra("nombreFoto",nombreimagen);
-                    servis.putExtra("id_inspeccion",id_inspeccion);
-                    startService(servis);
+                    if(perfil.equals("6")) {
+                        db.insertartFotoFallida(Integer.parseInt(id_inspeccion), nombreimagen, fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen, edtComentarioRegiones.getText().toString());
+                        Intent servis = new Intent(contexto, TransferirFotoFallida.class);
+                        servis.putExtra("nombreFoto",nombreimagen);
+                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        startService(servis);
+                        Toast.makeText(Fallida.this,"Fotografía enviada",Toast.LENGTH_SHORT).show();
+                        edtComentarioRegiones.setText("");
+                    }else{
+                        db.insertartFotoFallida(Integer.parseInt(id_inspeccion), nombreimagen, fecha_cita, db.idFotoFallida(Integer.parseInt(id_inspeccion)), fechaHoraFallida, 0, imagen, "Foto Fallida");
+                        Intent servis = new Intent(contexto, TransferirFotoFallida.class);
+                        servis.putExtra("nombreFoto",nombreimagen);
+                        servis.putExtra("id_inspeccion",id_inspeccion);
+                        startService(servis);
+                    }
                     break;
             }
         }
