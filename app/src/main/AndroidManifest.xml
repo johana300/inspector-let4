@@ -144,6 +144,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".VehLiviano.seccion2"
             android:screenOrientation="portrait"/>
+        <activity android:name=".VehLiviano.CamposAnexosActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

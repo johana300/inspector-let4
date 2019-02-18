@@ -16,6 +16,7 @@ import com.letchile.let.Servicios.ConexionInternet;
 import com.letchile.let.Servicios.TransferirInspeccion;
 import com.letchile.let.VehLiviano.Fotos.Posterior;
 import com.letchile.let.detalleActivity;
+import com.letchile.let.VehLiviano.CamposAnexosActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,8 +27,7 @@ public class seccion2 extends AppCompatActivity {
     Boolean connec = false;
     String id_inspeccion;
 
-    public seccion2() {
-        db = new DBprovider(this);
+    public seccion2() { db = new DBprovider(this);
     }
 
     @Override
@@ -42,8 +42,55 @@ public class seccion2 extends AppCompatActivity {
 
 
         //VALIDAR QUETODO LO OBLIGATORIO ESTÉ LISTO
+        //ir a clase
         Button btnTransmitir = findViewById(R.id.btnTranJg);
         btnTransmitir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //verificar nuevamente la conexión
+                connec = new ConexionInternet(seccion2.this).isConnectingToInternet();
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(seccion2.this);
+                builder.setCancelable(false);
+                builder.setMessage(Html.fromHtml("¿Seguro que desea transmitir la inspeccion <b>N°OI: " + id_inspeccion + "</b>?."));
+
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                       int fotosTomadas = db.fotosObligatoriasTomadas(Integer.parseInt(id_inspeccion));
+
+                        //if (fotosTomadas >= 18)
+                            Intent seccion = new Intent(seccion2.this, CamposAnexosActivity.class);
+                            seccion.putExtra("id_inspeccion",id_inspeccion);
+                            startActivity(seccion);
+                           // finish()
+
+                      // } else {
+                           // Toast.makeText(seccion2.this, "Faltan fotos obligatorias por tomar", Toast.LENGTH_SHORT).show();
+                        //}
+                    }
+                });
+
+                builder.setNegativeButton("Rechazar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(seccion2.this, "Inspección no transmitida", Toast.LENGTH_LONG).show();
+                    }
+                });
+                android.app.AlertDialog alert = builder.create();
+                alert.show();
+            }
+
+
+        });
+
+
+
+        //VALIDAR QUETODO LO OBLIGATORIO ESTÉ LISTO
+      /*Button btnTransmitir = findViewById(R.id.btnTranJg);
+       btnTransmitir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -71,9 +118,9 @@ public class seccion2 extends AppCompatActivity {
                             startActivity(seccion);
                             finish();
 
-                        } else {
+                       } else {
                             Toast.makeText(seccion2.this, "Faltan fotos obligatorias por tomar", Toast.LENGTH_SHORT).show();
-                        }
+                       }
                     }
                 });
 
@@ -86,7 +133,7 @@ public class seccion2 extends AppCompatActivity {
                 android.app.AlertDialog alert = builder.create();
                 alert.show();
             }
-        });
+        });*/
 
 
     }

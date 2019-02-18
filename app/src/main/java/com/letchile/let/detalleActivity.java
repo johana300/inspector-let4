@@ -30,7 +30,6 @@ import com.letchile.let.Remoto.Data.Resp_CambioRamo;
 import com.letchile.let.Remoto.Data.oiRangoHorario;
 import com.letchile.let.Remoto.InterfacePost;
 import com.letchile.let.Servicios.ConexionInternet;
-import com.letchile.let.VehLiviano.SeccionActivity;
 import com.letchile.let.VehLiviano.seccion2;
 import com.letchile.let.VehPesado.SeccionVpActivity;
 
@@ -305,7 +304,7 @@ public class detalleActivity extends AppCompatActivity {
         //Agregar hito
 
         //Volver al layout anterior
-        btnVolver = findViewById(R.id.btnVolverM);
+        btnVolver = findViewById(R.id.btnVolverA);
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -35,7 +35,7 @@
             />
 
         <Button
-            android:id="@+id/btnVolverM"
+            android:id="@+id/btnVolverA"
             style="@android:style/Widget.Button"
             android:layout_width="115dp"
             android:layout_height="45dp"
@@ -55,7 +55,7 @@
             android:layout_width="120dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/btnVolverM"
+            android:layout_toEndOf="@+id/btnVolverA"
             android:background="@drawable/boto_redondoselect"
             android:text="Declarar Fallida"
             android:textColor="@android:color/background_light"
@@ -66,16 +66,16 @@
             style="@android:style/Widget.Button"
             android:layout_width="1100dp"
             android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
             android:layout_below="@+id/relativeLayout3"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/btnFallida"
             android:background="@drawable/boto_redondoselect"
             android:drawableRight="@android:drawable/ic_media_play"
             android:text="Comenzar Inspección"
-            android:textColor="@android:color/background_light"
 
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"/>
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp" />
 
 
         <Button
@@ -85,7 +85,7 @@
             android:layout_below="@+id/relativeLayout3"
             android:background="@drawable/boto_redondoselect"
             android:textColor="@android:color/background_light"
-            android:layout_toEndOf="@+id/btnVolverM"
+            android:layout_toEndOf="@+id/btnVolverA"
             android:layout_toStartOf="@+id/btnInspeccionarM"
             android:text="Eliminar OI"
             android:layout_marginTop="10dp"
