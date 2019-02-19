@@ -295,9 +295,6 @@ public class CamposAnexosActivity extends AppCompatActivity {
                 texto8="";
             }
 
-
-
-
             JSONObject valoraa = new JSONObject();
             valoraa.put("valor_id",815);
             valoraa.put("texto",texto1);
